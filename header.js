@@ -420,35 +420,35 @@
               <div class="bct-drop">
                 <p class="bct-drop-head">Our Services</p>
                 <div class="bct-drop-grid">
-                  <a class="bct-drop-card" href="/combained/EachServices/iot/iot-solution.html">
+                  <a class="bct-drop-card" href="/EachServices/iot/iot-solution.html">
                     <div class="bct-drop-icon bct-di--iot"><i class="fa-solid fa-wifi"></i></div>
                     <div class="bct-drop-texts">
                       <span class="bct-drop-label">IoT Solutions</span>
                       <span class="bct-drop-sub">Hardware · Sensors</span>
                     </div>
                   </a>
-                  <a class="bct-drop-card" href="/combained/EachServices/EmbeddedSystem/EmbeddedSystem.html">
+                  <a class="bct-drop-card" href="/EachServices/EmbeddedSystem/EmbeddedSystem.html">
                     <div class="bct-drop-icon bct-di--emb"><i class="fa-solid fa-microchip"></i></div>
                     <div class="bct-drop-texts">
                       <span class="bct-drop-label">Embedded Systems</span>
                       <span class="bct-drop-sub">Firmware · RTOS</span>
                     </div>
                   </a>
-                  <a class="bct-drop-card" href="/combained/EachServices/cloud/cloud.html">
+                  <a class="bct-drop-card" href="/EachServices/cloud/cloud.html">
                     <div class="bct-drop-icon bct-di--cloud"><i class="fa-solid fa-cloud-arrow-up"></i></div>
                     <div class="bct-drop-texts">
                       <span class="bct-drop-label">Cloud Development</span>
                       <span class="bct-drop-sub">AWS · Azure · GCP</span>
                     </div>
                   </a>
-                  <a class="bct-drop-card" href="/combained/EachServices/MobileAppDevelopment/mobile.html">
+                  <a class="bct-drop-card" href="/EachServices/MobileAppDevelopment/mobile.html">
                     <div class="bct-drop-icon bct-di--mobile"><i class="fa-solid fa-mobile-screen-button"></i></div>
                     <div class="bct-drop-texts">
                       <span class="bct-drop-label">Mobile Apps</span>
                       <span class="bct-drop-sub">Android · Flutter</span>
                     </div>
                   </a>
-                  <a class="bct-drop-card" href="/combained/EachServices/BoxBuilding/boxBuilding.html">
+                  <a class="bct-drop-card" href="/EachServices/BoxBuilding/boxBuilding.html">
                     <div class="bct-drop-icon bct-di--box"><i class="fa-solid fa-boxes-stacked"></i></div>
                     <div class="bct-drop-texts">
                       <span class="bct-drop-label">Box Build Assembly</span>
@@ -498,9 +498,9 @@
               </div>
             </li>
   
-            <li><a href="/combained/BlogUpdated/blog.html">Blog</a></li>
-            <li><a href="/combained/LandingAssets/index.html">Projects</a></li>
-            <li><a href="/combained/Contact/contact.html">Contact Us</a></li>
+            <li><a href="/BlogUpdated/blog.html">Blog</a></li>
+            <li><a href="/LandingAssets/index.html">Projects</a></li>
+            <li><a href="/Contact/contact.html">Contact Us</a></li>
           </ul>
         </nav>
   
@@ -516,9 +516,9 @@
     <i class="fa-solid fa-xmark"></i>
     </button>
   
-      <a href="/combained/index.html" class="mob-link">Home</a>
+      <a href="/index.html" class="mob-link">Home</a>
       <div class="mob-divider"></div>
-      <a href="/combained/CompanyBCT/company.html" class="mob-link">Company</a>
+      <a href="/CompanyBCT/company.html" class="mob-link">Company</a>
       <div class="mob-divider"></div>
   
       <!-- Services accordion -->
@@ -526,23 +526,23 @@
         <button class="mob-acc-btn">Services <span class="mob-acc-arrow">▾</span></button>
         <div class="mob-acc-panel">
           <div class="mob-acc-grid">
-            <a class="mob-acc-card" href="/combained/EachServices/iot/iot-solution.html">
+            <a class="mob-acc-card" href="/EachServices/iot/iot-solution.html">
               <div class="mob-acc-icon bct-di--iot"><i class="fa-solid fa-wifi"></i></div>
               <span class="mob-acc-label">IoT Solutions</span>
             </a>
-            <a class="mob-acc-card" href="/combained/EachServices/EmbeddedSystem/EmbeddedSystem.html">
+            <a class="mob-acc-card" href="/EachServices/EmbeddedSystem/EmbeddedSystem.html">
               <div class="mob-acc-icon bct-di--emb"><i class="fa-solid fa-microchip"></i></div>
               <span class="mob-acc-label">Embedded Systems</span>
             </a>
-            <a class="mob-acc-card" href="/combained/EachServices/cloud/cloud.html">
+            <a class="mob-acc-card" href="/EachServices/cloud/cloud.html">
               <div class="mob-acc-icon bct-di--cloud"><i class="fa-solid fa-cloud-arrow-up"></i></div>
               <span class="mob-acc-label">Cloud Development</span>
             </a>
-            <a class="mob-acc-card" href="/combained/EachServices/MobileAppDevelopment/mobile.html">
+            <a class="mob-acc-card" href="/EachServices/MobileAppDevelopment/mobile.html">
               <div class="mob-acc-icon bct-di--mobile"><i class="fa-solid fa-mobile-screen-button"></i></div>
               <span class="mob-acc-label">Mobile Apps</span>
             </a>
-            <a class="mob-acc-card" href="/combained/EachServices/BoxBuilding/boxBuilding.html">
+            <a class="mob-acc-card" href="/EachServices/BoxBuilding/boxBuilding.html">
               <div class="mob-acc-icon bct-di--box"><i class="fa-solid fa-boxes-stacked"></i></div>
               <span class="mob-acc-label">Box Build Assembly</span>
             </a>
@@ -578,11 +578,11 @@
       </div>
       <div class="mob-divider"></div>
   
-      <a href="/combained/BlogUpdated/blog.html" class="mob-link">Blog</a>
+      <a href="/BlogUpdated/blog.html" class="mob-link">Blog</a>
       <div class="mob-divider"></div>
-      <a href="/combained/LandingAssets/index.html" class="mob-link">Projects</a>
+      <a href="/LandingAssets/index.html" class="mob-link">Projects</a>
       <div class="mob-divider"></div>
-      <a href="/combained/Contact/contact.html" class="mob-link">Contact Us</a>
+      <a href="/Contact/contact.html" class="mob-link">Contact Us</a>
     </div>
     `;
   
