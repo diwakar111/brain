@@ -411,8 +411,8 @@
         <!-- Desktop menu -->
         <nav>
           <ul class="bct-menu">
-            <li><a href="/combained/index.html">Home</a></li>
-            <li><a href="/combained/CompanyBCT/company.html">Company</a></li>
+            <li><a href=""/CompanyBCT/index.html"">Home</a></li>
+            <li><a href=""/CompanyBCT/company.html"">Company</a></li>
   
             <!-- Services dropdown -->
             <li class="has-drop" id="dropServices">
