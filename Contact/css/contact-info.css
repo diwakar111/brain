@@ -1,0 +1,163 @@
+/* ============================================================
+   FILE: css/contact-info.css
+   SECTION: Contact Info Cards — #bc-contact-info-section
+   PURPOSE: Styles for the 3 info cards (Phone, Email, Address).
+            Self-contained. No dependency on other section CSS.
+   ============================================================ */
+
+/* --- Section wrapper --- */
+#bc-contact-info-section {
+  padding: var(--bc-space-lg) 1.5rem;
+  background: var(--bc-bg);
+}
+
+/* --- Section heading pattern (reused inside this section only) --- */
+#bc-contact-info-section .ci-section-label {
+  font-family: var(--bc-font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bc-accent);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+#bc-contact-info-section .ci-heading {
+  font-family: var(--bc-font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--bc-text-primary);
+  text-align: center;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+#bc-contact-info-section .ci-subheading {
+  font-size: 1rem;
+  color: var(--bc-text-body);
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+
+/* --- Cards grid --- */
+.ci-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* --- Single info card --- */
+.ci-card {
+  background: var(--bc-gradient-card);
+  border: 1px solid var(--bc-border);
+  border-radius: var(--bc-radius-lg);
+  padding: 2.2rem 1.8rem;
+  text-align: center;
+  cursor: default;
+  transition: transform var(--bc-transition), box-shadow var(--bc-transition), border-color var(--bc-transition);
+  will-change: transform;
+  box-shadow: var(--bc-shadow-sm);
+}
+.ci-card:hover {
+  box-shadow: var(--bc-shadow-lg);
+  border-color: rgba(10,110,189,0.22);
+}
+
+/* --- Card icon ring --- */
+.ci-icon-ring {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: rgba(10,110,189,0.08);
+  border: 2px solid rgba(10,110,189,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.2rem;
+  transition: background var(--bc-transition), border-color var(--bc-transition);
+}
+.ci-card:hover .ci-icon-ring {
+  background: var(--bc-primary);
+  border-color: var(--bc-primary);
+}
+
+.ci-icon-ring svg {
+  width: 26px; height: 26px;
+  stroke: var(--bc-primary);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke var(--bc-transition);
+}
+.ci-card:hover .ci-icon-ring svg {
+  stroke: #fff;
+}
+
+/* --- Card title & text --- */
+.ci-card-title {
+  font-family: var(--bc-font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--bc-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.ci-card-value {
+  font-size: 0.95rem;
+  color: var(--bc-text-body);
+  line-height: 1.6;
+}
+
+.ci-card-value a {
+  color: var(--bc-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--bc-transition);
+}
+.ci-card-value a:hover {
+  color: var(--bc-primary-dark);
+  text-decoration: underline;
+}
+
+/* --- Social icons row (inside social card) --- */
+.ci-social-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.ci-social-link {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: rgba(10,110,189,0.07);
+  border: 1px solid rgba(10,110,189,0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bc-primary);
+  text-decoration: none;
+  transition: all var(--bc-transition);
+}
+.ci-social-link:hover {
+  background: var(--bc-primary);
+  border-color: var(--bc-primary);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.ci-social-link svg {
+  width: 16px; height: 16px;
+  fill: currentColor;
+}
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .ci-cards-grid { grid-template-columns: 1fr; }
+  .ci-card { padding: 1.75rem 1.4rem; }
+}

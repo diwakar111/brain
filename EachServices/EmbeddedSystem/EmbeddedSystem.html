@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Embedded System & Design – BrainChild Technology</title>
+
+  <!-- ═══════════════════════════════════════════
+       GOOGLE FONTS
+       Outfit   → UI, body, buttons
+       Syne     → Headings, logo, hero text
+       Space Mono → Tags, labels, metadata
+  ═══════════════════════════════════════════ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+
+  <!-- ═══════════════════════════════════════════
+       PAGE STYLESHEET
+       File: embedded-system.css
+       All styles scoped with prefix: emb-
+  ═══════════════════════════════════════════ -->
+  <link rel="stylesheet" href="EmbeddedSystem.css" />
+</head>
+<body class="emb-page">
+
+  <!-- ═══════════════════════════════════════════
+       NAVBAR PLACEHOLDER
+       Add your existing navbar.css + navbar.js here
+  ═══════════════════════════════════════════ -->
+  <!-- NAVBAR START -->
+  <!-- paste your <header class="bct-nav"> … </header> here -->
+  <!-- NAVBAR END -->
+
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 1 · HERO
+       ID: emb-hero
+       CSS: emb-hero.* classes
+       JS:  embHeroInit() in embedded-system.js
+  ═══════════════════════════════════════════ -->
+  <section class="emb-hero" id="emb-hero" aria-label="Hero – Embedded System & Design">
+
+    <!-- 3D animated canvas background (circuit board lines) -->
+    <canvas class="emb-hero__canvas" id="embHeroCanvas" aria-hidden="true"></canvas>
+
+    <!-- Subtle grid overlay pattern -->
+    <div class="emb-hero__grid" aria-hidden="true"></div>
+
+    <!-- Floating accent orbs -->
+    <div class="emb-hero__orb emb-hero__orb--1" aria-hidden="true"></div>
+    <div class="emb-hero__orb emb-hero__orb--2" aria-hidden="true"></div>
+
+    <div class="emb-hero__inner">
+      <!-- Breadcrumb -->
+      <nav class="emb-hero__breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html" class="emb-hero__breadcrumb-link">Home</a>
+        <span class="emb-hero__breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="service.html" class="emb-hero__breadcrumb-link">Services</a>
+        <span class="emb-hero__breadcrumb-sep" aria-hidden="true">›</span>
+        <span class="emb-hero__breadcrumb-current">Embedded System &amp; Design</span>
+      </nav>
+
+      <!-- Eyebrow tag -->
+      <span class="emb-hero__eyebrow">
+        <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+        Service 01
+      </span>
+
+      <!-- Main heading -->
+      <h1 class="emb-hero__title">
+        Embedded System<br />
+        <span class="emb-hero__title-accent">&amp; Design</span>
+      </h1>
+
+      <!-- Sub-heading -->
+      <p class="emb-hero__subtitle">
+        From bare-metal firmware to complex multi-core SoC designs — BrainChild engineers
+        robust embedded solutions that power real-world products across every industry.
+      </p>
+
+      <!-- Stat pills -->
+      <div class="emb-hero__pills" role="list">
+        <div class="emb-hero__pill" role="listitem">
+          <span class="emb-hero__pill-num">19+</span>
+          <span class="emb-hero__pill-lbl">Years Experience</span>
+        </div>
+        <div class="emb-hero__pill" role="listitem">
+          <span class="emb-hero__pill-num">150K+</span>
+          <span class="emb-hero__pill-lbl">Devices Deployed</span>
+        </div>
+        <div class="emb-hero__pill" role="listitem">
+          <span class="emb-hero__pill-num">360°</span>
+          <span class="emb-hero__pill-lbl">End-to-End Support</span>
+        </div>
+      </div>
+
+      <!-- CTA buttons -->
+      <div class="emb-hero__actions">
+        <a href="contact.html" class="emb-hero__btn emb-hero__btn--primary">
+          Get Free Consultation
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="#emb-projects" class="emb-hero__btn emb-hero__btn--ghost">
+          View Projects
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="emb-hero__scroll" aria-hidden="true">
+      <span class="emb-hero__scroll-dot"></span>
+      <span class="emb-hero__scroll-lbl">SCROLL</span>
+    </div>
+  </section>
+  <!-- /SECTION 1 · HERO -->
+
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 2 · SERVICE OVERVIEW
+       ID: emb-overview
+       CSS: emb-ov.* classes
+       JS:  scroll-reveal via IntersectionObserver
+  ═══════════════════════════════════════════ -->
+  <section class="emb-ov" id="emb-overview" aria-label="Service Overview">
+    <div class="emb-ov__inner">
+
+      <!-- Left: text content -->
+      <div class="emb-ov__content emb-reveal emb-reveal--left">
+        <span class="emb-tag">What We Do</span>
+        <h2 class="emb-ov__title">Robust Embedded Solutions, Proven at Scale</h2>
+        <p class="emb-ov__lead">
+          We are one of the few companies with proven skills and in-depth expertise in embedded
+          hardware and software design. With over 19 years of experience, we have mastered
+          multiple technology platforms and delivered the most robust embedded solutions across
+          automotive, industrial, consumer, and medical industries.
+        </p>
+        <p class="emb-ov__body">
+          Our team of hardware engineers, firmware developers, and system architects work together
+          to take your product from concept through certification — handling PCB design, component
+          selection, firmware, OS porting, and production testing under one roof.
+        </p>
+
+        <!-- Highlight checklist -->
+        <ul class="emb-ov__list" role="list">
+          <li class="emb-ov__list-item">
+            <i class="fa-solid fa-circle-check emb-ov__list-icon" aria-hidden="true"></i>
+            Custom PCB design &amp; schematic review
+          </li>
+          <li class="emb-ov__list-item">
+            <i class="fa-solid fa-circle-check emb-ov__list-icon" aria-hidden="true"></i>
+            Firmware, RTOS &amp; bare-metal development
+          </li>
+          <li class="emb-ov__list-item">
+            <i class="fa-solid fa-circle-check emb-ov__list-icon" aria-hidden="true"></i>
+            Android / Linux OS porting &amp; BSP
+          </li>
+          <li class="emb-ov__list-item">
+            <i class="fa-solid fa-circle-check emb-ov__list-icon" aria-hidden="true"></i>
+            Hardware-software co-design &amp; validation
+          </li>
+          <li class="emb-ov__list-item">
+            <i class="fa-solid fa-circle-check emb-ov__list-icon" aria-hidden="true"></i>
+            Product certification &amp; compliance support
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: visual card cluster -->
+      <div class="emb-ov__visual emb-reveal emb-reveal--right">
+        <!-- Main image card -->
+        <div class="emb-ov__img-card">
+          <div class="emb-ov__img-inner">
+            <!-- SVG illustration of a PCB/chip -->
+            <svg class="emb-ov__chip-svg" viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Board outline -->
+              <rect x="60" y="40" width="200" height="180" rx="8" fill="#f0f4ff" stroke="#201e5a" stroke-width="2"/>
+              <!-- IC chip center -->
+              <rect x="110" y="90" width="100" height="80" rx="4" fill="#201e5a" opacity=".9"/>
+              <rect x="118" y="98" width="84" height="64" rx="2" fill="#e52d5f" opacity=".15"/>
+              <!-- Chip label -->
+              <text x="160" y="132" text-anchor="middle" font-family="Space Mono" font-size="9" fill="#fff" font-weight="700">BCT-SoC</text>
+              <text x="160" y="144" text-anchor="middle" font-family="Space Mono" font-size="7" fill="rgba(255,255,255,.6)">v3.2</text>
+              <!-- Pin rows top -->
+              <rect x="120" y="74" width="8" height="16" rx="2" fill="#6a5aff"/>
+              <rect x="134" y="74" width="8" height="16" rx="2" fill="#6a5aff"/>
+              <rect x="148" y="74" width="8" height="16" rx="2" fill="#6a5aff"/>
+              <rect x="162" y="74" width="8" height="16" rx="2" fill="#6a5aff"/>
+              <rect x="176" y="74" width="8" height="16" rx="2" fill="#6a5aff"/>
+              <!-- Pin rows bottom -->
+              <rect x="120" y="170" width="8" height="16" rx="2" fill="#6a5aff"/>
+              <rect x="134" y="170" width="8" height="16" rx="2" fill="#6a5aff"/>
+              <rect x="148" y="170" width="8" height="16" rx="2" fill="#6a5aff"/>
+              <rect x="162" y="170" width="8" height="16" rx="2" fill="#6a5aff"/>
+              <rect x="176" y="170" width="8" height="16" rx="2" fill="#6a5aff"/>
+              <!-- Pin rows left -->
+              <rect x="74" y="100" width="16" height="8" rx="2" fill="#e52d5f"/>
+              <rect x="74" y="116" width="16" height="8" rx="2" fill="#e52d5f"/>
+              <rect x="74" y="132" width="16" height="8" rx="2" fill="#e52d5f"/>
+              <rect x="74" y="148" width="16" height="8" rx="2" fill="#e52d5f"/>
+              <!-- Pin rows right -->
+              <rect x="230" y="100" width="16" height="8" rx="2" fill="#e52d5f"/>
+              <rect x="230" y="116" width="16" height="8" rx="2" fill="#e52d5f"/>
+              <rect x="230" y="132" width="16" height="8" rx="2" fill="#e52d5f"/>
+              <rect x="230" y="148" width="16" height="8" rx="2" fill="#e52d5f"/>
+              <!-- Trace lines -->
+              <line x1="90" y1="104" x2="110" y2="104" stroke="#201e5a" stroke-width="1.5" opacity=".4"/>
+              <line x1="90" y1="120" x2="110" y2="120" stroke="#201e5a" stroke-width="1.5" opacity=".4"/>
+              <line x1="90" y1="136" x2="110" y2="136" stroke="#201e5a" stroke-width="1.5" opacity=".4"/>
+              <line x1="90" y1="152" x2="110" y2="152" stroke="#201e5a" stroke-width="1.5" opacity=".4"/>
+              <line x1="210" y1="104" x2="230" y2="104" stroke="#201e5a" stroke-width="1.5" opacity=".4"/>
+              <line x1="210" y1="120" x2="230" y2="120" stroke="#201e5a" stroke-width="1.5" opacity=".4"/>
+              <line x1="210" y1="136" x2="230" y2="136" stroke="#201e5a" stroke-width="1.5" opacity=".4"/>
+              <line x1="210" y1="152" x2="230" y2="152" stroke="#201e5a" stroke-width="1.5" opacity=".4"/>
+              <!-- Capacitors / resistors -->
+              <rect x="75" y="55" width="20" height="10" rx="2" fill="#f4f5f7" stroke="#201e5a" stroke-width="1.5"/>
+              <rect x="105" y="55" width="20" height="10" rx="2" fill="#f4f5f7" stroke="#201e5a" stroke-width="1.5"/>
+              <rect x="215" y="55" width="20" height="10" rx="2" fill="#f4f5f7" stroke="#201e5a" stroke-width="1.5"/>
+              <!-- Corner mounting holes -->
+              <circle cx="72" cy="52" r="5" fill="none" stroke="#ccc" stroke-width="1.5"/>
+              <circle cx="248" cy="52" r="5" fill="none" stroke="#ccc" stroke-width="1.5"/>
+              <circle cx="72" cy="208" r="5" fill="none" stroke="#ccc" stroke-width="1.5"/>
+              <circle cx="248" cy="208" r="5" fill="none" stroke="#ccc" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Floating stat badges -->
+        <div class="emb-ov__badge emb-ov__badge--tl">
+          <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+          <span>8–64 bit MCU</span>
+        </div>
+        <div class="emb-ov__badge emb-ov__badge--br">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          <span>Certified QA</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- /SECTION 2 · SERVICE OVERVIEW -->
+
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 3 · EXPERTISE TABLE
+       ID: emb-expertise
+       CSS: emb-exp.* classes
+       JS:  scroll-reveal
+  ═══════════════════════════════════════════ -->
+  <section class="emb-exp" id="emb-expertise" aria-label="Hands-On Expertise">
+    <div class="emb-exp__inner">
+
+      <div class="emb-exp__header emb-reveal emb-reveal--up">
+        <span class="emb-tag">Our Hands-On Expertise</span>
+        <h2 class="emb-exp__title">Technologies &amp; Platforms We Master</h2>
+        <p class="emb-exp__sub">
+          Over 19 years of field-proven experience across the full embedded stack —
+          from silicon to cloud connectivity.
+        </p>
+      </div>
+
+      <!-- Expertise cards grid -->
+      <div class="emb-exp__grid">
+
+        <!-- Card 1: Microcontrollers -->
+        <div class="emb-exp__card emb-reveal emb-reveal--up" style="--emb-delay:0ms">
+          <div class="emb-exp__card-icon">
+            <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+          </div>
+          <h3 class="emb-exp__card-title">Microcontrollers</h3>
+          <p class="emb-exp__card-desc">8, 16, 32 &amp; 64-bit controllers from Renesas, NXP, Microchip, ST, Qualcomm and more.</p>
+          <div class="emb-exp__chips">
+            <span class="emb-exp__chip">Renesas</span>
+            <span class="emb-exp__chip">NXP</span>
+            <span class="emb-exp__chip">STM32</span>
+            <span class="emb-exp__chip">Qualcomm</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Microprocessors -->
+        <div class="emb-exp__card emb-reveal emb-reveal--up" style="--emb-delay:80ms">
+          <div class="emb-exp__card-icon">
+            <i class="fa-solid fa-server" aria-hidden="true"></i>
+          </div>
+          <h3 class="emb-exp__card-title">Microprocessors</h3>
+          <p class="emb-exp__card-desc">Single &amp; multi-core design — Renesas G1E, NXP IMX6/IMX7, Freescale platforms and SoM boards.</p>
+          <div class="emb-exp__chips">
+            <span class="emb-exp__chip">IMX6</span>
+            <span class="emb-exp__chip">IMX8</span>
+            <span class="emb-exp__chip">G1E SOM</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Sensors -->
+        <div class="emb-exp__card emb-reveal emb-reveal--up" style="--emb-delay:160ms">
+          <div class="emb-exp__card-icon">
+            <i class="fa-solid fa-wave-square" aria-hidden="true"></i>
+          </div>
+          <h3 class="emb-exp__card-title">Sensors &amp; ADC</h3>
+          <p class="emb-exp__card-desc">iMEMS Accelerometers, Gyros, Pressure &amp; Temperature sensors with 16/20-bit ADC precision.</p>
+          <div class="emb-exp__chips">
+            <span class="emb-exp__chip">iMEMS</span>
+            <span class="emb-exp__chip">16-bit ADC</span>
+            <span class="emb-exp__chip">20-bit ADC</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Wireless -->
+        <div class="emb-exp__card emb-reveal emb-reveal--up" style="--emb-delay:240ms">
+          <div class="emb-exp__card-icon">
+            <i class="fa-solid fa-wifi" aria-hidden="true"></i>
+          </div>
+          <h3 class="emb-exp__card-title">Wireless Interfaces</h3>
+          <p class="emb-exp__card-desc">WiFi, GPS, GSM 2G/4G, LoRa, Bluetooth, BLE, Zigbee, and RFID integration expertise.</p>
+          <div class="emb-exp__chips">
+            <span class="emb-exp__chip">WiFi</span>
+            <span class="emb-exp__chip">BLE</span>
+            <span class="emb-exp__chip">LoRa</span>
+            <span class="emb-exp__chip">Zigbee</span>
+          </div>
+        </div>
+
+        <!-- Card 5: Protocols -->
+        <div class="emb-exp__card emb-reveal emb-reveal--up" style="--emb-delay:320ms">
+          <div class="emb-exp__card-icon">
+            <i class="fa-solid fa-network-wired" aria-hidden="true"></i>
+          </div>
+          <h3 class="emb-exp__card-title">Communication Protocols</h3>
+          <p class="emb-exp__card-desc">RS232, USB, Modbus RTU, SPI, I2C, CAN bus — full network &amp; serial stack implementation.</p>
+          <div class="emb-exp__chips">
+            <span class="emb-exp__chip">CAN</span>
+            <span class="emb-exp__chip">SPI / I2C</span>
+            <span class="emb-exp__chip">Modbus</span>
+          </div>
+        </div>
+
+        <!-- Card 6: OS Support -->
+        <div class="emb-exp__card emb-reveal emb-reveal--up" style="--emb-delay:400ms">
+          <div class="emb-exp__card-icon">
+            <i class="fa-brands fa-linux" aria-hidden="true"></i>
+          </div>
+          <h3 class="emb-exp__card-title">OS &amp; RTOS Support</h3>
+          <p class="emb-exp__card-desc">Android, Linux CIP, Ubuntu, Yocto, FreeRTOS — board bring-up, bootloader, device drivers &amp; OTA.</p>
+          <div class="emb-exp__chips">
+            <span class="emb-exp__chip">Android</span>
+            <span class="emb-exp__chip">Yocto</span>
+            <span class="emb-exp__chip">FreeRTOS</span>
+          </div>
+        </div>
+
+      </div><!-- /emb-exp__grid -->
+
+      <!-- Extended capabilities row: Edge AI -->
+      <div class="emb-exp__ai emb-reveal emb-reveal--up">
+        <div class="emb-exp__ai-label">
+          <i class="fa-solid fa-brain" aria-hidden="true"></i>
+          <span>Edge AI &amp; Detection Systems (On-Device)</span>
+        </div>
+        <div class="emb-exp__ai-items">
+          <div class="emb-exp__ai-item">
+            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+            On-board Iris Detection
+          </div>
+          <div class="emb-exp__ai-item">
+            <i class="fa-solid fa-face-smile" aria-hidden="true"></i>
+            Face Recognition (500+ users)
+          </div>
+          <div class="emb-exp__ai-item">
+            <i class="fa-solid fa-fingerprint" aria-hidden="true"></i>
+            Fingerprint Detection (1000+ users)
+          </div>
+          <div class="emb-exp__ai-item">
+            <i class="fa-brands fa-google" aria-hidden="true"></i>
+            Google &amp; Alexa SDK on SOM
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- /SECTION 3 · EXPERTISE TABLE -->
+
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 4 · HOW WE WORK
+       ID: emb-process
+       CSS: emb-proc.* classes
+       JS:  step-by-step reveal animation
+  ═══════════════════════════════════════════ -->
+  <section class="emb-proc" id="emb-process" aria-label="How We Work">
+    <div class="emb-proc__inner">
+
+      <div class="emb-proc__header emb-reveal emb-reveal--up">
+        <span class="emb-tag">Our Process</span>
+        <h2 class="emb-proc__title">How We Bring Your Idea to Silicon</h2>
+        <p class="emb-proc__sub">
+          A structured, milestone-driven methodology that eliminates guesswork and
+          delivers production-ready embedded systems — on time, every time.
+        </p>
+      </div>
+
+      <!-- Steps timeline -->
+      <div class="emb-proc__timeline" role="list">
+
+        <!-- Step 1 -->
+        <div class="emb-proc__step emb-reveal emb-reveal--up" style="--emb-delay:0ms" role="listitem">
+          <div class="emb-proc__step-num" aria-label="Step 1">01</div>
+          <div class="emb-proc__step-line" aria-hidden="true"></div>
+          <div class="emb-proc__step-body">
+            <div class="emb-proc__step-icon">
+              <i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i>
+            </div>
+            <h3 class="emb-proc__step-title">Discovery &amp; Requirements</h3>
+            <p class="emb-proc__step-desc">
+              We deep-dive into your product vision — understanding target environment,
+              power constraints, connectivity needs, and regulatory requirements before
+              writing a single line of code or schematic.
+            </p>
+            <span class="emb-proc__step-dur">Week 1–2</span>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="emb-proc__step emb-reveal emb-reveal--up" style="--emb-delay:100ms" role="listitem">
+          <div class="emb-proc__step-num" aria-label="Step 2">02</div>
+          <div class="emb-proc__step-line" aria-hidden="true"></div>
+          <div class="emb-proc__step-body">
+            <div class="emb-proc__step-icon">
+              <i class="fa-solid fa-pen-ruler" aria-hidden="true"></i>
+            </div>
+            <h3 class="emb-proc__step-title">Architecture &amp; Schematic Design</h3>
+            <p class="emb-proc__step-desc">
+              Our hardware architects define the system block diagram, select optimal
+              components, and produce detailed schematics reviewed across thermal,
+              EMI, and signal-integrity criteria.
+            </p>
+            <span class="emb-proc__step-dur">Week 2–4</span>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="emb-proc__step emb-reveal emb-reveal--up" style="--emb-delay:200ms" role="listitem">
+          <div class="emb-proc__step-num" aria-label="Step 3">03</div>
+          <div class="emb-proc__step-line" aria-hidden="true"></div>
+          <div class="emb-proc__step-body">
+            <div class="emb-proc__step-icon">
+              <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+            </div>
+            <h3 class="emb-proc__step-title">PCB Layout &amp; Fabrication</h3>
+            <p class="emb-proc__step-desc">
+              Multi-layer PCB routing with controlled impedance, DFM rules, and
+              design-rule checks. We manage fabrication and SMT assembly through
+              certified manufacturing partners.
+            </p>
+            <span class="emb-proc__step-dur">Week 4–7</span>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="emb-proc__step emb-reveal emb-reveal--up" style="--emb-delay:300ms" role="listitem">
+          <div class="emb-proc__step-num" aria-label="Step 4">04</div>
+          <div class="emb-proc__step-line" aria-hidden="true"></div>
+          <div class="emb-proc__step-body">
+            <div class="emb-proc__step-icon">
+              <i class="fa-solid fa-code" aria-hidden="true"></i>
+            </div>
+            <h3 class="emb-proc__step-title">Firmware &amp; BSP Development</h3>
+            <p class="emb-proc__step-desc">
+              Board bring-up, bootloader, custom device drivers, OS/RTOS porting,
+              middleware integration, and application layer — with version control
+              and continuous integration from day one.
+            </p>
+            <span class="emb-proc__step-dur">Week 5–12</span>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="emb-proc__step emb-reveal emb-reveal--up" style="--emb-delay:400ms" role="listitem">
+          <div class="emb-proc__step-num" aria-label="Step 5">05</div>
+          <div class="emb-proc__step-line" aria-hidden="true"></div>
+          <div class="emb-proc__step-body">
+            <div class="emb-proc__step-icon">
+              <i class="fa-solid fa-flask-vial" aria-hidden="true"></i>
+            </div>
+            <h3 class="emb-proc__step-title">Testing &amp; Validation</h3>
+            <p class="emb-proc__step-desc">
+              Unit tests, integration tests, stress &amp; burn-in testing. Performance
+              tuning with Gperf &amp; LTP. Boot-time optimization and full regression
+              suite before any release.
+            </p>
+            <span class="emb-proc__step-dur">Week 10–14</span>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="emb-proc__step emb-reveal emb-reveal--up" style="--emb-delay:500ms" role="listitem">
+          <div class="emb-proc__step-num" aria-label="Step 6">06</div>
+          <div class="emb-proc__step-line emb-proc__step-line--last" aria-hidden="true"></div>
+          <div class="emb-proc__step-body">
+            <div class="emb-proc__step-icon">
+              <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+            </div>
+            <h3 class="emb-proc__step-title">Production &amp; Support</h3>
+            <p class="emb-proc__step-desc">
+              Batch production management, OTA update infrastructure, post-deployment
+              monitoring, and dedicated engineering support for the full product lifecycle.
+            </p>
+            <span class="emb-proc__step-dur">Week 14+</span>
+          </div>
+        </div>
+
+      </div><!-- /emb-proc__timeline -->
+    </div>
+  </section>
+  <!-- /SECTION 4 · HOW WE WORK -->
+
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 5 · SALIENT FEATURES
+       ID: emb-features
+       CSS: emb-feat.* classes
+       JS:  staggered card reveal
+  ═══════════════════════════════════════════ -->
+  <section class="emb-feat" id="emb-features" aria-label="Salient Features">
+    <div class="emb-feat__inner">
+
+      <div class="emb-feat__header emb-reveal emb-reveal--up">
+        <span class="emb-tag">Capabilities</span>
+        <h2 class="emb-feat__title">Salient Features of Our Embedded Solutions</h2>
+      </div>
+
+      <div class="emb-feat__grid">
+
+        <!-- Feature 1 -->
+        <div class="emb-feat__card emb-reveal emb-reveal--up" style="--emb-delay:0ms">
+          <div class="emb-feat__card-icon">
+            <i class="fa-brands fa-android" aria-hidden="true"></i>
+          </div>
+          <h3 class="emb-feat__card-title">Android &amp; Linux OS Porting</h3>
+          <p class="emb-feat__card-desc">
+            Custom bootloaders for multiple architectures. Multi-media &amp; graphics
+            accelerator drivers. High-speed peripheral drivers. Boot-time optimization
+            down to sub-second targets.
+          </p>
+          <ul class="emb-feat__card-list">
+            <li>Custom secure bootloaders</li>
+            <li>OpenGL / OpenCV integration</li>
+            <li>GStreamer media frameworks</li>
+            <li>JRE &amp; Java embedded porting</li>
+          </ul>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="emb-feat__card emb-reveal emb-reveal--up" style="--emb-delay:100ms">
+          <div class="emb-feat__card-icon">
+            <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
+          </div>
+          <h3 class="emb-feat__card-title">Embedded Application Development</h3>
+          <p class="emb-feat__card-desc">
+            X11 &amp; Qt Framebuffer display systems. Open-source application porting.
+            Custom UI on embedded displays. Cross-platform app layer development.
+          </p>
+          <ul class="emb-feat__card-list">
+            <li>Qt / X11 display systems</li>
+            <li>Open-source app porting</li>
+            <li>Embedded HMI development</li>
+            <li>Media player customization</li>
+          </ul>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="emb-feat__card emb-reveal emb-reveal--up" style="--emb-delay:200ms">
+          <div class="emb-feat__card-icon">
+            <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
+          </div>
+          <h3 class="emb-feat__card-title">OS Performance Tuning</h3>
+          <p class="emb-feat__card-desc">
+            Deep-dive tuning of each subsystem to reduce boot time for Linux &amp; Android.
+            Latency profiling and optimization across the full OS stack.
+          </p>
+          <ul class="emb-feat__card-list">
+            <li>Boot time reduction</li>
+            <li>Component-level latency tuning</li>
+            <li>Memory &amp; CPU profiling</li>
+            <li>Real-time scheduling optimization</li>
+          </ul>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="emb-feat__card emb-reveal emb-reveal--up" style="--emb-delay:300ms">
+          <div class="emb-feat__card-icon">
+            <i class="fa-solid fa-microscope" aria-hidden="true"></i>
+          </div>
+          <h3 class="emb-feat__card-title">Testing &amp; Validation</h3>
+          <p class="emb-feat__card-desc">
+            Full unit &amp; integration test coverage. Verification using Gperf, LTP,
+            GNU Expect and more. Hardware-in-the-loop testing environments.
+          </p>
+          <ul class="emb-feat__card-list">
+            <li>Unit &amp; integration testing</li>
+            <li>Stress &amp; burn-in tests</li>
+            <li>LTP / Gperf validation</li>
+            <li>Hardware-in-the-loop (HIL)</li>
+          </ul>
+        </div>
+
+      </div><!-- /emb-feat__grid -->
+    </div>
+  </section>
+  <!-- /SECTION 5 · SALIENT FEATURES -->
+
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 6 · FEATURED PROJECTS
+       ID: emb-projects
+       CSS: emb-proj.* classes
+       JS:  card hover + scroll reveal
+       NOTE: Projects are non-clickable display cards
+  ═══════════════════════════════════════════ -->
+  <section class="emb-proj" id="emb-projects" aria-label="Featured Projects">
+    <div class="emb-proj__inner">
+
+      <div class="emb-proj__header emb-reveal emb-reveal--up">
+        <span class="emb-tag">Case Studies</span>
+        <h2 class="emb-proj__title">Featured Projects</h2>
+        <p class="emb-proj__sub">
+          Real-world embedded solutions we've shipped for global brands and innovative startups.
+        </p>
+      </div>
+
+      <div class="emb-proj__grid">
+
+        <!-- Project 1 -->
+        <div class="emb-proj__card emb-reveal emb-reveal--up" style="--emb-delay:0ms" aria-label="Project: SmartGuard Industrial Safety Monitor">
+          <div class="emb-proj__card-accent" aria-hidden="true"></div>
+          <div class="emb-proj__card-top">
+            <span class="emb-proj__card-num">01</span>
+            <span class="emb-proj__card-industry">Industrial IoT</span>
+          </div>
+          <h3 class="emb-proj__card-title">SmartGuard — Industrial Safety Monitor</h3>
+          <p class="emb-proj__card-desc">
+            Real-time gas, vibration &amp; temperature monitoring embedded system for
+            heavy industrial environments. Renesas MCU with LoRa mesh networking and
+            edge-alert logic.
+          </p>
+          <div class="emb-proj__card-tags" aria-label="Technologies used">
+            <span class="emb-proj__tag">Renesas MCU</span>
+            <span class="emb-proj__tag">FreeRTOS</span>
+            <span class="emb-proj__tag">LoRa</span>
+            <span class="emb-proj__tag">Sensor Fusion</span>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="emb-proj__card emb-reveal emb-reveal--up" style="--emb-delay:100ms" aria-label="Project: AgriSense Soil & Climate Controller">
+          <div class="emb-proj__card-accent" aria-hidden="true"></div>
+          <div class="emb-proj__card-top">
+            <span class="emb-proj__card-num">02</span>
+            <span class="emb-proj__card-industry">AgriTech</span>
+          </div>
+          <h3 class="emb-proj__card-title">AgriSense — Soil &amp; Climate Controller</h3>
+          <p class="emb-proj__card-desc">
+            Solar-powered embedded controller managing soil moisture, pH, humidity &amp;
+            CO₂ sensors. 4G uplink to cloud dashboard with predictive irrigation logic.
+          </p>
+          <div class="emb-proj__card-tags" aria-label="Technologies used">
+            <span class="emb-proj__tag">STM32</span>
+            <span class="emb-proj__tag">4G / MQTT</span>
+            <span class="emb-proj__tag">Low-Power</span>
+            <span class="emb-proj__tag">ADC Sensors</span>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="emb-proj__card emb-reveal emb-reveal--up" style="--emb-delay:200ms" aria-label="Project: MediPulse Patient Vitals Unit">
+          <div class="emb-proj__card-accent" aria-hidden="true"></div>
+          <div class="emb-proj__card-top">
+            <span class="emb-proj__card-num">03</span>
+            <span class="emb-proj__card-industry">Medical Devices</span>
+          </div>
+          <h3 class="emb-proj__card-title">MediPulse — Patient Vitals Unit</h3>
+          <p class="emb-proj__card-desc">
+            FDA-class embedded medical device measuring SpO₂, ECG, and body temperature.
+            Certified firmware with secure BLE telemetry to hospital cloud systems.
+          </p>
+          <div class="emb-proj__card-tags" aria-label="Technologies used">
+            <span class="emb-proj__tag">NXP IMX6</span>
+            <span class="emb-proj__tag">BLE 5.0</span>
+            <span class="emb-proj__tag">Medical Grade</span>
+            <span class="emb-proj__tag">TLS Secure</span>
+          </div>
+        </div>
+
+        <!-- Project 4 — Vending Machine (real client reference) -->
+        <div class="emb-proj__card emb-reveal emb-reveal--up" style="--emb-delay:300ms" aria-label="Project: CoffeeOS Smart Vending Platform">
+          <div class="emb-proj__card-accent" aria-hidden="true"></div>
+          <div class="emb-proj__card-top">
+            <span class="emb-proj__card-num">04</span>
+            <span class="emb-proj__card-industry">Food &amp; Beverage</span>
+          </div>
+          <h3 class="emb-proj__card-title">CoffeeOS — Smart Vending Platform</h3>
+          <p class="emb-proj__card-desc">
+            Embedded Linux HMI powering 150K+ coffee vending machines globally. Qualcomm
+            processor, touchless dispensing, face recognition &amp; real-time IoT telemetry.
+          </p>
+          <div class="emb-proj__card-tags" aria-label="Technologies used">
+            <span class="emb-proj__tag">Qualcomm SoC</span>
+            <span class="emb-proj__tag">Android</span>
+            <span class="emb-proj__tag">Face Recognition</span>
+            <span class="emb-proj__tag">150K+ Units</span>
+          </div>
+        </div>
+
+      </div><!-- /emb-proj__grid -->
+    </div>
+  </section>
+  <!-- /SECTION 6 · FEATURED PROJECTS -->
+
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 7 · INDUSTRIES WE SERVE
+       ID: emb-industries
+       CSS: emb-ind.* classes
+       JS:  icon hover animation
+  ═══════════════════════════════════════════ -->
+  <section class="emb-ind" id="emb-industries" aria-label="Industries We Serve">
+    <div class="emb-ind__inner">
+
+      <div class="emb-ind__header emb-reveal emb-reveal--up">
+        <span class="emb-tag">Industries</span>
+        <h2 class="emb-ind__title">Where Our Embedded Systems Run</h2>
+        <p class="emb-ind__sub">
+          Our solutions are deployed in mission-critical environments worldwide —
+          from factory floors to hospital wards.
+        </p>
+      </div>
+
+      <div class="emb-ind__grid">
+
+        <div class="emb-ind__item emb-reveal emb-reveal--up" style="--emb-delay:0ms">
+          <div class="emb-ind__icon"><i class="fa-solid fa-car-side" aria-hidden="true"></i></div>
+          <h3 class="emb-ind__name">Automotive</h3>
+          <p class="emb-ind__desc">ECU, infotainment systems, ADAS sensor integration</p>
+        </div>
+
+        <div class="emb-ind__item emb-reveal emb-reveal--up" style="--emb-delay:80ms">
+          <div class="emb-ind__icon"><i class="fa-solid fa-industry" aria-hidden="true"></i></div>
+          <h3 class="emb-ind__name">Industrial IoT</h3>
+          <p class="emb-ind__desc">Factory automation, edge computing, predictive maintenance</p>
+        </div>
+
+        <div class="emb-ind__item emb-reveal emb-reveal--up" style="--emb-delay:160ms">
+          <div class="emb-ind__icon"><i class="fa-solid fa-house-signal" aria-hidden="true"></i></div>
+          <h3 class="emb-ind__name">Home Appliances</h3>
+          <p class="emb-ind__desc">Smart, connected appliances with voice &amp; app control</p>
+        </div>
+
+        <div class="emb-ind__item emb-reveal emb-reveal--up" style="--emb-delay:240ms">
+          <div class="emb-ind__icon"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i></div>
+          <h3 class="emb-ind__name">Medical Devices</h3>
+          <p class="emb-ind__desc">Wearables, diagnostics, patient monitoring systems</p>
+        </div>
+
+        <div class="emb-ind__item emb-reveal emb-reveal--up" style="--emb-delay:320ms">
+          <div class="emb-ind__icon"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i></div>
+          <h3 class="emb-ind__name">Food &amp; Beverage</h3>
+          <p class="emb-ind__desc">Vending machines, dispense controllers, IoT telemetry</p>
+        </div>
+
+        <div class="emb-ind__item emb-reveal emb-reveal--up" style="--emb-delay:400ms">
+          <div class="emb-ind__icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
+          <h3 class="emb-ind__name">Energy &amp; Utilities</h3>
+          <p class="emb-ind__desc">Smart meters, EV charging, power management systems</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- /SECTION 7 · INDUSTRIES WE SERVE -->
+
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 8 · WHY CHOOSE US
+       ID: emb-why
+       CSS: emb-why.* classes
+       JS:  counter animation + scroll reveal
+  ═══════════════════════════════════════════ -->
+  <section class="emb-why" id="emb-why" aria-label="Why Choose BrainChild">
+    <div class="emb-why__inner">
+
+      <div class="emb-why__header emb-reveal emb-reveal--up">
+        <span class="emb-tag">Why BrainChild?</span>
+        <h2 class="emb-why__title">Trust Built on 19 Years of Results</h2>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="emb-why__stats emb-reveal emb-reveal--up">
+        <div class="emb-why__stat">
+          <span class="emb-why__stat-num" data-emb-count="19" data-emb-suffix="+">0</span>
+          <span class="emb-why__stat-lbl">Years Expertise</span>
+        </div>
+        <div class="emb-why__stat-div" aria-hidden="true"></div>
+        <div class="emb-why__stat">
+          <span class="emb-why__stat-num" data-emb-count="150" data-emb-suffix="K+">0</span>
+          <span class="emb-why__stat-lbl">Devices Deployed</span>
+        </div>
+        <div class="emb-why__stat-div" aria-hidden="true"></div>
+        <div class="emb-why__stat">
+          <span class="emb-why__stat-num" data-emb-count="360" data-emb-suffix="+">0</span>
+          <span class="emb-why__stat-lbl">Projects Delivered</span>
+        </div>
+        <div class="emb-why__stat-div" aria-hidden="true"></div>
+        <div class="emb-why__stat">
+          <span class="emb-why__stat-num" data-emb-count="30" data-emb-suffix="+">0</span>
+          <span class="emb-why__stat-lbl">Global Clients</span>
+        </div>
+      </div>
+
+      <!-- Reason cards -->
+      <div class="emb-why__grid">
+
+        <div class="emb-why__card emb-reveal emb-reveal--up" style="--emb-delay:0ms">
+          <div class="emb-why__card-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></div>
+          <h3 class="emb-why__card-title">Field-Proven Electronics</h3>
+          <p class="emb-why__card-desc">Every design goes through rigorous field testing. Our solutions are trusted by global brands including HUL, Godrej, Pricol, CRI Pumps, and many more.</p>
+        </div>
+
+        <div class="emb-why__card emb-reveal emb-reveal--up" style="--emb-delay:100ms">
+          <div class="emb-why__card-icon"><i class="fa-solid fa-arrows-spin" aria-hidden="true"></i></div>
+          <h3 class="emb-why__card-title">Complete In-House Support</h3>
+          <p class="emb-why__card-desc">Hardware design, firmware, OS, cloud, and mobile — all under one roof. No handoffs, no finger-pointing. Single accountability from concept to production.</p>
+        </div>
+
+        <div class="emb-why__card emb-reveal emb-reveal--up" style="--emb-delay:200ms">
+          <div class="emb-why__card-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
+          <h3 class="emb-why__card-title">Security-First by Design</h3>
+          <p class="emb-why__card-desc">Secure boot, firmware encryption, TLS communication, and hardware security modules — security is baked into every layer, not bolted on afterward.</p>
+        </div>
+
+        <div class="emb-why__card emb-reveal emb-reveal--up" style="--emb-delay:300ms">
+          <div class="emb-why__card-icon"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i></div>
+          <h3 class="emb-why__card-title">Make in India · Made for the World</h3>
+          <p class="emb-why__card-desc">World-class quality manufactured in India, exported to Europe and beyond. EFY-2020 award-winning technology. Certified manufacturing processes at every stage.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- /SECTION 8 · WHY CHOOSE US -->
+
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 9 · FAQ
+       ID: emb-faq
+       CSS: emb-faq.* classes
+       JS:  accordion open/close toggle
+  ═══════════════════════════════════════════ -->
+  <section class="emb-faq" id="emb-faq" aria-label="Frequently Asked Questions">
+    <div class="emb-faq__inner">
+
+      <div class="emb-faq__header emb-reveal emb-reveal--up">
+        <span class="emb-tag">FAQ</span>
+        <h2 class="emb-faq__title">Frequently Asked Questions</h2>
+        <p class="emb-faq__sub">Everything you need to know about our embedded system services.</p>
+      </div>
+
+      <div class="emb-faq__list" role="list">
+
+        <!-- FAQ Item 1 -->
+        <div class="emb-faq__item emb-reveal emb-reveal--up" style="--emb-delay:0ms" role="listitem">
+          <button class="emb-faq__q" aria-expanded="false" aria-controls="emb-faq-a1">
+            <span>What types of microcontrollers and processors do you work with?</span>
+            <span class="emb-faq__icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="emb-faq__a" id="emb-faq-a1" hidden>
+            <p>We work with 8, 16, 32, and 64-bit controllers from Renesas, NXP, Microchip,
+            STMicroelectronics, and Qualcomm. For application processors we handle Renesas G1E,
+            NXP IMX6, IMX7, IMX8 and Freescale platforms. We also integrate Google and Alexa SDKs
+            on SOM boards and support a broad range of SoM form factors.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="emb-faq__item emb-reveal emb-reveal--up" style="--emb-delay:60ms" role="listitem">
+          <button class="emb-faq__q" aria-expanded="false" aria-controls="emb-faq-a2">
+            <span>Do you provide PCB design along with firmware development?</span>
+            <span class="emb-faq__icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="emb-faq__a" id="emb-faq-a2" hidden>
+            <p>Yes — we are a fully integrated embedded partner. Our team handles schematic design,
+            multi-layer PCB layout, design-for-manufacturability reviews, component sourcing, SMT
+            assembly, and full firmware development in parallel. This co-design approach reduces
+            integration risk and shortens your time to market significantly.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="emb-faq__item emb-reveal emb-reveal--up" style="--emb-delay:120ms" role="listitem">
+          <button class="emb-faq__q" aria-expanded="false" aria-controls="emb-faq-a3">
+            <span>Which real-time operating systems (RTOS) do you support?</span>
+            <span class="emb-faq__icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="emb-faq__a" id="emb-faq-a3" hidden>
+            <p>We support FreeRTOS, Zephyr, VxWorks, and bare-metal firmware for resource-constrained
+            MCUs. For application processors we port Android, Linux CIP, Ubuntu Core, and Yocto-based
+            distributions. We manage board bring-up, bootloader, device drivers, and OTA update
+            infrastructure end to end.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="emb-faq__item emb-reveal emb-reveal--up" style="--emb-delay:180ms" role="listitem">
+          <button class="emb-faq__q" aria-expanded="false" aria-controls="emb-faq-a4">
+            <span>Can you help with product certifications (CE, FCC, UL, etc.)?</span>
+            <span class="emb-faq__icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="emb-faq__a" id="emb-faq-a4" hidden>
+            <p>Absolutely. We design with compliance in mind from day one — selecting pre-certified
+            radio modules, following EMI/EMC design rules, and preparing the technical documentation
+            required for CE, FCC, RoHS, BIS, and industry-specific standards. We work closely with
+            accredited test labs to manage the certification process on your behalf.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="emb-faq__item emb-reveal emb-reveal--up" style="--emb-delay:240ms" role="listitem">
+          <button class="emb-faq__q" aria-expanded="false" aria-controls="emb-faq-a5">
+            <span>What is your typical project timeline for a new embedded product?</span>
+            <span class="emb-faq__icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="emb-faq__a" id="emb-faq-a5" hidden>
+            <p>Timelines vary based on complexity, but a typical embedded product takes 12–20 weeks
+            from requirements sign-off to first production-ready unit. Simple MCU firmware projects
+            can be delivered in 4–6 weeks. Complex Linux/Android SoC products with custom BSP,
+            UI, and certification may take 6–9 months. We provide a detailed project plan with
+            milestones during the discovery phase.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 6 -->
+        <div class="emb-faq__item emb-reveal emb-reveal--up" style="--emb-delay:300ms" role="listitem">
+          <button class="emb-faq__q" aria-expanded="false" aria-controls="emb-faq-a6">
+            <span>Do you support OTA (over-the-air) firmware updates?</span>
+            <span class="emb-faq__icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="emb-faq__a" id="emb-faq-a6" hidden>
+            <p>Yes. We design secure OTA update pipelines as part of our BSP work. This includes
+            A/B partition schemes, rollback protection, cryptographic signature verification, and
+            cloud-side deployment orchestration compatible with AWS IoT, Azure IoT Hub, and custom
+            MQTT-based platforms. OTA is treated as a critical production feature, not an afterthought.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 7 -->
+        <div class="emb-faq__item emb-reveal emb-reveal--up" style="--emb-delay:360ms" role="listitem">
+          <button class="emb-faq__q" aria-expanded="false" aria-controls="emb-faq-a7">
+            <span>Can BrainChild support our existing embedded product with ongoing maintenance?</span>
+            <span class="emb-faq__icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="emb-faq__a" id="emb-faq-a7" hidden>
+            <p>Yes — we provide post-launch engineering support including bug fixes, security patches,
+            new feature development, component end-of-life (EOL) migrations, and performance
+            optimization. We also offer extended support agreements (ESA) for products requiring
+            long-term maintenance, particularly important for industrial and medical devices.</p>
+          </div>
+        </div>
+
+      </div><!-- /emb-faq__list -->
+    </div>
+  </section>
+  <!-- /SECTION 9 · FAQ -->
+
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 10 · CTA BANNER
+       ID: emb-cta
+       CSS: emb-cta.* classes
+       JS:  scroll reveal
+  ═══════════════════════════════════════════ -->
+  <section class="emb-cta" id="emb-cta" aria-label="Call to Action">
+    <div class="emb-cta__inner emb-reveal emb-reveal--up">
+      <div class="emb-cta__orb emb-cta__orb--1" aria-hidden="true"></div>
+      <div class="emb-cta__orb emb-cta__orb--2" aria-hidden="true"></div>
+      <span class="emb-cta__eyebrow">Ready to Build?</span>
+      <h2 class="emb-cta__title">
+        Let's Engineer Your<br />
+        <span class="emb-cta__title-accent">Next Embedded Product</span>
+      </h2>
+      <p class="emb-cta__text">
+        Tell us what you're building. We'll scope it, design it, and ship it —
+        from bare silicon to production-ready hardware.
+      </p>
+      <div class="emb-cta__actions">
+        <a href="contact.html" class="emb-cta__btn emb-cta__btn--primary">
+          Book Free Consultation
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="projects.html" class="emb-cta__btn emb-cta__btn--ghost">
+          View All Projects
+        </a>
+      </div>
+      <!-- Trust signals -->
+      <div class="emb-cta__trust">
+        <span class="emb-cta__trust-item">
+          <i class="fa-solid fa-circle-check" aria-hidden="true"></i> No commitment required
+        </span>
+        <span class="emb-cta__trust-item">
+          <i class="fa-solid fa-circle-check" aria-hidden="true"></i> Response within 24 hrs
+        </span>
+        <span class="emb-cta__trust-item">
+          <i class="fa-solid fa-circle-check" aria-hidden="true"></i> Dedicated project manager
+        </span>
+      </div>
+    </div>
+  </section>
+  <!-- /SECTION 10 · CTA BANNER -->
+
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER PLACEHOLDER
+       Add your existing footer.css + footer.js here
+  ═══════════════════════════════════════════ -->
+  <!-- FOOTER START -->
+  <!-- paste your <footer class="bctf4-root"> … </footer> here -->
+  <!-- FOOTER END -->
+
+
+  <!-- ═══════════════════════════════════════════
+       PAGE JAVASCRIPT
+       File: embedded-system.js
+       All logic scoped to embPage namespace
+  ═══════════════════════════════════════════ -->
+  <script src="EmbeddedSystem.js"></script>
+  <script src="/Combained/header.js"></script>
+  <script src="/Combained/footer.js"></script>
+
+</body>
+</html>

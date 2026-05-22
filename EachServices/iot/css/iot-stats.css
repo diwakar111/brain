@@ -1,0 +1,65 @@
+/* ============================================================
+   FILE: css/iot-stats.css
+   SECTION: Stats Band — #iot-stats
+   PURPOSE: Dark animated count-up stats strip.
+            Scoped entirely to #iot-stats.
+   ============================================================ */
+
+#iot-stats {
+  padding: 4rem 0;
+  background: var(--iot-primary);
+  position: relative;
+  overflow: hidden;
+}
+#iot-stats::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+.iot-stats__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.iot-stats__item {
+  text-align: center;
+  padding: 1.2rem 1rem;
+  border-right: 1px solid rgba(255,255,255,0.12);
+}
+.iot-stats__item:last-child { border-right: none; }
+.iot-stats__num {
+  font-family: var(--iot-font-h);
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+.iot-stats__label {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.68);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+.iot-stats__item::after {
+  content: '';
+  display: block;
+  width: 28px; height: 2px;
+  background: var(--iot-accent);
+  border-radius: 2px;
+  margin: 0.55rem auto 0;
+}
+@media (max-width: 640px) {
+  .iot-stats__grid { grid-template-columns: 1fr 1fr; }
+  .iot-stats__item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .iot-stats__item:last-child { border-bottom: none; }
+}

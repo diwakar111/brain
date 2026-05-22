@@ -1,0 +1,130 @@
+/* ============================================================
+   bcb-trending.css — TRENDING TOPICS MARQUEE SECTION
+   Prefix: bcb-trending__
+   Section ID: #bcb-trending-section
+   Depends on: NOTHING (fully isolated)
+   Animations: CSS translate marquee (GPU-accelerated, seamless loop)
+               Paused when off-screen via IntersectionObserver in JS
+   Edit this file to change: marquee speed, item colors, label style
+   ============================================================ */
+
+/* === SECTION ROOT + CSS VARIABLES === */
+.bcb-trending {
+  --bcb-tr-bg:        #020b18;
+  --bcb-tr-cyan:      #00e5ff;
+  --bcb-tr-purple:    #7b2fff;
+  --bcb-tr-text:      rgba(232, 244, 253, 0.75);
+  --bcb-tr-label:     rgba(0, 229, 255, 0.9);
+  --bcb-tr-item-bg:   rgba(0,229,255,0.06);
+  --bcb-tr-item-bdr:  rgba(0,229,255,0.18);
+  --bcb-tr-separator: rgba(0,229,255,0.3);
+  --bcb-tr-font:      'DM Sans', sans-serif;
+  --bcb-tr-speed:     30s;   /* Change this to speed up/slow down marquee */
+
+  position: relative;
+  background: var(--bcb-tr-bg);
+  padding: 20px 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-top: 1px solid rgba(0,229,255,0.08);
+  border-bottom: 1px solid rgba(0,229,255,0.08);
+}
+
+/* Left fade mask */
+.bcb-trending::before,
+.bcb-trending::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+.bcb-trending::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bcb-tr-bg), transparent);
+}
+.bcb-trending::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bcb-tr-bg), transparent);
+}
+
+/* === "TRENDING →" LABEL === */
+.bcb-trending__label {
+  flex-shrink: 0;
+  font-family: var(--bcb-tr-font);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bcb-tr-label);
+  padding: 0 20px 0 24px;
+  white-space: nowrap;
+  position: relative;
+  z-index: 3;
+  background: var(--bcb-tr-bg);
+  border-right: 1px solid var(--bcb-tr-separator);
+  margin-right: 0;
+}
+
+/* === TRACK WRAPPER (clips overflow) === */
+.bcb-trending__track-wrap {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* === SCROLLING TRACK === */
+/* JS duplicates items for seamless loop */
+.bcb-trending__track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: max-content;
+  /* Paused by default — JS starts when in view */
+  animation: bcbTrendingScroll var(--bcb-tr-speed) linear infinite;
+  animation-play-state: paused;
+}
+
+/* Scrolling keyframe — uses translateX for GPU acceleration */
+@keyframes bcbTrendingScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* 50% because JS doubles the items */
+}
+
+/* === INDIVIDUAL TRENDING ITEM === */
+.bcb-trending__item {
+  font-family: var(--bcb-tr-font);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--bcb-tr-text);
+  white-space: nowrap;
+  padding: 6px 18px;
+  background: var(--bcb-tr-item-bg);
+  border: 1px solid var(--bcb-tr-item-bdr);
+  border-radius: 20px;
+  margin: 0 10px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  cursor: default;
+}
+.bcb-trending__item:hover {
+  color: var(--bcb-tr-cyan);
+  border-color: rgba(0,229,255,0.4);
+}
+
+/* ============================================================
+   RESPONSIVE — Trending Section
+   ============================================================ */
+
+/* Hide label on very small screens to give more marquee space */
+@media (max-width: 480px) {
+  .bcb-trending__label {
+    display: none;
+  }
+  .bcb-trending__item {
+    font-size: 0.76rem;
+    padding: 5px 14px;
+    margin: 0 8px;
+  }
+}

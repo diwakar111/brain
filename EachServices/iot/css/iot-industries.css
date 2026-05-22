@@ -1,0 +1,167 @@
+/* ============================================================
+   FILE: css/iot-industries.css
+   SECTION: Industries We Serve — #iot-industries
+   PURPOSE: Tab-style industry selector with content panels.
+            Scoped entirely to #iot-industries.
+   ============================================================ */
+
+#iot-industries {
+  padding: var(--iot-sp-lg) 0;
+  background: var(--iot-bg);
+}
+
+.iot-ind__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.iot-ind__header .iot-label-chip { margin-bottom: 1rem; }
+.iot-ind__h2 {
+  font-family: var(--iot-font-h);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--iot-text-h);
+  line-height: 1.15;
+  margin-bottom: 0.8rem;
+}
+.iot-ind__sub {
+  font-size: 1rem;
+  color: var(--iot-text-b);
+  line-height: 1.7;
+}
+
+/* ── Tab buttons ── */
+.iot-ind__tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+.iot-ind__tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--iot-surface);
+  border: 1.5px solid var(--iot-border);
+  border-radius: var(--iot-r-full);
+  font-family: var(--iot-font-b);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--iot-text-b);
+  cursor: pointer;
+  transition: all var(--iot-ease);
+}
+.iot-ind__tab svg {
+  width: 15px; height: 15px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+.iot-ind__tab:hover,
+.iot-ind__tab.iot-tab-active {
+  background: var(--iot-primary);
+  border-color: var(--iot-primary);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(10,110,189,0.28);
+}
+
+/* ── Panel content ── */
+.iot-ind__panels { position: relative; }
+.iot-ind__panel {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  background: var(--iot-surface);
+  border: 1px solid var(--iot-border);
+  border-radius: var(--iot-r-xl);
+  padding: 2.5rem;
+  box-shadow: var(--iot-shadow-md);
+  animation: iotPanelIn 0.4s ease;
+}
+.iot-ind__panel.iot-panel-active { display: grid; }
+@keyframes iotPanelIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Panel visual side */
+.iot-ind__panel-visual {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: var(--iot-r-lg);
+  background: var(--iot-grad-hero);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--iot-border);
+  overflow: hidden;
+}
+.iot-ind__panel-visual svg {
+  width: 100px; height: 100px;
+  stroke: var(--iot-primary);
+  fill: none;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  opacity: 0.6;
+}
+
+/* Panel text side */
+.iot-ind__panel-tag {
+  display: inline-block;
+  padding: 0.22rem 0.65rem;
+  background: var(--iot-accent-light);
+  border-radius: var(--iot-r-full);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--iot-accent-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+.iot-ind__panel-title {
+  font-family: var(--iot-font-h);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--iot-text-h);
+  margin-bottom: 0.8rem;
+  line-height: 1.25;
+}
+.iot-ind__panel-desc {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--iot-text-b);
+  margin-bottom: 1.2rem;
+}
+.iot-ind__panel-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.iot-ind__panel-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.88rem;
+  color: var(--iot-text-b);
+  font-weight: 500;
+}
+.iot-ind__panel-list li::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--iot-primary);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+@media (max-width: 760px) {
+  .iot-ind__panel { grid-template-columns: 1fr; padding: 1.8rem; }
+  .iot-ind__panel-visual { display: none; }
+}
+@media (max-width: 480px) {
+  .iot-ind__tab { font-size: 0.78rem; padding: 0.5rem 0.9rem; }
+}

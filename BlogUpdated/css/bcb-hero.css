@@ -1,0 +1,428 @@
+/* ============================================================
+   bcb-hero.css — HERO / BANNER SECTION
+   Prefix: bcb-hero__
+   Section ID: #bcb-hero-section
+   Depends on: NOTHING (fully isolated)
+   Animations: Parallax orbs, particle canvas, pill fade-up
+   Base structure: First CSS (dark)
+   Light theme colors: Referenced from Second CSS
+   ============================================================ */
+
+/* === SECTION ROOT + CSS VARIABLES === */
+.bcb-hero {
+  /* ── Backgrounds (from 2nd CSS) ── */
+  --bcb-hero-bg-start:        #f0f7ff;
+  --bcb-hero-bg-end:          #f2eeff;
+
+  /* ── Brand accents (from 2nd CSS) ── */
+  --bcb-hero-cyan:            #00b4d8;
+  --bcb-hero-cyan-dark:       #0077b6;
+  --bcb-hero-purple:          #7b2fff;
+  --bcb-hero-gold:            #d4820a;      /* darkened from #f4a31a for light bg legibility */
+
+  /* ── Text (from 2nd CSS) ── */
+  --bcb-hero-text:            #111111;      /* was #e8f4fd (near-white) */
+  --bcb-hero-muted:           #4a5568;      /* was rgba(232,244,253,0.6) — invisible on white */
+
+  /* ── Pills (from 2nd CSS) ── */
+  --bcb-hero-pill-bg:         rgba(0, 180, 216, 0.07);
+  --bcb-hero-pill-border:     rgba(0, 180, 216, 0.28);
+  --bcb-hero-pill-text:       #0077b6;      /* was #e8f4fd */
+
+  /* ── Search bar (from 2nd CSS) ── */
+  --bcb-hero-search-bg:       #ffffff;      /* was rgba(255,255,255,0.06) dark glass */
+  --bcb-hero-search-border:   rgba(0, 180, 216, 0.22);
+  --bcb-hero-search-shadow:   0 4px 20px rgba(0, 119, 182, 0.10);
+
+  /* ── Button ── */
+  --bcb-hero-btn-grad:        linear-gradient(135deg, #00b4d8, #0077b6);
+
+  /* ── Fonts ── */
+  --bcb-hero-font-head:       'Syne', sans-serif;
+  --bcb-hero-font-body:       'DM Sans', sans-serif;
+
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  /* Light gradient — replaces dark #020b18 → #041428 */
+  background: linear-gradient(160deg, var(--bcb-hero-bg-start) 0%, var(--bcb-hero-bg-end) 100%);
+}
+
+/* === BACKGROUND LAYER === */
+.bcb-hero__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* === FLOATING ORBS
+     Same positions & sizes from 1st CSS.
+     Colors replaced with soft pale glows from 2nd CSS style
+     so they work on a white/light canvas.
+=== */
+.bcb-hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation-play-state: paused;
+}
+
+.bcb-hero__orb--1 {
+  width: 520px; height: 520px;
+  /* 1st CSS had solid cyan at 0.18 opacity — 2nd CSS uses pale radial gradient */
+  background: radial-gradient(circle, rgba(0, 180, 216, 0.13) 0%, transparent 70%);
+  top: -140px; left: -140px;
+  animation: bcbHeroOrb1 9s ease-in-out infinite alternate;
+}
+.bcb-hero__orb--2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(123, 47, 255, 0.09) 0%, transparent 70%);
+  bottom: -100px; right: -80px;
+  animation: bcbHeroOrb2 11s ease-in-out infinite alternate;
+}
+.bcb-hero__orb--3 {
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(0, 119, 182, 0.07) 0%, transparent 70%);
+  top: 40%; left: 55%;
+  animation: bcbHeroOrb3 14s ease-in-out infinite alternate;
+}
+
+/* === ORB KEYFRAMES (preserved exactly from 1st CSS) === */
+@keyframes bcbHeroOrb1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(60px, 40px) scale(1.15); }
+}
+@keyframes bcbHeroOrb2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-50px, -60px) scale(1.1); }
+}
+@keyframes bcbHeroOrb3 {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(-40px, 30px); }
+}
+
+/* === CANVAS — particle network
+     Opacity reduced: dark particles on white bg look harsh at 0.35
+=== */
+.bcb-hero__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.15;                /* was 0.35 */
+}
+
+/* === CONTAINER === */
+.bcb-hero__container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 780px;
+  padding: 0 24px;
+  padding-top: 100px;
+  padding-bottom: 80px;
+}
+
+/* === EYEBROW LABEL === */
+.bcb-hero__eyebrow {
+  font-family: var(--bcb-hero-font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  /* From 2nd CSS — pill-style eyebrow on light bg */
+  color: var(--bcb-hero-cyan);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 18px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1.5px solid var(--bcb-hero-pill-border);
+  box-shadow: 0 2px 12px rgba(0, 180, 216, 0.10);
+
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: bcbHeroFadeUp 0.7s ease forwards 0.2s;
+}
+
+/* === MAIN TITLE === */
+.bcb-hero__title {
+  font-family: var(--bcb-hero-font-head);
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.1;
+
+  /* was #e8f4fd (near-white) → now near-black from 2nd CSS */
+  color: var(--bcb-hero-text);
+
+  margin-bottom: 22px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: bcbHeroFadeUp 0.8s ease forwards 0.35s;
+}
+
+/* Gradient accent — same gradient, works great on light bg too */
+.bcb-hero__title--accent {
+  background: linear-gradient(90deg, var(--bcb-hero-cyan), var(--bcb-hero-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === SUBTITLE === */
+.bcb-hero__subtitle {
+  font-family: var(--bcb-hero-font-body);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  font-weight: 400;
+  line-height: 1.7;
+
+  /* was rgba(232,244,253,0.6) — invisible on white → 2nd CSS muted dark grey */
+  color: var(--bcb-hero-muted);
+
+  margin-bottom: 38px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: bcbHeroFadeUp 0.8s ease forwards 0.5s;
+}
+
+/* Hide line break on small screens */
+.bcb-hero__br { display: none; }
+@media (min-width: 640px) { .bcb-hero__br { display: inline; } }
+
+/* === SEARCH BAR === */
+.bcb-hero__search {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  /* was dark glass rgba(255,255,255,0.06) → 2nd CSS white card */
+  background: var(--bcb-hero-search-bg);
+  border: 1.5px solid var(--bcb-hero-search-border);
+  border-radius: 50px;
+  padding: 6px 6px 6px 48px;
+  max-width: 540px;
+  margin: 0 auto 36px;
+
+  /* elevation so it lifts off the light background */
+  box-shadow: var(--bcb-hero-search-shadow);
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: bcbHeroFadeUp 0.8s ease forwards 0.65s;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bcb-hero__search:focus-within {
+  border-color: var(--bcb-hero-cyan);
+  box-shadow: 0 4px 24px rgba(0, 180, 216, 0.18);
+}
+
+.bcb-hero__search-icon {
+  position: absolute;
+  left: 18px;
+  /* was muted light — now a readable grey for light bg */
+  color: #9aa5b4;
+  display: flex;
+  align-items: center;
+}
+
+.bcb-hero__search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--bcb-hero-font-body);
+  font-size: 0.92rem;
+
+  /* was near-white → now dark text */
+  color: var(--bcb-hero-text);
+
+  padding: 8px 0;
+}
+
+.bcb-hero__search-input::placeholder {
+  /* was muted light → readable grey */
+  color: #9aa5b4;
+}
+
+.bcb-hero__search-btn {
+  background: var(--bcb-hero-btn-grad);
+  border: none;
+  border-radius: 40px;
+  padding: 10px 22px;
+  font-family: var(--bcb-hero-font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 180, 216, 0.30);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.bcb-hero__search-btn:hover {
+  opacity: 0.88;
+  transform: scale(1.03);
+}
+
+/* === FLOATING PILLS === */
+.bcb-hero__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  opacity: 0;
+  animation: bcbHeroFadeUp 0.8s ease forwards 0.8s;
+}
+
+.bcb-hero__pill {
+  font-family: var(--bcb-hero-font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+
+  /* was near-white text on dark glass → 2nd CSS: dark blue text on white pill */
+  color: var(--bcb-hero-pill-text);
+  background: #ffffff;
+  border: 1.5px solid var(--bcb-hero-pill-border);
+  border-radius: 30px;
+  padding: 7px 16px;
+  cursor: pointer;
+
+  box-shadow: 0 2px 8px rgba(0, 119, 182, 0.08);
+
+  transition: background 0.25s ease,
+              border-color 0.25s ease,
+              color 0.2s ease,
+              transform 0.2s ease,
+              box-shadow 0.25s ease;
+
+  animation: bcbHeroPillFloat 4s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.bcb-hero__pill:hover {
+  background: rgba(0, 180, 216, 0.08);
+  border-color: var(--bcb-hero-cyan);
+  color: var(--bcb-hero-cyan-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 180, 216, 0.14);
+}
+
+/* Gold pill — Case Studies
+   was bright #f4a31a → darkened to #d4820a so it's readable on white
+*/
+.bcb-hero__pill--gold {
+  background: rgba(212, 130, 10, 0.06);
+  border-color: rgba(212, 130, 10, 0.30);
+  color: var(--bcb-hero-gold);
+}
+.bcb-hero__pill--gold:hover {
+  background: rgba(212, 130, 10, 0.13);
+  border-color: var(--bcb-hero-gold);
+  color: var(--bcb-hero-gold);
+}
+
+@keyframes bcbHeroPillFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* === SCROLL INDICATOR === */
+.bcb-hero__scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  animation: bcbHeroFadeUp 0.8s ease forwards 1.1s;
+}
+
+.bcb-hero__scroll-line {
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--bcb-hero-cyan));
+  animation: bcbHeroScrollPulse 2s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.bcb-hero__scroll-text {
+  font-family: var(--bcb-hero-font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  /* was rgba light muted → readable dark grey */
+  color: var(--bcb-hero-muted);
+}
+
+@keyframes bcbHeroScrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50%       { opacity: 1;   transform: scaleY(1.2); }
+}
+
+/* === FADE-UP KEYFRAME === */
+@keyframes bcbHeroFadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .bcb-hero__container {
+    padding-top: 120px;
+    padding-bottom: 60px;
+  }
+  .bcb-hero__orb--1 { width: 320px; height: 320px; }
+  .bcb-hero__orb--2 { width: 260px; height: 260px; }
+  .bcb-hero__orb--3 { display: none; }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .bcb-hero__search {
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 12px;
+    gap: 10px;
+  }
+  .bcb-hero__search-icon {
+    position: static;
+    align-self: flex-start;
+  }
+  .bcb-hero__search-btn {
+    width: 100%;
+    text-align: center;
+  }
+  .bcb-hero__pills {
+    gap: 8px;
+  }
+  .bcb-hero__pill {
+    font-size: 0.76rem;
+    padding: 6px 12px;
+  }
+}
+
+/* ////////// */
+
+.bcb-hero__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.9;
+  mix-blend-mode: screen;
+}

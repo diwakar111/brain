@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="BCT_logo_transparent.png" />
+    <title>BrainChild Technology</title>
+
+    <!-- ── Google Fonts ── -->
+    <!-- <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    /> -->
+
+    <!-- ── Font Awesome 6 (for nav dropdown icons) ── -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="Landingpage.css" />
+
+    <!-- <!-//////////////////////////////////////////////////////////////////////////////////////////////-  -->
+  </head>
+  <body>
+      <script>
+        if (sessionStorage.getItem("bct_intro_played")) {
+          document.documentElement.classList.add("no-intro-preload");
+        }
+      </script>
+
+    <!-- Add this RIGHT AFTER <body> opens, BEFORE the introOverlay div -->
+<script>
+  if (sessionStorage.getItem("bct_intro_played")) {
+    document.documentElement.style.setProperty('--intro-display', 'none');
+  }
+</script>
+
+    <!-- ── Background layers ── -->
+    <canvas id="pCanvas"></canvas>
+    <div class="grid-tex"></div>
+    <div class="scanline"></div>
+
+    <!-- ════════════════════════════════════════════════════
+       INTRO OVERLAY
+  ════════════════════════════════════════════════════ -->
+    <div id="introOverlay">
+      <div class="intro-icon">
+        <svg viewBox="0 0 100 100" fill="none">
+          <defs>
+            <linearGradient id="ig" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00e5ff" />
+              <stop offset="50%" stop-color="#7b2fff" />
+              <stop offset="100%" stop-color="#ff2d9b" />
+            </linearGradient>
+          </defs>
+          <circle
+            cx="50"
+            cy="50"
+            r="44"
+            stroke="url(#ig)"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+            class="iRing"
+          />
+          <rect
+            x="28"
+            y="30"
+            width="44"
+            height="40"
+            rx="7"
+            stroke="url(#ig)"
+            stroke-width="1.5"
+            fill="none"
+            style="
+              stroke-dasharray: 168;
+              stroke-dashoffset: 168;
+              animation: drawRing 1s ease 0.9s forwards;
+            "
+          />
+          <line
+            x1="38"
+            y1="30"
+            x2="38"
+            y2="23"
+            stroke="#00e5ff"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            style="
+              stroke-dasharray: 20;
+              stroke-dashoffset: 20;
+              animation: drawRing 0.4s ease 1.5s forwards;
+            "
+          />
+          <line
+            x1="50"
+            y1="30"
+            x2="50"
+            y2="23"
+            stroke="#7b2fff"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            style="
+              stroke-dasharray: 20;
+              stroke-dashoffset: 20;
+              animation: drawRing 0.4s ease 1.62s forwards;
+            "
+          />
+          <line
+            x1="62"
+            y1="30"
+            x2="62"
+            y2="23"
+            stroke="#ff2d9b"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            style="
+              stroke-dasharray: 20;
+              stroke-dashoffset: 20;
+              animation: drawRing 0.4s ease 1.74s forwards;
+            "
+          />
+          <line
+            x1="38"
+            y1="70"
+            x2="38"
+            y2="77"
+            stroke="#00e5ff"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            style="
+              stroke-dasharray: 20;
+              stroke-dashoffset: 20;
+              animation: drawRing 0.4s ease 1.5s forwards;
+            "
+          />
+          <line
+            x1="50"
+            y1="70"
+            x2="50"
+            y2="77"
+            stroke="#7b2fff"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            style="
+              stroke-dasharray: 20;
+              stroke-dashoffset: 20;
+              animation: drawRing 0.4s ease 1.62s forwards;
+            "
+          />
+          <line
+            x1="62"
+            y1="70"
+            x2="62"
+            y2="77"
+            stroke="#ff2d9b"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            style="
+              stroke-dasharray: 20;
+              stroke-dashoffset: 20;
+              animation: drawRing 0.4s ease 1.74s forwards;
+            "
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="7"
+            fill="url(#ig)"
+            style="opacity: 0; animation: up 0.4s ease 1.9s forwards"
+          />
+        </svg>
+      </div>
+      <p class="intro-label">Brainchild Technology</p>
+      <p class="intro-sub">Innovate · Engineer · Deliver</p>
+      <div class="intro-bar"></div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════════════════ -->
+    
+
+    <!-- ════════════════════════════════════════════════════
+       HERO SECTION
+  ════════════════════════════════════════════════════ -->
+    <section class="bct-hero" id="bctHero">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="blob b3"></div>
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+      <div class="ftag t1">// system.init()</div>
+      <div class="ftag t2">[ IoT · Cloud · Edge ]</div>
+      <div class="ftag t3">v2.0.26 · stable</div>
+      <div class="ftag t4">19+ yrs · 2K+ clients</div>
+
+      <div class="hero-content">
+        <h1 class="hero-h1">Engineering Intelligent Systems for the Future</h1>
+        <div class="word-stage" id="wordStage"></div>
+        <p class="hero-sub">Solutions</p>
+        <div class="hero-divider"></div>
+        <div class="hero-cta">
+          <button class="btn-main">Book Free Consultation</button>
+        </div>
+      </div>
+
+      <div class="scroll-hint">
+        <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+       SERVICES SECTION
+  ════════════════════════════════════════════════════ -->
+    <div class="bcts-root" id="bcts-services">
+      <div class="bcts-intro">
+        <p class="bcts-intro-tag">What We Do</p>
+        <h2 class="bcts-intro-title">
+          Transforming Ideas Into <span>Intelligent Systems</span>
+        </h2>
+        <p class="bcts-intro-sub">
+          Six specialized engineering capabilities — from silicon to cloud —
+          delivered by BrainChild's expert teams since 2007.
+        </p>
+      </div>
+
+      <!-- Panel 1 — IoT -->
+      <div class="bcts-panel" id="bcts-p1">
+        <div class="bcts-panel-text">
+          <p class="bcts-svc-num">01 / 06</p>
+          <div class="bcts-svc-tag">IoT Solutions</div>
+          <h3 class="bcts-svc-heading">
+            IoT Hardware &amp;<br /><span>Smart Sensors</span>
+          </h3>
+          <p class="bcts-svc-desc">
+            We design and deploy connected sensor networks that bridge the
+            physical and digital worlds — enabling real-time monitoring, edge
+            intelligence, and seamless wireless communication across your
+            operations.
+          </p>
+          <ul class="bcts-svc-features">
+            <li>Custom sensor node design</li>
+            <li>MQTT / BLE / LoRa / Zigbee protocols</li>
+            <li>Real-time data telemetry</li>
+            <li>Edge computing integration</li>
+          </ul>
+          <a href="service.html#iot" class="bcts-svc-link"
+            >Explore IoT Services
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
+        </div>
+        <div
+          class="bcts-panel-graphic"
+          style="background: linear-gradient(135deg, #e8f8ff 0%, #f0fafd 100%)"
+        >
+          <canvas class="bcts-canvas" id="bcts-iot-canvas"></canvas>
+          <p class="bcts-graphic-label">IoT Node Network · Live Simulation</p>
+        </div>
+      </div>
+
+      <!-- Panel 2 — Embedded -->
+      <div class="bcts-panel" id="bcts-p2">
+        <div
+          class="bcts-panel-graphic"
+          style="background: linear-gradient(135deg, #eef2ff 0%, #f4f8ff 100%)"
+        >
+          <canvas class="bcts-canvas" id="bcts-emb-canvas"></canvas>
+          <p class="bcts-graphic-label">Embedded Circuit · Current Flow</p>
+        </div>
+        <div class="bcts-panel-text">
+          <p class="bcts-svc-num">02 / 06</p>
+          <div class="bcts-svc-tag">Embedded Engineering</div>
+          <h3 class="bcts-svc-heading">
+            Embedded<br /><span>Systems Engineering</span>
+          </h3>
+          <p class="bcts-svc-desc">
+            From bare-metal firmware to RTOS-based systems, we craft
+            production-grade embedded solutions for automotive, industrial, and
+            consumer electronics — tested to perform reliably in demanding
+            environments.
+          </p>
+          <ul class="bcts-svc-features">
+            <li>Firmware &amp; RTOS development</li>
+            <li>PCB design &amp; prototyping</li>
+            <li>Microcontroller programming (ARM, AVR, PIC)</li>
+            <li>Hardware-software co-design</li>
+          </ul>
+          <a href="service.html#embedded" class="bcts-svc-link"
+            >Explore Embedded Services
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
+        </div>
+      </div>
+
+      <!-- Panel 3 — Cloud -->
+      <div class="bcts-panel" id="bcts-p3">
+        <div class="bcts-panel-text">
+          <p class="bcts-svc-num">03 / 06</p>
+          <div class="bcts-svc-tag">Cloud Development</div>
+          <h3 class="bcts-svc-heading">
+            Cloud Application<br /><span>Development</span>
+          </h3>
+          <p class="bcts-svc-desc">
+            Scalable, secure cloud platforms with intelligent data pipelines,
+            monitoring dashboards, and automation workflows — deployed on AWS,
+            Azure, or GCP with infrastructure-as-code precision.
+          </p>
+          <ul class="bcts-svc-features">
+            <li>Microservices &amp; serverless architecture</li>
+            <li>IoT cloud backends &amp; dashboards</li>
+            <li>CI/CD pipeline setup</li>
+            <li>Data analytics &amp; visualisation</li>
+          </ul>
+          <a href="service.html#cloud" class="bcts-svc-link"
+            >Explore Cloud Services
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
+        </div>
+        <div
+          class="bcts-panel-graphic"
+          style="background: linear-gradient(135deg, #e0faff 0%, #f0fafd 100%)"
+        >
+          <canvas class="bcts-canvas" id="bcts-cloud-canvas"></canvas>
+          <p class="bcts-graphic-label">Cloud Infrastructure · Data Flow</p>
+        </div>
+      </div>
+
+      <!-- Panel 4 — Mobile -->
+      <div class="bcts-panel" id="bcts-p4">
+        <div
+          class="bcts-panel-graphic"
+          style="background: linear-gradient(135deg, #f5f0ff 0%, #fdf5ff 100%)"
+        >
+          <canvas class="bcts-canvas" id="bcts-app-canvas"></canvas>
+          <p class="bcts-graphic-label">Mobile App · UI Building Live</p>
+        </div>
+        <div class="bcts-panel-text">
+          <p class="bcts-svc-num">04 / 06</p>
+          <div class="bcts-svc-tag">Mobile Apps</div>
+          <h3 class="bcts-svc-heading">
+            Android App<br /><span>Development</span>
+          </h3>
+          <p class="bcts-svc-desc">
+            Secure, scalable mobile applications for remote device control,
+            real-time monitoring, and performance tracking — built with modern
+            Android architecture patterns and IoT integration.
+          </p>
+          <ul class="bcts-svc-features">
+            <li>Native Android development (Kotlin/Java)</li>
+            <li>BLE &amp; Wi-Fi device communication</li>
+            <li>Real-time dashboards &amp; alerts</li>
+            <li>Cross-platform Flutter options</li>
+          </ul>
+          <a href="service.html#mobile" class="bcts-svc-link"
+            >Explore App Services
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
+        </div>
+      </div>
+
+      <!-- Panel 5 — Box Build -->
+      <div class="bcts-panel" id="bcts-p5">
+        <div class="bcts-panel-text">
+          <p class="bcts-svc-num">05 / 06</p>
+          <div class="bcts-svc-tag">Box Build Assembly</div>
+          <h3 class="bcts-svc-heading">Box Build<br /><span>Assembly</span></h3>
+          <p class="bcts-svc-desc">
+            Complete turnkey box build services — from PCB population and wiring
+            harness assembly to final enclosure integration, testing, and
+            production-ready delivery with full quality documentation.
+          </p>
+          <ul class="bcts-svc-features">
+            <li>PCB assembly &amp; soldering</li>
+            <li>Wiring harness fabrication</li>
+            <li>Enclosure integration &amp; cabling</li>
+            <li>Functional testing &amp; QA</li>
+          </ul>
+          <a href="service.html#boxbuild" class="bcts-svc-link"
+            >Explore Assembly Services
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
+        </div>
+        <div
+          class="bcts-panel-graphic"
+          style="background: linear-gradient(135deg, #f5f5f5 0%, #fafafa 100%)"
+        >
+          <canvas class="bcts-canvas" id="bcts-box-canvas"></canvas>
+          <p class="bcts-graphic-label">PCB Assembly · Component Placement</p>
+        </div>
+      </div>
+
+      <!-- Panel 6 — Smart Sensors -->
+      <div class="bcts-panel" id="bcts-p6">
+        <div
+          class="bcts-panel-graphic"
+          style="background: linear-gradient(135deg, #eef2ff 0%, #f4f8ff 100%)"
+        >
+          <canvas class="bcts-canvas" id="bcts-sensor-canvas"></canvas>
+          <p class="bcts-graphic-label">Smart Sensor · Detection Sweep</p>
+        </div>
+        <div class="bcts-panel-text">
+          <p class="bcts-svc-num">06 / 06</p>
+          <div class="bcts-svc-tag">Smart Sensors</div>
+          <h3 class="bcts-svc-heading">
+            Smart Sensor<br /><span>Solutions</span>
+          </h3>
+          <p class="bcts-svc-desc">
+            Intelligent sensing systems for environmental monitoring, proximity
+            detection, and industrial automation — combining hardware expertise
+            with signal processing and AI-based anomaly detection.
+          </p>
+          <ul class="bcts-svc-features">
+            <li>Temperature, humidity &amp; gas sensors</li>
+            <li>Proximity &amp; ultrasonic detection</li>
+            <li>Signal conditioning &amp; calibration</li>
+            <li>Predictive maintenance algorithms</li>
+          </ul>
+          <a href="service.html#sensors" class="bcts-svc-link"
+            >Explore Sensor Services
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
+        </div>
+      </div>
+    </div>
+    <!-- /bcts-root -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- ═══════════════════════════════════════════════
+     INDUSTRIES HTML  
+═══════════════════════════════════════════════ -->
+    <section class="bcti-root" id="bcti-industries">
+      <!-- Ambient blobs -->
+      <div class="bcti-blob bcti-blob-1"></div>
+      <div class="bcti-blob bcti-blob-2"></div>
+      <div class="bcti-blob bcti-blob-3"></div>
+
+      <!-- Section heading -->
+      <div class="bcti-intro">
+        <p class="bcti-intro-tag">Industries We Serve</p>
+        <h2 class="bcti-intro-title">
+          Unleashing <span>Industry Potential</span>
+        </h2>
+        <p class="bcti-intro-sub">
+          Transforming sectors with battle-tested technology solutions —
+          engineered for the real-world demands of each industry.
+        </p>
+      </div>
+
+      <!-- 4 Cards -->
+      <div class="bcti-grid">
+        <!-- Card 1: Automotive -->
+        <div class="bcti-card bcti-card--auto" data-industry="auto">
+          <div class="bcti-canvas-wrap">
+            <canvas id="bcti-auto-canvas"></canvas>
+          </div>
+          <div class="bcti-card-body">
+            <div class="bcti-card-meta">
+              <div class="bcti-card-icon">
+                <i class="fa-solid fa-car-side"></i>
+              </div>
+              <div class="bcti-proj-count">
+                <span class="bcti-proj-num" data-target="85">0</span>
+                <span class="bcti-proj-label">Projects Done</span>
+              </div>
+            </div>
+            <h3 class="bcti-card-name">Automotive</h3>
+            <p class="bcti-card-desc">
+              ECU firmware, infotainment systems, ADAS sensor integration, and
+              connected vehicle platforms built for reliability under extreme
+              operating conditions.
+            </p>
+            <a href="industry.html#automotive" class="bcti-card-link">
+              Explore Automotive
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2: Food & Beverage -->
+        <div class="bcti-card bcti-card--food" data-industry="food">
+          <div class="bcti-canvas-wrap">
+            <canvas id="bcti-food-canvas"></canvas>
+          </div>
+          <div class="bcti-card-body">
+            <div class="bcti-card-meta">
+              <div class="bcti-card-icon">
+                <i class="fa-solid fa-mug-hot"></i>
+              </div>
+              <div class="bcti-proj-count">
+                <span class="bcti-proj-num" data-target="60">0</span>
+                <span class="bcti-proj-label">Projects Done</span>
+              </div>
+            </div>
+            <h3 class="bcti-card-name">Food &amp; Beverage</h3>
+            <p class="bcti-card-desc">
+              Smart vending machines, IoT-enabled dispensing systems,
+              temperature monitoring, and automated inventory control for modern
+              food technology companies.
+            </p>
+            <a href="industry.html#food" class="bcti-card-link">
+              Explore Food &amp; Beverage
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3: Home Appliances -->
+        <div class="bcti-card bcti-card--home" data-industry="home">
+          <div class="bcti-canvas-wrap">
+            <canvas id="bcti-home-canvas"></canvas>
+          </div>
+          <div class="bcti-card-body">
+            <div class="bcti-card-meta">
+              <div class="bcti-card-icon">
+                <i class="fa-solid fa-house-signal"></i>
+              </div>
+              <div class="bcti-proj-count">
+                <span class="bcti-proj-num" data-target="120">0</span>
+                <span class="bcti-proj-label">Projects Done</span>
+              </div>
+            </div>
+            <h3 class="bcti-card-name">Home Appliances</h3>
+            <p class="bcti-card-desc">
+              Smart home control systems, voice-enabled appliances, energy
+              management firmware, and wireless connectivity solutions for
+              next-gen consumer electronics.
+            </p>
+            <a href="industry.html#home" class="bcti-card-link">
+              Explore Home Appliances
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 4: Industrial IoT -->
+        <div class="bcti-card bcti-card--ind" data-industry="ind">
+          <div class="bcti-canvas-wrap">
+            <canvas id="bcti-ind-canvas"></canvas>
+          </div>
+          <div class="bcti-card-body">
+            <div class="bcti-card-meta">
+              <div class="bcti-card-icon">
+                <i class="fa-solid fa-industry"></i>
+              </div>
+              <div class="bcti-proj-count">
+                <span class="bcti-proj-num" data-target="95">0</span>
+                <span class="bcti-proj-label">Projects Done</span>
+              </div>
+            </div>
+            <h3 class="bcti-card-name">Industrial IoT</h3>
+            <p class="bcti-card-desc">
+              Predictive maintenance, real-time factory floor monitoring, edge
+              computing, SCADA integration, and ruggedized sensor networks for
+              harsh industrial environments.
+            </p>
+            <a href="industry.html#industrial" class="bcti-card-link">
+              Explore Industrial IoT
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- /bcti-grid -->
+    </section>
+    <!-- /bcti-root -->
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////// ///////////////////////////-->
+    <!-- Why choose us section  -->
+    <section class="bcwc-root" id="bcwc-why">
+      <div class="bcwc-intro">
+        <p class="bcwc-intro-tag">Why BrainChild</p>
+        <h2 class="bcwc-intro-title">Why <span>Choose Us</span></h2>
+        <p class="bcwc-intro-quote">
+          "Since starting our journey in 2007, we have focused on creating
+          innovative embedded products delivered with expertise and
+          reliability."
+        </p>
+        <div class="bcwc-proof-bar" id="bcwcProofBar">
+          <div class="bcwc-stars-wrap">
+            <div class="bcwc-stars" id="bcwcStars">
+              <span class="bcwc-star">★</span><span class="bcwc-star">★</span
+              ><span class="bcwc-star">★</span><span class="bcwc-star">★</span
+              ><span class="bcwc-star">★</span>
+            </div>
+            <div>
+              <div class="bcwc-rating-num" id="bcwcRatingNum">0.0</div>
+              <div class="bcwc-rating-lbl">Google Rating · 49 Reviews</div>
+            </div>
+          </div>
+          <div class="bcwc-pdiv"></div>
+          <div class="bcwc-trust">
+            <strong>Trusted by global brands</strong><br />across Automotive,
+            IoT &amp;<br />Manufacturing industries
+          </div>
+          <div class="bcwc-pdiv"></div>
+          <div class="bcwc-clients-wrap">
+            <div class="bcwc-clients-num" id="bcwcClientNum">0</div>
+            <div class="bcwc-clients-lbl">Happy Clients</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bcwc-cards">
+        <div class="bcwc-card bcwc-c1">
+          <div class="bcwc-icon-wrap"><canvas id="bcwc-cv1"></canvas></div>
+          <h6 class="bcwc-card-title">19+ Years of Expertise</h6>
+          <p class="bcwc-card-desc">
+            A decade of embedded product and service development experience
+            worldwide.
+          </p>
+        </div>
+        <div class="bcwc-card bcwc-c2">
+          <div class="bcwc-icon-wrap"><canvas id="bcwc-cv2"></canvas></div>
+          <h6 class="bcwc-card-title">Proven Track Record</h6>
+          <p class="bcwc-card-desc">
+            Field-proven electronics used in demanding industries worldwide.
+          </p>
+        </div>
+        <div class="bcwc-card bcwc-c3">
+          <div class="bcwc-icon-wrap"><canvas id="bcwc-cv3"></canvas></div>
+          <h6 class="bcwc-card-title">IoT &amp; Cloud Solutions</h6>
+          <p class="bcwc-card-desc">
+            Expertise in connecting devices and cloud technologies seamlessly.
+          </p>
+        </div>
+        <div class="bcwc-card bcwc-c4">
+          <div class="bcwc-icon-wrap"><canvas id="bcwc-cv4"></canvas></div>
+          <h6 class="bcwc-card-title">Scalable Architecture</h6>
+          <p class="bcwc-card-desc">
+            Designs that grow with your business and adapt to future needs.
+          </p>
+        </div>
+        <div class="bcwc-card bcwc-c5">
+          <div class="bcwc-icon-wrap"><canvas id="bcwc-cv5"></canvas></div>
+          <h6 class="bcwc-card-title">Make in India Quality</h6>
+          <p class="bcwc-card-desc">
+            Engineered locally to meet global standards of performance.
+          </p>
+        </div>
+      </div>
+
+      <div class="bcwc-cta-wrap">
+        <button class="bcwc-cta-btn" onclick="location.href='company.html'">
+          <span>Find Out More</span>
+        </button>
+      </div>
+    </section>
+
+    <div class="bcwc-rev-strip" id="bcwc-reviews">
+      <div class="bcwc-rev-head">
+        <p class="bcwc-rev-tag">Client Voices</p>
+        <h3 class="bcwc-rev-title">
+          What Our Clients <span>Say About Us</span>
+        </h3>
+        <p class="bcwc-rev-sub">4.7 ★ · 49 Verified Google Reviews</p>
+      </div>
+      <div class="bcwc-mask">
+        <div class="bcwc-row bcwc-row1" id="bcwcRow1"></div>
+        <div class="bcwc-row bcwc-row2" id="bcwcRow2"></div>
+      </div>
+    </div>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <section class="bchw-root" id="bchw-how">
+      <div class="bchw-intro">
+        <p class="bchw-intro-tag">How We Work</p>
+        <h2 class="bchw-intro-title">
+          How BrainChild assists <span>your business</span>
+        </h2>
+        <div class="bchw-intro-bar"></div>
+        <p class="bchw-step-count">4 Steps</p>
+      </div>
+      <div class="bchw-timeline" id="bchwTimeline">
+        <canvas id="bchw-line-canvas"></canvas>
+        <div class="bchw-steps" id="bchwSteps">
+          <div class="bchw-step bchw-s1">
+            <div class="bchw-icon-ring">
+              <canvas id="bchw-ic1"></canvas>
+              <div class="bchw-step-num">01</div>
+            </div>
+            <div class="bchw-step-body">
+              <span class="bchw-step-timeframe">Day 1 – 2</span>
+              <h3 class="bchw-step-name">Discussion</h3>
+              <p class="bchw-step-desc">
+                We understand your requirements, goals, and challenges in a
+                focused discovery session.
+              </p>
+            </div>
+          </div>
+          <div class="bchw-step bchw-s2">
+            <div class="bchw-icon-ring">
+              <canvas id="bchw-ic2"></canvas>
+              <div class="bchw-step-num">02</div>
+            </div>
+            <div class="bchw-step-body">
+              <span class="bchw-step-timeframe">Day 3 – 7</span>
+              <h3 class="bchw-step-name">Ideas &amp; Concepts</h3>
+              <p class="bchw-step-desc">
+                Our engineers architect the solution, design schematics, and
+                define the tech stack.
+              </p>
+            </div>
+          </div>
+          <div class="bchw-step bchw-s3">
+            <div class="bchw-icon-ring">
+              <canvas id="bchw-ic3"></canvas>
+              <div class="bchw-step-num">03</div>
+            </div>
+            <div class="bchw-step-body">
+              <span class="bchw-step-timeframe">Week 2 – 6</span>
+              <h3 class="bchw-step-name">Testing &amp; Trying</h3>
+              <p class="bchw-step-desc">
+                Prototypes are built, firmware is tested, and we iterate rapidly
+                until it works perfectly.
+              </p>
+            </div>
+          </div>
+          <div class="bchw-step bchw-s4">
+            <div class="bchw-icon-ring">
+              <canvas id="bchw-ic4"></canvas>
+              <div class="bchw-step-num">04</div>
+            </div>
+            <div class="bchw-step-body">
+              <span class="bchw-step-timeframe">Week 7+</span>
+              <h3 class="bchw-step-name">Execute &amp; Install</h3>
+              <p class="bchw-step-desc">
+                Final product is manufactured, quality-checked, and deployed at
+                your site with full support.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bchw-bottom-cta">
+        <button class="bchw-cta-btn" onclick="location.href='contact.html'">
+          Start Your Project Today
+        </button>
+      </div>
+    </section>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- HTML — paste after how-we-work section -->
+    <section class="bctc-root" id="bctc-contact">
+      <canvas id="bctc-particles"></canvas>
+
+      <!-- Wave from How We Work -->
+      <div class="bctc-wave-top">
+        <svg
+          viewBox="0 0 1440 56"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M0,0 C480,56 960,0 1440,36 L1440,0 Z" fill="#f4f8ff" />
+        </svg>
+      </div>
+
+      <!-- Urgency ticker -->
+      <div class="bctc-urgency">
+        <p>
+          🚀 &nbsp; Free Consultation Available &nbsp;·&nbsp; Response Within 24
+          Hours &nbsp;·&nbsp; 19+ Years of Expertise &nbsp;·&nbsp; Trusted by
+          2000+ Clients
+        </p>
+      </div>
+
+      <!-- Two-column layout -->
+      <div class="bctc-main">
+        <!-- ── LEFT ── -->
+        <div class="bctc-left" id="bctcLeft">
+          <div class="bctc-badge">
+            <div class="bctc-badge-dot"></div>
+            <span>Available for new projects</span>
+          </div>
+
+          <h2 class="bctc-headline">
+            Let's Build Something<br />
+            <span>Extraordinary Together</span>
+          </h2>
+
+          <p class="bctc-subtext">
+            Whether it's an IoT product, embedded system, cloud platform, or a
+            complete box build — BrainChild's engineering team is ready to turn
+            your idea into a production-grade reality.
+          </p>
+
+          <div class="bctc-btn-row">
+            <button class="bctc-btn-primary" id="bctcGetQuote">
+              <i class="fa-solid fa-file-invoice"></i>
+              Get a Quote
+            </button>
+            <button
+              class="bctc-btn-secondary"
+              onclick="document.getElementById('bctcName').focus()"
+            >
+              <span
+                ><i
+                  class="fa-regular fa-calendar-check"
+                  style="margin-right: 7px"
+                ></i
+                >Book Free Consultation</span
+              >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- 4 contact cards in 2×2 grid -->
+          <div class="bctc-contact-grid">
+            <a class="bctc-contact-card bctc-cc-phone" href="tel:+919876543210">
+              <div class="bctc-contact-icon">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div class="bctc-contact-texts">
+                <div class="bctc-contact-label">Phone</div>
+                <div class="bctc-contact-value">+91 98765 43210</div>
+              </div>
+            </a>
+
+            <a
+              class="bctc-contact-card bctc-cc-email"
+              href="mailto:info@brainchildtech.in"
+            >
+              <div class="bctc-contact-icon">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div class="bctc-contact-texts">
+                <div class="bctc-contact-label">Email</div>
+                <div class="bctc-contact-value">info@brainchildtech.in</div>
+              </div>
+            </a>
+
+            <a
+              class="bctc-contact-card bctc-cc-wa"
+              href="https://wa.me/919876543210"
+              target="_blank"
+            >
+              <div class="bctc-contact-icon">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <div class="bctc-contact-texts">
+                <div class="bctc-contact-label">WhatsApp</div>
+                <div class="bctc-contact-value">Chat Instantly</div>
+              </div>
+            </a>
+
+            <a
+              class="bctc-contact-card bctc-cc-addr"
+              href="https://maps.google.com/?q=Chennai+Tamil+Nadu"
+              target="_blank"
+            >
+              <div class="bctc-contact-icon">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="bctc-contact-texts">
+                <div class="bctc-contact-label">Office</div>
+                <div class="bctc-contact-value">Banglore, Karnataka</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- /left -->
+
+        <!-- ── RIGHT: FORM ── -->
+        <div class="bctc-right" id="bctcRight">
+          <div class="bctc-form-card">
+            <h3 class="bctc-form-title">Send Us a Message</h3>
+            <p class="bctc-form-sub">
+              Fill in your details and we'll get back to you within 24 hours.
+            </p>
+
+            <form id="bctcForm" novalidate>
+              <div class="bctc-row">
+                <div class="bctc-field">
+                  <label>Your Name</label>
+                  <input
+                    type="text"
+                    id="bctcName"
+                    placeholder="John Smith"
+                    required
+                  />
+                </div>
+                <div class="bctc-field">
+                  <label>Email Address</label>
+                  <input
+                    type="email"
+                    id="bctcEmail"
+                    placeholder="john@company.com"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="bctc-row">
+                <div class="bctc-field">
+                  <label>Phone Number</label>
+                  <input
+                    type="tel"
+                    id="bctcPhone"
+                    placeholder="+91 98765 43210"
+                  />
+                </div>
+                <div class="bctc-field">
+                  <label>Service Interested In</label>
+                  <select id="bctcService">
+                    <option value="">Select a service...</option>
+                    <option>IoT Solutions</option>
+                    <option>Embedded Systems</option>
+                    <option>Cloud Development</option>
+                    <option>Mobile Apps</option>
+                    <option>Box Build Assembly</option>
+                    <option>Hardware Design</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="bctc-field">
+                <label>Your Message</label>
+                <textarea
+                  id="bctcMsg"
+                  placeholder="Tell us about your project, requirements, and timeline..."
+                  required
+                ></textarea>
+              </div>
+
+              <button type="submit" class="bctc-submit" id="bctcSubmitBtn">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span id="bctcBtnTxt">Send Message</span>
+              </button>
+            </form>
+
+            <!-- Success -->
+            <div class="bctc-success" id="bctcSuccess">
+              <div class="bctc-success-icon">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <h4>Message Sent Successfully!</h4>
+              <p>
+                Our team will reach out within 24 hours.<br />Thank you for
+                choosing BrainChild Technology!
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- /right -->
+      </div>
+      <!-- /main -->
+    </section>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- footer placehonder -->
+     <bct-footer></bct-footer>
+
+    <script src="/Combained/header.js"></script>
+    <script src="/Combained/footer.js"></script>
+    <script src="Landingpage.js"></script>
+  </body>
+</html>

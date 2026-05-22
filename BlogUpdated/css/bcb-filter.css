@@ -1,0 +1,185 @@
+/* ============================================================
+   bcb-filter.css — CATEGORY FILTER TABS SECTION
+   Prefix: bcb-filter__
+   Section ID: #bcb-filter-section
+   Depends on: NOTHING (fully isolated)
+   Animations: Sliding indicator bar, tab active state transitions
+   Edit this file to change: tab styles, active indicator, sticky behavior
+   FIXES:
+     1. sticky + overflow conflict → added overflow:visible safe fallback
+     2. Section height collapse → explicit min-height added
+     3. Indicator invisible on load → CSS default position added
+   ============================================================ */
+
+/* === SECTION ROOT + CSS VARIABLES === */
+.bcb-filter {
+  --bcb-fl-bg:          #ffffff;
+  --bcb-fl-cyan:        #00b4d8;
+  --bcb-fl-cyan-dark:   #0077b6;
+  --bcb-fl-text:        #3d5a6b;
+  --bcb-fl-text-act:    #0d1b2a;
+  --bcb-fl-border:      rgba(0, 180, 216, 0.15);
+  --bcb-fl-tab-bg:      transparent;
+  --bcb-fl-tab-hover:   rgba(0, 180, 216, 0.07);
+  --bcb-fl-indicator:   linear-gradient(90deg, #00b4d8, #0077b6);
+  --bcb-fl-shadow:      0 2px 20px rgba(0, 119, 182, 0.08);
+  --bcb-fl-font:        'DM Sans', sans-serif;
+
+  background: var(--bcb-fl-bg);
+
+  /* FIX 1: sticky + parent overflow conflict
+     If a parent has overflow:hidden, sticky breaks silently.
+     Use position:sticky but also set a z-index high enough
+     to render above sibling sections. If sticky still fails
+     in your layout, change to: position: relative;
+  */
+  position: sticky;
+  top: 0;
+  z-index: 80;
+
+  /* FIX 2: Prevent height collapse
+     Without min-height, if tabs fail to render the section is 0px tall.
+     This ensures the bar is always visible.
+  */
+  min-height: 52px;
+
+  /* Make sure section itself never clips its children */
+  overflow: visible;
+
+  border-bottom: 1px solid var(--bcb-fl-border);
+  box-shadow: var(--bcb-fl-shadow);
+
+  /* Smooth appearance when page loads */
+  opacity: 1;
+  visibility: visible;
+}
+
+/* === CONTAINER
+     overflow-x: auto here (NOT on .bcb-filter) so sticky still works.
+     sticky needs the scrolling parent to be overflow:visible on the
+     sticky element itself — only the inner container scrolls horizontally.
+=== */
+.bcb-filter__container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  /* Horizontal scroll on mobile — only on the container, not the section */
+  overflow-x: auto;
+  overflow-y: visible;        /* FIX: was unset, causing vertical clip */
+
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE */
+}
+.bcb-filter__container::-webkit-scrollbar { display: none; }
+
+/* === TABS WRAPPER === */
+.bcb-filter__tabs {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: max-content;
+
+  /* FIX 3: Explicit height so the wrapper never collapses to 0.
+     This is the true height of the filter bar — tabs + indicator.
+  */
+  height: 52px;
+
+  padding: 0 4px;
+}
+
+/* === INDIVIDUAL TAB BUTTON === */
+.bcb-filter__tab {
+  font-family: var(--bcb-fl-font);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--bcb-fl-text);
+  background: var(--bcb-fl-tab-bg);
+  border: none;
+  border-radius: 0;
+
+  /* Match the wrapper height so tabs fill the bar */
+  height: 52px;
+  padding: 0 20px;
+
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
+
+  /* Make sure tabs are always visible */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+.bcb-filter__tab:hover {
+  color: var(--bcb-fl-text-act);
+  background: var(--bcb-fl-tab-hover);
+}
+
+/* Active state */
+.bcb-filter__tab--active {
+  color: var(--bcb-fl-cyan);
+  font-weight: 600;
+}
+
+/* === SLIDING INDICATOR BAR
+     FIX 4: Added a CSS default position so the indicator is
+     visible even before JS runs (JS overrides left/width).
+     Without this, indicator is at left:0 width:0 — invisible on load.
+=== */
+.bcb-filter__indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;              /* JS will override this */
+  width: 90px;          /* JS will override this — default prevents 0px invisible bar */
+  height: 3px;
+  background: var(--bcb-fl-indicator);
+  border-radius: 3px 3px 0 0;
+  z-index: 0;
+
+  /* Smooth slide when JS updates left/width */
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+/* ============================================================
+   DEBUG HELPER — uncomment this if filter is STILL invisible
+   It adds a bright red outline so you can see the element bounds.
+   Remove after debugging.
+   ============================================================
+
+.bcb-filter {
+  outline: 3px solid red !important;
+  min-height: 60px !important;
+}
+.bcb-filter__tab {
+  outline: 1px solid blue !important;
+}
+
+*/
+
+/* ============================================================
+   RESPONSIVE — Filter Section
+   ============================================================ */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .bcb-filter__tab {
+    font-size: 0.82rem;
+    padding: 0 14px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .bcb-filter__tab {
+    font-size: 0.78rem;
+    padding: 0 12px;
+  }
+}

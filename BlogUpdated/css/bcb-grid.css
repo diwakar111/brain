@@ -1,0 +1,339 @@
+/* ============================================================
+   BCB-GRID — Blog Posts Grid (Section 4)
+   Scoped entirely to .bcb-grid and .bcb-layout
+   No global overrides. Responsive. Premium animations.
+   ============================================================ */
+
+/* ── Layout wrapper (Grid + Sidebar side by side) ── */
+.bcb-layout {
+  background: #f0f7ff;
+  padding: 60px 0 80px;
+}
+
+.bcb-layout__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ── GRID MAIN ── */
+.bcb-grid {
+  min-width: 0;
+}
+
+.bcb-grid__wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* ── CARD BASE ── */
+.bcb-grid__card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0, 100, 200, 0.07);
+  border: 1px solid rgba(200, 220, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* Scroll-in animation — starts hidden */
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.bcb-grid__card.bcb--visible {
+  animation: bcgCardReveal 0.65s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes bcgCardReveal {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Stagger delays set inline via data-delay, applied with JS */
+.bcb-grid__card[data-delay="0"]   { animation-delay: 0ms; }
+.bcb-grid__card[data-delay="100"] { animation-delay: 100ms; }
+.bcb-grid__card[data-delay="200"] { animation-delay: 200ms; }
+
+/* Hover lift */
+.bcb-grid__card:hover {
+  transform: translateY(-6px) scale(1.012);
+  box-shadow: 0 16px 48px rgba(0, 100, 220, 0.14),
+              0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* ── THUMBNAIL ── */
+.bcb-grid__thumb {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.bcb-grid__thumb-bg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.bcb-grid__card:hover .bcb-grid__thumb-bg {
+  transform: scale(1.06);
+}
+
+/* Background variants */
+.bcb-grid__thumb-bg--cyan   { background: linear-gradient(135deg, #0d1f3c 0%, #0a3d5e 60%, #0e4f6a 100%); }
+.bcb-grid__thumb-bg--purple { background: linear-gradient(135deg, #140c28 0%, #2d1060 60%, #3a1280 100%); }
+.bcb-grid__thumb-bg--teal   { background: linear-gradient(135deg, #071a2e 0%, #0c3a52 60%, #0f4a68 100%); }
+.bcb-grid__thumb-bg--green  { background: linear-gradient(135deg, #061c14 0%, #0b3d28 60%, #0f5038 100%); }
+.bcb-grid__thumb-bg--gold   { background: linear-gradient(135deg, #1a1000 0%, #3d2800 60%, #5a3a00 100%); }
+.bcb-grid__thumb-bg--indigo { background: linear-gradient(135deg, #0d0f2e 0%, #1a1f5a 60%, #22277a 100%); }
+
+/* Noise texture overlay */
+.bcb-grid__thumb-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.bcb-grid__thumb-icon {
+  width: 72px;
+  height: 72px;
+  opacity: 0.9;
+  transition: transform 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.bcb-grid__card:hover .bcb-grid__thumb-icon {
+  transform: scale(1.12) rotate(3deg);
+}
+
+/* Badge (top-left result pill) */
+.bcb-grid__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 4px 10px;
+  border-radius: 20px;
+  z-index: 2;
+}
+
+.bcb-grid__badge--gold {
+  background: rgba(244, 163, 26, 0.25);
+  border-color: rgba(244, 163, 26, 0.4);
+  color: #ffd166;
+}
+
+/* Category tag (top-right) */
+.bcb-grid__cat {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 20px;
+  z-index: 2;
+  text-transform: uppercase;
+}
+
+.bcb-grid__cat--cyan   { background: rgba(0, 229, 255, 0.15); color: #00e5ff; border: 1px solid rgba(0,229,255,0.3); }
+.bcb-grid__cat--purple { background: rgba(123, 47, 255, 0.15); color: #b46eff; border: 1px solid rgba(123,47,255,0.3); }
+.bcb-grid__cat--teal   { background: rgba(0, 180, 216, 0.15); color: #00b4d8; border: 1px solid rgba(0,180,216,0.3); }
+.bcb-grid__cat--green  { background: rgba(6, 214, 160, 0.15); color: #06d6a0; border: 1px solid rgba(6,214,160,0.3); }
+.bcb-grid__cat--gold   { background: rgba(244, 163, 26, 0.15); color: #f4a31a; border: 1px solid rgba(244,163,26,0.3); }
+.bcb-grid__cat--indigo { background: rgba(129, 140, 248, 0.15); color: #818cf8; border: 1px solid rgba(129,140,248,0.3); }
+
+/* ── CARD BODY ── */
+.bcb-grid__body {
+  padding: 20px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.bcb-grid__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 11.5px;
+  color: #7a92b4;
+  font-weight: 400;
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
+}
+
+.bcb-grid__dot {
+  color: #bdd0e8;
+  margin: 0 1px;
+}
+
+.bcb-grid__title {
+  font-family: 'Syne', 'DM Sans', sans-serif;
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: #0d1f3c;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease;
+}
+
+.bcb-grid__card:hover .bcb-grid__title {
+  color: #0077cc;
+}
+
+.bcb-grid__desc {
+  font-size: 13.5px;
+  color: #4e6280;
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+/* CTA link */
+.bcb-grid__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0077cc;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  position: relative;
+  width: fit-content;
+  transition: gap 0.25s ease, color 0.25s ease;
+}
+
+.bcb-grid__cta::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #0077cc;
+  border-radius: 2px;
+  transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.bcb-grid__cta:hover { gap: 8px; color: #005fa3; }
+.bcb-grid__cta:hover::after { width: 100%; }
+
+.bcb-grid__cta--gold { color: #c47f00; }
+.bcb-grid__cta--gold::after { background: #c47f00; }
+.bcb-grid__cta--gold:hover { color: #a06800; }
+
+/* ── LOAD MORE ── */
+.bcb-grid__loadmore {
+  display: flex;
+  justify-content: center;
+  margin-top: 44px;
+}
+
+.bcb-grid__loadmore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1.5px solid rgba(0, 119, 204, 0.25);
+  color: #0077cc;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 2px 12px rgba(0, 119, 204, 0.1);
+  font-family: inherit;
+}
+
+.bcb-grid__loadmore-btn:hover {
+  background: #0077cc;
+  color: #ffffff;
+  border-color: #0077cc;
+  box-shadow: 0 8px 28px rgba(0, 119, 204, 0.3);
+  transform: translateY(-2px);
+}
+
+.bcb-grid__loadmore-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.bcb-grid__loadmore-btn:hover svg {
+  transform: translateY(3px);
+}
+
+/* ── RESPONSIVE ── */
+
+/* Tablet: 2-col grid */
+@media (max-width: 1100px) {
+  .bcb-layout__container {
+    grid-template-columns: 1fr 300px;
+    gap: 28px;
+  }
+  .bcb-grid__wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+}
+
+/* Tablet portrait: stack sidebar below */
+@media (max-width: 860px) {
+  .bcb-layout__container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .bcb-grid__wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Mobile: 1-col */
+@media (max-width: 540px) {
+  .bcb-layout {
+    padding: 40px 0 60px;
+  }
+  .bcb-layout__container {
+    padding: 0 16px;
+  }
+  .bcb-grid__wrapper {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .bcb-grid__thumb {
+    height: 160px;
+  }
+  .bcb-grid__title {
+    font-size: 15px;
+  }
+}

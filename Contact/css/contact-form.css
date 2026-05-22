@@ -1,0 +1,554 @@
+/* ============================================================
+   FILE: css/contact-form.css
+   SECTION: Contact Form — #bc-contact-form-section
+   PURPOSE: Left info card (floating tech icons + content) and
+            right form card (duotone icon labels, equal height,
+            vertical scroll on overflow).
+            Self-contained. No dependency on other section CSS.
+   ============================================================ */
+
+/* ── SECTION WRAPPER ─────────────────────────────────────────── */
+#bc-contact-form-section {
+  padding: var(--bc-space-lg) 1.5rem;
+  background: linear-gradient(180deg, #EDF3FB 0%, var(--bc-bg) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative dot-grid pattern */
+#bc-contact-form-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(10,110,189,0.055) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── TWO-COLUMN CONTAINER ────────────────────────────────────── */
+/* align-items:stretch → both cards grow to the same row height  */
+.cf-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.55fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LEFT INFO CARD
+   ══════════════════════════════════════════════════════════════ */
+
+.cf-info-col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--bc-surface);
+  border: 1px solid var(--bc-border);
+  border-radius: var(--bc-radius-lg);
+  padding: 2rem 1.8rem;
+  box-shadow: var(--bc-shadow-sm);
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* --- Floating icons container (absolute, fills card) --- */
+#cf-float-icons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- Single floating chip (built by JS) --- */
+.cfi-chip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 0.72rem 0.38rem 0.5rem;
+  background: transparent;
+  border: 0px solid rgba(10,110,189,0.14);
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  white-space: nowrap;
+  animation: cfiFloat var(--cfi-dur, 4.5s) var(--cfi-delay, 0s)
+             ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+/* Pause when section off-screen (toggled by JS) */
+.cfi-chip.cfi-paused { animation-play-state: paused; }
+
+.cfi-icon {
+  width: 22px; height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.cfi-icon svg { width: 16px; height: 16px; }
+
+.cfi-label {
+  font-family: var(--bc-font-body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--cfi-color, var(--bc-primary));
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Float bob keyframe */
+@keyframes cfiFloat {
+  0%   { transform: translateY(0px)    rotate(-1deg);   opacity: 0.80; }
+  50%  { transform: translateY(-10px)  rotate(1deg);    opacity: 1;    }
+  100% { transform: translateY(-18px)  rotate(-0.5deg); opacity: 0.76; }
+}
+
+/* --- Left card text content (above floating icons) --- */
+.cf-info-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+/* Eyebrow label */
+.cf-info-col .cf-section-label {
+  font-family: var(--bc-font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--bc-accent);
+  margin: 0;
+  display: block;
+}
+
+/* Heading */
+.cf-info-col .cf-heading {
+  font-family: var(--bc-font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 800;
+  color: var(--bc-text-primary);
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Body paragraph */
+.cf-info-col .cf-body {
+  font-size: 0.88rem;
+  line-height: 1.72;
+  color: var(--bc-text-body);
+  margin: 0;
+}
+
+/* Thin divider */
+.cf-info-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--bc-border);
+  border: none;
+  margin: 0;
+}
+
+/* --- Why-us checklist --- */
+.cf-why-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.58rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cf-why-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+}
+.cf-why-icon {
+  width: 20px; height: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(10,110,189,0.09);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.cf-why-icon svg {
+  width: 11px; height: 11px;
+  stroke: var(--bc-primary);
+  fill: none;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cf-why-text {
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--bc-text-body);
+  line-height: 1.5;
+}
+.cf-why-text strong {
+  color: var(--bc-text-primary);
+  font-weight: 700;
+}
+
+/* Service quick-select tags */
+.cf-svc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+  margin: 0;
+}
+.svc-tag {
+  padding: 0.3rem 0.82rem;
+  background: rgba(10,110,189,0.06);
+  border: 1.5px solid rgba(10,110,189,0.17);
+  border-radius: var(--bc-radius-full);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--bc-primary);
+  cursor: pointer;
+  transition: all var(--bc-transition);
+  user-select: none;
+}
+.svc-tag:hover {
+  background: var(--bc-primary);
+  color: #fff;
+  border-color: var(--bc-primary);
+  transform: translateY(-1px);
+}
+
+/* Response badge */
+.cf-response-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 0.88rem;
+  background: var(--bc-accent-light);
+  border-radius: var(--bc-radius-sm);
+  font-size: 0.78rem;
+  color: #007A7D;
+  font-weight: 600;
+  align-self: flex-start;
+}
+.cf-response-badge .badge-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--bc-accent);
+  flex-shrink: 0;
+  animation: badgePulse 2s infinite;
+}
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%       { transform: scale(1.5); opacity: 0.5; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RIGHT FORM CARD
+   ══════════════════════════════════════════════════════════════ */
+
+.cf-form-col {
+  background: var(--bc-surface);
+  border: 1px solid var(--bc-border);
+  border-radius: var(--bc-radius-lg);
+  padding: 1.8rem 2rem;
+  box-shadow: var(--bc-shadow-md);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.cf-form-col::-webkit-scrollbar { width: 4px; }
+.cf-form-col::-webkit-scrollbar-track { background: transparent; }
+.cf-form-col::-webkit-scrollbar-thumb {
+  background: rgba(10,110,189,0.18);
+  border-radius: 4px;
+}
+
+/* --- Form card heading --- */
+.cf-form-heading {
+  font-family: var(--bc-font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bc-text-primary);
+  margin: 0 0 1.1rem 0;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--bc-border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cf-form-heading svg {
+  width: 17px; height: 17px;
+  stroke: var(--bc-primary);
+  fill: none;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+/* --- Form grid --- */
+.cf-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.82rem;
+  flex: 1;
+}
+.cf-form-grid .cf-field-full { grid-column: 1 / -1; }
+
+/* ── DUOTONE ICON FIELD WRAPPER ──────────────────────────────
+   Structure: [icon strip] | [input + floating label]
+   The wrapper owns the border so focus-ring wraps both parts  */
+.cf-field {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border: 1.5px solid var(--bc-border);
+  border-radius: var(--bc-radius-sm);
+  background: #fff;
+  transition: border-color var(--bc-transition), box-shadow var(--bc-transition);
+  overflow: hidden;
+}
+.cf-field:focus-within {
+  border-color: var(--bc-primary);
+  box-shadow: 0 0 0 3px rgba(10,110,189,0.09);
+}
+.cf-field.cf-error {
+  border-color: #E53935;
+  box-shadow: 0 0 0 3px rgba(229,57,53,0.07);
+}
+
+/* ── DUOTONE ICON STRIP ──────────────────────────────────────
+   Layer 1 = pale bg fill  (duotone background tint)
+   Layer 2 = stroke SVG    (duotone foreground)                */
+.cf-field-icon {
+  width: 42px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10,110,189,0.055);
+  border-right: 1px solid var(--bc-border);
+  transition: background var(--bc-transition);
+}
+.cf-field:focus-within .cf-field-icon { background: rgba(10,110,189,0.10); }
+.cf-field.cf-error      .cf-field-icon { background: rgba(229,57,53,0.07); }
+
+.cf-field-icon svg {
+  width: 15px; height: 15px;
+  stroke: var(--bc-primary);
+  fill: none;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke var(--bc-transition);
+}
+.cf-field.cf-error .cf-field-icon svg { stroke: #E53935; }
+
+/* ── INPUT INNER WRAPPER ─────────────────────────────────────  */
+.cf-field-inner {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Floating label */
+.cf-field-inner label {
+  position: absolute;
+  top: 50%;
+  left: 0.72rem;
+  transform: translateY(-50%);
+  font-family: var(--bc-font-body);
+  font-size: 0.86rem;
+  color: var(--bc-muted);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background: transparent;
+  padding: 0 0.18rem;
+  z-index: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 1.4rem);
+}
+
+/* Textarea label starts at top */
+.cf-field.cf-textarea .cf-field-inner label {
+  top: 0.82rem;
+  transform: none;
+}
+
+/* Floated state */
+.cf-field.filled .cf-field-inner label,
+.cf-field-inner input:focus ~ label,
+.cf-field-inner textarea:focus ~ label,
+.cf-field-inner select:focus ~ label {
+  top: -20px; /* 👈 move properly above */
+  transform: none;
+  font-size: 0.65rem;
+  color: var(--bc-primary);
+  background: #fff;
+  padding: 0 4px;
+  font-weight: 700;
+  z-index: 2;
+}
+.cf-field.cf-textarea.filled .cf-field-inner label,
+.cf-field.cf-textarea .cf-field-inner textarea:focus ~ label {
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 0.67rem;
+  color: var(--bc-primary);
+  background: #fff;
+  font-weight: 700;
+}
+.cf-field.cf-error .cf-field-inner label,
+.cf-field.cf-error.filled .cf-field-inner label {
+  color: #E53935 !important;
+  background: #fff;
+}
+
+/* Input / select / textarea — no individual border */
+.cf-field-inner input,
+.cf-field-inner textarea,
+.cf-field-inner select {
+  width: 100%;
+  padding: 0.76rem 0.72rem;
+  font-family: var(--bc-font-body);
+  font-size: 0.87rem;
+  color: var(--bc-text-primary);
+  background: transparent;
+  border: none;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Dropdown chevron */
+.cf-field-inner select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%230A6EBD' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.2rem;
+  cursor: pointer;
+}
+
+/* Textarea */
+.cf-field-inner textarea {
+  resize: vertical;
+  min-height: 88px;
+  padding-top: 0.82rem;
+}
+
+/* Character counter */
+.cf-char-count {
+  font-size: 0.67rem;
+  color: var(--bc-muted);
+  text-align: right;
+  margin-top: 0.2rem;
+  display: block;
+}
+.cf-char-count.cf-char-warn { color: #E53935; }
+
+/* Inline error */
+.cf-field-error {
+  font-size: 0.69rem;
+  color: #E53935;
+  margin-top: 0.2rem;
+  min-height: 1em;
+  display: block;
+}
+
+/* ── SUBMIT BUTTON ─────────────────────────────────────────── */
+.cf-submit-btn {
+  width: 100%;
+  margin-top: 0.82rem;
+  padding: 0.85rem;
+  background: var(--bc-primary);
+  color: #fff;
+  font-family: var(--bc-font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--bc-radius-full);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background var(--bc-transition), transform var(--bc-transition), box-shadow var(--bc-transition);
+  box-shadow: 0 5px 18px rgba(10,110,189,0.27);
+  letter-spacing: 0.01em;
+}
+.cf-submit-btn:hover:not(:disabled) {
+  background: var(--bc-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 9px 26px rgba(10,110,189,0.35);
+}
+.cf-submit-btn:disabled { opacity: 0.72; cursor: not-allowed; }
+
+.cf-btn-text { transition: opacity 0.2s; }
+.cf-btn-spinner {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px; height: 20px;
+  border: 2px solid rgba(255,255,255,0.28);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: cfSpin 0.7s linear infinite;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+@keyframes cfSpin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* ── SUCCESS / ERROR MESSAGES ──────────────────────────────── */
+#cf-success-msg,
+#cf-error-msg {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.78rem 1rem;
+  border-radius: var(--bc-radius-sm);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 0.88rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+#cf-success-msg.visible,
+#cf-error-msg.visible   { opacity: 1; transform: translateY(0); pointer-events: auto; }
+#cf-success-msg { background: #E8F5E9; border: 1px solid #A5D6A7; color: #2E7D32; }
+#cf-error-msg   { background: #FFEBEE; border: 1px solid #EF9A9A; color: #C62828; }
+
+/* ── VALIDATION SHAKE ──────────────────────────────────────── */
+@keyframes cfShake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-5px); }
+  40%       { transform: translateX(5px); }
+  60%       { transform: translateX(-3px); }
+  80%       { transform: translateX(3px); }
+}
+.cf-shake { animation: cfShake 0.5s ease; }
+
+/* ── RESPONSIVE ────────────────────────────────────────────── */
+@media (max-width: 920px) {
+  .cf-container { grid-template-columns: 1fr; gap: 1.5rem; }
+  .cf-info-col  { min-height: auto; }
+}
+@media (max-width: 560px) {
+  .cf-form-grid  { grid-template-columns: 1fr; }
+  .cf-form-col   { padding: 1.3rem 1rem; }
+  .cf-info-col   { padding: 1.3rem 1.1rem; }
+  .cf-field-icon { width: 36px; }
+}

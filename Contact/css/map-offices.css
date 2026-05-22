@@ -1,0 +1,268 @@
+/* ============================================================
+   FILE: css/map-offices.css
+   SECTION: Office Map & Locations — #bc-offices-section
+   PURPOSE: Map embed, address card, and future-offices
+            placeholder styling. Self-contained.
+   ============================================================ */
+
+/* --- Section wrapper --- */
+#bc-offices-section {
+  padding: var(--bc-space-lg) 1.5rem;
+  background: var(--bc-bg);
+}
+
+/* --- Section header --- */
+#bc-offices-section .off-section-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bc-accent);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+#bc-offices-section .off-heading {
+  font-family: var(--bc-font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--bc-text-primary);
+  text-align: center;
+  margin-bottom: 0.6rem;
+  line-height: 1.2;
+}
+
+#bc-offices-section .off-subtext {
+  font-size: 0.97rem;
+  color: var(--bc-text-body);
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+
+/* --- Two-column layout (map + address) ---
+   FIX: align-items:stretch so map wrapper and address card are same height */
+.off-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+  align-items: stretch;   /* ← equal height both sides */
+}
+
+/* --- Map wrapper ---
+   FIX: height:100% ensures it fills the grid row and matches address card */
+#bc-map-wrapper {
+  border-radius: var(--bc-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--bc-border);
+  box-shadow: var(--bc-shadow-md);
+  background: #E8EEF5;
+  position: relative;
+  min-height: 400px;
+  height: 100%;           /* ← fills equal height */
+}
+
+/* Loading skeleton shimmer before map loads */
+#bc-map-wrapper:not(.map-loaded)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #E8EEF5 25%, #D8E4F0 50%, #E8EEF5 75%);
+  background-size: 200% 100%;
+  animation: mapShimmer 1.6s infinite;
+  z-index: 1;
+}
+@keyframes mapShimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* FIX: 100% height so iframe fills the stretched wrapper */
+#bc-map-iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  border: none;
+  display: block;
+}
+
+/* --- Address card ---
+   FIX: height:100% + justify-content:space-between so it stretches
+   to match the map height and content is evenly distributed */
+.off-address-card {
+  background: var(--bc-surface);
+  border: 1px solid var(--bc-border);
+  border-radius: var(--bc-radius-lg);
+  padding: 2rem 1.8rem;
+  box-shadow: var(--bc-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+  height: 100%;           /* ← fills equal height */
+  box-sizing: border-box;
+}
+
+.off-address-card .off-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.8rem;
+  background: rgba(10,110,189,0.07);
+  border-radius: var(--bc-radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--bc-primary);
+  align-self: flex-start;
+}
+
+.off-address-card .off-office-name {
+  font-family: var(--bc-font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--bc-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.off-address-line {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.off-address-line svg {
+  width: 18px; height: 18px;
+  stroke: var(--bc-primary);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.off-address-line p {
+  font-size: 0.93rem;
+  color: var(--bc-text-body);
+  line-height: 1.6;
+}
+.off-address-line a {
+  color: var(--bc-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+.off-address-line a:hover { text-decoration: underline; }
+
+/* --- Copy address button --- */
+#bc-copy-address {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  border: 1.5px solid var(--bc-primary);
+  border-radius: var(--bc-radius-full);
+  color: var(--bc-primary);
+  font-family: var(--bc-font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--bc-transition);
+  align-self: flex-start;
+}
+#bc-copy-address:hover {
+  background: var(--bc-primary);
+  color: #fff;
+}
+#bc-copy-address.copied {
+  background: var(--bc-accent);
+  border-color: var(--bc-accent);
+  color: #fff;
+}
+#bc-copy-address svg {
+  width: 14px; height: 14px;
+  fill: currentColor;
+}
+
+/* --- Future offices grid --- */
+.off-future-heading {
+  font-family: var(--bc-font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bc-text-primary);
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.off-future-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* --- Future office placeholder card --- */
+.office-future-card {
+  border: 1.5px dashed var(--bc-border);
+  border-radius: var(--bc-radius-md);
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--bc-surface);
+  transition: border-color var(--bc-transition), box-shadow var(--bc-transition);
+}
+.office-future-card:hover {
+  border-color: var(--bc-primary);
+  box-shadow: var(--bc-shadow-sm);
+}
+
+/* Scanning animation line */
+.office-future-card.scanning::after {
+  content: '';
+  position: absolute;
+  left: 0; top: -4px;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--bc-accent) 50%, transparent 100%);
+  animation: scanLine 2.4s ease-in-out infinite;
+}
+@keyframes scanLine {
+  0%   { top: -4px; }
+  100% { top: 100%; }
+}
+
+.office-future-card .future-city {
+  font-family: var(--bc-font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--bc-text-primary);
+  margin-bottom: 0.3rem;
+}
+.office-future-card .future-label {
+  font-size: 0.75rem;
+  color: var(--bc-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+.office-future-card .future-coming {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.2rem 0.7rem;
+  background: var(--bc-accent-light);
+  color: #007A7D;
+  border-radius: var(--bc-radius-full);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* --- Responsive --- */
+@media (max-width: 860px) {
+  .off-layout { grid-template-columns: 1fr; }
+  #bc-map-iframe { height: 300px; }
+}

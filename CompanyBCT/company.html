@@ -1,0 +1,4135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrainChild Technology</title>
+    <link
+      rel="shortcut icon"
+      href="BCT_logo_transparent.png"
+      type="image/x-icon"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      /* ── Scoped box-sizing reset (navbar elements only) ── */
+      .bct-nav *,
+      .bct-nav *::before,
+      .bct-nav *::after,
+      .mob-overlay *,
+      .mob-overlay *::before,
+      .mob-overlay *::after,
+      #cDot,
+      #cRing {
+        box-sizing: border-box;
+      }
+
+      /* ── CSS variables (--bct- prefixed, navbar-scoped) ── */
+      .bct-nav,
+      .mob-overlay,
+      #cDot,
+      #cRing {
+        --bct-cyan: #00e5ff;
+        --bct-vio: #7b2fff;
+        --bct-pink: #ff2d9b;
+        --bct-gradh: linear-gradient(90deg, #00e5ff, #7b2fff);
+        --bct-text: #e8eeff;
+        --bct-mute: #5a6a94;
+        --bct-bord: rgba(0, 229, 255, 0.15);
+      }
+
+      /* ── Custom cursor ── */
+      /* NOTE: Add  body { cursor: none; }  in your company.html CSS */
+      #cDot {
+        position: fixed;
+        width: 7px;
+        height: 7px;
+        background: #00e5ff;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99999;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 10px #00e5ff;
+      }
+      #cRing {
+        position: fixed;
+        width: 26px;
+        height: 26px;
+        border: 1.5px solid rgba(0, 229, 255, 0.45);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99998;
+        transform: translate(-50%, -50%);
+        transition: all 0.12s ease;
+      }
+
+      /* ════════════════════════════════════════════════
+     NAVBAR
+  ════════════════════════════════════════════════ */
+      .bct-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        transition: background 0.4s ease, backdrop-filter 0.4s ease,
+          border-bottom 0.4s ease, box-shadow 0.4s ease;
+      }
+
+      .bct-nav.scrolled {
+        background: rgba(5, 11, 24, 0.88);
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+        border-bottom: 1px solid rgba(0, 229, 255, 0.15);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      .bct-nav .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 52px;
+        width: 100%;
+        max-width: 100%;
+        background: rgba(0, 0, 0, 0.88);
+      }
+
+      /* ── Logo ── */
+      .bct-nav .bct-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .bct-nav .bct-logo img {
+        height: 34px;
+        filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));
+      }
+      .bct-nav .bct-logo-name {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: #fff;
+        letter-spacing: 0.5px;
+      }
+
+      /* ── Desktop menu list ── */
+      .bct-nav .bct-menu {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .bct-nav .bct-menu li > a,
+      .bct-nav .bct-menu li > span {
+        display: block;
+        font-size: 0.86rem;
+        font-weight: 500;
+        color: rgba(232, 238, 255, 0.65);
+        text-decoration: none;
+        padding: 8px 13px;
+        border-radius: 8px;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: color 0.25s, background 0.25s;
+        font-family: "Outfit", sans-serif;
+      }
+      .bct-nav .bct-menu li > a:hover,
+      .bct-nav .bct-menu li > span:hover {
+        color: #fff;
+        background: rgba(0, 229, 255, 0.07);
+      }
+      .bct-nav .bct-menu li > a.active {
+        color: #fff;
+        background: rgba(0, 229, 255, 0.07);
+      }
+
+      /* ── Dropdown parent ── */
+      .bct-nav .has-drop {
+        position: relative;
+      }
+
+      /* ── Dropdown panel ── */
+      .bct-nav .bct-drop {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        padding-top: 10px;
+        transform: translateX(-50%) translateY(8px);
+        min-width: 380px;
+        background: rgba(6, 12, 28, 0.98);
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+        border: 1px solid rgba(0, 229, 255, 0.15);
+        border-radius: 16px;
+        padding: 14px;
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+        transition: opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+          visibility 0s linear 0.22s;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55),
+          0 0 0 1px rgba(0, 229, 255, 0.04);
+        z-index: 999;
+      }
+
+      /* ////////// */
+      /* ── Invisible bridge fills gap between nav item and dropdown ── */
+      .bct-nav .bct-drop::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 0;
+        right: 0;
+        height: 10px;
+        background: transparent;
+      }
+
+      /* ── Active span (used on Services page instead of <a>) ── */
+      .bct-nav .bct-menu li > span.active {
+        color: #fff;
+        background: rgba(0, 229, 255, 0.07);
+      }
+
+      @media (hover: hover) {
+        .bct-nav .has-drop:hover .bct-drop {
+          opacity: 1;
+          pointer-events: all;
+          visibility: visible;
+          transform: translateX(-50%) translateY(0);
+          transition: opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+            visibility 0s linear 0s;
+        }
+      }
+      .bct-nav .has-drop.open .bct-drop {
+        opacity: 1;
+        pointer-events: all;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+        transition: opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+          visibility 0s linear 0s;
+      }
+
+      /* ── Dropdown heading ── */
+      .bct-nav .bct-drop-head {
+        font-family: "Space Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(0, 229, 255, 0.5);
+        padding: 0 4px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        margin-bottom: 10px;
+        margin-top: 0;
+      }
+
+      /* ── Dropdown grid ── */
+      .bct-nav .bct-drop-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
+      }
+
+      /* ── Each dropdown card ── */
+      .bct-nav .bct-drop-card {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 10px 12px;
+        border-radius: 11px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      }
+      .bct-nav .bct-drop-card:hover {
+        background: rgba(0, 229, 255, 0.07);
+        border-color: rgba(0, 229, 255, 0.22);
+        transform: translateX(3px);
+      }
+
+      /* ── Icon badge ── */
+      .bct-nav .bct-drop-icon {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition: box-shadow 0.25s;
+      }
+      .bct-nav .bct-drop-icon::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 9px;
+        background: var(--di-grad);
+        opacity: 0.16;
+        transition: opacity 0.22s;
+      }
+      .bct-nav .bct-drop-card:hover .bct-drop-icon::before {
+        opacity: 0.3;
+      }
+      .bct-nav .bct-drop-icon::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 9px;
+        border: 1px solid var(--di-border);
+        opacity: 0.8;
+      }
+      .bct-nav .bct-drop-icon i {
+        position: relative;
+        z-index: 1;
+        font-size: 13px;
+        background: var(--di-grad);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .bct-nav .bct-drop-card:hover .bct-drop-icon {
+        box-shadow: 0 0 14px var(--di-glow);
+      }
+
+      /* ── Icon colour tokens (--di- vars are local to each card, safe) ── */
+      .bct-di--iot {
+        --di-grad: linear-gradient(135deg, #00e5ff, #3b82f6);
+        --di-glow: rgba(0, 229, 255, 0.3);
+        --di-border: rgba(0, 229, 255, 0.28);
+      }
+      .bct-di--emb {
+        --di-grad: linear-gradient(135deg, #7b2fff, #00e5ff);
+        --di-glow: rgba(123, 47, 255, 0.3);
+        --di-border: rgba(123, 47, 255, 0.28);
+      }
+      .bct-di--cloud {
+        --di-grad: linear-gradient(135deg, #38bdf8, #7b2fff);
+        --di-glow: rgba(56, 189, 248, 0.3);
+        --di-border: rgba(56, 189, 248, 0.28);
+      }
+      .bct-di--mobile {
+        --di-grad: linear-gradient(135deg, #ff2d9b, #7b2fff);
+        --di-glow: rgba(255, 45, 155, 0.3);
+        --di-border: rgba(255, 45, 155, 0.28);
+      }
+      .bct-di--box {
+        --di-grad: linear-gradient(135deg, #f59e0b, #ef4444);
+        --di-glow: rgba(245, 158, 11, 0.3);
+        --di-border: rgba(245, 158, 11, 0.28);
+      }
+      .bct-di--hw {
+        --di-grad: linear-gradient(135deg, #10b981, #00e5ff);
+        --di-glow: rgba(16, 185, 129, 0.3);
+        --di-border: rgba(16, 185, 129, 0.28);
+      }
+      .bct-di--auto {
+        --di-grad: linear-gradient(135deg, #f97316, #ef4444);
+        --di-glow: rgba(249, 115, 22, 0.3);
+        --di-border: rgba(249, 115, 22, 0.28);
+      }
+      .bct-di--home {
+        --di-grad: linear-gradient(135deg, #a855f7, #ff2d9b);
+        --di-glow: rgba(168, 85, 247, 0.3);
+        --di-border: rgba(168, 85, 247, 0.28);
+      }
+      .bct-di--food {
+        --di-grad: linear-gradient(135deg, #10b981, #84cc16);
+        --di-glow: rgba(16, 185, 129, 0.3);
+        --di-border: rgba(16, 185, 129, 0.28);
+      }
+      .bct-di--ind {
+        --di-grad: linear-gradient(135deg, #00e5ff, #f59e0b);
+        --di-glow: rgba(0, 229, 255, 0.3);
+        --di-border: rgba(0, 229, 255, 0.28);
+      }
+
+      /* ── Card text ── */
+      .bct-nav .bct-drop-texts {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+      }
+      .bct-nav .bct-drop-label {
+        font-family: "Outfit", sans-serif;
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: rgba(232, 238, 255, 0.78);
+        line-height: 1.2;
+        white-space: nowrap;
+        transition: color 0.2s;
+      }
+      .bct-nav .bct-drop-card:hover .bct-drop-label {
+        color: #fff;
+      }
+      .bct-nav .bct-drop-sub {
+        font-family: "Space Mono", monospace;
+        font-size: 0.5rem;
+        letter-spacing: 0.8px;
+        color: rgba(232, 238, 255, 0.28);
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      /* ── Get Quote CTA Button ── */
+      .bct-nav .bct-btn-cta {
+        font-family: "Outfit", sans-serif;
+        font-size: 0.84rem;
+        font-weight: 600;
+        padding: 9px 22px;
+        border-radius: 50px;
+        border: none;
+        background: linear-gradient(90deg, #00e5ff, #7b2fff);
+        color: #fff;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .bct-nav .bct-btn-cta::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -70%;
+        width: 45%;
+        height: 200%;
+        background: rgba(255, 255, 255, 0.18);
+        transform: skewX(-20deg);
+        transition: left 0.5s ease;
+      }
+      .bct-nav .bct-btn-cta:hover::after {
+        left: 130%;
+      }
+      .bct-nav .bct-btn-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba(0, 229, 255, 0.35);
+      }
+
+      /* ── Hamburger (mobile) ── */
+      .bct-nav .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 5px;
+        background: none;
+        border: none;
+      }
+      .bct-nav .hamburger span {
+        width: 23px;
+        height: 2px;
+        background: #e8eeff;
+        border-radius: 2px;
+        transition: background 0.3s;
+        display: block;
+      }
+
+      /* ════════════════════════════════════════════════
+     MOBILE FULL-SCREEN OVERLAY
+  ════════════════════════════════════════════════ */
+      .mob-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(5, 11, 24, 0.97);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        z-index: 998;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.55s ease, visibility 0s linear 0.55s;
+        overflow-y: auto;
+        padding: 60px 20px 40px;
+      }
+      .mob-overlay.open {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+        transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.55s ease, visibility 0s linear 0s;
+      }
+      .mob-overlay .mob-close {
+        position: absolute;
+        top: 22px;
+        right: 28px;
+        font-size: 1.8rem;
+        color: #5a6a94;
+        cursor: pointer;
+        background: none;
+        border: none;
+        line-height: 1;
+        transition: color 0.2s;
+      }
+      .mob-overlay .mob-close:hover {
+        color: #00e5ff;
+      }
+
+      /* Mobile plain links */
+      .mob-overlay .mob-link {
+        font-family: "Syne", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: rgba(232, 238, 255, 0.55);
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+        transition: color 0.2s;
+        width: 100%;
+      }
+      .mob-overlay .mob-link:hover,
+      .mob-overlay .mob-link:active {
+        color: #00e5ff;
+      }
+
+      /* Mobile accordion */
+      .mob-overlay .mob-accordion {
+        width: 100%;
+        text-align: center;
+      }
+      .mob-overlay .mob-acc-btn {
+        font-family: "Syne", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: rgba(232, 238, 255, 0.55);
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: color 0.2s;
+      }
+      .mob-overlay .mob-acc-btn:hover {
+        color: #00e5ff;
+      }
+      .mob-overlay .mob-acc-arrow {
+        font-size: 1rem;
+        transition: transform 0.3s ease;
+        color: rgba(0, 229, 255, 0.5);
+      }
+      .mob-overlay .mob-accordion.open .mob-acc-arrow {
+        transform: rotate(180deg);
+      }
+      .mob-overlay .mob-acc-panel {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+      .mob-overlay .mob-accordion.open .mob-acc-panel {
+        max-height: 600px;
+      }
+
+      .mob-overlay .mob-acc-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 10px 0 16px;
+      }
+      .mob-overlay .mob-acc-card {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        text-decoration: none;
+        transition: background 0.2s, border-color 0.2s;
+      }
+      .mob-overlay .mob-acc-card:hover,
+      .mob-overlay .mob-acc-card:active {
+        background: rgba(0, 229, 255, 0.08);
+        border-color: rgba(0, 229, 255, 0.2);
+      }
+      .mob-overlay .mob-acc-icon {
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .mob-overlay .mob-acc-icon::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 8px;
+        background: var(--di-grad);
+        opacity: 0.2;
+      }
+      .mob-overlay .mob-acc-icon::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 8px;
+        border: 1px solid var(--di-border);
+        opacity: 0.7;
+      }
+      .mob-overlay .mob-acc-icon i {
+        position: relative;
+        z-index: 1;
+        font-size: 11px;
+        background: var(--di-grad);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .mob-overlay .mob-acc-label {
+        font-family: "Outfit", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: rgba(232, 238, 255, 0.7);
+        line-height: 1.2;
+        text-align: left;
+      }
+
+      .mob-overlay .mob-divider {
+        width: 60px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.08);
+        margin: 6px auto;
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 992px) {
+        .bct-nav .bct-menu,
+        .bct-nav .bct-btn-cta {
+          display: none;
+        }
+        .bct-nav .hamburger {
+          display: flex;
+        }
+        .bct-nav .nav-inner {
+          padding: 14px 20px;
+        }
+      }
+      @media (max-width: 520px) {
+        .mob-overlay .mob-acc-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* logo iimplementation style in brand company name////////////////////////////////////////////////////// */
+      /* =========================
+   BRAINCHILD TEXT LOGO (WITH IMAGE)
+========================= */
+
+      .bct-logo-name {
+        display: flex;
+        align-items: center;
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+        color: #ffffff;
+      }
+
+      /* Logo icon replacing A */
+      .bct-logo-icon {
+        height: 18px;
+        width: auto;
+        margin: 0 4px;
+        display: inline-block;
+      }
+
+      /* Red I */
+      .bct-logo-i {
+        color: #ff2d55;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .bct-logo-name {
+          font-size: 0.95rem;
+          letter-spacing: 1.5px;
+        }
+
+        .bct-logo-icon {
+          height: 16px;
+        }
+      }
+      /* end of the nav/////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+    </style>
+
+    <style>
+      html,
+      body {
+        padding: 0%;
+        margin: 0%;
+      }
+      /* ══════════════════════════════════════════════
+         FULLY SCOPED — zero globals, zero bleed
+         All rules prefixed with .bcp-page
+      ══════════════════════════════════════════════ */
+
+      /* ── Scoped box-sizing ── */
+      .bcp-page *,
+      .bcp-page *::before,
+      .bcp-page *::after {
+        box-sizing: border-box;
+      }
+
+      /* ── Root wrapper ── */
+      .bcp-page {
+        background: #f4f8ff;
+        cursor: auto;
+        margin: 0;
+        padding: 0;
+        font-family: "Outfit", "Segoe UI", Arial, sans-serif;
+        color: #0f1e3d;
+
+        /* ── Design tokens ── */
+        --bcp-dark: #0f1e3d;
+        --bcp-body: #3a4257;
+        --bcp-muted: #6b7696;
+        --bcp-cyan: #00b8cc;
+        --bcp-vio: #7b2fff;
+        --bcp-pink: #ff2d9b;
+        --bcp-green: #10b981;
+        --bcp-amber: #f59e0b;
+        --bcp-grad: linear-gradient(135deg, #00b8cc, #7b2fff);
+        --bcp-gradt: linear-gradient(90deg, #0094aa, #7b2fff);
+        --bcp-light: #f4f8ff;
+        --bcp-white: #ffffff;
+
+        /* ── Fluid spacing scale ── */
+        --bcp-sp-xs: clamp(4px, 1vw, 8px);
+        --bcp-sp-sm: clamp(8px, 2vw, 16px);
+        --bcp-sp-md: clamp(16px, 3vw, 28px);
+        --bcp-sp-lg: clamp(28px, 5vw, 52px);
+        --bcp-sp-xl: clamp(48px, 7vw, 100px);
+
+        /* ── Fluid type scale ── */
+        --bcp-t-xs: clamp(0.8rem, 1.5vw, 0.6rem);
+        --bcp-t-sm: clamp(0.75rem, 1.5vw, 0.88rem);
+        --bcp-t-md: clamp(0.88rem, 1.8vw, 1rem);
+        --bcp-t-lg: clamp(1rem, 2.2vw, 1.15rem);
+        --bcp-t-h4: clamp(1rem, 2.5vw, 1.1rem);
+        --bcp-t-h3: clamp(1.4rem, 3.5vw, 2.2rem);
+        --bcp-t-h2: clamp(1.75rem, 4.5vw, 3.2rem);
+        --bcp-t-h1: clamp(2rem, 6vw, 4.4rem);
+        --bcp-t-stat: clamp(1.8rem, 4vw, 2.4rem);
+      }
+
+      /* ── Shared helpers ── */
+      .bcp-page .bcp-section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .bcp-page .bcp-tag {
+        display: inline-block;
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: var(--bcp-t-xs);
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        background: var(--bcp-gradt);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 14px;
+      }
+
+      .bcp-page .bcp-title {
+        font-family: Arial, sans-serif;
+        font-size: var(--bcp-t-h2);
+        font-weight: 800;
+        color: var(--bcp-dark);
+        line-height: 1.1;
+        margin-bottom: 18px;
+        margin-top: 0;
+      }
+      .bcp-page .bcp-title span {
+        background: var(--bcp-gradt);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .bcp-page .bcp-reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .bcp-page .bcp-reveal.bcp-vis {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ════════════════════════════════════════════
+         1. HERO
+      ════════════════════════════════════════════ */
+      .bcp-page .bcp-hero {
+        min-height: 100vh;
+        min-height: 100dvh;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.88) 0%,
+            rgba(97, 231, 255, 0.88) 60%,
+            rgba(0, 247, 255, 0.88) 100%
+          ),
+          url("BCT_logo_transparent.png") center center / 340px no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: clamp(80px, 12vw, 120px) clamp(16px, 5vw, 60px)
+          clamp(60px, 8vw, 80px);
+        position: relative;
+        overflow: hidden;
+        padding-top: 100px;
+      }
+
+      .bcp-page .bcp-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image: radial-gradient(
+          rgba(0, 185, 204, 0.12) 1px,
+          transparent 1px
+        );
+        background-size: 34px 34px;
+        mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          black 20%,
+          transparent 100%
+        );
+        -webkit-mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          black 20%,
+          transparent 100%
+        );
+      }
+
+      .bcp-page .bcp-hero::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: clamp(50px, 8vw, 100px);
+        background: linear-gradient(to bottom, transparent, #f4f8ff);
+        pointer-events: none;
+      }
+
+      .bcp-page .bcp-hero-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(110px);
+        pointer-events: none;
+      }
+      .bcp-page .bcp-hero-blob-1 {
+        width: clamp(200px, 40vw, 500px);
+        height: clamp(200px, 40vw, 500px);
+        top: -150px;
+        left: -100px;
+        background: rgba(0, 185, 204, 0.08);
+        animation: bcpBlob 14s ease-in-out infinite;
+      }
+      .bcp-page .bcp-hero-blob-2 {
+        width: clamp(160px, 35vw, 400px);
+        height: clamp(160px, 35vw, 400px);
+        bottom: -80px;
+        right: -80px;
+        background: rgba(123, 47, 255, 0.1);
+        animation: bcpBlob 18s ease-in-out infinite reverse;
+      }
+
+      @keyframes bcpBlob {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        50% {
+          transform: translate(20px, -15px) scale(1.08);
+        }
+      }
+
+      .bcp-page .bcp-hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: min(820px, 92vw);
+        width: 100%;
+      }
+
+      .bcp-page .bcp-hero-eyebrow {
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: var(--bcp-t-xs);
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.6);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .bcp-page .bcp-hero-eyebrow::before,
+      .bcp-page .bcp-hero-eyebrow::after {
+        content: "";
+        flex: 1;
+        max-width: 60px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.4));
+      }
+      .bcp-page .bcp-hero-eyebrow::after {
+        transform: scaleX(-1);
+      }
+
+      .bcp-page .bcp-hero-h1 {
+        font-family: Arial, sans-serif;
+        font-size: var(--bcp-t-h1);
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.08;
+        margin: 0 0 22px;
+      }
+      .bcp-page .bcp-hero-h1 span {
+        background: linear-gradient(
+          135deg,
+          #00e5ff 0%,
+          #7b2fff 50%,
+          #ff2d9b 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .bcp-page .bcp-hero-sub {
+        font-size: var(--bcp-t-md);
+        line-height: 1.8;
+        color: rgba(0, 0, 0, 0.55);
+        max-width: min(600px, 100%);
+        margin: 0 auto 36px;
+      }
+
+      .bcp-page .bcp-hero-chips {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: clamp(6px, 1.5vw, 10px);
+      }
+
+      .bcp-page .bcp-hero-chip {
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: clamp(0.48rem, 1.2vw, 0.56rem);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: clamp(4px, 1vw, 6px) clamp(10px, 2vw, 14px);
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(0, 229, 255, 0.2);
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      /* ════════════════════════════════════════════
+         2. ABOUT + STATS
+      ════════════════════════════════════════════ */
+      .bcp-page .bcp-about {
+        background: #f4f8ff;
+        padding: var(--bcp-sp-xl) var(--bcp-sp-lg);
+      }
+
+      .bcp-page .bcp-about-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(32px, 6vw, 80px);
+        align-items: center;
+      }
+
+      .bcp-page .bcp-about-body {
+        font-size: var(--bcp-t-md);
+        line-height: 1.85;
+        color: var(--bcp-body);
+        margin: 0 0 20px;
+      }
+
+      .bcp-page .bcp-about-accent {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: var(--bcp-t-xs);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--bcp-cyan);
+        margin-top: 8px;
+      }
+      .bcp-page .bcp-about-accent::before {
+        content: "";
+        width: 24px;
+        height: 2px;
+        background: var(--bcp-grad);
+        border-radius: 2px;
+      }
+
+      /* Stats grid */
+      .bcp-page .bcp-stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(12px, 2vw, 20px);
+      }
+
+      .bcp-page .bcp-stat-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: clamp(18px, 3vw, 28px) clamp(14px, 2.5vw, 24px);
+        border: 1px solid rgba(0, 185, 204, 0.1);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .bcp-page .bcp-stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0, 185, 204, 0.12);
+      }
+
+      .bcp-page .bcp-stat-icon {
+        font-size: clamp(1rem, 2vw, 1.4rem);
+        margin-bottom: 10px;
+        background: var(--bcp-grad);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .bcp-page .bcp-stat-num {
+        font-family: Arial, sans-serif;
+        font-size: var(--bcp-t-stat);
+        font-weight: 800;
+        line-height: 1;
+        background: var(--bcp-grad);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 6px;
+      }
+
+      .bcp-page .bcp-stat-lbl {
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: clamp(0.44rem, 1vw, 0.52rem);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--bcp-muted);
+      }
+
+      /* ════════════════════════════════════════════
+         3. LEADERSHIP
+      ════════════════════════════════════════════ */
+      .bcp-page .bcp-leadership {
+        background: #fff;
+        padding: var(--bcp-sp-xl) var(--bcp-sp-lg);
+      }
+
+      .bcp-page .bcp-leadership-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .bcp-page .bcp-leadership-head {
+        text-align: center;
+        margin-bottom: clamp(32px, 5vw, 60px);
+      }
+
+      .bcp-page .bcp-leader-card {
+        display: grid;
+        grid-template-columns: clamp(220px, 30%, 340px) 1fr;
+        gap: clamp(28px, 5vw, 60px);
+        align-items: center;
+        background: #f8fbff;
+        border-radius: 28px;
+        padding: clamp(24px, 4vw, 48px);
+        border: 1px solid rgba(0, 185, 204, 0.12);
+        box-shadow: 0 8px 50px rgba(0, 0, 0, 0.06);
+        position: relative;
+        overflow: hidden;
+      }
+      .bcp-page .bcp-leader-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--bcp-grad);
+      }
+
+      .bcp-page .bcp-leader-photo-wrap {
+        position: relative;
+      }
+
+      .bcp-page .bcp-leader-photo {
+        width: 100%;
+        aspect-ratio: 1;
+        border-radius: 20px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #e0f7fa 0%, #ede7f6 100%);
+        border: 3px solid rgba(0, 185, 204, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .bcp-page .bcp-leader-initials {
+        font-family: Arial, sans-serif;
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        font-weight: 800;
+        background: var(--bcp-grad);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -3px;
+      }
+
+      .bcp-page .bcp-leader-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        inset: 0;
+      }
+
+      .bcp-page .bcp-leader-badge {
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #fff;
+        border: 1px solid rgba(0, 185, 204, 0.25);
+        border-radius: 30px;
+        padding: 6px 14px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        white-space: nowrap;
+      }
+
+      .bcp-page .bcp-leader-badge-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--bcp-green);
+        box-shadow: 0 0 8px var(--bcp-green);
+        animation: bcpPulse 2s ease-in-out infinite;
+        flex-shrink: 0;
+      }
+
+      @keyframes bcpPulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+
+      .bcp-page .bcp-leader-badge span {
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: clamp(0.42rem, 1vw, 0.5rem);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--bcp-muted);
+      }
+
+      .bcp-page .bcp-leader-name {
+        font-family: Arial, sans-serif;
+        font-size: var(--bcp-t-h3);
+        font-weight: 800;
+        color: var(--bcp-dark);
+        margin: 0 0 4px;
+      }
+
+      .bcp-page .bcp-leader-title {
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: var(--bcp-t-xs);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        background: var(--bcp-grad);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 24px;
+        display: block;
+      }
+
+      .bcp-page .bcp-leader-bio {
+        font-size: var(--bcp-t-sm);
+        line-height: 1.85;
+        color: var(--bcp-body);
+        margin-bottom: 20px;
+        margin-top: 0;
+      }
+
+      .bcp-page .bcp-leader-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 28px;
+      }
+
+      .bcp-page .bcp-leader-pill {
+        font-size: var(--bcp-t-sm);
+        padding: 5px 14px;
+        border-radius: 30px;
+        background: rgba(0, 185, 204, 0.07);
+        border: 1px solid rgba(0, 185, 204, 0.2);
+        color: var(--bcp-body);
+      }
+
+      .bcp-page .bcp-leader-linkedin {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "Outfit", "Segoe UI", Arial, sans-serif;
+        font-size: var(--bcp-t-sm);
+        font-weight: 600;
+        color: #0a66c2;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+        border: 1.5px solid rgba(10, 102, 194, 0.25);
+        transition: all 0.25s ease;
+      }
+      .bcp-page .bcp-leader-linkedin:hover {
+        background: rgba(10, 102, 194, 0.06);
+        border-color: #0a66c2;
+        transform: translateX(3px);
+      }
+
+      /* ════════════════════════════════════════════
+         4. ACHIEVEMENTS
+      ════════════════════════════════════════════ */
+      .bcp-page .bcp-achievements {
+        background: #f4f8ff;
+        padding: var(--bcp-sp-xl) var(--bcp-sp-lg);
+      }
+
+      .bcp-page .bcp-achievements-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .bcp-page .bcp-achievements-head {
+        text-align: center;
+        margin-bottom: clamp(36px, 5vw, 64px);
+      }
+
+      .bcp-page .bcp-achievements-head p {
+        color: var(--bcp-muted);
+        font-size: var(--bcp-t-sm);
+        max-width: 520px;
+        margin: 0 auto;
+        line-height: 1.7;
+      }
+
+      /* Trust trio */
+      .bcp-page .bcp-trust-trio {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(14px, 2.5vw, 24px);
+        margin-bottom: clamp(48px, 7vw, 72px);
+      }
+
+      .bcp-page .bcp-trust-card {
+        background: #fff;
+        border-radius: 22px;
+        padding: clamp(22px, 3.5vw, 36px) clamp(18px, 3vw, 28px);
+        border: 1px solid rgba(0, 0, 0, 0.07);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .bcp-page .bcp-trust-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 50px rgba(0, 185, 204, 0.12);
+      }
+      .bcp-page .bcp-trust-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--tc-grad, var(--bcp-grad));
+      }
+
+      .bcp-page .bcp-trust-icon-wrap {
+        width: clamp(52px, 8vw, 72px);
+        height: clamp(52px, 8vw, 72px);
+        border-radius: 20px;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--tc-bg, rgba(0, 185, 204, 0.07));
+        border: 1px solid var(--tc-border, rgba(0, 185, 204, 0.2));
+        font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      }
+      .bcp-page .bcp-trust-icon-wrap i {
+        background: var(--tc-grad, var(--bcp-grad));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .bcp-page .bcp-trust-card h4 {
+        font-family: Arial, sans-serif;
+        font-size: var(--bcp-t-h4);
+        font-weight: 800;
+        color: var(--bcp-dark);
+        margin: 0 0 8px;
+      }
+
+      .bcp-page .bcp-trust-card p {
+        font-size: var(--bcp-t-sm);
+        line-height: 1.7;
+        color: var(--bcp-muted);
+        margin: 0;
+      }
+
+      .bcp-page .bcp-trust-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 14px;
+        padding: 5px 14px;
+        border-radius: 20px;
+        background: var(--tc-bg, rgba(0, 185, 204, 0.07));
+        border: 1px solid var(--tc-border, rgba(0, 185, 204, 0.2));
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: clamp(0.42rem, 1vw, 0.5rem);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--bcp-muted);
+      }
+
+      .bcp-page .bcp-tc-iso {
+        --tc-grad: linear-gradient(135deg, #10b981, #00b8cc);
+        --tc-bg: rgba(16, 185, 129, 0.07);
+        --tc-border: rgba(16, 185, 129, 0.2);
+      }
+      .bcp-page .bcp-tc-award {
+        --tc-grad: linear-gradient(135deg, #f59e0b, #ff2d9b);
+        --tc-bg: rgba(245, 158, 11, 0.07);
+        --tc-border: rgba(245, 158, 11, 0.2);
+      }
+      .bcp-page .bcp-tc-global {
+        --tc-grad: linear-gradient(135deg, #7b2fff, #00b8cc);
+        --tc-bg: rgba(123, 47, 255, 0.07);
+        --tc-border: rgba(123, 47, 255, 0.2);
+      }
+
+      /* Client logos */
+      .bcp-page .bcp-clients-head {
+        text-align: center;
+        margin-bottom: clamp(20px, 3vw, 36px);
+      }
+
+      .bcp-page .bcp-clients-label {
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: var(--bcp-t-xs);
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--bcp-muted);
+      }
+
+      .bcp-page .bcp-logos-mask {
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(
+          90deg,
+          transparent 0%,
+          black 8%,
+          black 92%,
+          transparent 100%
+        );
+        mask-image: linear-gradient(
+          90deg,
+          transparent 0%,
+          black 8%,
+          black 92%,
+          transparent 100%
+        );
+      }
+
+      .bcp-page .bcp-logos-row {
+        display: flex;
+        gap: clamp(10px, 2vw, 20px);
+        width: max-content;
+        animation: bcpLogoScroll 30s linear infinite;
+        padding: 8px 0;
+      }
+      .bcp-page .bcp-logos-row:hover {
+        animation-play-state: paused;
+      }
+
+      @keyframes bcpLogoScroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .bcp-page .bcp-logo-chip {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(6px, 1.5vw, 10px);
+        padding: clamp(10px, 1.8vw, 14px) clamp(14px, 2.5vw, 24px);
+        border-radius: 14px;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.07);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+        transition: border-color 0.3s, box-shadow 0.3s;
+        white-space: nowrap;
+        cursor: default;
+      }
+      .bcp-page .bcp-logos-row:hover .bcp-logo-chip:hover {
+        border-color: rgba(0, 185, 204, 0.3);
+        box-shadow: 0 4px 20px rgba(0, 185, 204, 0.1);
+      }
+
+      .bcp-page .bcp-logo-chip-icon {
+        width: clamp(24px, 4vw, 32px);
+        height: clamp(24px, 4vw, 32px);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: clamp(0.65rem, 1.2vw, 0.8rem);
+        font-weight: 800;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        flex-shrink: 0;
+      }
+
+      .bcp-page .bcp-logo-chip-name {
+        font-family: Arial, sans-serif;
+        font-size: clamp(0.75rem, 1.5vw, 0.88rem);
+        font-weight: 700;
+        color: var(--bcp-dark);
+      }
+
+      .bcp-page .bcp-logo-chip-sector {
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: clamp(0.4rem, 0.8vw, 0.46rem);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--bcp-muted);
+      }
+
+      /* ════════════════════════════════════════════
+         5. TIMELINE
+      ════════════════════════════════════════════ */
+      .bcp-page .bcp-timeline-section {
+        background: #fff;
+        padding: var(--bcp-sp-xl) var(--bcp-sp-lg);
+      }
+
+      .bcp-page .bcp-timeline-inner {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .bcp-page .bcp-timeline-head {
+        text-align: center;
+        margin-bottom: clamp(40px, 6vw, 70px);
+      }
+
+      .bcp-page .bcp-timeline {
+        position: relative;
+        padding-left: clamp(24px, 4vw, 32px);
+      }
+      .bcp-page .bcp-timeline::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          #00b8cc,
+          #7b2fff,
+          #ff2d9b,
+          rgba(255, 45, 155, 0.1)
+        );
+        border-radius: 2px;
+      }
+
+      .bcp-page .bcp-tl-item {
+        position: relative;
+        margin-bottom: clamp(28px, 4vw, 48px);
+        padding-left: clamp(24px, 4vw, 36px);
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .bcp-page .bcp-tl-item.bcp-vis {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .bcp-page .bcp-tl-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .bcp-page .bcp-tl-dot {
+        position: absolute;
+        left: clamp(-22px, -3.5vw, -28px);
+        top: 6px;
+        width: clamp(14px, 2.5vw, 18px);
+        height: clamp(14px, 2.5vw, 18px);
+        border-radius: 50%;
+        background: #fff;
+        border: 2.5px solid var(--dot-color, #00b8cc);
+        box-shadow: 0 0 0 4px var(--dot-halo, rgba(0, 185, 204, 0.12));
+        transition: box-shadow 0.3s;
+        z-index: 1;
+      }
+      .bcp-page .bcp-tl-item:hover .bcp-tl-dot {
+        box-shadow: 0 0 0 7px var(--dot-halo, rgba(0, 185, 204, 0.15));
+      }
+
+      .bcp-page .bcp-tl-item:nth-child(1) {
+        --dot-color: #00b8cc;
+        --dot-halo: rgba(0, 185, 204, 0.14);
+      }
+      .bcp-page .bcp-tl-item:nth-child(2) {
+        --dot-color: #3b82f6;
+        --dot-halo: rgba(59, 130, 246, 0.14);
+      }
+      .bcp-page .bcp-tl-item:nth-child(3) {
+        --dot-color: #10b981;
+        --dot-halo: rgba(16, 185, 129, 0.14);
+      }
+      .bcp-page .bcp-tl-item:nth-child(4) {
+        --dot-color: #f59e0b;
+        --dot-halo: rgba(245, 158, 11, 0.14);
+      }
+      .bcp-page .bcp-tl-item:nth-child(5) {
+        --dot-color: #7b2fff;
+        --dot-halo: rgba(123, 47, 255, 0.14);
+      }
+      .bcp-page .bcp-tl-item:nth-child(6) {
+        --dot-color: #ff2d9b;
+        --dot-halo: rgba(255, 45, 155, 0.14);
+      }
+
+      .bcp-page .bcp-tl-year {
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: var(--bcp-t-xs);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--dot-color, #00b8cc);
+        margin: 0 0 6px;
+      }
+
+      .bcp-page .bcp-tl-title {
+        font-family: Arial, sans-serif;
+        font-size: var(--bcp-t-lg);
+        font-weight: 800;
+        color: var(--bcp-dark);
+        margin: 0 0 6px;
+      }
+
+      .bcp-page .bcp-tl-desc {
+        font-size: var(--bcp-t-sm);
+        line-height: 1.7;
+        color: var(--bcp-muted);
+        margin: 0;
+      }
+
+      /* ════════════════════════════════════════════
+         6. DIFFERENTIATORS
+      ════════════════════════════════════════════ */
+      .bcp-page .bcp-differentiators {
+        background: #f4f8ff;
+        padding: var(--bcp-sp-xl) var(--bcp-sp-lg);
+      }
+
+      .bcp-page .bcp-diff-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .bcp-page .bcp-diff-head {
+        text-align: center;
+        margin-bottom: clamp(36px, 5vw, 64px);
+      }
+
+      .bcp-page .bcp-diff-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(14px, 2.5vw, 24px);
+      }
+
+      .bcp-page .bcp-diff-card {
+        background: #fff;
+        border-radius: 22px;
+        padding: clamp(22px, 3.5vw, 36px) clamp(18px, 3vw, 32px);
+        border: 1px solid rgba(0, 0, 0, 0.07);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+        display: flex;
+        gap: clamp(14px, 2.5vw, 22px);
+        align-items: flex-start;
+        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      }
+      .bcp-page .bcp-diff-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--dc-accent, rgba(0, 185, 204, 0.3));
+        box-shadow: 0 14px 44px rgba(0, 185, 204, 0.1);
+      }
+
+      .bcp-page .bcp-diff-icon {
+        width: clamp(44px, 7vw, 56px);
+        height: clamp(44px, 7vw, 56px);
+        border-radius: 16px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--dc-bg, rgba(0, 185, 204, 0.07));
+        border: 1px solid var(--dc-accent, rgba(0, 185, 204, 0.2));
+        font-size: clamp(1rem, 2vw, 1.3rem);
+        transition: box-shadow 0.3s;
+      }
+      .bcp-page .bcp-diff-card:hover .bcp-diff-icon {
+        box-shadow: 0 0 18px var(--dc-glow, rgba(0, 185, 204, 0.3));
+      }
+      .bcp-page .bcp-diff-icon i {
+        background: var(--dc-grad, var(--bcp-grad));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .bcp-page .bcp-diff-text h4 {
+        font-family: Arial, sans-serif;
+        font-size: var(--bcp-t-h4);
+        font-weight: 800;
+        color: var(--bcp-dark);
+        margin: 0 0 8px;
+      }
+
+      .bcp-page .bcp-diff-text p {
+        font-size: var(--bcp-t-sm);
+        line-height: 1.75;
+        color: var(--bcp-muted);
+        margin: 0;
+      }
+
+      .bcp-page .bcp-dc-1 {
+        --dc-grad: linear-gradient(135deg, #00b8cc, #3b82f6);
+        --dc-bg: rgba(0, 185, 204, 0.07);
+        --dc-accent: rgba(0, 185, 204, 0.22);
+        --dc-glow: rgba(0, 185, 204, 0.25);
+      }
+      .bcp-page .bcp-dc-2 {
+        --dc-grad: linear-gradient(135deg, #10b981, #00b8cc);
+        --dc-bg: rgba(16, 185, 129, 0.07);
+        --dc-accent: rgba(16, 185, 129, 0.22);
+        --dc-glow: rgba(16, 185, 129, 0.25);
+      }
+      .bcp-page .bcp-dc-3 {
+        --dc-grad: linear-gradient(135deg, #7b2fff, #ff2d9b);
+        --dc-bg: rgba(123, 47, 255, 0.07);
+        --dc-accent: rgba(123, 47, 255, 0.22);
+        --dc-glow: rgba(123, 47, 255, 0.25);
+      }
+      .bcp-page .bcp-dc-4 {
+        --dc-grad: linear-gradient(135deg, #f59e0b, #ef4444);
+        --dc-bg: rgba(245, 158, 11, 0.07);
+        --dc-accent: rgba(245, 158, 11, 0.22);
+        --dc-glow: rgba(245, 158, 11, 0.25);
+      }
+
+      /* ════════════════════════════════════════════
+         7. PRESENCE
+      ════════════════════════════════════════════ */
+      .bcp-page .bcp-presence {
+        background: #fff;
+        padding: var(--bcp-sp-xl) var(--bcp-sp-lg);
+      }
+
+      .bcp-page .bcp-presence-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(32px, 6vw, 80px);
+        align-items: center;
+      }
+
+      .bcp-page .bcp-presence-text p {
+        font-size: var(--bcp-t-md);
+        line-height: 1.85;
+        color: var(--bcp-body);
+        margin-bottom: 32px;
+      }
+
+      .bcp-page .bcp-presence-stats {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(10px, 1.8vw, 16px);
+      }
+
+      .bcp-page .bcp-pstat {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: clamp(10px, 1.8vw, 14px) clamp(14px, 2.5vw, 20px);
+        border-radius: 14px;
+        background: #f4f8ff;
+        border: 1px solid rgba(0, 185, 204, 0.1);
+        transition: background 0.25s, border-color 0.25s;
+      }
+      .bcp-page .bcp-pstat:hover {
+        background: #fff;
+        border-color: rgba(0, 185, 204, 0.3);
+      }
+
+      .bcp-page .bcp-pstat-icon {
+        width: clamp(34px, 5vw, 40px);
+        height: clamp(34px, 5vw, 40px);
+        border-radius: 11px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+        background: var(--bcp-grad);
+      }
+      .bcp-page .bcp-pstat-icon i {
+        color: #fff;
+      }
+
+      .bcp-page .bcp-pstat-val {
+        font-family: Arial, sans-serif;
+        font-size: clamp(1rem, 2vw, 1.3rem);
+        font-weight: 800;
+        color: var(--bcp-dark);
+        line-height: 1;
+      }
+
+      .bcp-page .bcp-pstat-lbl {
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: clamp(0.42rem, 0.9vw, 0.5rem);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--bcp-muted);
+        margin-top: 2px;
+      }
+
+      /* Map visual */
+      .bcp-page .bcp-map-visual {
+        background: linear-gradient(135deg, #e8f8ff, #ede7f6);
+        border-radius: 24px;
+        aspect-ratio: 4/3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(0, 185, 204, 0.15);
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
+        min-height: 220px;
+      }
+      .bcp-page .bcp-map-visual canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .bcp-page .bcp-map-hq {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: clamp(0.44rem, 1vw, 0.52rem);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(0, 185, 204, 0.8);
+        background: rgba(255, 255, 255, 0.85);
+        padding: 6px 14px;
+        border-radius: 20px;
+        border: 1px solid rgba(0, 185, 204, 0.2);
+        white-space: nowrap;
+      }
+
+      /* ════════════════════════════════════════════
+         8. CTA STRIP
+      ════════════════════════════════════════════ */
+      .bcp-page .bcp-cta-strip {
+        background: linear-gradient(
+          135deg,
+          #060d1f 0%,
+          #0d1635 50%,
+          #120a2e 100%
+        );
+        padding: clamp(52px, 8vw, 80px) var(--bcp-sp-lg);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .bcp-page .bcp-cta-strip::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image: radial-gradient(
+          rgba(0, 185, 204, 0.1) 1px,
+          transparent 1px
+        );
+        background-size: 30px 30px;
+        mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          black,
+          transparent
+        );
+        -webkit-mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          black,
+          transparent
+        );
+      }
+
+      .bcp-page .bcp-cta-strip-inner {
+        position: relative;
+        z-index: 2;
+        max-width: min(680px, 92vw);
+        margin: 0 auto;
+      }
+
+      .bcp-page .bcp-cta-strip h2 {
+        font-family: Arial, sans-serif;
+        font-size: clamp(1.5rem, 4vw, 2.8rem);
+        font-weight: 800;
+        color: #fff;
+        margin: 0 0 16px;
+        line-height: 1.15;
+      }
+      .bcp-page .bcp-cta-strip h2 span {
+        background: linear-gradient(90deg, #00e5ff, #7b2fff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .bcp-page .bcp-cta-strip p {
+        font-size: var(--bcp-t-md);
+        color: rgba(232, 238, 255, 0.5);
+        line-height: 1.7;
+        margin: 0 0 36px;
+      }
+
+      .bcp-page .bcp-cta-btns {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .bcp-page .bcp-cta-primary {
+        font-family: "Outfit", "Segoe UI", Arial, sans-serif;
+        font-size: var(--bcp-t-sm);
+        font-weight: 600;
+        padding: clamp(11px, 1.8vw, 13px) clamp(22px, 4vw, 32px);
+        border-radius: 50px;
+        border: none;
+        background: linear-gradient(135deg, #00b8cc, #7b2fff);
+        color: #fff;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 28px rgba(0, 185, 204, 0.28);
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+      .bcp-page .bcp-cta-primary::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -70%;
+        width: 45%;
+        height: 200%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: skewX(-20deg);
+        transition: left 0.5s ease;
+      }
+      .bcp-page .bcp-cta-primary:hover::after {
+        left: 130%;
+      }
+      .bcp-page .bcp-cta-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 40px rgba(0, 185, 204, 0.4);
+      }
+
+      .bcp-page .bcp-cta-secondary {
+        font-family: "Outfit", "Segoe UI", Arial, sans-serif;
+        font-size: var(--bcp-t-sm);
+        font-weight: 600;
+        padding: clamp(11px, 1.8vw, 13px) clamp(22px, 4vw, 32px);
+        border-radius: 50px;
+        background: transparent;
+        border: 1.5px solid rgba(0, 229, 255, 0.35);
+        color: rgba(232, 238, 255, 0.8);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+      .bcp-page .bcp-cta-secondary:hover {
+        border-color: #00e5ff;
+        color: #fff;
+        transform: translateY(-3px);
+      }
+
+      /* ════════════════════════════════════════════
+         BREAKPOINTS
+         5 tiers: 1280+ | 1024 | 768 | 480 | 360
+      ════════════════════════════════════════════ */
+
+      /* ── Tablet landscape & small laptop (max 1024px) ── */
+      @media (max-width: 1024px) {
+        .bcp-page .bcp-about-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .bcp-page .bcp-presence-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        /* Leadership: photo on top, info below */
+        .bcp-page .bcp-leader-card {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .bcp-page .bcp-leader-photo {
+          max-width: 260px;
+          margin: 0 auto;
+        }
+
+        .bcp-page .bcp-trust-trio {
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+        /* Third trust card spans full row on tablet */
+        .bcp-page .bcp-trust-trio .bcp-trust-card:last-child {
+          grid-column: 1 / -1;
+          max-width: 500px;
+          margin: 0 auto;
+          width: 100%;
+        }
+
+        .bcp-page .bcp-diff-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+
+        .bcp-page .bcp-map-visual {
+          width: 100%;
+          max-width: 600px;
+          margin: 0 auto;
+        }
+      }
+
+      /* ── Tablet portrait (max 768px) ── */
+      @media (max-width: 768px) {
+        .bcp-page .bcp-hero {
+          min-height: 100svh;
+        }
+        .bcp-page .bcp-stats-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 14px;
+        }
+
+        .bcp-page .bcp-leader-card {
+          padding: clamp(20px, 8vw, 28px);
+          gap: 36px;
+        }
+        .bcp-page .bcp-leader-photo {
+          max-width: 220px;
+        }
+
+        .bcp-page .bcp-trust-trio {
+          grid-template-columns: 1fr;
+        }
+        .bcp-page .bcp-trust-trio .bcp-trust-card:last-child {
+          max-width: 100%;
+          margin: 0;
+        }
+
+        .bcp-page .bcp-diff-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .bcp-page .bcp-diff-card {
+          flex-direction: row;
+          align-items: flex-start;
+        }
+
+        .bcp-page .bcp-hero-eyebrow::before,
+        .bcp-page .bcp-hero-eyebrow::after {
+          display: none;
+        }
+        /* ///////////////////////FOR MOBILE HERO SECTION TEXT VIEW/////////////////////// */
+        .bcp-page .bcp-hero-h1 {
+          font-size: clamp(2.4rem, 8vw, 3rem);
+        }
+
+        .bcp-page .bcp-hero-sub {
+          font-size: 1rem;
+          line-height: 1.7;
+          font-weight: 900;
+        }
+
+        .bcp-page .bcp-hero-eyebrow {
+          font-size: 0.7rem;
+          letter-spacing: 3px;
+        }
+
+        .bcp-page .bcp-hero-chip {
+          font-size: 0.6rem;
+        }
+      }
+
+      /* ── Mobile (max 480px) ── */
+      @media (max-width: 480px) {
+        .bcp-page .bcp-stats-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+
+        .bcp-page .bcp-stat-num {
+          font-size: clamp(1.5rem, 8vw, 2rem);
+        }
+
+        .bcp-page .bcp-leader-photo {
+          max-width: 200px;
+        }
+
+        .bcp-page .bcp-leader-name {
+          font-size: clamp(1.4rem, 6vw, 1.8rem);
+        }
+
+        .bcp-page .bcp-leader-pills {
+          gap: 6px;
+        }
+
+        .bcp-page .bcp-diff-card {
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .bcp-page .bcp-cta-btns {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .bcp-page .bcp-cta-primary,
+        .bcp-page .bcp-cta-secondary {
+          width: 100%;
+          max-width: 280px;
+          text-align: center;
+        }
+
+        .bcp-page .bcp-hero-chips {
+          gap: 6px;
+        }
+
+        .bcp-page .bcp-pstat {
+          gap: 12px;
+        }
+
+        .bcp-page .bcp-trust-badge {
+          font-size: 0.42rem;
+        }
+      }
+
+      /* ── Small mobile (max 360px) ── */
+      @media (max-width: 360px) {
+        .bcp-page .bcp-stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .bcp-page .bcp-hero-chip {
+          font-size: 0.44rem;
+          padding: 4px 10px;
+        }
+
+        .bcp-page .bcp-leader-photo {
+          max-width: 170px;
+        }
+
+        .bcp-page .bcp-leader-badge span {
+          font-size: 0.4rem;
+          letter-spacing: 1px;
+        }
+
+        .bcp-page .bcp-tl-item {
+          padding-left: 20px;
+        }
+
+        .bcp-page .bcp-tl-dot {
+          left: -20px;
+          width: 12px;
+          height: 12px;
+        }
+
+        .bcp-page .bcp-map-hq {
+          font-size: 0.4rem;
+          padding: 4px 10px;
+          bottom: 14px;
+        }
+      }
+
+      /* ── Large desktop (1440px+) ── */
+      @media (min-width: 1440px) {
+        .bcp-page .bcp-about-inner,
+        .bcp-page .bcp-achievements-inner,
+        .bcp-page .bcp-diff-inner,
+        .bcp-page .bcp-timeline-inner,
+        .bcp-page .bcp-presence-inner,
+        .bcp-page .bcp-leadership-inner {
+          max-width: 1360px;
+        }
+      }
+    </style>
+
+    <!-- FOOTER CSS///////////////////////////////////////////////////////////////////// -->
+
+    <!-- ════════════════ FOOTER CSS ════════════════ -->
+    <style>
+      .bctf4-root {
+        position: relative;
+        height: 100vh;
+        min-height: 600px;
+        max-height: 960px;
+        background: #f0f4ff; /* ← light blue-white base */
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        font-family: "Outfit", sans-serif;
+
+        --f4-cyan: #00b8cc; /* slightly deeper cyan for light bg */
+        --f4-vio: #7b2fff;
+        --f4-pink: #ff2d9b;
+        --f4-green: #10b981;
+        --f4-amber: #f59e0b;
+        --f4-text: #3a4257; /* dark body text */
+        --f4-muted: #6b7696; /* muted label text */
+        --f4-bord: rgba(0, 150, 200, 0.14); /* subtle blue-tinted border */
+        --f4-grad: linear-gradient(135deg, #00b8cc, #7b2fff);
+        --f4-gradt: linear-gradient(90deg, #0094aa, #7b2fff);
+        --f4-glass: rgba(255, 255, 255, 0.6); /* frosted white column bg */
+      }
+
+      /* ── Dual canvas layers (kept — JS still runs) ── */
+      #bctf4-canvas-particles,
+      #bctf4-canvas-circuit {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.18; /* subtle on light bg */
+      }
+      #bctf4-canvas-particles {
+        z-index: 0;
+      }
+      #bctf4-canvas-circuit {
+        z-index: 1;
+      }
+
+      /* ── Noise texture (very subtle on light) ── */
+      .bctf4-root::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+        background-size: 160px;
+        opacity: 0.3;
+      }
+
+      /* ── Ambient glows (lighter tones for light bg) ── */
+      .bctf4-glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+        z-index: 1;
+      }
+      .bctf4-g1 {
+        width: 500px;
+        height: 500px;
+        top: -180px;
+        left: -100px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 185, 204, 0.1) 0%,
+          transparent 70%
+        );
+        animation: bctf4float 16s ease-in-out infinite;
+      }
+      .bctf4-g2 {
+        width: 420px;
+        height: 420px;
+        bottom: -100px;
+        right: -80px;
+        background: radial-gradient(
+          circle,
+          rgba(123, 47, 255, 0.08) 0%,
+          transparent 70%
+        );
+        animation: bctf4float 20s ease-in-out infinite reverse;
+      }
+      .bctf4-g3 {
+        width: 300px;
+        height: 300px;
+        top: 50%;
+        left: 48%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 45, 155, 0.06) 0%,
+          transparent 70%
+        );
+        animation: bctf4float 12s ease-in-out infinite 3s;
+      }
+      @keyframes bctf4float {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        40% {
+          transform: translate(16px, -12px) scale(1.06);
+        }
+        70% {
+          transform: translate(-8px, 8px) scale(0.96);
+        }
+      }
+
+      /* ── Top accent line ── */
+      .bctf4-topline {
+        position: relative;
+        z-index: 10;
+        height: 3px;
+        flex-shrink: 0;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          #00b8cc 25%,
+          #7b2fff 55%,
+          #ff2d9b 80%,
+          transparent 100%
+        );
+        animation: bctf4scan 5s ease-in-out infinite;
+      }
+      @keyframes bctf4scan {
+        0%,
+        100% {
+          opacity: 0.7;
+          filter: blur(0px);
+        }
+        50% {
+          opacity: 1;
+          filter: blur(0.5px) drop-shadow(0 0 4px #00b8cc);
+        }
+      }
+
+      /* ── Brand bar ── */
+      .bctf4-brand {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 14px 52px;
+        background: rgba(255, 255, 255, 0.85); /* white-glass brand bar */
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--f4-bord);
+        flex-shrink: 0;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+      }
+
+      .bctf4-logo-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .bctf4-logo-wrap {
+        width: 42px;
+        height: 42px;
+        border-radius: 11px;
+        background: rgba(0, 185, 204, 0.08);
+        border: 1px solid rgba(0, 185, 204, 0.22);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 14px rgba(0, 185, 204, 0.1);
+        transition: box-shadow 0.3s;
+      }
+      .bctf4-logo-link:hover .bctf4-logo-wrap {
+        box-shadow: 0 0 24px rgba(0, 185, 204, 0.25);
+      }
+      .bctf4-logo-wrap img {
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+        filter: drop-shadow(0 0 5px rgba(0, 185, 204, 0.4));
+      }
+      .bctf4-logo-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+      .bctf4-logo-name {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 0.95rem;
+        color: #0f1e3d; /* ← dark on light */
+        letter-spacing: 0.3px;
+        line-height: 1;
+      }
+      .bctf4-logo-sub {
+        font-family: "Space Mono", monospace;
+        font-size: 0.44rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        background: var(--f4-gradt);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .bctf4-brand-right {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      /* Socials */
+      .bctf4-socials {
+        display: flex;
+        gap: 6px;
+      }
+      .bctf4-soc {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: #6b7696; /* ← dark muted */
+        text-decoration: none;
+        font-size: 11px;
+        transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+        position: relative;
+        overflow: hidden;
+      }
+      .bctf4-soc::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--f4-grad);
+        opacity: 0;
+        transition: opacity 0.25s;
+      }
+      .bctf4-soc:hover {
+        transform: translateY(-3px);
+        border-color: transparent;
+        color: #fff;
+        box-shadow: 0 8px 20px rgba(0, 185, 204, 0.25);
+      }
+      .bctf4-soc:hover::before {
+        opacity: 1;
+      }
+      .bctf4-soc i {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* CTA button */
+      .bctf4-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 9px 20px;
+        border-radius: 50px;
+        border: none;
+        background: var(--f4-grad);
+        color: #fff;
+        font-family: "Outfit", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        white-space: nowrap;
+        box-shadow: 0 6px 22px rgba(0, 185, 204, 0.22);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .bctf4-cta-btn::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -70%;
+        width: 40%;
+        height: 200%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: skewX(-20deg);
+        transition: left 0.5s ease;
+      }
+      .bctf4-cta-btn:hover::after {
+        left: 130%;
+      }
+      .bctf4-cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(0, 185, 204, 0.35);
+      }
+
+      /* ── 4-column grid ── */
+      .bctf4-cols {
+        position: relative;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: 1.3fr 1fr 1fr 1fr;
+        flex: 1;
+        overflow: hidden;
+      }
+      .bctf4-col {
+        padding: 22px 26px 16px;
+        border-right: 1px solid var(--f4-bord);
+        overflow: hidden;
+        background: var(--f4-glass); /* frosted white */
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.7s ease, transform 0.7s ease, background 0.3s ease;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+      .bctf4-col:last-child {
+        border-right: none;
+      }
+      .bctf4-col.bctf4-vis {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .bctf4-col:nth-child(1) {
+        transition-delay: 0.05s;
+      }
+      .bctf4-col:nth-child(2) {
+        transition-delay: 0.15s;
+      }
+      .bctf4-col:nth-child(3) {
+        transition-delay: 0.25s;
+      }
+      .bctf4-col:nth-child(4) {
+        transition-delay: 0.35s;
+      }
+      .bctf4-col:hover {
+        background: rgba(255, 255, 255, 0.85);
+      }
+
+      /* Column heading */
+      .bctf4-ch {
+        font-family: "Syne", sans-serif;
+        font-size: 0.82rem;
+        font-weight: 800;
+        color: #0f1e3d; /* ← dark heading */
+        margin: 0 0 14px;
+        padding-bottom: 10px;
+        position: relative;
+        display: inline-block;
+      }
+      .bctf4-ch::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 28px;
+        height: 2px;
+        border-radius: 2px;
+        background: var(--f4-grad);
+        transition: width 0.35s ease;
+      }
+      .bctf4-col:hover .bctf4-ch::after {
+        width: 50px;
+      }
+
+      /* Col 1 — address + contact */
+      .bctf4-address {
+        font-size: 0.75rem;
+        line-height: 1.8;
+        color: #5a6a94; /* ← readable muted dark */
+        font-style: normal;
+        margin: 0 0 10px;
+      }
+      .bctf4-clinks {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .bctf4-clink {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 0.74rem;
+        color: #3a4257; /* ← dark body */
+        text-decoration: none;
+        padding: 5px 8px;
+        border-radius: 7px;
+        border: 1px solid transparent;
+        transition: all 0.22s ease;
+      }
+      .bctf4-clink:hover {
+        background: rgba(0, 185, 204, 0.07);
+        border-color: rgba(0, 185, 204, 0.2);
+        color: #0f1e3d;
+        transform: translateX(4px);
+      }
+      .bctf4-ci {
+        flex-shrink: 0;
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+      }
+      .bctf4-ci-em {
+        background: rgba(0, 185, 204, 0.1);
+        color: #00a0b5;
+      }
+      .bctf4-ci-ph {
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+      }
+      .bctf4-ci-wa {
+        background: rgba(37, 211, 102, 0.1);
+        color: #25d366;
+      }
+      .bctf4-ci-loc {
+        background: rgba(123, 47, 255, 0.1);
+        color: #7b2fff;
+      }
+      .bctf4-ci-sup {
+        background: rgba(245, 158, 11, 0.1);
+        color: #f59e0b;
+      }
+
+      /* Col 2 — Why us bullets */
+      .bctf4-why {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .bctf4-wi {
+        display: flex;
+        align-items: flex-start;
+        gap: 9px;
+        font-size: 0.73rem;
+        line-height: 1.6;
+        color: #3a4257; /* ← dark body */
+        padding: 8px 10px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(0, 150, 200, 0.1);
+        transition: all 0.22s ease;
+      }
+      .bctf4-wi:hover {
+        background: rgba(255, 255, 255, 0.95);
+        border-color: rgba(0, 185, 204, 0.22);
+        transform: translateX(3px);
+      }
+      .bctf4-wd {
+        flex-shrink: 0;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        margin-top: 5px;
+        background: var(--f4-grad);
+        box-shadow: 0 0 6px rgba(0, 185, 204, 0.5);
+        animation: bctf4dotpulse 2.5s ease-in-out infinite;
+      }
+      @keyframes bctf4dotpulse {
+        0%,
+        100% {
+          box-shadow: 0 0 5px rgba(0, 185, 204, 0.5);
+        }
+        50% {
+          box-shadow: 0 0 12px rgba(0, 185, 204, 0.9);
+        }
+      }
+
+      /* Col 3 & 4 — nav links */
+      .bctf4-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .bctf4-links a {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        font-size: 0.76rem;
+        color: #3a4257; /* ← dark body */
+        text-decoration: none;
+        padding: 6px 10px;
+        border-radius: 7px;
+        border: 1px solid transparent;
+        transition: all 0.2s ease;
+      }
+      .bctf4-arr {
+        font-size: 0.6rem;
+        color: var(--f4-cyan);
+        opacity: 0;
+        margin-right: 0;
+        flex-shrink: 0;
+        transition: opacity 0.18s, margin-right 0.18s, transform 0.18s;
+      }
+      .bctf4-links a:hover {
+        background: rgba(0, 185, 204, 0.07);
+        border-color: rgba(0, 185, 204, 0.18);
+        color: #0f1e3d;
+        padding-left: 14px;
+      }
+      .bctf4-links a:hover .bctf4-arr {
+        opacity: 1;
+        margin-right: 5px;
+        transform: translateX(2px);
+      }
+
+      /* CTA card inside col 4 */
+      .bctf4-ctacard {
+        margin-top: 14px;
+        padding: 14px 16px;
+        border-radius: 13px;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(0, 185, 204, 0.2);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 185, 204, 0.08);
+      }
+      .bctf4-ctacard::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #00b8cc,
+          #7b2fff,
+          transparent
+        );
+      }
+      .bctf4-ctacard p {
+        font-size: 0.7rem;
+        color: #5a6a94; /* ← muted dark */
+        margin: 0 0 10px;
+        line-height: 1.55;
+        text-align: center;
+      }
+      .bctf4-ctacard-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        width: 100%;
+        padding: 9px;
+        border-radius: 9px;
+        border: none;
+        background: var(--f4-grad);
+        color: #fff;
+        font-family: "Outfit", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 5px 18px rgba(0, 185, 204, 0.2);
+        transition: all 0.25s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .bctf4-ctacard-btn::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -70%;
+        width: 40%;
+        height: 200%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: skewX(-20deg);
+        transition: left 0.45s ease;
+      }
+      .bctf4-ctacard-btn:hover::after {
+        left: 130%;
+      }
+      .bctf4-ctacard-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 26px rgba(0, 185, 204, 0.32);
+      }
+
+      /* ── Stats row ── */
+      .bctf4-stats {
+        position: relative;
+        z-index: 10;
+        flex-shrink: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: rgba(255, 255, 255, 0.9); /* white stats bar */
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-top: 1px solid rgba(0, 150, 200, 0.12);
+        border-bottom: 1px solid rgba(0, 150, 200, 0.12);
+        box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.8);
+      }
+      .bctf4-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 11px 16px;
+        border-right: 1px solid rgba(0, 150, 200, 0.12);
+        transition: background 0.25s;
+        cursor: default;
+      }
+      .bctf4-stat:last-child {
+        border-right: none;
+      }
+      .bctf4-stat:hover {
+        background: rgba(0, 185, 204, 0.05);
+      }
+      .bctf4-sico {
+        font-size: 9px;
+        margin-bottom: 3px;
+        background: var(--f4-gradt);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .bctf4-snum {
+        font-family: "Syne", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 800;
+        line-height: 1;
+        background: linear-gradient(135deg, #00b8cc, #7b2fff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 0 8px rgba(0, 185, 204, 0.2));
+      }
+      .bctf4-slbl {
+        font-family: "Space Mono", monospace;
+        font-size: 0.42rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #6b7696; /* ← readable muted dark */
+        margin-top: 3px;
+      }
+
+      /* ── Bottom bar ── */
+      .bctf4-bottom {
+        position: relative;
+        z-index: 10;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 11px 52px;
+        background: rgba(
+          230,
+          237,
+          255,
+          0.95
+        ); /* slightly deeper footer strip */
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-top: 1px solid rgba(0, 150, 200, 0.1);
+      }
+      .bctf4-copy {
+        font-family: "Space Mono", monospace;
+        font-size: 0.48rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #6b7696;
+      }
+      .bctf4-copy b {
+        background: var(--f4-gradt);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 700;
+      }
+      .bctf4-policy {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .bctf4-policy a {
+        font-family: "Space Mono", monospace;
+        font-size: 0.46rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #6b7696;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .bctf4-policy a:hover {
+        color: #00a0b5;
+      }
+      .bctf4-live {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: "Space Mono", monospace;
+        font-size: 0.44rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #6b7696;
+      }
+      .bctf4-livdot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #10b981;
+        box-shadow: 0 0 8px #10b981;
+        animation: bctf4livdot 1.8s ease-in-out infinite;
+      }
+      @keyframes bctf4livdot {
+        0%,
+        100% {
+          box-shadow: 0 0 5px #10b981;
+        }
+        50% {
+          box-shadow: 0 0 14px #10b981;
+        }
+      }
+
+      /* ── Responsive (unchanged logic, updated borders) ── */
+      @media (max-width: 1100px) {
+        .bctf4-root {
+          height: auto;
+          max-height: none;
+        }
+        .bctf4-cols {
+          grid-template-columns: 1fr 1fr;
+        }
+        .bctf4-col:nth-child(2) {
+          border-right: none;
+        }
+        .bctf4-col:nth-child(3) {
+          border-top: 1px solid var(--f4-bord);
+        }
+        .bctf4-col:nth-child(4) {
+          border-top: 1px solid var(--f4-bord);
+          border-right: none;
+        }
+        .bctf4-brand {
+          padding: 12px 32px;
+        }
+        .bctf4-bottom {
+          padding: 10px 32px;
+        }
+      }
+      @media (max-width: 680px) {
+        .bctf4-cols {
+          grid-template-columns: 1fr;
+        }
+        .bctf4-col {
+          border-right: none;
+          border-top: 1px solid var(--f4-bord);
+          padding: 16px 20px;
+        }
+        .bctf4-col:first-child {
+          border-top: none;
+        }
+        .bctf4-stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        .bctf4-stat:nth-child(2) {
+          border-right: none;
+        }
+        .bctf4-stat:nth-child(3),
+        .bctf4-stat:nth-child(4) {
+          border-top: 1px solid var(--f4-bord);
+        }
+        .bctf4-stat:nth-child(4) {
+          border-right: none;
+        }
+        .bctf4-brand {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 12px 20px;
+        }
+        .bctf4-bottom {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: 10px 20px;
+        }
+        .bctf4-live {
+          display: none;
+        }
+      }
+      @media (max-width: 992px) {
+        .bctf4-brand {
+          padding: 12px 28px;
+        }
+        .bctf4-bottom {
+          padding: 10px 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Custom cursor elements -->
+    <div id="cDot"></div>
+    <div id="cRing"></div>
+
+    <!-- NAVBAR -->
+    
+    <!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <div class="bcp-page">
+      <!-- ════ 1. HERO ════ -->
+      <section class="bcp-hero bcp-section">
+        <div class="bcp-hero-blob-1 bcp-hero-blob"></div>
+        <div class="bcp-hero-blob-2 bcp-hero-blob"></div>
+        <div class="bcp-hero-content">
+          <p class="bcp-hero-eyebrow">About BrainChild Technology</p>
+          <h1 class="bcp-hero-h1">
+            Engineering Excellence<br />
+            <span>Since 2007</span>
+          </h1>
+          <p class="bcp-hero-sub">
+            From a single vision to 2000+ clients across four industries —
+            BrainChild Technology has spent nearly two decades proving that
+            world-class embedded engineering can be built right here in India.
+          </p>
+          <div class="bcp-hero-chips">
+            <span class="bcp-hero-chip">Founded 2007</span>
+            <span class="bcp-hero-chip">Bangalore, India</span>
+            <span class="bcp-hero-chip">ISO 9001 Certified</span>
+            <span class="bcp-hero-chip">Make in India</span>
+            <span class="bcp-hero-chip">Global Delivery</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ 2. ABOUT + STATS ════ -->
+      <section class="bcp-about bcp-section">
+        <div class="bcp-about-inner">
+          <div class="bcp-about-text bcp-reveal">
+            <p class="bcp-tag">Our Story</p>
+            <h2 class="bcp-title">
+              Built on <span>Expertise &amp; Reliability</span>
+            </h2>
+            <p class="bcp-about-body">
+              BrainChild Technology was founded in 2007 with a focused mission —
+              to create innovative embedded products and deliver them with
+              unmatched expertise and reliability. What started as a small
+              engineering team in Bangalore has grown into a full-service
+              technology partner trusted by product companies, automotive
+              suppliers, and industrial manufacturers worldwide.
+            </p>
+            <p class="bcp-about-body">
+              We believe the best technology is built close to the problem it
+              solves. Every firmware line, every PCB trace, every IoT network we
+              design is engineered with real-world operating conditions in mind
+              — because our clients depend on it working perfectly, every time.
+            </p>
+            <span class="bcp-about-accent"
+              >Make in India · Made for the World</span
+            >
+          </div>
+
+          <div
+            class="bcp-stats-grid bcp-reveal"
+            style="transition-delay: 0.15s"
+          >
+            <div class="bcp-stat-card">
+              <div class="bcp-stat-icon">
+                <i class="fa-solid fa-calendar-check"></i>
+              </div>
+              <div
+                class="bcp-stat-num"
+                data-bcp-target="19"
+                data-bcp-suffix="+"
+              >
+                0
+              </div>
+              <div class="bcp-stat-lbl">Years of Expertise</div>
+            </div>
+            <div class="bcp-stat-card">
+              <div class="bcp-stat-icon"><i class="fa-solid fa-users"></i></div>
+              <div
+                class="bcp-stat-num"
+                data-bcp-target="2000"
+                data-bcp-suffix="+"
+              >
+                0
+              </div>
+              <div class="bcp-stat-lbl">Happy Clients</div>
+            </div>
+            <div class="bcp-stat-card">
+              <div class="bcp-stat-icon">
+                <i class="fa-solid fa-microchip"></i>
+              </div>
+              <div
+                class="bcp-stat-num"
+                data-bcp-target="360"
+                data-bcp-suffix="+"
+              >
+                0
+              </div>
+              <div class="bcp-stat-lbl">Projects Delivered</div>
+            </div>
+            <div class="bcp-stat-card">
+              <div class="bcp-stat-icon"><i class="fa-solid fa-star"></i></div>
+              <div
+                class="bcp-stat-num"
+                data-bcp-target="4.7"
+                data-bcp-suffix="★"
+                data-bcp-dec="1"
+              >
+                0
+              </div>
+              <div class="bcp-stat-lbl">Google Rating</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ 3. LEADERSHIP ════ -->
+      <section class="bcp-leadership bcp-section">
+        <div class="bcp-leadership-inner">
+          <div class="bcp-leadership-head bcp-reveal">
+            <p class="bcp-tag">Leadership</p>
+            <h2 class="bcp-title">The <span>Vision Behind</span> BrainChild</h2>
+          </div>
+
+          <div
+            class="bcp-leader-card bcp-reveal"
+            style="transition-delay: 0.1s"
+          >
+            <div class="bcp-leader-photo-wrap">
+              <div class="bcp-leader-photo" id="bcpLeaderPhoto">
+                <!--
+              TO ADD PHOTO: replace the div below with:
+              <img src="vijay-photo.jpg" alt="Vijay N" />
+            -->
+                <div class="bcp-leader-initials">VN</div>
+              </div>
+              <div class="bcp-leader-badge">
+                <div class="bcp-leader-badge-dot"></div>
+                <span>Founder &amp; CEO</span>
+              </div>
+            </div>
+
+            <div class="bcp-leader-info">
+              <h3 class="bcp-leader-name">Vijay N</h3>
+              <span class="bcp-leader-title"
+                >Founder &amp; Chief Executive Officer</span
+              >
+              <p class="bcp-leader-bio">
+                With nearly two decades at the intersection of hardware and
+                software, Vijay founded BrainChild Technology in 2007 with a
+                clear conviction — that India could engineer embedded products
+                that compete at a global level. Under his leadership, BrainChild
+                has grown from a lean engineering firm into a trusted partner
+                for product companies, automotive Tier-1 suppliers, and
+                industrial manufacturers across four major industries.
+              </p>
+              <p class="bcp-leader-bio" style="margin-top: -8px">
+                His philosophy is simple: field-proven reliability over
+                theoretical perfection. Every product that leaves BrainChild has
+                been tested, iterated, and validated to perform in the demanding
+                conditions our clients face every day.
+              </p>
+              <div class="bcp-leader-pills">
+                <span class="bcp-leader-pill">Embedded Systems</span>
+                <span class="bcp-leader-pill">IoT Architecture</span>
+                <span class="bcp-leader-pill">Product Strategy</span>
+                <span class="bcp-leader-pill">19+ Years Engineering</span>
+              </div>
+              <a
+                class="bcp-leader-linkedin"
+                href="https://linkedin.com"
+                target="_blank"
+              >
+                <i class="fa-brands fa-linkedin"></i>
+                Connect on LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ 4. ACHIEVEMENTS ════ -->
+      <section class="bcp-achievements bcp-section">
+        <div class="bcp-achievements-inner">
+          <div class="bcp-achievements-head bcp-reveal">
+            <p class="bcp-tag">Trust &amp; Recognition</p>
+            <h2 class="bcp-title">Why Clients <span>Trust BrainChild</span></h2>
+            <p>
+              Our credentials, certifications and client relationships speak to
+              nearly two decades of delivering without compromise.
+            </p>
+          </div>
+
+          <div class="bcp-trust-trio">
+            <div class="bcp-trust-card bcp-tc-iso bcp-reveal">
+              <div class="bcp-trust-icon-wrap">
+                <i class="fa-solid fa-certificate"></i>
+              </div>
+              <h4>ISO 9001:2015 Certified</h4>
+              <p>
+                Our quality management system is ISO 9001:2015 certified —
+                ensuring every product is designed, built, and delivered to
+                internationally recognised quality standards.
+              </p>
+              <div class="bcp-trust-badge">
+                <i
+                  class="fa-solid fa-check"
+                  style="font-size: 8px; color: #10b981"
+                ></i>
+                Quality Management System
+              </div>
+            </div>
+
+            <div
+              class="bcp-trust-card bcp-tc-award bcp-reveal"
+              style="transition-delay: 0.12s"
+            >
+              <div class="bcp-trust-icon-wrap">
+                <i class="fa-solid fa-trophy"></i>
+              </div>
+              <h4>Industry Recognition</h4>
+              <p>
+                Recognised for excellence in embedded product development and
+                IoT innovation across automotive, industrial, and consumer
+                electronics sectors.
+              </p>
+              <div class="bcp-trust-badge">
+                <i
+                  class="fa-solid fa-star"
+                  style="font-size: 8px; color: #f59e0b"
+                ></i>
+                Award-Winning Engineering
+              </div>
+            </div>
+
+            <div
+              class="bcp-trust-card bcp-tc-global bcp-reveal"
+              style="transition-delay: 0.22s"
+            >
+              <div class="bcp-trust-icon-wrap">
+                <i class="fa-solid fa-globe"></i>
+              </div>
+              <h4>Global Client Base</h4>
+              <p>
+                Products built in our Bangalore facility serve clients across
+                automotive OEMs, home appliance brands, and industrial
+                manufacturers on multiple continents.
+              </p>
+              <div class="bcp-trust-badge">
+                <i
+                  class="fa-solid fa-earth-asia"
+                  style="font-size: 8px; color: #7b2fff"
+                ></i>
+                Multi-Industry · Multi-Country
+              </div>
+            </div>
+          </div>
+
+          <div class="bcp-clients-head bcp-reveal">
+            <p class="bcp-clients-label">Trusted by leading organisations</p>
+          </div>
+          <div class="bcp-logos-mask bcp-reveal" style="transition-delay: 0.1s">
+            <div class="bcp-logos-row" id="bcpLogosRow"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ 5. TIMELINE ════ -->
+      <section class="bcp-timeline-section bcp-section">
+        <div class="bcp-timeline-inner">
+          <div class="bcp-timeline-head bcp-reveal">
+            <p class="bcp-tag">Our Journey</p>
+            <h2 class="bcp-title">
+              Nearly Two Decades of <span>Building &amp; Growing</span>
+            </h2>
+          </div>
+
+          <div class="bcp-timeline">
+            <div class="bcp-tl-item">
+              <div class="bcp-tl-dot"></div>
+              <p class="bcp-tl-year">2007</p>
+              <h4 class="bcp-tl-title">BrainChild Technology Founded</h4>
+              <p class="bcp-tl-desc">
+                Vijay N establishes BrainChild Technology in Bangalore with a
+                focused mission — embedded product engineering with global
+                quality standards.
+              </p>
+            </div>
+
+            <div class="bcp-tl-item">
+              <div class="bcp-tl-dot"></div>
+              <p class="bcp-tl-year">2010</p>
+              <h4 class="bcp-tl-title">First Major Automotive Client</h4>
+              <p class="bcp-tl-desc">
+                Secured our first Tier-1 automotive partnership, delivering ECU
+                firmware and embedded systems that set the standard for our
+                automotive practice.
+              </p>
+            </div>
+
+            <div class="bcp-tl-item">
+              <div class="bcp-tl-dot"></div>
+              <p class="bcp-tl-year">2014</p>
+              <h4 class="bcp-tl-title">ISO 9001 Certification Achieved</h4>
+              <p class="bcp-tl-desc">
+                Formalized our quality management processes with ISO 9001
+                certification, reinforcing our commitment to consistent,
+                internationally recognised engineering standards.
+              </p>
+            </div>
+
+            <div class="bcp-tl-item">
+              <div class="bcp-tl-dot"></div>
+              <p class="bcp-tl-year">2017</p>
+              <h4 class="bcp-tl-title">Crossed 1,000 Clients Milestone</h4>
+              <p class="bcp-tl-desc">
+                A decade of consistent delivery brought us to over 1,000
+                satisfied clients across automotive, food technology, and home
+                appliance sectors.
+              </p>
+            </div>
+
+            <div class="bcp-tl-item">
+              <div class="bcp-tl-dot"></div>
+              <p class="bcp-tl-year">2020</p>
+              <h4 class="bcp-tl-title">
+                Expanded to Cloud &amp; Mobile Services
+              </h4>
+              <p class="bcp-tl-desc">
+                Launched full-stack cloud development and Android application
+                services, enabling end-to-end product delivery from hardware to
+                cloud dashboard within a single team.
+              </p>
+            </div>
+
+            <div class="bcp-tl-item">
+              <div class="bcp-tl-dot"></div>
+              <p class="bcp-tl-year">2026</p>
+              <h4 class="bcp-tl-title">2,000+ Clients &amp; Growing</h4>
+              <p class="bcp-tl-desc">
+                Today BrainChild serves over 2,000 clients worldwide with a full
+                suite of embedded, IoT, cloud, mobile, and box-build engineering
+                capabilities — all delivered from Bangalore to the world.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ 6. DIFFERENTIATORS ════ -->
+      <section class="bcp-differentiators bcp-section">
+        <div class="bcp-diff-inner">
+          <div class="bcp-diff-head bcp-reveal">
+            <p class="bcp-tag">What Sets Us Apart</p>
+            <h2 class="bcp-title">
+              Four Reasons Clients <span>Keep Coming Back</span>
+            </h2>
+          </div>
+
+          <div class="bcp-diff-grid">
+            <div class="bcp-diff-card bcp-dc-1 bcp-reveal">
+              <div class="bcp-diff-icon"><i class="fa-solid fa-flag"></i></div>
+              <div class="bcp-diff-text">
+                <h4>Make in India, Built for the World</h4>
+                <p>
+                  Every product is engineered at our Bangalore facility and
+                  designed to meet global standards. We take pride in proving
+                  that Indian engineering competes at the highest international
+                  level.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="bcp-diff-card bcp-dc-2 bcp-reveal"
+              style="transition-delay: 0.1s"
+            >
+              <div class="bcp-diff-icon">
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+              <div class="bcp-diff-text">
+                <h4>End-to-End Capability Under One Roof</h4>
+                <p>
+                  Hardware design, firmware, PCB assembly, cloud backends,
+                  mobile apps — all in-house. No vendor coordination, no scope
+                  gaps, no finger-pointing. You get one accountable partner from
+                  concept to deployment.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="bcp-diff-card bcp-dc-3 bcp-reveal"
+              style="transition-delay: 0.18s"
+            >
+              <div class="bcp-diff-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div class="bcp-diff-text">
+                <h4>Field-Proven Reliability</h4>
+                <p>
+                  Our electronics operate in automotive cabins, factory floors,
+                  food dispensing machines, and smart homes. We build to survive
+                  real conditions — vibration, heat, humidity, and continuous
+                  operation.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="bcp-diff-card bcp-dc-4 bcp-reveal"
+              style="transition-delay: 0.26s"
+            >
+              <div class="bcp-diff-icon">
+                <i class="fa-solid fa-handshake"></i>
+              </div>
+              <div class="bcp-diff-text">
+                <h4>Long-Term Partnership Model</h4>
+                <p>
+                  We don't deliver and disappear. BrainChild works alongside
+                  clients through product evolution, scaling, iteration, and
+                  support — because the best engineering relationships compound
+                  over time.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ 7. PRESENCE ════ -->
+      <section class="bcp-presence bcp-section">
+        <div class="bcp-presence-inner">
+          <div class="bcp-presence-text bcp-reveal">
+            <p class="bcp-tag">Our Reach</p>
+            <h2 class="bcp-title">
+              Bangalore HQ,<br /><span>Global Impact</span>
+            </h2>
+            <p>
+              From our engineering base in Gowndanapalya, Bangalore, BrainChild
+              delivers products and services to clients across India and
+              internationally — spanning automotive OEMs, food technology
+              companies, smart home appliance brands, and industrial
+              manufacturers.
+            </p>
+            <div class="bcp-presence-stats">
+              <div class="bcp-pstat">
+                <div class="bcp-pstat-icon">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div>
+                  <div class="bcp-pstat-val">Bangalore</div>
+                  <div class="bcp-pstat-lbl">
+                    Headquarters — Karnataka, India
+                  </div>
+                </div>
+              </div>
+              <div class="bcp-pstat">
+                <div class="bcp-pstat-icon">
+                  <i class="fa-solid fa-industry"></i>
+                </div>
+                <div>
+                  <div class="bcp-pstat-val">4 Industries</div>
+                  <div class="bcp-pstat-lbl">
+                    Automotive · Food &amp; Beverage · Home · Industrial
+                  </div>
+                </div>
+              </div>
+              <div class="bcp-pstat">
+                <div class="bcp-pstat-icon">
+                  <i class="fa-solid fa-earth-asia"></i>
+                </div>
+                <div>
+                  <div class="bcp-pstat-val">Multi-Country</div>
+                  <div class="bcp-pstat-lbl">
+                    Products deployed internationally
+                  </div>
+                </div>
+              </div>
+              <div class="bcp-pstat">
+                <div class="bcp-pstat-icon">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div>
+                  <div class="bcp-pstat-val">+91-98457-60779</div>
+                  <div class="bcp-pstat-lbl">
+                    Direct line to our engineering team
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bcp-map-visual bcp-reveal"
+            style="transition-delay: 0.15s"
+          >
+            <canvas id="bcpMapCanvas"></canvas>
+            <div class="bcp-map-hq">📍 Bangalore, Karnataka</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ 8. CTA STRIP ════ -->
+      <section class="bcp-cta-strip bcp-section">
+        <div class="bcp-cta-strip-inner bcp-reveal">
+          <h2>Ready to Work <span>With Us?</span></h2>
+          <p>
+            Whether you have a product idea, an engineering challenge, or just
+            want to understand what BrainChild can do for your business — let's
+            talk.
+          </p>
+          <div class="bcp-cta-btns">
+            <button
+              class="bcp-cta-primary"
+              onclick="location.href='contact.html'"
+            >
+              <i class="fa-solid fa-paper-plane" style="margin-right: 8px"></i
+              >Get in Touch
+            </button>
+            <button
+              class="bcp-cta-secondary"
+              onclick="location.href='service.html'"
+            >
+              Explore Our Services
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- /bcp-page -->
+
+    <!-- FOOTER HTML/////////////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- ════════════════ FOOTER HTML ════════════════ -->
+
+    <bct-footer></bct-footer>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- NAV SCRIPT ////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <script>
+      /* ── Custom cursor ── */
+      const cDot = document.getElementById("cDot");
+      const cRing = document.getElementById("cRing");
+      let mx = 0,
+        my = 0,
+        rx = 0,
+        ry = 0;
+      document.addEventListener("mousemove", (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+      });
+      (function tickCursor() {
+        cDot.style.left = mx + "px";
+        cDot.style.top = my + "px";
+        rx += (mx - rx) * 0.5;
+        ry += (my - ry) * 0.5;
+        cRing.style.left = rx + "px";
+        cRing.style.top = ry + "px";
+        requestAnimationFrame(tickCursor);
+      })();
+      document
+        .querySelectorAll("a, button, .bct-drop-card, .mob-acc-card")
+        .forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            cRing.style.transform = "translate(-50%,-50%) scale(1.3)";
+            cRing.style.borderColor = "rgba(0,229,255,.9)";
+            cRing.style.background = "rgba(0,229,255,.06)";
+          });
+          el.addEventListener("mouseleave", () => {
+            cRing.style.transform = "translate(-50%,-50%) scale(1)";
+            cRing.style.borderColor = "rgba(0,229,255,.45)";
+            cRing.style.background = "transparent";
+          });
+        });
+
+      /* ── Navbar scroll: dark glass ── */
+      window.addEventListener("scroll", () => {
+        document
+          .getElementById("bctNav")
+          .classList.toggle("scrolled", window.scrollY > 60);
+      });
+
+      /* ── Desktop dropdown: close on outside click ── */
+      document.addEventListener("click", (e) => {
+        document.querySelectorAll(".has-drop").forEach((el) => {
+          if (!el.contains(e.target)) el.classList.remove("open");
+        });
+      });
+      /* Toggle on span click (touch/tablet) */
+      document.querySelectorAll(".has-drop > span").forEach((span) => {
+        span.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const li = span.parentElement;
+          const wasOpen = li.classList.contains("open");
+          document
+            .querySelectorAll(".has-drop")
+            .forEach((el) => el.classList.remove("open"));
+          if (!wasOpen) li.classList.add("open");
+        });
+      });
+
+      /* ── Mobile overlay open/close ── */
+      document.getElementById("ham").addEventListener("click", () => {
+        document.getElementById("mobOverlay").classList.add("open");
+      });
+      document.getElementById("mobClose").addEventListener("click", () => {
+        document.getElementById("mobOverlay").classList.remove("open");
+      });
+      document.querySelectorAll(".mob-link, .mob-acc-card").forEach((a) => {
+        a.addEventListener("click", () => {
+          document.getElementById("mobOverlay").classList.remove("open");
+        });
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape")
+          document.getElementById("mobOverlay").classList.remove("open");
+      });
+
+      /* ── Mobile accordion ── */
+      document
+        .querySelectorAll(".mob-accordion .mob-acc-btn")
+        .forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const acc = btn.parentElement;
+            const isOpen = acc.classList.contains("open");
+            document
+              .querySelectorAll(".mob-accordion")
+              .forEach((a) => a.classList.remove("open"));
+            if (!isOpen) acc.classList.add("open");
+          });
+        });
+    </script>
+
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////// -->
+    <script>
+      (function () {
+        "use strict";
+
+        /* ── Scroll reveal ── */
+        const revObs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("bcp-vis");
+                revObs.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        document
+          .querySelectorAll(".bcp-reveal")
+          .forEach((el) => revObs.observe(el));
+
+        /* ── Timeline items ── */
+        const tlObs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e, i) => {
+              if (e.isIntersecting) {
+                e.target.style.transitionDelay = i * 0.12 + "s";
+                e.target.classList.add("bcp-vis");
+                tlObs.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        document
+          .querySelectorAll(".bcp-tl-item")
+          .forEach((el) => tlObs.observe(el));
+
+        /* ── Count-up stats ── */
+        const cntObs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (!e.isIntersecting) return;
+              cntObs.unobserve(e.target);
+              const el = e.target;
+              const target = parseFloat(el.dataset.bcpTarget);
+              const suffix = el.dataset.bcpSuffix || "";
+              const dec = parseInt(el.dataset.bcpDec || "0");
+              const dur = 1600;
+              const t0 = performance.now();
+              (function tick(now) {
+                const p = Math.min((now - t0) / dur, 1);
+                const ease = 1 - Math.pow(1 - p, 3);
+                el.textContent = (ease * target).toFixed(dec) + suffix;
+                if (p < 1) requestAnimationFrame(tick);
+              })(performance.now());
+            });
+          },
+          { threshold: 0.4 }
+        );
+        document
+          .querySelectorAll("[data-bcp-target]")
+          .forEach((el) => cntObs.observe(el));
+
+        /* ── Client logos ticker ── */
+        const CLIENTS = [
+          { name: "Bosch", sector: "Automotive", color: "#e00" },
+          { name: "Tata", sector: "Conglomerate", color: "#00519c" },
+          { name: "Mahindra", sector: "Automotive", color: "#e31837" },
+          { name: "Wipro", sector: "Technology", color: "#341c6c" },
+          { name: "TVS", sector: "Automotive", color: "#00529b" },
+          { name: "Godrej", sector: "Home Appliances", color: "#003087" },
+          { name: "Honeywell", sector: "Industrial IoT", color: "#cf2027" },
+          { name: "Marico", sector: "Food & Beverage", color: "#e9672a" },
+          { name: "Havells", sector: "Home Appliances", color: "#003082" },
+          { name: "ABB", sector: "Industrial", color: "#ff000f" },
+        ];
+        const row = document.getElementById("bcpLogosRow");
+        if (row) {
+          [...CLIENTS, ...CLIENTS].forEach((c) => {
+            const chip = document.createElement("div");
+            chip.className = "bcp-logo-chip";
+            chip.innerHTML = `
+        <div class="bcp-logo-chip-icon" style="background:${c.color}">${c.name[0]}</div>
+        <div>
+          <div class="bcp-logo-chip-name">${c.name}</div>
+          <div class="bcp-logo-chip-sector">${c.sector}</div>
+        </div>`;
+            row.appendChild(chip);
+          });
+        }
+
+        /* ── Map canvas animation ── */
+        (function () {
+          const cv = document.getElementById("bcpMapCanvas");
+          if (!cv) return;
+          const ctx = cv.getContext("2d");
+          let W,
+            H,
+            frame = 0;
+          const nodes = [];
+          const pulses = [];
+
+          function resize() {
+            const r = cv.parentElement.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            W = cv.width = r.width * dpr;
+            H = cv.height = r.height * dpr;
+            cv.style.width = r.width + "px";
+            cv.style.height = r.height + "px";
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.scale(dpr, dpr);
+            buildNodes(r.width, r.height);
+          }
+
+          function buildNodes(w, h) {
+            nodes.length = 0;
+            nodes.push({
+              x: w * 0.52,
+              y: h * 0.55,
+              r: 7,
+              label: "HQ",
+              color: "#00b8cc",
+              main: true,
+              pulse: 0,
+            });
+            [
+              [0.22, 0.3, "Automotive"],
+              [0.75, 0.28, "Industrial"],
+              [0.15, 0.65, "IoT Client"],
+              [0.8, 0.62, "Home Appl."],
+              [0.45, 0.2, "Cloud"],
+              [0.62, 0.75, "F&B Tech"],
+            ].forEach(([xr, yr, lbl]) => {
+              nodes.push({
+                x: w * xr,
+                y: h * yr,
+                r: 4,
+                label: lbl,
+                color: "#7b2fff",
+                main: false,
+                pulse: Math.random() * Math.PI * 2,
+              });
+            });
+          }
+
+          function loop() {
+            const dpr = window.devicePixelRatio || 1;
+            const w = W / dpr,
+              h = H / dpr;
+            ctx.clearRect(0, 0, w, h);
+
+            /* grid */
+            ctx.strokeStyle = "rgba(0,185,204,.06)";
+            ctx.lineWidth = 1;
+            for (let x = 0; x < w; x += 30) {
+              ctx.beginPath();
+              ctx.moveTo(x, 0);
+              ctx.lineTo(x, h);
+              ctx.stroke();
+            }
+            for (let y = 0; y < h; y += 30) {
+              ctx.beginPath();
+              ctx.moveTo(0, y);
+              ctx.lineTo(w, y);
+              ctx.stroke();
+            }
+
+            const hq = nodes[0];
+
+            /* lines */
+            nodes.slice(1).forEach((n) => {
+              const grad = ctx.createLinearGradient(hq.x, hq.y, n.x, n.y);
+              grad.addColorStop(0, "rgba(0,185,204,.3)");
+              grad.addColorStop(1, "rgba(123,47,255,.15)");
+              ctx.beginPath();
+              ctx.moveTo(hq.x, hq.y);
+              ctx.lineTo(n.x, n.y);
+              ctx.strokeStyle = grad;
+              ctx.lineWidth = 1;
+              ctx.setLineDash([4, 8]);
+              ctx.stroke();
+              ctx.setLineDash([]);
+            });
+
+            /* packets */
+            if (frame % 40 === 0) {
+              const n =
+                nodes[1 + Math.floor(Math.random() * (nodes.length - 1))];
+              pulses.push({
+                x: hq.x,
+                y: hq.y,
+                tx: n.x,
+                ty: n.y,
+                t: 0,
+                color: n.color,
+              });
+            }
+            const done = [];
+            pulses.forEach((p) => {
+              p.t += 0.015;
+              const px = p.x + (p.tx - p.x) * p.t;
+              const py = p.y + (p.ty - p.y) * p.t;
+              ctx.beginPath();
+              ctx.arc(px, py, 3, 0, Math.PI * 2);
+              ctx.fillStyle = p.color;
+              ctx.globalAlpha = 1 - p.t * 0.5;
+              ctx.shadowBlur = 8;
+              ctx.shadowColor = p.color;
+              ctx.fill();
+              ctx.shadowBlur = 0;
+              ctx.globalAlpha = 1;
+              if (p.t >= 1) done.push(p);
+            });
+            done.forEach((p) => pulses.splice(pulses.indexOf(p), 1));
+
+            /* nodes */
+            nodes.forEach((n) => {
+              n.pulse += 0.04;
+              if (n.main) {
+                const pr = (Math.sin(n.pulse) + 1) * 8 + 6;
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, pr, 0, Math.PI * 2);
+                ctx.strokeStyle = "rgba(0,185,204,.2)";
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+                ctx.fillStyle = "#00b8cc";
+                ctx.shadowBlur = 14;
+                ctx.shadowColor = "#00b8cc";
+                ctx.fill();
+                ctx.shadowBlur = 0;
+                ctx.fillStyle = "#0f1e3d";
+                ctx.font = "bold 9px 'Space Mono',monospace";
+                ctx.textAlign = "center";
+                ctx.fillText(n.label, n.x, n.y - n.r - 6);
+              } else {
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+                ctx.fillStyle = "#fff";
+                ctx.strokeStyle = n.color;
+                ctx.lineWidth = 1.5;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = n.color;
+                ctx.fill();
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+                ctx.fillStyle = "rgba(58,66,87,.6)";
+                ctx.font = "7px 'Outfit',sans-serif";
+                ctx.textAlign = "center";
+                ctx.fillText(n.label, n.x, n.y - n.r - 4);
+              }
+            });
+
+            frame++;
+            requestAnimationFrame(loop);
+          }
+
+          resize();
+          loop();
+
+          let resizeTimer;
+          window.addEventListener("resize", () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(resize, 100);
+          });
+        })();
+      })();
+    </script>
+
+    <!-- FOOTER//////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <script>
+      (function () {
+        "use strict";
+
+        /* ══════════════════════════════════════════
+         CANVAS 1 — Particle network (background)
+      ══════════════════════════════════════════ */
+        (function () {
+          var cv = document.getElementById("bctf4-canvas-particles");
+          if (!cv) return;
+          var ctx = cv.getContext("2d");
+          var W,
+            H,
+            pts = [];
+
+          function resize() {
+            var r = cv.parentElement.getBoundingClientRect();
+            var dpr = window.devicePixelRatio || 1;
+            W = cv.width = r.width * dpr;
+            H = cv.height = r.height * dpr;
+            cv.style.width = r.width + "px";
+            cv.style.height = r.height + "px";
+            ctx.scale(dpr, dpr);
+            pts = [];
+            for (var i = 0; i < 50; i++) pts.push(mkPt(r.width, r.height));
+          }
+
+          function mkPt(w, h) {
+            return {
+              x: Math.random() * w,
+              y: Math.random() * h,
+              vx: (Math.random() - 0.5) * 0.2,
+              vy: (Math.random() - 0.5) * 0.2,
+              r: Math.random() * 1.2 + 0.3,
+              a: Math.random() * 0.2 + 0.04,
+              c: Math.random() > 0.5 ? "#00e5ff" : "#7b2fff",
+            };
+          }
+
+          function loop() {
+            var dpr = window.devicePixelRatio || 1;
+            var w = W / dpr,
+              h = H / dpr;
+            ctx.clearRect(0, 0, w, h);
+            pts.forEach(function (p, i) {
+              p.x += p.vx;
+              p.y += p.vy;
+              if (p.x < 0 || p.x > w) p.vx *= -1;
+              if (p.y < 0 || p.y > h) p.vy *= -1;
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+              ctx.fillStyle = p.c;
+              ctx.globalAlpha = p.a;
+              ctx.fill();
+              for (var j = i + 1; j < pts.length; j++) {
+                var d = Math.hypot(p.x - pts[j].x, p.y - pts[j].y);
+                if (d < 90) {
+                  ctx.beginPath();
+                  ctx.moveTo(p.x, p.y);
+                  ctx.lineTo(pts[j].x, pts[j].y);
+                  ctx.strokeStyle = p.c;
+                  ctx.globalAlpha = 0.025 * (1 - d / 90);
+                  ctx.lineWidth = 0.5;
+                  ctx.stroke();
+                }
+              }
+            });
+            ctx.globalAlpha = 1;
+            requestAnimationFrame(loop);
+          }
+
+          resize();
+          loop();
+          window.addEventListener("resize", resize);
+        })();
+
+        /* ══════════════════════════════════════════
+         CANVAS 2 — Circuit board traces (foreground layer)
+      ══════════════════════════════════════════ */
+        (function () {
+          var cv = document.getElementById("bctf4-canvas-circuit");
+          if (!cv) return;
+          var ctx = cv.getContext("2d");
+          var W,
+            H,
+            traces = [],
+            frame = 0;
+
+          function resize() {
+            var r = cv.parentElement.getBoundingClientRect();
+            var dpr = window.devicePixelRatio || 1;
+            W = cv.width = r.width * dpr;
+            H = cv.height = r.height * dpr;
+            cv.style.width = r.width + "px";
+            cv.style.height = r.height + "px";
+            ctx.scale(dpr, dpr);
+            buildTraces(r.width, r.height);
+          }
+
+          function buildTraces(w, h) {
+            traces = [];
+            var cols = Math.floor(w / 90),
+              rows = Math.floor(h / 70);
+            for (var c = 0; c < cols; c++) {
+              for (var r = 0; r < rows; r++) {
+                if (Math.random() < 0.35) {
+                  var x1 = 40 + c * 90 + Math.random() * 25;
+                  var y1 = 30 + r * 70 + Math.random() * 18;
+                  var bx = x1 + 30 + Math.random() * 35;
+                  var x2 = bx,
+                    y2 = y1 + 22 + Math.random() * 22;
+                  traces.push({
+                    x1: x1,
+                    y1: y1,
+                    bx: bx,
+                    by: y1,
+                    x2: x2,
+                    y2: y2,
+                    color:
+                      Math.random() > 0.55
+                        ? "rgba(0,229,255,"
+                        : "rgba(123,47,255,",
+                    op: 0.06 + Math.random() * 0.1,
+                    pulse: Math.random(),
+                    speed: 0.002 + Math.random() * 0.003,
+                  });
+                }
+              }
+            }
+          }
+
+          function loop() {
+            var dpr = window.devicePixelRatio || 1;
+            var w = W / dpr,
+              h = H / dpr;
+            ctx.clearRect(0, 0, w, h);
+
+            traces.forEach(function (t) {
+              /* Static trace */
+              ctx.beginPath();
+              ctx.moveTo(t.x1, t.y1);
+              ctx.lineTo(t.bx, t.by);
+              ctx.lineTo(t.x2, t.y2);
+              ctx.strokeStyle = t.color + t.op + ")";
+              ctx.lineWidth = 1.2;
+              ctx.stroke();
+
+              /* Pads */
+              [
+                [t.x1, t.y1],
+                [t.bx, t.by],
+                [t.x2, t.y2],
+              ].forEach(function (pt) {
+                ctx.beginPath();
+                ctx.arc(pt[0], pt[1], 2, 0, Math.PI * 2);
+                ctx.fillStyle = t.color + t.op * 1.6 + ")";
+                ctx.fill();
+              });
+
+              /* Travelling pulse dot */
+              t.pulse += t.speed;
+              if (t.pulse > 1) t.pulse = 0;
+              var px, py;
+              if (t.pulse < 0.5) {
+                var s = t.pulse / 0.5;
+                px = t.x1 + (t.bx - t.x1) * s;
+                py = t.y1 + (t.by - t.y1) * s;
+              } else {
+                var s2 = (t.pulse - 0.5) / 0.5;
+                px = t.bx + (t.x2 - t.bx) * s2;
+                py = t.by + (t.y2 - t.by) * s2;
+              }
+              ctx.beginPath();
+              ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+              ctx.fillStyle = "#fff";
+              ctx.globalAlpha = 0.55;
+              ctx.shadowBlur = 8;
+              ctx.shadowColor = t.color + "1)";
+              ctx.fill();
+              ctx.shadowBlur = 0;
+              ctx.globalAlpha = 1;
+            });
+
+            frame++;
+            requestAnimationFrame(loop);
+          }
+
+          resize();
+          loop();
+          window.addEventListener("resize", resize);
+        })();
+
+        /* ══════════════════════════════════════════
+         SCROLL REVEAL — columns
+      ══════════════════════════════════════════ */
+        var colObs = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("bctf4-vis");
+                colObs.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.08 }
+        );
+
+        document.querySelectorAll(".bctf4-col").forEach(function (el) {
+          colObs.observe(el);
+        });
+
+        /* ══════════════════════════════════════════
+         ANIMATED COUNT-UP — stats
+      ══════════════════════════════════════════ */
+        var statObs = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (!e.isIntersecting) return;
+              statObs.unobserve(e.target);
+              var el = e.target;
+              var target = parseFloat(el.dataset.f4Target);
+              var suffix = el.dataset.f4Suffix || "";
+              var dec = parseInt(el.dataset.f4Dec || "0");
+              var dur = 1600;
+              var t0 = performance.now();
+              (function tick(now) {
+                var p = Math.min((now - t0) / dur, 1);
+                var ease = 1 - Math.pow(1 - p, 3);
+                el.textContent = (ease * target).toFixed(dec) + suffix;
+                if (p < 1) requestAnimationFrame(tick);
+              })(performance.now());
+            });
+          },
+          { threshold: 0.5 }
+        );
+
+        document.querySelectorAll("[data-f4-target]").forEach(function (el) {
+          statObs.observe(el);
+        });
+      })();
+
+      /* ── Auto-highlight active nav link based on current page ── */
+      (function () {
+        var currentFile = window.location.pathname
+          .split("/")
+          .pop()
+          .split("?")[0]
+          .toLowerCase();
+        if (!currentFile || currentFile === "") currentFile = "index.html";
+
+        document.querySelectorAll(".bct-menu li > a").forEach(function (link) {
+          link.classList.remove("active");
+          var href = (link.getAttribute("href") || "").toLowerCase();
+          var linkFile = href.split("/").pop().split("#")[0];
+
+          if (linkFile === currentFile) {
+            link.classList.add("active");
+          }
+          /* Special case: Services page */
+          if (
+            linkFile === "service.html" &&
+            currentFile.indexOf("service") !== -1
+          ) {
+            link.classList.add("active");
+          }
+        });
+      })();
+    </script>
+    <script src="/Combained/header.js"></script>
+    <script src="/Combained/footer.js"></script>
+    <script src="companyAnimation.js"></script>
+  </body>
+</html>

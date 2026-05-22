@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact Brainchild Technologies — IoT, Embedded Systems, Mobile App, Cloud & Box Building experts based in Bangalore." />
+  <title>Contact Us — Brainchild Technologies</title>
+
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+  <!-- ============================================================
+       STYLESHEETS
+       Each file is scoped to its own section.
+       Order: base tokens → hero → info cards → form → stats → map → faq
+  ============================================================ -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/contact-info.css" />
+  <link rel="stylesheet" href="css/contact-form.css" />
+  <link rel="stylesheet" href="css/stats.css" />
+  <link rel="stylesheet" href="css/map-offices.css" />
+  <link rel="stylesheet" href="css/faq.css" />
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR PLACEHOLDER
+       
+  ============================================================ -->
+  <!-- NAVBAR_PLACEHOLDER_START -->
+
+  
+  <bct-header></bct-header>
+
+  <!-- NAVBAR_PLACEHOLDER_END -->
+
+
+  <main>
+
+    <!-- ===========================================================
+         SECTION 1: HERO
+         ID: bc-hero
+         CSS: css/hero.css
+         JS:  js/hero-animation.js
+         Canvas particle network animation on a light gradient bg.
+    =========================================================== -->
+    <section id="bc-hero" aria-label="Contact page hero">
+
+      <!-- Canvas: particle network (drawn by hero-animation.js) -->
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+      <!-- Hero content -->
+      <div class="hero-content">
+
+        <!-- Eyebrow chip -->
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          Let's Build Something Great
+        </div>
+
+        <!-- Main heading -->
+        <h1 class="hero-heading">
+          Get In <span class="hero-heading-accent">Touch</span><br />
+          With Our Team
+        </h1>
+
+        <!-- Description -->
+        <p class="hero-description">
+          Whether you have an IoT project, embedded systems challenge, a mobile
+          app idea, or need cloud &amp; box assembly expertise — we're here to help
+          turn your vision into reality.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="hero-cta-group">
+          <a href="#bc-contact-form-section" class="hero-btn-primary">
+            <!-- Arrow icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07
+                       A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.21 1.23
+                       2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0
+                       00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0
+                       006.13 6.13l1.27-1.27a2 2 0 012.11-.45
+                       12.84 12.84 0 002.81.7A2 2 0 0122 14.92z" />
+            </svg>
+            Start a Conversation
+          </a>
+          <a href="#bc-offices-section" class="hero-btn-secondary">
+            <!-- Map pin icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            Find Our Office
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll hint indicator -->
+      <!-- <div class="hero-scroll-hint" aria-hidden="true">
+        <div class="scroll-mouse"></div>
+        <span>Scroll down</span>
+      </div> -->
+
+    </section>
+    <!-- END SECTION 1: HERO -->
+
+
+    <!-- ===========================================================
+         SECTION 2: CONTACT INFO CARDS
+         ID: bc-contact-info-section
+         CSS: css/contact-info.css
+         JS:  js/info-cards.js (hover tilt + scroll reveal)
+         3 cards: Phone/Email / Address / Social Media
+    =========================================================== -->
+    <section id="bc-contact-info-section" aria-label="Contact information">
+
+      <!-- Section label & heading -->
+      <p class="ci-section-label">Contact Details</p>
+      <h2 class="ci-heading" data-reveal>Reach Us Anytime</h2>
+      <p class="ci-subheading" data-reveal data-delay="100">
+        Multiple ways to connect with the Brainchild team — pick what works best for you.
+      </p>
+
+      <!-- Cards grid -->
+      <div class="ci-cards-grid">
+
+        <!-- Card 1: Phone & Email -->
+        <div class="ci-card" data-reveal data-delay="0">
+          <div class="ci-icon-ring">
+            <!-- Phone icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0
+                       01-8.63-3.07A19.5 19.5 0 013.07 9.8
+                       19.79 19.79 0 01.21 1.23 2 2 0 012.22 0h3
+                       a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81
+                       2 2 0 01-.45 2.11L6.91 7.91a16 16 0
+                       006.13 6.13l1.27-1.27a2 2 0 012.11-.45
+                       12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
+            </svg>
+          </div>
+          <h3 class="ci-card-title">Phone &amp; Email</h3>
+          <div class="ci-card-value">
+            <a href="tel:+919845760779">+91-98457-60779</a><br />
+            <a href="mailto:info@brainchild.com">info@brainchild.com</a>
+          </div>
+        </div>
+
+        <!-- Card 2: Office Address -->
+        <div class="ci-card" data-reveal data-delay="120">
+          <div class="ci-icon-ring">
+            <!-- Location pin icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <h3 class="ci-card-title">Our Office</h3>
+          <div class="ci-card-value">
+            #20, 2nd Cross, Gowndanapalya,<br />
+            Subramaniapura Post,<br />
+            Bangalore – 560 061
+          </div>
+        </div>
+
+        <!-- Card 3: Working Hours -->
+        <div class="ci-card" data-reveal data-delay="240">
+          <div class="ci-icon-ring">
+            <!-- Clock icon -->
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3 class="ci-card-title">Working Hours</h3>
+          <div class="ci-card-value">
+            Mon – Fri: 9:00 AM – 6:00 PM<br />
+            Sat: 10:00 AM – 2:00 PM<br />
+            <small>IST (GMT+5:30)</small>
+          </div>
+        </div>
+
+        <!-- Card 4: Social Media -->
+        <div class="ci-card" data-reveal data-delay="360">
+          <div class="ci-icon-ring">
+            <!-- Share icon -->
+            <svg viewBox="0 0 24 24">
+              <circle cx="18" cy="5" r="3"/>
+              <circle cx="6" cy="12" r="3"/>
+              <circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+          </div>
+          <h3 class="ci-card-title">Follow Us</h3>
+          <div class="ci-card-value" style="margin-bottom:0.5rem;">
+            Stay updated with our latest work
+          </div>
+          <!-- Social icon row — comment out any platform you don't need -->
+          <div class="ci-social-row">
+
+            <!-- LinkedIn -->
+            <a href="#" class="ci-social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0
+                   00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                <circle cx="4" cy="4" r="2"/></svg>
+            </a>
+
+            <!-- Twitter / X -->
+            <a href="#" class="ci-social-link" aria-label="Twitter / X" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0
+                   01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66
+                   0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20
+                   0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+            </a>
+
+            <!-- Instagram -->
+            <a href="#" class="ci-social-link" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20"
+                   height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+
+            <!-- Facebook -->
+            <a href="#" class="ci-social-link" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5
+                   5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+
+            <!-- YouTube -->
+            <a href="#" class="ci-social-link" aria-label="YouTube" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78
+                   0 00-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78
+                   2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58
+                   2.78 2.78 0 001.95 1.97C5.12 20 12 20 12 20s6.88 0
+                   8.59-.45a2.78 2.78 0 001.95-1.97A29 29 0 0023 12a29
+                   29 0 00-.46-5.58z"/>
+                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+
+            <!-- GitHub -->
+            <a href="#" class="ci-social-link" aria-label="GitHub" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37
+                   3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44
+                   0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38
+                   13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0
+                   005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44
+                   7A3.37 3.37 0 009 18.13V22"/></svg>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- END SECTION 2: CONTACT INFO CARDS -->
+
+
+    <!-- ===========================================================
+         SECTION 3: STATS BAND
+         ID: bc-stats-section
+         CSS: css/stats.css
+         JS:  js/stats-counter.js (count-up animation)
+         Key company metrics shown in a dark primary-color band.
+    =========================================================== -->
+    <section id="bc-stats-section" aria-label="Company statistics">
+      <div class="stats-grid">
+
+        <div class="stat-item" data-reveal>
+          <span class="stat-number"
+                data-count="150" data-suffix="+"
+                aria-label="150+ Projects Delivered">0+</span>
+          <span class="stat-label">Projects Delivered</span>
+        </div>
+
+        <div class="stat-item" data-reveal data-delay="100">
+          <span class="stat-number"
+                data-count="8" data-suffix="+"
+                aria-label="8+ Years Experience">0+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+
+        <div class="stat-item" data-reveal data-delay="200">
+          <span class="stat-number"
+                data-count="50" data-suffix="+"
+                aria-label="50+ Happy Clients">0+</span>
+          <span class="stat-label">Happy Clients</span>
+        </div>
+
+        <div class="stat-item" data-reveal data-delay="300">
+          <span class="stat-number"
+                data-count="5" data-suffix="+"
+                aria-label="5 Domains">0</span>
+          <span class="stat-label">Tech Domains</span>
+        </div>
+
+        <div class="stat-item" data-reveal data-delay="400">
+          <span class="stat-number"
+                data-count="24" data-suffix="/7"
+                aria-label="24/7 Support">0</span>
+          <span class="stat-label">Support Available</span>
+        </div>
+
+      </div>
+    </section>
+    <!-- END SECTION 3: STATS BAND -->
+
+    <!-- ===========================================================
+         SECTION 4: CONTACT FORM
+         ID: bc-contact-form-section
+         CSS: css/contact-form.css
+         JS:  js/contact-form.js (validation, submit, floating labels)
+         Full contact form with service selector + info sidebar.
+    =========================================================== -->
+    <section id="bc-contact-form-section" aria-label="Send us a message">
+      <div class="cf-container">
+ 
+        <!-- ═══════════════════════════════════════════════════
+             LEFT INFO CARD
+             Floating tech icons injected by js/form-floating-icons.js
+             Why-us checklist fills the empty space professionally
+        ════════════════════════════════════════════════════ -->
+        <div class="cf-info-col" data-reveal>
+ 
+          <!-- Floating icons wrapper (populated by JS) -->
+          <div id="cf-float-icons" aria-hidden="true"></div>
+ 
+          <!-- All text content sits above icons via z-index -->
+          <div class="cf-info-content">
+ 
+            <!-- Eyebrow label -->
+            <span class="cf-section-label">Send a Message</span>
+ 
+            <!-- Heading -->
+            <h2 class="cf-heading">
+              Tell Us About<br />Your Project
+            </h2>
+ 
+            <!-- Description -->
+            <p class="cf-body">
+              Share your idea and our engineers will get back to you
+              within one business day with a clear plan forward.
+            </p>
+ 
+            <!-- Divider -->
+            <hr class="cf-info-divider" />
+ 
+            <!-- Why choose us — fills the empty space attractively -->
+            <ul class="cf-why-list" aria-label="Why choose Brainchild">
+ 
+              <li class="cf-why-item">
+                <span class="cf-why-icon">
+                  <svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg>
+                </span>
+                <span class="cf-why-text">
+                  <strong>End-to-End Delivery</strong> — hardware, firmware, app &amp; cloud under one roof
+                </span>
+              </li>
+ 
+              <li class="cf-why-item">
+                <span class="cf-why-icon">
+                  <svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg>
+                </span>
+                <span class="cf-why-text">
+                  <strong>8+ Years</strong> of embedded &amp; IoT product experience
+                </span>
+              </li>
+ 
+              <li class="cf-why-item">
+                <span class="cf-why-icon">
+                  <svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg>
+                </span>
+                <span class="cf-why-text">
+                  <strong>Startup to Enterprise</strong> — flexible engagement models
+                </span>
+              </li>
+ 
+              <li class="cf-why-item">
+                <span class="cf-why-icon">
+                  <svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg>
+                </span>
+                <span class="cf-why-text">
+                  <strong>Free Discovery Call</strong> — no commitment, just clarity
+                </span>
+              </li>
+ 
+              <li class="cf-why-item">
+                <span class="cf-why-icon">
+                  <svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg>
+                </span>
+                <span class="cf-why-text">
+                  <strong>Box Build &amp; Assembly</strong> — production-ready, tested units
+                </span>
+              </li>
+ 
+            </ul>
+ 
+            <!-- Divider -->
+            <hr class="cf-info-divider" />
+ 
+            <!-- Quick service tags — tap to pre-fill dropdown -->
+            <div class="cf-svc-tags">
+              <span class="svc-tag" data-value="iot">IoT Solutions</span>
+              <span class="svc-tag" data-value="embedded">Embedded Systems</span>
+              <span class="svc-tag" data-value="mobile">Mobile App</span>
+              <span class="svc-tag" data-value="cloud">Cloud Services</span>
+              <span class="svc-tag" data-value="box">Box Building &amp; Assembly</span>
+              <span class="svc-tag" data-value="other">Other</span>
+            </div>
+ 
+            <!-- Response time badge -->
+            <div class="cf-response-badge">
+              <span class="badge-dot"></span>
+              Typically responds within 24 hours
+            </div>
+ 
+          </div><!-- .cf-info-content -->
+        </div><!-- .cf-info-col -->
+ 
+ 
+        <!-- ═══════════════════════════════════════════════════
+             RIGHT FORM CARD
+             Duotone icon strip on each field (pale bg + stroke icon)
+             Heading at top, vertical scroll if content overflows
+        ════════════════════════════════════════════════════ -->
+        <div class="cf-form-col" data-reveal data-delay="150">
+ 
+          <!-- Form card heading -->
+          <h3 class="cf-form-heading">
+            <!-- Edit icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+            Fill in Your Details
+          </h3>
+ 
+          <form id="bc-contact-form" novalidate>
+            <div class="cf-form-grid">
+ 
+              <!-- First Name — person icon -->
+              <div class="cf-field">
+                <span class="cf-field-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <div class="cf-field-inner">
+                  <input type="text" name="firstname" id="cf-firstname" required autocomplete="given-name" />
+                  <label for="cf-firstname">First Name *</label>
+                </div>
+                <span class="cf-field-error" aria-live="polite"></span>
+              </div>
+ 
+              <!-- Last Name — person icon -->
+              <div class="cf-field">
+                <span class="cf-field-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <div class="cf-field-inner">
+                  <input type="text" name="lastname" id="cf-lastname" required autocomplete="family-name" />
+                  <label for="cf-lastname">Last Name *</label>
+                </div>
+                <span class="cf-field-error" aria-live="polite"></span>
+              </div>
+ 
+              <!-- Email — mail icon -->
+              <div class="cf-field cf-field-full">
+                <span class="cf-field-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </span>
+                <div class="cf-field-inner">
+                  <input type="email" name="email" id="cf-email" required autocomplete="email" />
+                  <label for="cf-email">Email Address *</label>
+                </div>
+                <span class="cf-field-error" aria-live="polite"></span>
+              </div>
+ 
+              <!-- Phone — phone icon -->
+              <div class="cf-field cf-field-full">
+                <span class="cf-field-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.21 1.23 2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.13 6.13l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                </span>
+                <div class="cf-field-inner">
+                  <input type="tel" name="phone" id="cf-phone" autocomplete="tel" />
+                  <label for="cf-phone">Phone Number</label>
+                </div>
+                <span class="cf-field-error" aria-live="polite"></span>
+              </div>
+ 
+              <!-- Company — briefcase icon -->
+              <div class="cf-field cf-field-full">
+                <span class="cf-field-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="12"/></svg>
+                </span>
+                <div class="cf-field-inner">
+                  <input type="text" name="company" id="cf-company" autocomplete="organization" />
+                  <label for="cf-company">Company / Organisation</label>
+                </div>
+                <span class="cf-field-error" aria-live="polite"></span>
+              </div>
+ 
+              <!-- Service — layers icon -->
+              <div class="cf-field cf-field-full">
+                <span class="cf-field-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                </span>
+                <div class="cf-field-inner">
+                  <select name="service" id="service-select" required>
+                    <option value="" disabled selected></option>
+                    <option value="iot">IoT Solutions</option>
+                    <option value="embedded">Embedded Systems</option>
+                    <option value="mobile">Mobile App Development</option>
+                    <option value="cloud">Cloud Services</option>
+                    <option value="box">Box Building &amp; Assembly</option>
+                    <option value="other">Other / General Enquiry</option>
+                  </select>
+                  <label for="service-select">Select a Service *</label>
+                </div>
+                <span class="cf-field-error" aria-live="polite"></span>
+              </div>
+ 
+              <!-- Message — message-square icon -->
+              <div class="cf-field cf-textarea cf-field-full">
+                <span class="cf-field-icon" aria-hidden="true" style="align-items:flex-start;padding-top:0.85rem;">
+                  <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                </span>
+                <div class="cf-field-inner">
+                  <textarea name="message" id="cf-message" required maxlength="1000" rows="4"></textarea>
+                  <label for="cf-message">Your Message *</label>
+                  <span class="cf-char-count">0 / 1000</span>
+                </div>
+                <span class="cf-field-error" aria-live="polite"></span>
+              </div>
+ 
+            </div><!-- .cf-form-grid -->
+ 
+            <!-- Submit button -->
+            <button type="submit" class="cf-submit-btn">
+              <span class="cf-btn-text">Send Message →</span>
+              <span class="cf-btn-spinner" aria-hidden="true"></span>
+            </button>
+ 
+            <!-- Success message -->
+            <div id="cf-success-msg" role="alert" aria-live="polite">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                   stroke="#2E7D32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              Thank you! We'll be in touch within one business day.
+            </div>
+ 
+            <!-- Error message -->
+            <div id="cf-error-msg" role="alert" aria-live="polite">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                   stroke="#C62828" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="15" y1="9" x2="9" y2="15"/>
+                <line x1="9" y1="9" x2="15" y2="15"/>
+              </svg>
+              Something went wrong. Please try again or email us directly.
+            </div>
+ 
+          </form>
+        </div><!-- .cf-form-col -->
+ 
+      </div>
+    </section>
+    <!-- END SECTION 4: CONTACT FORM -->
+ 
+
+
+    <!-- ===========================================================
+         SECTION 5: OFFICE MAP & LOCATIONS
+         ID: bc-offices-section
+         CSS: css/map-offices.css
+         JS:  js/map-section.js (lazy load map, future cards scan anim)
+         Current Bangalore HQ + future office expansion placeholders.
+    =========================================================== -->
+    <section id="bc-offices-section" aria-label="Office locations">
+
+      <span class="off-section-label">Our Locations</span>
+      <h2 class="off-heading" data-reveal>Where to Find Us</h2>
+      <p class="off-subtext" data-reveal data-delay="100">
+        Headquartered in Bangalore with plans to expand across India.
+      </p>
+
+      <!-- Map + address two-column layout -->
+      <div class="off-layout">
+
+        <!-- Google Maps embed (lazy-loaded via data-src) -->
+        <div id="bc-map-wrapper">
+          <iframe
+            id="bc-map-iframe"
+            data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.023!2d77.5521!3d12.9081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU0JzI5LjIiTiA3N8KwMzMnMDcuNiJF!5e0!3m2!1sen!2sin!4v1680000000000"
+            title="Brainchild Technologies Office Location"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <!-- Address card -->
+        <div class="off-address-card" data-reveal data-delay="100">
+          <span class="off-badge">
+            <!-- HQ dot -->
+            <svg width="8" height="8" viewBox="0 0 8 8">
+              <circle cx="4" cy="4" r="4" fill="currentColor"/>
+            </svg>
+            Headquarters
+          </span>
+
+          <div>
+            <p class="off-office-name">Brainchild Technologies</p>
+          </div>
+
+          <!-- Address line -->
+          <div class="off-address-line">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <p>
+              #20, 2nd Cross, Gowndanapalya,<br />
+              Subramaniapura Post,<br />
+              Bangalore – 560 061<br />
+              Karnataka, India
+            </p>
+          </div>
+
+          <!-- Phone line -->
+          <div class="off-address-line">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0
+                       01-8.63-3.07A19.5 19.5 0 013.07 9.8
+                       19.79 19.79 0 01.21 1.23 2 2 0 012.22 0h3
+                       a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81
+                       2 2 0 01-.45 2.11L6.91 7.91a16 16 0
+                       006.13 6.13l1.27-1.27a2 2 0 012.11-.45
+                       12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
+            </svg>
+            <p><a href="tel:+919845760779">+91-98457-60779</a></p>
+          </div>
+
+          <!-- Copy address button -->
+          <button id="bc-copy-address"
+                  data-address="#20, 2nd Cross, Gowndanapalya, Subramaniapura Post, Bangalore – 560 061"
+                  aria-label="Copy office address to clipboard">
+            <svg viewBox="0 0 24 24"><path d="M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2
+                 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.09 19.105 22 18 22h-8c-1.105
+                 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z"/></svg>
+            <span class="copy-label">Copy Address</span>
+          </button>
+        </div>
+
+      </div><!-- .off-layout -->
+
+      <!-- Future offices expansion section -->
+      <p class="off-future-heading" data-reveal>Expanding Soon Across India</p>
+      <div class="off-future-grid">
+
+        <!-- Future city 1 — duplicate or edit as needed -->
+        <div class="office-future-card" data-reveal data-delay="0">
+          <p class="future-city">Chennai</p>
+          <p class="future-label">Tamil Nadu</p>
+          <span class="future-coming">Coming Soon</span>
+        </div>
+
+        <!-- Future city 2 -->
+        <div class="office-future-card" data-reveal data-delay="100">
+          <p class="future-city">Hyderabad</p>
+          <p class="future-label">Telangana</p>
+          <span class="future-coming">Coming Soon</span>
+        </div>
+
+        <!-- Future city 3 -->
+        <div class="office-future-card" data-reveal data-delay="200">
+          <p class="future-city">Mumbai</p>
+          <p class="future-label">Maharashtra</p>
+          <span class="future-coming">Coming Soon</span>
+        </div>
+
+        <!-- Future city 4 -->
+        <div class="office-future-card" data-reveal data-delay="300">
+          <p class="future-city">Delhi NCR</p>
+          <p class="future-label">New Delhi</p>
+          <span class="future-coming">Coming Soon</span>
+        </div>
+
+      </div>
+
+    </section>
+    <!-- END SECTION 5: OFFICE MAP & LOCATIONS -->
+
+
+    <!-- ===========================================================
+         SECTION 6: FAQ / WHY CHOOSE BRAINCHILD
+         ID: bc-faq-section
+         CSS: css/faq.css
+         JS:  js/info-cards.js (accordion toggle)
+         Accordion answers common questions about working with us.
+    =========================================================== -->
+    <section id="bc-faq-section" aria-label="Frequently asked questions">
+      <div class="faq-container">
+
+        <span class="faq-section-label" data-reveal>FAQs</span>
+        <h2 class="faq-heading" data-reveal data-delay="80">
+          Common Questions
+        </h2>
+        <p class="faq-subtext" data-reveal data-delay="160">
+          Everything you need to know before reaching out to us.
+        </p>
+
+        <div class="faq-list" role="list">
+
+          <!-- FAQ Item 1 -->
+          <div class="faq-item" data-reveal data-delay="0" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">
+                What industries do you serve?
+              </span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                We work across Healthcare, Agriculture, Manufacturing, Retail, Smart Home / Building
+                Automation, and Industrial IoT. Our team has hands-on experience shipping products
+                in all five of our core domains — IoT, Embedded Systems, Mobile Apps, Cloud Services,
+                and Box Building &amp; Assembly.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="faq-item" data-reveal data-delay="60" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">
+                How long does a typical project take?
+              </span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                It depends on scope. A proof-of-concept embedded prototype can be ready in 4–6 weeks.
+                A full-stack IoT + mobile app product typically takes 3–6 months. We kick off every
+                engagement with a scoping call to give you an accurate timeline upfront.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="faq-item" data-reveal data-delay="120" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">
+                Do you work with startups and SMEs, or only large enterprises?
+              </span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Both! We love working with startups that need a technical co-building partner and
+                enterprises that need specialised embedded or IoT capability. We are flexible on
+                engagement models — fixed-price, T&amp;M, or retainer.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="faq-item" data-reveal data-delay="180" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">
+                Can you handle both hardware and software?
+              </span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Absolutely — that is our differentiator. From schematic design and PCB layout to
+                firmware, cloud back-end, and mobile app, we are a one-stop shop. Box building and
+                assembly services mean we can deliver you a finished, tested product, not just code.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="faq-item" data-reveal data-delay="240" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">
+                How do I get a quote?
+              </span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Simply fill in the contact form above with a brief description of your project and
+                the service area you are interested in. We will schedule a free 30-minute discovery
+                call and follow up with a detailed proposal.
+              </div>
+            </div>
+          </div>
+
+        </div><!-- .faq-list -->
+
+      </div>
+    </section>
+    <!-- END SECTION 6: FAQ -->
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER PLACEHOLDER
+       → Paste your existing footer HTML here
+  ============================================================ -->
+  <!-- FOOTER_PLACEHOLDER_START -->
+  <bct-footer></bct-footer>
+  <!-- FOOTER_PLACEHOLDER_END -->
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+       Load order: hero canvas → info cards/scroll → form → map → stats
+       Each file is scoped to its own section.
+  ============================================================ -->
+  <script src="js/navbar.js"></script>
+  <script src="js/hero-animation.js"></script>
+  <script src="js/info-cards.js"></script>
+  <script src="js/contact-form.js"></script>
+  <script src="js/map-section.js"></script>
+  <script src="js/stats-counter.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="/Combained/header.js"></script>
+  <script src="/Combained/footer.js"></script>
+ 
+
+</body>
+</html>

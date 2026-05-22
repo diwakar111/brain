@@ -1,0 +1,152 @@
+/* ═══════════════════════════════════════════════════════
+   SECTION: CTA BANNER
+   Scope: .bc-cta
+   File: css/cta-banner.css
+   Independent: YES – no dependency on other sections
+═══════════════════════════════════════════════════════ */
+
+.bc-cta {
+    --cta-bg: linear-gradient(145deg, #e0f4fa 0%, #cceeff 50%, #ddf0fb 100%);
+    --cta-border: rgba(0, 180, 216, 0.18);
+    --cta-text: #0d1b2a;
+    --cta-sub: #4a6880;
+    --cta-eyebrow: #00b4d8;
+    --cta-btn-primary-bg: #00b4d8;
+    --cta-btn-primary-text: #ffffff;
+    --cta-btn-ghost-border: rgba(0, 100, 160, 0.3);
+    --cta-btn-ghost-text: #0077b6;
+    --cta-orb: rgba(0, 180, 216, 0.15);
+    --cta-font-head: 'Syne', sans-serif;
+    --cta-font-body: 'DM Sans', sans-serif;
+  }
+  
+  .bc-cta {
+    position: relative;
+    background: var(--cta-bg);
+    border-top: 1px solid var(--cta-border);
+    border-bottom: 1px solid var(--cta-border);
+    padding: 100px 32px;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  /* ── Orb ── */
+  .bc-cta__orb {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--cta-orb) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    filter: blur(60px);
+    animation: bc-cta-pulse 6s ease-in-out infinite;
+  }
+  
+  @keyframes bc-cta-pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+  }
+  
+  /* ── Inner ── */
+  .bc-cta__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .bc-cta__inner.bc-in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* ── Eyebrow ── */
+  .bc-cta__eyebrow {
+    display: inline-block;
+    font-family: var(--cta-font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cta-eyebrow);
+    margin-bottom: 20px;
+  }
+  
+  /* ── Title ── */
+  .bc-cta__title {
+    font-family: var(--cta-font-head);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    color: var(--cta-text);
+    margin: 0 0 16px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  
+  /* ── Text ── */
+  .bc-cta__text {
+    font-family: var(--cta-font-body);
+    font-size: 1rem;
+    color: var(--cta-sub);
+    line-height: 1.7;
+    font-weight: 300;
+    margin: 0 0 40px;
+  }
+  
+  /* ── Actions ── */
+  .bc-cta__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .bc-cta__btn {
+    font-family: var(--cta-font-head);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 13px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+  
+  .bc-cta__btn--primary {
+    background: var(--cta-btn-primary-bg);
+    color: var(--cta-btn-primary-text);
+    box-shadow: 0 6px 24px rgba(0, 180, 216, 0.35);
+  }
+  
+  .bc-cta__btn--primary:hover {
+    background: #0096b7;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(0, 180, 216, 0.45);
+  }
+  
+  .bc-cta__btn--ghost {
+    background: transparent;
+    color: var(--cta-btn-ghost-text);
+    border: 1.5px solid var(--cta-btn-ghost-border);
+  }
+  
+  .bc-cta__btn--ghost:hover {
+    background: rgba(0, 180, 216, 0.07);
+    border-color: rgba(0, 120, 180, 0.5);
+    transform: translateY(-2px);
+  }
+  
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .bc-cta { padding: 70px 20px; }
+    .bc-cta__actions { flex-direction: column; gap: 12px; }
+    .bc-cta__btn { width: 100%; text-align: center; }
+  }
+  

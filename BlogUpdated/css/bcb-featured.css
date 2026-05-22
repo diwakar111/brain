@@ -1,0 +1,316 @@
+/* ============================================================
+   bcb-featured.css — FEATURED POST SECTION
+   Prefix: bcb-featured__
+   Section ID: #bcb-featured-section
+   Depends on: NOTHING (fully isolated)
+   Animations: IntersectionObserver fade-in, badge pulse, metric count-up
+   Edit this file to change: featured card layout, badge, metrics, CTA
+   ============================================================ */
+
+/* === SECTION ROOT + CSS VARIABLES === */
+.bcb-featured {
+  --bcb-ft-bg:          #f0f7ff;
+  --bcb-ft-card-bg:     #ffffff;
+  --bcb-ft-cyan:        #00b4d8;
+  --bcb-ft-purple:      #7b2fff;
+  --bcb-ft-gold:        #f4a31a;
+  --bcb-ft-text:        #0d1b2a;
+  --bcb-ft-muted:       #5a7080;
+  --bcb-ft-border:      rgba(0, 180, 216, 0.15);
+  --bcb-ft-shadow:      0 24px 64px rgba(0, 119, 182, 0.12);
+  --bcb-ft-grad-thumb:  linear-gradient(135deg, #020b18 0%, #041428 100%);
+  --bcb-ft-btn-grad:    linear-gradient(135deg, #00b4d8, #0077b6);
+  --bcb-ft-font-head:   'Syne', sans-serif;
+  --bcb-ft-font-body:   'DM Sans', sans-serif;
+
+  background: var(--bcb-ft-bg);
+  padding: 80px 24px 60px;
+}
+
+/* === CONTAINER === */
+.bcb-featured__container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* === SECTION LABEL (divider with text) === */
+.bcb-featured__label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 36px;
+  /* Starts hidden — JS adds .bcb-featured--visible */
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.bcb-featured__label.bcb-featured--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bcb-featured__label-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--bcb-ft-cyan), transparent);
+}
+.bcb-featured__label-text {
+  font-family: var(--bcb-ft-font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bcb-ft-cyan);
+  white-space: nowrap;
+}
+
+/* === FEATURED CARD === */
+.bcb-featured__card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--bcb-ft-card-bg);
+  border-radius: 20px;
+  border: 1px solid var(--bcb-ft-border);
+  box-shadow: var(--bcb-ft-shadow);
+  overflow: hidden;
+  /* Starts hidden — JS adds .bcb-featured--visible */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.bcb-featured__card.bcb-featured--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === LEFT — VISUAL / THUMBNAIL === */
+.bcb-featured__visual {
+  position: relative;
+  min-height: 380px;
+}
+
+.bcb-featured__thumb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+}
+
+.bcb-featured__thumb-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--bcb-ft-grad-thumb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Subtle grid overlay on thumbnail */
+.bcb-featured__thumb-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Floating SVG icon */
+.bcb-featured__thumb-icon {
+  position: relative;
+  z-index: 1;
+  animation: bcbFtIconFloat 5s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+@keyframes bcbFtIconFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+
+/* === RESULT BADGE (top-right of thumb) === */
+.bcb-featured__badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(5, 11, 24, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0,229,255,0.3);
+  border-radius: 30px;
+  padding: 7px 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: bcbFtBadgePulse 3s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+@keyframes bcbFtBadgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,229,255,0.3); }
+  50%       { box-shadow: 0 0 0 6px rgba(0,229,255,0); }
+}
+
+.bcb-featured__badge-icon { font-size: 1rem; }
+.bcb-featured__badge-text {
+  font-family: var(--bcb-ft-font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #00e5ff;
+}
+
+/* === CATEGORY TAG (bottom-left of thumb) === */
+.bcb-featured__cat {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  font-family: var(--bcb-ft-font-body);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 20px;
+  padding: 5px 12px;
+}
+.bcb-featured__cat--gold {
+  background: rgba(244, 163, 26, 0.15);
+  border: 1px solid rgba(244, 163, 26, 0.5);
+  color: var(--bcb-ft-gold);
+}
+
+/* === RIGHT — CONTENT === */
+.bcb-featured__content {
+  padding: 48px 48px 48px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+
+/* Meta row */
+.bcb-featured__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.bcb-featured__meta-item {
+  font-family: var(--bcb-ft-font-body);
+  font-size: 0.78rem;
+  color: var(--bcb-ft-muted);
+}
+.bcb-featured__meta-dot {
+  color: var(--bcb-ft-border);
+  font-size: 1rem;
+}
+
+/* Title */
+.bcb-featured__title {
+  font-family: var(--bcb-ft-font-head);
+  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--bcb-ft-text);
+  margin-bottom: 16px;
+}
+
+/* Description */
+.bcb-featured__desc {
+  font-family: var(--bcb-ft-font-body);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--bcb-ft-muted);
+  margin-bottom: 28px;
+}
+
+/* === METRICS ROW === */
+.bcb-featured__metrics {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 32px;
+  padding: 20px 24px;
+  background: #f4f8ff;
+  border-radius: 12px;
+  border: 1px solid var(--bcb-ft-border);
+}
+
+.bcb-featured__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.bcb-featured__metric-val {
+  font-family: var(--bcb-ft-font-head);
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--bcb-ft-cyan), var(--bcb-ft-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.bcb-featured__metric-label {
+  font-family: var(--bcb-ft-font-body);
+  font-size: 0.74rem;
+  color: var(--bcb-ft-muted);
+  font-weight: 500;
+}
+
+/* === CTA BUTTON === */
+.bcb-featured__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bcb-ft-btn-grad);
+  color: #fff;
+  font-family: var(--bcb-ft-font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 50px;
+  align-self: flex-start;
+  box-shadow: 0 8px 28px rgba(0, 180, 216, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+.bcb-featured__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(0, 180, 216, 0.45);
+  opacity: 0.92;
+}
+
+/* ============================================================
+   RESPONSIVE — Featured Section
+   ============================================================ */
+
+/* Tablet — stack vertically */
+@media (max-width: 860px) {
+  .bcb-featured__card {
+    grid-template-columns: 1fr;
+  }
+  .bcb-featured__visual,
+  .bcb-featured__thumb {
+    min-height: 260px;
+  }
+  .bcb-featured__content {
+    padding: 32px 28px;
+  }
+  .bcb-featured__metrics {
+    gap: 18px;
+    padding: 16px 18px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .bcb-featured {
+    padding: 60px 16px 40px;
+  }
+  .bcb-featured__content {
+    padding: 24px 20px;
+  }
+  .bcb-featured__metrics {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+}

@@ -1,0 +1,151 @@
+/* ============================================================
+   FILE: css/faq.css
+   SECTION: Why Choose Brainchild / FAQ — #bc-faq-section
+   PURPOSE: Accordion FAQ with smooth open/close animation.
+            Self-contained. No dependency on other section CSS.
+   ============================================================ */
+
+/* --- Section wrapper --- */
+#bc-faq-section {
+  padding: var(--bc-space-lg) 1.5rem;
+  background: linear-gradient(180deg, var(--bc-bg) 0%, #EDF3FB 100%);
+}
+
+/* --- Inner layout --- */
+.faq-container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* --- Section header --- */
+.faq-section-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bc-accent);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.faq-heading {
+  font-family: var(--bc-font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--bc-text-primary);
+  text-align: center;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.faq-subtext {
+  font-size: 0.97rem;
+  color: var(--bc-text-body);
+  text-align: center;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+/* --- Accordion list --- */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* --- Single accordion item --- */
+.faq-item {
+  background: var(--bc-surface);
+  border: 1.5px solid var(--bc-border);
+  border-radius: var(--bc-radius-md);
+  overflow: hidden;
+  transition: border-color var(--bc-transition), box-shadow var(--bc-transition);
+}
+.faq-item:hover,
+.faq-item.faq-open {
+  border-color: rgba(10,110,189,0.3);
+  box-shadow: var(--bc-shadow-sm);
+}
+
+/* --- Question trigger row --- */
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 1rem;
+}
+
+.faq-question-text {
+  font-family: var(--bc-font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--bc-text-primary);
+  line-height: 1.4;
+  transition: color var(--bc-transition);
+}
+.faq-item.faq-open .faq-question-text {
+  color: var(--bc-primary);
+}
+
+/* +/– icon */
+.faq-icon {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(10,110,189,0.08);
+  border: 1.5px solid rgba(10,110,189,0.18);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--bc-transition), transform var(--bc-transition);
+}
+.faq-icon::before,
+.faq-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--bc-primary);
+  border-radius: 2px;
+  transition: transform var(--bc-transition), opacity var(--bc-transition);
+}
+.faq-icon { position: relative; }
+.faq-icon::before { width: 12px; height: 2px; }
+.faq-icon::after  { width: 2px;  height: 12px; }
+
+.faq-item.faq-open .faq-icon {
+  background: var(--bc-primary);
+  transform: rotate(45deg);
+}
+.faq-item.faq-open .faq-icon::before,
+.faq-item.faq-open .faq-icon::after { background: #fff; }
+
+/* --- Answer panel --- */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.faq-item.faq-open .faq-answer {
+  max-height: 300px;
+}
+
+.faq-answer-inner {
+  padding: 0 1.5rem 1.4rem;
+  font-size: 0.93rem;
+  color: var(--bc-text-body);
+  line-height: 1.75;
+  border-top: 1px solid var(--bc-border);
+  padding-top: 1rem;
+}
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .faq-question { padding: 1rem 1.1rem; }
+  .faq-answer-inner { padding: 0 1.1rem 1.1rem; padding-top: 0.8rem; }
+}

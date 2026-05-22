@@ -1,0 +1,255 @@
+/* ============================================================
+   FILE: css/hero.css
+   SECTION: Hero Section — #bc-hero
+   PURPOSE: All styles for the contact page hero. Completely
+            self-contained. Does NOT depend on any other section CSS.
+   ============================================================ */
+
+/* --- Hero wrapper --- */
+#bc-hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bc-gradient-hero);
+  overflow: hidden;
+  padding: 7rem 1.5rem 5rem;
+}
+
+/* --- Canvas sits behind all content --- */
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- Decorative blur circles (background depth) --- */
+#bc-hero::before,
+#bc-hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+#bc-hero::before {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,194,199,0.12) 0%, transparent 70%);
+  top: -120px; right: -150px;
+}
+#bc-hero::after {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(10,110,189,0.10) 0%, transparent 70%);
+  bottom: -100px; left: -100px;
+}
+
+/* --- Content container inside hero --- */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  text-align: center;
+}
+
+/* --- Eyebrow chip above heading --- */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(10,110,189,0.08);
+  border: 1px solid rgba(10,110,189,0.18);
+  border-radius: var(--bc-radius-full);
+  padding: 0.4rem 1.1rem;
+  font-family: var(--bc-font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bc-primary);
+  margin-bottom: 1.5rem;
+  /* entrance animation */
+  opacity: 0;
+  transform: translateY(16px);
+  animation: heroFadeUp 0.7s 0.2s ease forwards;
+}
+
+.hero-eyebrow .eyebrow-dot {
+  width: 6px; height: 6px;
+  background: var(--bc-accent);
+  border-radius: 50%;
+  animation: eyebrowPulse 2s infinite;
+}
+
+@keyframes eyebrowPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(1.6); }
+}
+
+/* --- Main heading --- */
+.hero-heading {
+  font-family: var(--bc-font-display);
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--bc-text-primary);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 0.7s 0.38s ease forwards;
+}
+
+.hero-heading .hero-heading-accent {
+  color: var(--bc-primary);
+  position: relative;
+  display: inline-block;
+}
+
+/* Animated underline on accent word */
+.hero-heading .hero-heading-accent::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 0; height: 3px;
+  background: linear-gradient(90deg, var(--bc-primary), var(--bc-accent));
+  border-radius: 2px;
+  animation: underlineGrow 0.8s 1s ease forwards;
+}
+
+@keyframes underlineGrow {
+  to { width: 100%; }
+}
+
+/* --- Sub-description --- */
+.hero-description {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.75;
+  color: var(--bc-text-body);
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 0.7s 0.52s ease forwards;
+}
+
+/* --- CTA button group --- */
+.hero-cta-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 0.7s 0.66s ease forwards;
+}
+
+/* Primary CTA */
+.hero-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 2rem;
+  background: var(--bc-primary);
+  color: #fff;
+  font-family: var(--bc-font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--bc-radius-full);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--bc-transition), transform var(--bc-transition), box-shadow var(--bc-transition);
+  box-shadow: 0 6px 20px rgba(10,110,189,0.28);
+}
+.hero-btn-primary:hover {
+  background: var(--bc-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(10,110,189,0.36);
+}
+
+/* Secondary ghost CTA */
+.hero-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 2rem;
+  background: transparent;
+  color: var(--bc-primary);
+  font-family: var(--bc-font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 2px solid var(--bc-primary);
+  border-radius: var(--bc-radius-full);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--bc-transition);
+}
+.hero-btn-secondary:hover {
+  background: var(--bc-primary);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* --- Scroll-down indicator --- */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  opacity: 0;
+  animation: heroFadeUp 0.7s 1.1s ease forwards;
+}
+
+
+.hero-scroll-hint span {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bc-muted);
+}
+
+.scroll-mouse {
+  width: 22px; height: 34px;
+  border: 2px solid var(--bc-primary);
+  border-radius: 12px;
+  position: relative;
+}
+.scroll-mouse::after {
+  content: '';
+  position: absolute;
+  top: 5px; left: 50%;
+  transform: translateX(-50%);
+  width: 3px; height: 6px;
+  background: var(--bc-primary);
+  border-radius: 2px;
+  animation: scrollBob 1.6s ease infinite;
+}
+
+@keyframes scrollBob {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+  80%       { transform: translateX(-50%) translateY(10px); opacity: 0; }
+}
+
+/* --- Shared entrance animation --- */
+@keyframes heroFadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  #bc-hero {
+    min-height: 85vh;
+    padding: 6rem 1.25rem 4rem;
+  }
+  .hero-heading { font-size: 2rem; }
+  .hero-cta-group { flex-direction: column; align-items: center; }
+  .hero-btn-primary,
+  .hero-btn-secondary { width: 100%; justify-content: center; }
+}

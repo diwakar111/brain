@@ -1,0 +1,156 @@
+/* ============================================================
+   bcb-trust.css — WHY READ OUR BLOG (TRUST) SECTION
+   Prefix: bcb-trust__
+   Section ID: #bcb-trust-section
+   Depends on: NOTHING (fully isolated)
+   Animations: IntersectionObserver stagger card reveal,
+               icon glow pulse on hover
+   Edit this file to change: card content, icon colors, background
+   ============================================================ */
+
+/* === SECTION ROOT + CSS VARIABLES === */
+.bcb-trust {
+  --bcb-ts-bg:          #ffffff;
+  --bcb-ts-card-bg:     #f4f8ff;
+  --bcb-ts-cyan:        #00b4d8;
+  --bcb-ts-purple:      #7b2fff;
+  --bcb-ts-text:        #0d1b2a;
+  --bcb-ts-muted:       #5a7080;
+  --bcb-ts-border:      rgba(0, 180, 216, 0.12);
+  --bcb-ts-shadow:      0 4px 20px rgba(0, 119, 182, 0.07);
+  --bcb-ts-icon-grad:   linear-gradient(135deg, #00b4d8, #7b2fff);
+  --bcb-ts-font-head:   'Syne', sans-serif;
+  --bcb-ts-font-body:   'DM Sans', sans-serif;
+
+  background: var(--bcb-ts-bg);
+  padding: 80px 24px;
+}
+
+/* === CONTAINER === */
+.bcb-trust__container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* === HEADER === */
+.bcb-trust__header {
+  text-align: center;
+  margin-bottom: 52px;
+  /* Starts hidden — JS adds .bcb-ts-visible */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.bcb-trust__header.bcb-ts-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bcb-trust__title {
+  font-family: var(--bcb-ts-font-head);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  color: var(--bcb-ts-text);
+  margin-bottom: 12px;
+}
+
+.bcb-trust__subtitle {
+  font-family: var(--bcb-ts-font-body);
+  font-size: 1rem;
+  color: var(--bcb-ts-muted);
+  line-height: 1.6;
+}
+
+/* === CARDS ROW === */
+.bcb-trust__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* === INDIVIDUAL TRUST CARD === */
+.bcb-trust__card {
+  background: var(--bcb-ts-card-bg);
+  border: 1px solid var(--bcb-ts-border);
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: var(--bcb-ts-shadow);
+  text-align: center;
+  /* Starts hidden — JS adds .bcb-ts-visible (with stagger delay) */
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+.bcb-trust__card.bcb-ts-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.bcb-trust__card:hover {
+  box-shadow: 0 12px 36px rgba(0, 119, 182, 0.14);
+  border-color: rgba(0, 180, 216, 0.35);
+}
+
+/* === ICON WRAPPER === */
+.bcb-trust__card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(0, 180, 216, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--bcb-ts-cyan);
+  border: 1px solid rgba(0, 180, 216, 0.2);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.bcb-trust__card:hover .bcb-trust__card-icon {
+  background: rgba(0, 180, 216, 0.14);
+  border-color: rgba(0, 180, 216, 0.45);
+  box-shadow: 0 0 24px rgba(0, 180, 216, 0.2);
+}
+
+/* === CARD TITLE === */
+.bcb-trust__card-title {
+  font-family: var(--bcb-ts-font-head);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--bcb-ts-text);
+  margin-bottom: 10px;
+}
+
+/* === CARD DESCRIPTION === */
+.bcb-trust__card-desc {
+  font-family: var(--bcb-ts-font-body);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--bcb-ts-muted);
+}
+
+/* ============================================================
+   RESPONSIVE — Trust Section
+   ============================================================ */
+
+/* Tablet — 2 col */
+@media (max-width: 768px) {
+  .bcb-trust__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile — 1 col */
+@media (max-width: 480px) {
+  .bcb-trust {
+    padding: 60px 16px;
+  }
+  .bcb-trust__cards {
+    grid-template-columns: 1fr;
+  }
+  .bcb-trust__card {
+    padding: 24px 20px;
+  }
+}

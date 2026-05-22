@@ -1,0 +1,155 @@
+/* ═══════════════════════════════════════════════════════
+   SECTION: WHY TRUST US (Trust Cards Grid)
+   Scope: .bc-why
+   File: css/projects.css
+   Independent: YES – no dependency on other sections
+═══════════════════════════════════════════════════════ */
+
+.bc-why {
+    --why-bg: #ffffff;
+    --why-card-bg: #f7fbff;
+    --why-card-border: rgba(0, 180, 216, 0.1);
+    --why-card-hover: rgba(0, 180, 216, 0.06);
+    --why-icon-color: #00b4d8;
+    --why-icon-bg: rgba(0, 180, 216, 0.08);
+    --why-title-color: #0d1b2a;
+    --why-text-color: #4a6880;
+    --why-tag-bg: rgba(0, 180, 216, 0.07);
+    --why-tag-text: #0077b6;
+    --why-tag-border: rgba(0, 180, 216, 0.2);
+    --why-font-head: 'Syne', sans-serif;
+    --why-font-body: 'DM Sans', sans-serif;
+  }
+  
+  .bc-why {
+    background: var(--why-bg);
+    padding: 100px 32px;
+  }
+  
+  .bc-why__inner {
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+  
+  /* ── Header ── */
+  .bc-why__header {
+    text-align: center;
+    margin-bottom: 64px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .bc-why__header.bc-in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .bc-why__tag {
+    display: inline-block;
+    font-family: var(--why-font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--why-tag-text);
+    background: var(--why-tag-bg);
+    border: 1px solid var(--why-tag-border);
+    padding: 5px 16px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+  
+  .bc-why__title {
+    font-family: var(--why-font-head);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    color: var(--why-title-color);
+    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  
+  /* ── Cards Grid ── */
+  .bc-why__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  
+  .bc-why__card {
+    background: var(--why-card-bg);
+    border: 1px solid var(--why-card-border);
+    border-radius: 18px;
+    padding: 36px 28px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  
+  .bc-why__card.bc-in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .bc-why__card:hover {
+    background: var(--why-card-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 100, 160, 0.09);
+  }
+  
+  /* ── Icon ── */
+  .bc-why__card-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--why-icon-bg);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--why-icon-color);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  
+  .bc-why__card:hover .bc-why__card-icon {
+    transform: scale(1.08);
+    background: rgba(0, 180, 216, 0.14);
+  }
+  
+  .bc-why__card-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+  
+  /* ── Card Title ── */
+  .bc-why__card-title {
+    font-family: var(--why-font-head);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--why-title-color);
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+  
+  /* ── Card Text ── */
+  .bc-why__card-text {
+    font-family: var(--why-font-body);
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--why-text-color);
+    margin: 0;
+    font-weight: 300;
+  }
+  
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .bc-why__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  
+  @media (max-width: 640px) {
+    .bc-why { padding: 70px 20px; }
+    .bc-why__grid { grid-template-columns: 1fr; gap: 16px; }
+    .bc-why__card { padding: 28px 22px; }
+  }
+  

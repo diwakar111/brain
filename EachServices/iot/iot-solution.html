@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Brainchild Technologies IoT Solutions — end-to-end Internet of Things development: edge devices, sensor networks, cloud dashboards, and predictive maintenance systems." />
+  <title>IoT Solutions — Brainchild Technologies</title>
+
+  <!-- Google Fonts: Syne + DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome (already in parent project — leave if duplicate) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- ============================================================
+       SECTION CSS FILES — each scoped, independent, no global bleed
+       Load order: base tokens first, then each section
+  ============================================================ -->
+  <link rel="stylesheet" href="css/iot-base.css" />         <!-- Design tokens -->
+  <link rel="stylesheet" href="css/iot-hero.css" />         <!-- S1: Hero -->
+  <link rel="stylesheet" href="css/iot-problem.css" />      <!-- S2: Problem -->
+  <link rel="stylesheet" href="css/iot-offerings.css" />    <!-- S3: Offerings -->
+  <link rel="stylesheet" href="css/iot-industries.css" />   <!-- S4: Industries -->
+  <link rel="stylesheet" href="css/iot-process.css" />      <!-- S5: Process -->
+  <link rel="stylesheet" href="css/iot-techstack.css" />    <!-- S6: Tech Stack -->
+  <link rel="stylesheet" href="css/iot-stats.css" />        <!-- S7: Stats -->
+  <link rel="stylesheet" href="css/iot-casestudies.css" />  <!-- S8: Case Studies -->
+  <link rel="stylesheet" href="css/iot-faq-cta.css" />      <!-- S9+S10: FAQ + CTA -->
+
+<style>
+  html,body{
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+</style>
+</head>
+
+<!-- ============================================================
+     .iot-page wrapper — ALL styles are scoped inside this class.
+     Zero bleed into parent project styles.
+============================================================ -->
+<body class="iot-page">
+
+  <!-- ============================================================
+       NAVBAR PLACEHOLDER
+       → Paste your existing navbar HTML here (from service.html)
+       → Your navbar CSS/JS will not conflict — all IoT styles
+         are scoped to .iot-page children only.
+  ============================================================ -->
+  <!-- NAVBAR_START -->
+  <!-- NAVBAR_END -->
+
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SECTION 1 · HERO
+         ID: #iot-hero
+         CSS: css/iot-hero.css
+         JS:  js/iot-hero.js (canvas particle network)
+         Canvas animates IoT node network. Pauses off-screen.
+    ══════════════════════════════════════════════════════════ -->
+    <section id="iot-hero" aria-label="IoT Solutions hero">
+
+      <!-- Canvas: particle network drawn by iot-hero.js -->
+      <canvas id="iot-hero-canvas" aria-hidden="true"></canvas>
+
+      <div class="iot-hero__content">
+
+        <!-- Breadcrumb navigation -->
+        <!-- <nav class="iot-hero__breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span>›</span>
+          <a href="../service.html">Services</a>
+          <span>›</span>
+          <span style="color:var(--iot-text-h);font-weight:600;">IoT Solutions</span>
+        </nav> -->
+
+        <!-- Eyebrow chip -->
+        <div class="iot-hero__eyebrow">
+          <span class="iot-hero__eyebrow-dot"></span>
+          Internet of Things
+        </div>
+
+        <!-- Main headline -->
+        <h1 class="iot-hero__h1">
+          Connect. Monitor.<br />
+          <span class="iot-hero__h1-accent">Automate.</span>
+        </h1>
+
+        <!-- Subtext -->
+        <p class="iot-hero__sub">
+          We architect end-to-end IoT ecosystems — from intelligent edge devices
+          and sensor networks to real-time cloud dashboards. Turn your physical
+          assets into data-driven decision engines.
+        </p>
+
+        <!-- Feature pills -->
+        <div class="iot-hero__pills">
+          <span class="iot-hero__pill">Edge Computing</span>
+          <span class="iot-hero__pill">MQTT / CoAP</span>
+          <span class="iot-hero__pill">Real-Time Dashboards</span>
+          <span class="iot-hero__pill">Predictive Analytics</span>
+          <span class="iot-hero__pill">AWS &amp; Azure IoT</span>
+        </div>
+
+        <!-- CTAs -->
+        <div class="iot-hero__ctas">
+          <a href="../Contact/contact.html" class="iot-hero__btn-primary">
+            <!-- rocket icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 19V6M5 12l7-7 7 7"/>
+            </svg>
+            Book Free Consultation
+          </a>
+          <a href="#iot-offerings" class="iot-hero__btn-ghost">
+            Explore Services
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Scroll hint indicator -->
+      <div class="iot-hero__scroll" aria-hidden="true">
+        <div class="iot-hero__scroll-mouse"></div>
+        <span>Scroll</span>
+      </div>
+
+    </section>
+    <!-- END SECTION 1: HERO -->
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         SECTION 2 · PROBLEM WE SOLVE
+         ID: #iot-problem
+         CSS: css/iot-problem.css
+         JS:  js/iot-reveal.js (scroll reveal)
+         3 pain-point cards showing business problems IoT solves.
+    ══════════════════════════════════════════════════════════ -->
+    <section id="iot-problem" aria-label="Problems IoT solves">
+      <div class="iot-container">
+
+        <!-- Section header -->
+        <div class="iot-problem__header" data-iot-reveal>
+          <div class="iot-label-chip">
+            <span class="iot-chip-dot"></span>
+            The Challenge
+          </div>
+          <h2 class="iot-problem__h2">
+            Why Businesses<br /><em>Need</em> IoT Now
+          </h2>
+          <p class="iot-problem__intro">
+            Disconnected systems, manual processes, and invisible inefficiencies are
+            costing companies millions. IoT bridges the physical-digital gap.
+          </p>
+        </div>
+
+        <!-- Pain point cards -->
+        <div class="iot-problem__grid">
+
+          <!-- Pain 1: Blind Operations -->
+          <div class="iot-problem__card" data-iot-reveal data-iot-delay="0">
+            <div class="iot-problem__icon">
+              <!-- Eye-off icon -->
+              <svg viewBox="0 0 24 24">
+                <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/>
+                <path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+            </div>
+            <span class="iot-problem__card-tag">Visibility Gap</span>
+            <h3 class="iot-problem__card-title">
+              Operating Blind Without Real-Time Data
+            </h3>
+            <p class="iot-problem__card-desc">
+              Manual data collection, delayed reports, and siloed systems mean
+              decisions are made on stale information. Equipment failures go
+              undetected until they cause costly downtime.
+            </p>
+            <div class="iot-problem__solution">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              IoT sensors stream live data to unified dashboards — 24/7 visibility.
+            </div>
+          </div>
+
+          <!-- Pain 2: Manual Inefficiency -->
+          <div class="iot-problem__card" data-iot-reveal data-iot-delay="120">
+            <div class="iot-problem__icon">
+              <!-- Alert-triangle icon -->
+              <svg viewBox="0 0 24 24">
+                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <span class="iot-problem__card-tag">Operational Cost</span>
+            <h3 class="iot-problem__card-title">
+              Manual Processes Draining Productivity
+            </h3>
+            <p class="iot-problem__card-desc">
+              Repetitive manual tasks — meter readings, inventory checks, status
+              reports — consume skilled workforce time. Human error introduces
+              inaccuracies that compound across the supply chain.
+            </p>
+            <div class="iot-problem__solution">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Automated IoT workflows reduce manual intervention by up to 70%.
+            </div>
+          </div>
+
+          <!-- Pain 3: Reactive Maintenance -->
+          <div class="iot-problem__card" data-iot-reveal data-iot-delay="240">
+            <div class="iot-problem__icon">
+              <!-- Tool/wrench icon -->
+              <svg viewBox="0 0 24 24">
+                <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </div>
+            <span class="iot-problem__card-tag">Maintenance Risk</span>
+            <h3 class="iot-problem__card-title">
+              Reactive Maintenance Is Expensive
+            </h3>
+            <p class="iot-problem__card-desc">
+              Fixing equipment after it breaks costs 3–9× more than preventing
+              failures. Without predictive intelligence, factories, fleets, and
+              facilities run on luck rather than data.
+            </p>
+            <div class="iot-problem__solution">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Predictive IoT models detect anomalies weeks before failure occurs.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 2: PROBLEM -->
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         SECTION 3 · OUR OFFERINGS
+         ID: #iot-offerings
+         CSS: css/iot-offerings.css
+         JS:  js/iot-reveal.js (scroll reveal + card hover)
+         6 specific IoT service offering cards in a 3-col grid.
+    ══════════════════════════════════════════════════════════ -->
+    <section id="iot-offerings" aria-label="IoT service offerings">
+      <div class="iot-container">
+
+        <div class="iot-offerings__header" data-iot-reveal>
+          <div class="iot-label-chip">
+            <span class="iot-chip-dot"></span>
+            Our Offerings
+          </div>
+          <h2 class="iot-offerings__h2">
+            Complete IoT <span>Engineering</span> Stack
+          </h2>
+          <p class="iot-offerings__sub">
+            Every layer of the IoT stack — from silicon to cloud — delivered by
+            specialists, not generalists.
+          </p>
+        </div>
+
+        <div class="iot-offerings__grid">
+
+          <!-- Offering 1: Edge Device Design -->
+          <div class="iot-off-card" data-num="01" data-iot-reveal data-iot-delay="0">
+            <div class="iot-off-card__icon">
+              <!-- CPU/chip icon -->
+              <svg viewBox="0 0 24 24">
+                <rect x="4" y="4" width="16" height="16" rx="2"/>
+                <rect x="9" y="9" width="6" height="6"/>
+                <line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/>
+                <line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/>
+                <line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="15" x2="23" y2="15"/>
+                <line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="15" x2="4" y2="15"/>
+              </svg>
+            </div>
+            <h3 class="iot-off-card__title">Edge Device &amp; Gateway Design</h3>
+            <p class="iot-off-card__desc">
+              Custom hardware and firmware for edge nodes — from ESP32 / Raspberry
+              Pi prototypes to production-ready industrial gateways with local
+              processing and OTA update capability.
+            </p>
+            <ul class="iot-off-card__list">
+              <li>Custom PCB &amp; enclosure design</li>
+              <li>FreeRTOS / Zephyr firmware</li>
+              <li>OTA firmware update pipeline</li>
+              <li>Low-power optimisation</li>
+            </ul>
+            <a href="#" class="iot-off-card__link">
+              Learn More
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <!-- Offering 2: Sensor Networks -->
+          <div class="iot-off-card" data-num="02" data-iot-reveal data-iot-delay="80">
+            <div class="iot-off-card__icon">
+              <!-- Radio/signal icon -->
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12.55a11 11 0 0114.08 0"/>
+                <path d="M1.42 9a16 16 0 0121.16 0"/>
+                <path d="M8.53 16.11a6 6 0 016.95 0"/>
+                <circle cx="12" cy="20" r="1" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 class="iot-off-card__title">Wireless Sensor Networks</h3>
+            <p class="iot-off-card__desc">
+              Design and deployment of multi-node sensor meshes using LoRaWAN,
+              Zigbee, BLE, and Wi-Fi — covering temperature, humidity, vibration,
+              flow, pressure, and custom sensing needs.
+            </p>
+            <ul class="iot-off-card__list">
+              <li>LoRaWAN / Zigbee / BLE mesh</li>
+              <li>Multi-sensor data fusion</li>
+              <li>Sub-GHz long range networks</li>
+              <li>Solar / battery-powered nodes</li>
+            </ul>
+            <a href="#" class="iot-off-card__link">
+              Learn More
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <!-- Offering 3: Cloud IoT Backend -->
+          <div class="iot-off-card" data-num="03" data-iot-reveal data-iot-delay="160">
+            <div class="iot-off-card__icon">
+              <!-- Cloud icon -->
+              <svg viewBox="0 0 24 24">
+                <path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/>
+              </svg>
+            </div>
+            <h3 class="iot-off-card__title">Cloud IoT Backend &amp; MQTT Broker</h3>
+            <p class="iot-off-card__desc">
+              Scalable cloud backends on AWS IoT Core, Azure IoT Hub, or custom
+              MQTT brokers. Ingest millions of device messages per second with
+              guaranteed delivery, TLS security, and message routing rules.
+            </p>
+            <ul class="iot-off-card__list">
+              <li>AWS IoT Core / Azure IoT Hub</li>
+              <li>MQTT 5.0 / CoAP / AMQP</li>
+              <li>Message queuing &amp; Kafka streams</li>
+              <li>Device shadow &amp; twin management</li>
+            </ul>
+            <a href="#" class="iot-off-card__link">
+              Learn More
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <!-- Offering 4: Real-Time Dashboards -->
+          <div class="iot-off-card" data-num="04" data-iot-reveal data-iot-delay="0">
+            <div class="iot-off-card__icon">
+              <!-- Bar-chart icon -->
+              <svg viewBox="0 0 24 24">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+                <line x1="2" y1="20" x2="22" y2="20"/>
+              </svg>
+            </div>
+            <h3 class="iot-off-card__title">Real-Time Monitoring Dashboards</h3>
+            <p class="iot-off-card__desc">
+              Custom web and mobile dashboards built with Grafana, Node-RED, or
+              bespoke React apps. Live telemetry, historical trend analysis,
+              geofencing maps, and configurable alert thresholds.
+            </p>
+            <ul class="iot-off-card__list">
+              <li>Grafana / InfluxDB time-series</li>
+              <li>Geolocation &amp; asset tracking maps</li>
+              <li>Custom alert &amp; notification rules</li>
+              <li>White-label dashboard option</li>
+            </ul>
+            <a href="#" class="iot-off-card__link">
+              Learn More
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <!-- Offering 5: Predictive Maintenance -->
+          <div class="iot-off-card" data-num="05" data-iot-reveal data-iot-delay="80">
+            <div class="iot-off-card__icon">
+              <!-- Activity/waveform icon -->
+              <svg viewBox="0 0 24 24">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <h3 class="iot-off-card__title">Predictive Maintenance AI</h3>
+            <p class="iot-off-card__desc">
+              Machine learning models trained on vibration, thermal, and acoustic
+              sensor data to predict equipment failure weeks in advance. Deployed
+              at the edge for low-latency inference without cloud dependency.
+            </p>
+            <ul class="iot-off-card__list">
+              <li>Anomaly detection models</li>
+              <li>Remaining useful life (RUL) prediction</li>
+              <li>Edge inference with TensorFlow Lite</li>
+              <li>Automated maintenance work orders</li>
+            </ul>
+            <a href="#" class="iot-off-card__link">
+              Learn More
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <!-- Offering 6: IoT Security -->
+          <div class="iot-off-card" data-num="06" data-iot-reveal data-iot-delay="160">
+            <div class="iot-off-card__icon">
+              <!-- Shield icon -->
+              <svg viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="iot-off-card__title">IoT Security &amp; Device Management</h3>
+            <p class="iot-off-card__desc">
+              End-to-end security from silicon to cloud — X.509 certificate
+              provisioning, TLS 1.3 encrypted channels, secure boot, and a
+              centralised device lifecycle management platform.
+            </p>
+            <ul class="iot-off-card__list">
+              <li>X.509 PKI &amp; mutual TLS</li>
+              <li>Secure element &amp; HSM integration</li>
+              <li>Zero-trust device provisioning</li>
+              <li>Centralised fleet management</li>
+            </ul>
+            <a href="#" class="iot-off-card__link">
+              Learn More
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 3: OFFERINGS -->
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         SECTION 4 · INDUSTRIES WE SERVE
+         ID: #iot-industries
+         CSS: css/iot-industries.css
+         JS:  js/iot-industries.js (tab switching)
+         5-tab industry selector with detailed panel per industry.
+    ══════════════════════════════════════════════════════════ -->
+    <section id="iot-industries" aria-label="Industries we serve with IoT">
+      <div class="iot-container">
+
+        <div class="iot-ind__header" data-iot-reveal>
+          <div class="iot-label-chip">
+            <span class="iot-chip-dot"></span>
+            Industries
+          </div>
+          <h2 class="iot-ind__h2">IoT Across Every Sector</h2>
+          <p class="iot-ind__sub">
+            We've deployed IoT solutions across 5+ industries — each with
+            domain-specific protocols, regulations, and safety requirements.
+          </p>
+        </div>
+
+        <!-- Tab buttons -->
+        <div class="iot-ind__tabs" role="tablist" data-iot-reveal data-iot-delay="100">
+
+          <button class="iot-ind__tab" role="tab" aria-controls="iot-panel-automotive">
+            <svg viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v5"/><rect x="11" y="11" width="10" height="10" rx="2"/></svg>
+            Automotive
+          </button>
+          <button class="iot-ind__tab" role="tab" aria-controls="iot-panel-agriculture">
+            <svg viewBox="0 0 24 24"><path d="M12 22V12M12 12C12 12 7 9 7 4a5 5 0 0110 0c0 5-5 8-5 8z"/></svg>
+            Agriculture
+          </button>
+          <button class="iot-ind__tab" role="tab" aria-controls="iot-panel-healthcare">
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            Healthcare
+          </button>
+          <button class="iot-ind__tab" role="tab" aria-controls="iot-panel-manufacturing">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            Manufacturing
+          </button>
+          <button class="iot-ind__tab" role="tab" aria-controls="iot-panel-smarthome">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Smart Building
+          </button>
+
+        </div>
+
+        <!-- Industry panels -->
+        <div class="iot-ind__panels">
+
+          <!-- Panel: Automotive -->
+          <div class="iot-ind__panel" id="iot-panel-automotive" role="tabpanel">
+            <div class="iot-ind__panel-visual">
+              <svg viewBox="0 0 80 80" fill="none"><rect x="10" y="25" width="60" height="30" rx="8" stroke="currentColor" stroke-width="1.2"/><circle cx="22" cy="58" r="8" stroke="currentColor" stroke-width="1.2"/><circle cx="58" cy="58" r="8" stroke="currentColor" stroke-width="1.2"/><path d="M18 25L26 12h28l8 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><rect x="35" y="30" width="10" height="8" rx="2" fill="currentColor" opacity="0.2"/></svg>
+            </div>
+            <div class="iot-ind__panel-body">
+              <span class="iot-ind__panel-tag">Automotive IoT</span>
+              <h3 class="iot-ind__panel-title">Fleet Intelligence &amp; EV Management</h3>
+              <p class="iot-ind__panel-desc">
+                Real-time fleet telematics, driver behaviour analytics, predictive
+                maintenance for commercial vehicles, and EV charging station monitoring
+                with load balancing and remote diagnostics.
+              </p>
+              <ul class="iot-ind__panel-list">
+                <li>GPS + OBD-II telematics integration</li>
+                <li>Engine health &amp; battery state monitoring</li>
+                <li>Geofencing &amp; route optimisation</li>
+                <li>EV charging station OCPP integration</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Panel: Agriculture -->
+          <div class="iot-ind__panel" id="iot-panel-agriculture" role="tabpanel">
+            <div class="iot-ind__panel-visual">
+              <svg viewBox="0 0 80 80" fill="none"><path d="M40 70V40M40 40C40 40 20 30 20 12a20 20 0 0140 0c0 18-20 28-20 28z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="25" cy="65" r="5" stroke="currentColor" stroke-width="1.2"/><circle cx="55" cy="65" r="5" stroke="currentColor" stroke-width="1.2"/></svg>
+            </div>
+            <div class="iot-ind__panel-body">
+              <span class="iot-ind__panel-tag">AgriTech IoT</span>
+              <h3 class="iot-ind__panel-title">Precision Agriculture &amp; Smart Farming</h3>
+              <p class="iot-ind__panel-desc">
+                Soil moisture, temperature, and nutrient sensors with automated
+                irrigation control. Drone-integrated monitoring and livestock
+                health tracking for maximum yield efficiency.
+              </p>
+              <ul class="iot-ind__panel-list">
+                <li>Soil moisture &amp; NPK sensors</li>
+                <li>Automated drip irrigation control</li>
+                <li>Crop disease early-warning system</li>
+                <li>Cold storage temperature monitoring</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Panel: Healthcare -->
+          <div class="iot-ind__panel" id="iot-panel-healthcare" role="tabpanel">
+            <div class="iot-ind__panel-visual">
+              <svg viewBox="0 0 80 80" fill="none"><rect x="15" y="10" width="50" height="60" rx="6" stroke="currentColor" stroke-width="1.2"/><line x1="40" y1="28" x2="40" y2="52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="40" x2="52" y2="40" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="iot-ind__panel-body">
+              <span class="iot-ind__panel-tag">Healthcare IoT</span>
+              <h3 class="iot-ind__panel-title">Remote Patient Monitoring &amp; Asset Tracking</h3>
+              <p class="iot-ind__panel-desc">
+                Wearable vital-sign monitors, hospital asset tracking (RTLS), smart
+                medication dispensers, and environmental monitoring for ICU and
+                sterile storage compliance.
+              </p>
+              <ul class="iot-ind__panel-list">
+                <li>Wearable ECG / SpO₂ / BP monitors</li>
+                <li>RTLS for equipment &amp; patient tracking</li>
+                <li>Medication cold-chain monitoring</li>
+                <li>HIPAA-compliant data pipeline</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Panel: Manufacturing -->
+          <div class="iot-ind__panel" id="iot-panel-manufacturing" role="tabpanel">
+            <div class="iot-ind__panel-visual">
+              <svg viewBox="0 0 80 80" fill="none"><rect x="8" y="8" width="28" height="28" rx="4" stroke="currentColor" stroke-width="1.2"/><rect x="44" y="8" width="28" height="28" rx="4" stroke="currentColor" stroke-width="1.2"/><rect x="8" y="44" width="28" height="28" rx="4" stroke="currentColor" stroke-width="1.2"/><rect x="44" y="44" width="28" height="28" rx="4" stroke="currentColor" stroke-width="1.2"/></svg>
+            </div>
+            <div class="iot-ind__panel-body">
+              <span class="iot-ind__panel-tag">Industrial IoT</span>
+              <h3 class="iot-ind__panel-title">Smart Factory &amp; Production Analytics</h3>
+              <p class="iot-ind__panel-desc">
+                OEE tracking, machine health monitoring via vibration and thermal
+                imaging, automated quality control with computer vision, and
+                digital twin integration for production simulation.
+              </p>
+              <ul class="iot-ind__panel-list">
+                <li>OEE &amp; downtime tracking</li>
+                <li>Vibration &amp; thermal anomaly detection</li>
+                <li>MES / ERP / SCADA integration</li>
+                <li>Energy consumption optimisation</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Panel: Smart Building -->
+          <div class="iot-ind__panel" id="iot-panel-smarthome" role="tabpanel">
+            <div class="iot-ind__panel-visual">
+              <svg viewBox="0 0 80 80" fill="none"><path d="M10 36L40 10l30 26v34H10V36z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><rect x="30" y="50" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2"/><line x1="40" y1="50" x2="40" y2="70" stroke="currentColor" stroke-width="1.2"/></svg>
+            </div>
+            <div class="iot-ind__panel-body">
+              <span class="iot-ind__panel-tag">Smart Building IoT</span>
+              <h3 class="iot-ind__panel-title">Building Automation &amp; Energy Management</h3>
+              <p class="iot-ind__panel-desc">
+                Integrated HVAC, lighting, and access control with occupancy-driven
+                automation. Real-time energy dashboards with ASHRAE compliance
+                reporting and carbon footprint tracking.
+              </p>
+              <ul class="iot-ind__panel-list">
+                <li>HVAC &amp; lighting automation</li>
+                <li>Occupancy-based energy control</li>
+                <li>BACnet / Modbus / KNX integration</li>
+                <li>Energy audit &amp; ASHRAE reporting</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 4: INDUSTRIES -->
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         SECTION 5 · HOW WE WORK
+         ID: #iot-process
+         CSS: css/iot-process.css
+         JS:  js/iot-process.js (step activation, progress line)
+         5-step process timeline. Dark background. Animated on scroll.
+    ══════════════════════════════════════════════════════════ -->
+    <section id="iot-process" aria-label="Our IoT development process">
+      <div class="iot-container">
+
+        <div class="iot-process__header" data-iot-reveal>
+          <div class="iot-label-chip">
+            <span class="iot-chip-dot"></span>
+            Our Process
+          </div>
+          <h2 class="iot-process__h2">How We Build IoT Solutions</h2>
+          <p class="iot-process__sub">
+            A structured, low-risk methodology from concept to connected product.
+          </p>
+        </div>
+
+        <!-- Steps track with connecting progress line -->
+        <div class="iot-process__track">
+
+          <!-- Animated progress line (drawn by JS) -->
+          <div class="iot-process__progress-line" aria-hidden="true"></div>
+
+          <!-- Step 1: Discovery -->
+          <div class="iot-process__step">
+            <div class="iot-process__step-circle">
+              <span class="iot-process__step-num">01</span>
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h4 class="iot-process__step-title">Discovery &amp; Scoping</h4>
+            <p class="iot-process__step-desc">Requirement deep-dive, connectivity audit, ROI modelling</p>
+          </div>
+
+          <!-- Step 2: Architecture -->
+          <div class="iot-process__step">
+            <div class="iot-process__step-circle">
+              <span class="iot-process__step-num">02</span>
+              <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h4 class="iot-process__step-title">Architecture Design</h4>
+            <p class="iot-process__step-desc">Protocol selection, cloud topology, security model</p>
+          </div>
+
+          <!-- Step 3: Prototype -->
+          <div class="iot-process__step">
+            <div class="iot-process__step-circle">
+              <span class="iot-process__step-num">03</span>
+              <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/></svg>
+            </div>
+            <h4 class="iot-process__step-title">Hardware Prototype</h4>
+            <p class="iot-process__step-desc">PCB design, firmware, bench testing &amp; validation</p>
+          </div>
+
+          <!-- Step 4: Cloud Integration -->
+          <div class="iot-process__step">
+            <div class="iot-process__step-circle">
+              <span class="iot-process__step-num">04</span>
+              <svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
+            </div>
+            <h4 class="iot-process__step-title">Cloud &amp; Dashboard</h4>
+            <p class="iot-process__step-desc">Backend APIs, data pipeline, real-time monitoring UI</p>
+          </div>
+
+          <!-- Step 5: Deploy -->
+          <div class="iot-process__step">
+            <div class="iot-process__step-circle">
+              <span class="iot-process__step-num">05</span>
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h4 class="iot-process__step-title">Deploy &amp; Support</h4>
+            <p class="iot-process__step-desc">Field deployment, OTA updates, 24/7 monitoring</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 5: PROCESS -->
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         SECTION 6 · TECH STACK
+         ID: #iot-techstack
+         CSS: css/iot-techstack.css
+         JS:  js/iot-techstack.js (float animation, pause/resume)
+         Floating chip groups by category. Pauses off-screen.
+    ══════════════════════════════════════════════════════════ -->
+    <section id="iot-techstack" aria-label="IoT technology stack">
+      <div class="iot-container">
+
+        <div class="iot-tech__header" data-iot-reveal>
+          <div class="iot-label-chip">
+            <span class="iot-chip-dot"></span>
+            Tech Stack
+          </div>
+          <h2 class="iot-tech__h2">Technologies We Work With</h2>
+          <p class="iot-tech__sub">
+            Industry-standard tools and protocols — battle-tested across real deployments.
+          </p>
+        </div>
+
+        <!-- Hardware & Microcontrollers -->
+        <div class="iot-tech__group" data-iot-reveal>
+          <p class="iot-tech__group-label">Hardware &amp; Microcontrollers</p>
+          <div class="iot-tech__row">
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#e74c3c;"></span>ESP32 / ESP8266</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#c0392b;"></span>Raspberry Pi</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#00979D;"></span>Arduino</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#0078d4;"></span>STM32</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#555;"></span>Nordic nRF52</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#888;"></span>Custom PCB</span>
+          </div>
+        </div>
+
+        <!-- Connectivity Protocols -->
+        <div class="iot-tech__group" data-iot-reveal data-iot-delay="80">
+          <p class="iot-tech__group-label">Connectivity Protocols</p>
+          <div class="iot-tech__row">
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#6c5ce7;"></span>MQTT 5.0</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#fd79a8;"></span>CoAP</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#0984e3;"></span>LoRaWAN</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#00b894;"></span>Zigbee / Z-Wave</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#74b9ff;"></span>BLE 5.0</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#fab1a0;"></span>AMQP</span>
+          </div>
+        </div>
+
+        <!-- Cloud Platforms -->
+        <div class="iot-tech__group" data-iot-reveal data-iot-delay="160">
+          <p class="iot-tech__group-label">Cloud Platforms</p>
+          <div class="iot-tech__row">
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#FF9900;"></span>AWS IoT Core</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#0078d4;"></span>Azure IoT Hub</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#4285F4;"></span>Google Cloud IoT</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#e25822;"></span>Node-RED</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#1a73e8;"></span>Firebase</span>
+          </div>
+        </div>
+
+        <!-- Data & Visualisation -->
+        <div class="iot-tech__group" data-iot-reveal data-iot-delay="240">
+          <p class="iot-tech__group-label">Data, Storage &amp; Visualisation</p>
+          <div class="iot-tech__row">
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#F46800;"></span>InfluxDB</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#E6522C;"></span>Grafana</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#336791;"></span>TimescaleDB</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#e74c3c;"></span>Apache Kafka</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#4ea94b;"></span>MongoDB</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#3498db;"></span>Kibana / ELK</span>
+          </div>
+        </div>
+
+        <!-- RTOS & Edge -->
+        <div class="iot-tech__group" data-iot-reveal data-iot-delay="320">
+          <p class="iot-tech__group-label">RTOS &amp; Edge Frameworks</p>
+          <div class="iot-tech__row">
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#27ae60;"></span>FreeRTOS</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#2980b9;"></span>Zephyr OS</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#8e44ad;"></span>AWS Greengrass</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#16a085;"></span>Azure IoT Edge</span>
+            <span class="iot-tech__chip"><span class="iot-tech__chip-dot" style="background:#2c3e50;"></span>Docker / K3s</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- END SECTION 6: TECH STACK -->
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         SECTION 7 · STATS BAND
+         ID: #iot-stats
+         CSS: css/iot-stats.css
+         JS:  js/iot-stats.js (count-up, pause/resume)
+         Dark primary-colored stats strip. Resets on re-entry.
+    ══════════════════════════════════════════════════════════ -->
+    <section id="iot-stats" aria-label="IoT project statistics">
+      <div class="iot-container">
+        <div class="iot-stats__grid">
+
+          <div class="iot-stats__item" data-iot-reveal>
+            <span class="iot-stats__num"
+                  data-iot-count="60" data-iot-suffix="+"
+                  aria-label="60+ IoT projects">0+</span>
+            <span class="iot-stats__label">IoT Projects Shipped</span>
+          </div>
+
+          <div class="iot-stats__item" data-iot-reveal data-iot-delay="100">
+            <span class="iot-stats__num"
+                  data-iot-count="2" data-iot-suffix="M+"
+                  aria-label="2M+ messages per day">0</span>
+            <span class="iot-stats__label">Device Messages / Day</span>
+          </div>
+
+          <div class="iot-stats__item" data-iot-reveal data-iot-delay="200">
+            <span class="iot-stats__num"
+                  data-iot-count="99.9" data-iot-suffix="%" data-iot-dec="1"
+                  aria-label="99.9% uptime">0%</span>
+            <span class="iot-stats__label">Platform Uptime SLA</span>
+          </div>
+
+          <div class="iot-stats__item" data-iot-reveal data-iot-delay="300">
+            <span class="iot-stats__num"
+                  data-iot-count="8" data-iot-suffix="+"
+                  aria-label="8+ years experience">0+</span>
+            <span class="iot-stats__label">Years IoT Experience</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 7: STATS -->
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         SECTION 8 · CASE STUDIES
+         ID: #iot-casestudies
+         CSS: css/iot-casestudies.css
+         JS:  js/iot-reveal.js (scroll reveal)
+         4 IoT project cards with real metrics.
+    ══════════════════════════════════════════════════════════ -->
+    <section id="iot-casestudies" aria-label="IoT case studies">
+      <div class="iot-container">
+
+        <div class="iot-cs__header" data-iot-reveal>
+          <div class="iot-label-chip">
+            <span class="iot-chip-dot"></span>
+            Case Studies
+          </div>
+          <h2 class="iot-cs__h2">Real Projects. Measurable Results.</h2>
+          <p class="iot-cs__sub">
+            A sample of IoT systems we've designed, built, and deployed in production.
+          </p>
+        </div>
+
+        <div class="iot-cs__grid">
+
+          <!-- Case Study 1: FleetPulse -->
+          <div class="iot-cs-card" data-iot-reveal data-iot-delay="0">
+            <div class="iot-cs-card__band"></div>
+            <div class="iot-cs-card__visual">
+              <span class="iot-cs-card__industry-badge">Automotive</span>
+              <svg viewBox="0 0 64 64" fill="none"><rect x="8" y="22" width="48" height="22" rx="6" stroke="currentColor" stroke-width="1.2"/><circle cx="18" cy="48" r="6" stroke="currentColor" stroke-width="1.2"/><circle cx="46" cy="48" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M14 22L22 10h20l8 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="iot-cs-card__body">
+              <h3 class="iot-cs-card__title">FleetPulse — Commercial Vehicle Tracking System</h3>
+              <p class="iot-cs-card__desc">
+                Built an end-to-end fleet telematics platform for a logistics company with 400+
+                vehicles. OBD-II + GPS devices with 2G/4G fallback, real-time cloud dashboard,
+                driver scoring, and predictive engine health monitoring.
+              </p>
+              <div class="iot-cs-card__metrics">
+                <div class="iot-cs-metric">
+                  <span class="iot-cs-metric__num">400+</span>
+                  <span class="iot-cs-metric__label">Vehicles</span>
+                </div>
+                <div class="iot-cs-metric">
+                  <span class="iot-cs-metric__num">23%</span>
+                  <span class="iot-cs-metric__label">Fuel Saved</span>
+                </div>
+                <div class="iot-cs-metric">
+                  <span class="iot-cs-metric__num">99.5%</span>
+                  <span class="iot-cs-metric__label">Uptime</span>
+                </div>
+              </div>
+            </div>
+            <a href="#" class="iot-cs-card__link">
+              Read Case Study
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <!-- Case Study 2: ColdChain IQ -->
+          <div class="iot-cs-card iot-cs-card--alt" data-iot-reveal data-iot-delay="100">
+            <div class="iot-cs-card__band"></div>
+            <div class="iot-cs-card__visual">
+              <span class="iot-cs-card__industry-badge">Pharma / Food</span>
+              <svg viewBox="0 0 64 64" fill="none"><rect x="12" y="8" width="40" height="48" rx="4" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="24" x2="44" y2="24" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="44" y2="32" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="40" x2="36" y2="40" stroke="currentColor" stroke-width="1.2"/><path d="M32 16v-8M28 12l4-4 4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="iot-cs-card__body">
+              <h3 class="iot-cs-card__title">ColdChain IQ — Temperature-Controlled Logistics Monitor</h3>
+              <p class="iot-cs-card__desc">
+                Deployed LoRaWAN temperature / humidity nodes across a pharmaceutical cold-chain
+                network spanning 12 warehouses. Automated FSSAI compliance reports and
+                real-time SMS/email breach alerts.
+              </p>
+              <div class="iot-cs-card__metrics">
+                <div class="iot-cs-metric">
+                  <span class="iot-cs-metric__num">12</span>
+                  <span class="iot-cs-metric__label">Warehouses</span>
+                </div>
+                <div class="iot-cs-metric">
+                  <span class="iot-cs-metric__num">0</span>
+                  <span class="iot-cs-metric__label">Compliance Fails</span>
+                </div>
+                <div class="iot-cs-metric">
+                  <span class="iot-cs-metric__num">15s</span>
+                  <span class="iot-cs-metric__label">Alert Latency</span>
+                </div>
+              </div>
+            </div>
+            <a href="#" class="iot-cs-card__link">
+              Read Case Study
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <!-- Case Study 3: SmartFactory -->
+          <div class="iot-cs-card iot-cs-card--warm" data-iot-reveal data-iot-delay="200">
+            <div class="iot-cs-card__band"></div>
+            <div class="iot-cs-card__visual">
+              <span class="iot-cs-card__industry-badge">Manufacturing</span>
+              <svg viewBox="0 0 64 64" fill="none"><rect x="8" y="8" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.2"/><rect x="36" y="8" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.2"/><rect x="8" y="36" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.2"/><rect x="36" y="36" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.2"/><line x1="28" y1="18" x2="36" y2="18" stroke="currentColor" stroke-width="1"/><line x1="28" y1="46" x2="36" y2="46" stroke="currentColor" stroke-width="1"/><line x1="18" y1="28" x2="18" y2="36" stroke="currentColor" stroke-width="1"/><line x1="46" y1="28" x2="46" y2="36" stroke="currentColor" stroke-width="1"/></svg>
+            </div>
+            <div class="iot-cs-card__body">
+              <h3 class="iot-cs-card__title">SmartFactory — Production Analytics &amp; Predictive Maintenance</h3>
+              <p class="iot-cs-card__desc">
+                Instrumented a CNC machining facility with vibration, thermal, and acoustic sensors
+                on 80 machines. ML model predicts tool wear 72 hours in advance, reducing
+                unplanned downtime by 41%.
+              </p>
+              <div class="iot-cs-card__metrics">
+                <div class="iot-cs-metric">
+                  <span class="iot-cs-metric__num">80</span>
+                  <span class="iot-cs-metric__label">Machines</span>
+                </div>
+                <div class="iot-cs-metric">
+                  <span class="iot-cs-metric__num">41%</span>
+                  <span class="iot-cs-metric__label">Less Downtime</span>
+                </div>
+                <div class="iot-cs-metric">
+                  <span class="iot-cs-metric__num">72h</span>
+                  <span class="iot-cs-metric__label">Prediction Window</span>
+                </div>
+              </div>
+            </div>
+            <a href="#" class="iot-cs-card__link">
+              Read Case Study
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 8: CASE STUDIES -->
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         SECTION 9 · FAQ
+         ID: #iot-faq
+         CSS: css/iot-faq-cta.css (faq part)
+         JS:  js/iot-faq.js (accordion)
+         6 IoT-specific FAQs in a two-column layout.
+    ══════════════════════════════════════════════════════════ -->
+    <section id="iot-faq" aria-label="IoT frequently asked questions">
+      <div class="iot-container">
+        <div class="iot-faq__layout">
+
+          <!-- Left: header + contact hint -->
+          <div class="iot-faq__header" data-iot-reveal>
+            <div class="iot-label-chip" style="margin-bottom:1rem;">
+              <span class="iot-chip-dot"></span>
+              FAQ
+            </div>
+            <h2 class="iot-faq__h2">
+              Common IoT<br />Questions Answered
+            </h2>
+            <p class="iot-faq__intro">
+              Still have questions? Our IoT architects are happy to discuss
+              your specific use case on a free 30-minute call.
+            </p>
+            <a href="../Contact/contact.html" class="iot-faq__contact-hint">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.21 1.23 2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.13 6.13l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+              Talk to an IoT Architect
+            </a>
+          </div>
+
+          <!-- Right: accordion -->
+          <div class="iot-faq__list" data-iot-reveal data-iot-delay="100">
+
+            <div class="iot-faq__item">
+              <button class="iot-faq__q">
+                <span class="iot-faq__q-text">What connectivity protocol should I use for my IoT project?</span>
+                <span class="iot-faq__icon" aria-hidden="true"></span>
+              </button>
+              <div class="iot-faq__answer">
+                <div class="iot-faq__answer-inner">
+                  It depends on range, bandwidth, and power requirements. For short range + high bandwidth: Wi-Fi or BLE. For long range + low power (city scale): LoRaWAN or NB-IoT. For industrial reliability: Zigbee or Z-Wave mesh. We run a connectivity audit in our discovery phase and recommend the right protocol (or hybrid stack) for your use case.
+                </div>
+              </div>
+            </div>
+
+            <div class="iot-faq__item">
+              <button class="iot-faq__q">
+                <span class="iot-faq__q-text">How do you ensure IoT device security?</span>
+                <span class="iot-faq__icon" aria-hidden="true"></span>
+              </button>
+              <div class="iot-faq__answer">
+                <div class="iot-faq__answer-inner">
+                  Security is designed in from day one — not bolted on. We implement secure boot, X.509 certificate-based mutual TLS authentication, encrypted firmware storage, and zero-touch provisioning. Cloud-side we enforce least-privilege IAM policies, VPC isolation, and audit logging. Every deployment gets a security threat model review.
+                </div>
+              </div>
+            </div>
+
+            <div class="iot-faq__item">
+              <button class="iot-faq__q">
+                <span class="iot-faq__q-text">Can you integrate IoT with our existing ERP / SCADA systems?</span>
+                <span class="iot-faq__icon" aria-hidden="true"></span>
+              </button>
+              <div class="iot-faq__answer">
+                <div class="iot-faq__answer-inner">
+                  Yes — we have experience integrating with SAP, Oracle, Siemens SCADA, Wonderware, and custom-built ERP systems. We use standard industrial protocols (Modbus, OPC-UA, BACnet) and REST / GraphQL APIs to bridge IoT data into your existing business systems without disrupting operations.
+                </div>
+              </div>
+            </div>
+
+            <div class="iot-faq__item">
+              <button class="iot-faq__q">
+                <span class="iot-faq__q-text">What is the typical timeline for an IoT project?</span>
+                <span class="iot-faq__icon" aria-hidden="true"></span>
+              </button>
+              <div class="iot-faq__answer">
+                <div class="iot-faq__answer-inner">
+                  A proof-of-concept with 3–5 nodes and a basic dashboard: 4–6 weeks. A production-grade system with custom hardware, cloud backend, and mobile app: 3–5 months. Large-scale deployments (100+ nodes, multi-site) are typically 5–9 months. We provide a detailed milestone plan after the discovery phase.
+                </div>
+              </div>
+            </div>
+
+            <div class="iot-faq__item">
+              <button class="iot-faq__q">
+                <span class="iot-faq__q-text">Do you provide post-deployment support and OTA updates?</span>
+                <span class="iot-faq__icon" aria-hidden="true"></span>
+              </button>
+              <div class="iot-faq__answer">
+                <div class="iot-faq__answer-inner">
+                  Yes. All our deployments include an OTA (Over-The-Air) update pipeline so firmware can be rolled out to thousands of devices without physical access. We offer tiered SLA support plans — from basic monitoring to 24/7 NOC coverage — tailored to your uptime requirements.
+                </div>
+              </div>
+            </div>
+
+            <div class="iot-faq__item">
+              <button class="iot-faq__q">
+                <span class="iot-faq__q-text">Can you scale from prototype to mass production?</span>
+                <span class="iot-faq__icon" aria-hidden="true"></span>
+              </button>
+              <div class="iot-faq__answer">
+                <div class="iot-faq__answer-inner">
+                  Absolutely. Our Box Build &amp; Assembly service handles everything from prototype (5 units) to batch production (5,000+ units) — PCB manufacturing, component sourcing, assembly, burn-in testing, and logistics. We design for DFM (Design for Manufacture) from the very first prototype to avoid costly redesigns at scale.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 9: FAQ -->
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         SECTION 10 · CTA BANNER
+         ID: #iot-cta
+         CSS: css/iot-faq-cta.css (cta part)
+         JS:  js/iot-reveal.js (scroll reveal only)
+         Dark glowing CTA. Links to contact page.
+    ══════════════════════════════════════════════════════════ -->
+    <section id="iot-cta" aria-label="Contact call to action">
+      <div class="iot-container">
+        <div class="iot-cta__content" data-iot-reveal>
+
+          <div class="iot-cta__eyebrow">Ready to Connect?</div>
+
+          <h2 class="iot-cta__h2">
+            Let's Build Your<br /><span>IoT Product</span>
+          </h2>
+
+          <p class="iot-cta__text">
+            Tell us your use case — we'll scope the architecture, recommend the
+            right tech stack, and deliver a production-ready system on schedule.
+          </p>
+
+          <div class="iot-cta__actions">
+            <a href="../Contact/contact.html" class="iot-cta__btn-primary">
+              Book Free Consultation
+            </a>
+            <a href="../service.html" class="iot-cta__btn-ghost">
+              Explore All Services
+            </a>
+          </div>
+
+          <!-- Trust items below CTA -->
+          <div class="iot-cta__trust">
+            <span class="iot-cta__trust-item">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Free 30-min discovery call
+            </span>
+            <span class="iot-cta__trust-item">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              No lock-in contracts
+            </span>
+            <span class="iot-cta__trust-item">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Reply within 24 hours
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 10: CTA -->
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER PLACEHOLDER
+       → Paste your existing footer HTML here (from service.html)
+  ============================================================ -->
+  <!-- FOOTER_START -->
+  <!-- FOOTER_END -->
+
+
+  <!-- ============================================================
+       JAVASCRIPT — load order matters
+       Each file is scoped to its own section. No global conflicts.
+       iot-reveal.js runs last so all DOM is ready.
+  ============================================================ -->
+  <script src="js/iot-hero.js"></script>         <!-- S1: Canvas animation -->
+  <script src="js/iot-industries.js"></script>   <!-- S4: Tab switching -->
+  <script src="js/iot-process.js"></script>      <!-- S5: Progress line + steps -->
+  <script src="js/iot-techstack.js"></script>    <!-- S6: Float chip animation -->
+  <script src="js/iot-stats.js"></script>        <!-- S7: Count-up animation -->
+  <script src="js/iot-faq.js"></script>          <!-- S9: FAQ accordion -->
+  <script src="js/iot-reveal.js"></script>       <!-- ALL: Scroll reveal (last) -->
+
+  <script src="/Combained/header.js"></script>
+  <script src="/Combained/footer.js"></script>
+
+</body>
+</html>

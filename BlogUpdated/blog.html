@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrainChild Tech | Blog</title>
+
+  <!-- ============================================================
+       GOOGLE FONTS — Clash Display + DM Sans
+  ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" /> -->
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+  <!-- ============================================================
+       SECTION CSS FILES — each section is fully isolated
+  ============================================================ -->
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/bcb-hero.css" />
+  <link rel="stylesheet" href="css/bcb-featured.css" />
+  <link rel="stylesheet" href="css/bcb-filter.css" />
+  <link rel="stylesheet" href="css/bcb-grid.css" />
+  <link rel="stylesheet" href="css/bcb-sidebar.css" />
+  <link rel="stylesheet" href="css/bcb-trending.css" />
+  <link rel="stylesheet" href="css/bcb-trust.css" />
+  <link rel="stylesheet" href="css/bcb-cta.css" />
+  <link rel="stylesheet" href="css/bcb-footer.css" />
+
+  <!-- ============================================================
+       GLOBAL RESET — minimal, does not conflict with section CSS
+  ============================================================ -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: #f0f7ff; overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV PLACEHOLDER — Add your navbar code here
+  ============================================================ -->
+  <bct-header></bct-header>
+  <!-- END NAV PLACEHOLDER -->
+
+
+  <!-- ============================================================
+       SECTION 1 — HERO / BANNER
+       CSS: css/bcb-hero.css | JS: js/bcb-hero.js
+  ============================================================ -->
+  <section class="bcb-hero" id="bcb-hero-section" aria-label="Blog Hero">
+
+    <!-- Parallax background layer -->
+    <div class="bcb-hero__bg" aria-hidden="true">
+      <div class="bcb-hero__orb bcb-hero__orb--1"></div>
+      <div class="bcb-hero__orb bcb-hero__orb--2"></div>
+      <div class="bcb-hero__orb bcb-hero__orb--3"></div>
+      <canvas class="bcb-hero__canvas" id="bcbHeroCanvas"></canvas>
+    </div>
+
+    <!-- Hero content -->
+    <div class="bcb-hero__container">
+      <div class="bcb-hero__eyebrow">BrainChild Tech · Insights Hub</div>
+      <h1 class="bcb-hero__title">
+        Real Stories.<br />
+        <span class="bcb-hero__title--accent">Real Results.</span>
+      </h1>
+      <p class="bcb-hero__subtitle">
+        Deep dives into IoT, Embedded Systems, Cloud Architecture,<br class="bcb-hero__br" />
+        Mobile Apps & Hardware Innovation — from the team building it all.
+      </p>
+
+      <!-- Search bar -->
+      <div class="bcb-hero__search" role="search">
+        <span class="bcb-hero__search-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </span>
+        <input class="bcb-hero__search-input" type="text" placeholder="Search articles, case studies, guides…" aria-label="Search blog" id="bcbHeroSearch" />
+        <button class="bcb-hero__search-btn" aria-label="Submit search">Search</button>
+      </div>
+
+      <!-- Floating topic pills -->
+      <div class="bcb-hero__pills" aria-label="Topic categories">
+        <span class="bcb-hero__pill" data-delay="0">⚡ IoT</span>
+        <span class="bcb-hero__pill" data-delay="80">🔧 Embedded</span>
+        <span class="bcb-hero__pill" data-delay="160">☁️ Cloud</span>
+        <span class="bcb-hero__pill" data-delay="240">📱 Mobile App</span>
+        <span class="bcb-hero__pill" data-delay="320">📦 Box Assembly</span>
+        <span class="bcb-hero__pill bcb-hero__pill--gold" data-delay="400">🏆 Case Studies</span>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="bcb-hero__scroll" aria-hidden="true">
+      <span class="bcb-hero__scroll-line"></span>
+      <span class="bcb-hero__scroll-text">Scroll</span>
+    </div>
+
+  </section>
+  <!-- END SECTION 1 — HERO -->
+
+
+  <!-- ============================================================
+       SECTION 2 — FEATURED POST
+       CSS: css/bcb-featured.css | JS: js/bcb-featured.js
+  ============================================================ -->
+  <section class="bcb-featured" id="bcb-featured-section" aria-label="Featured Post">
+    <div class="bcb-featured__container">
+
+      <!-- Section label -->
+      <div class="bcb-featured__label" aria-hidden="true">
+        <span class="bcb-featured__label-line"></span>
+        <span class="bcb-featured__label-text">Featured Insight</span>
+        <span class="bcb-featured__label-line"></span>
+      </div>
+
+      <!-- Featured card -->
+      <article class="bcb-featured__card" id="bcbFeaturedCard">
+
+        <!-- Left: Illustration / Thumbnail -->
+        <div class="bcb-featured__visual">
+          <div class="bcb-featured__thumb">
+            <!-- Gradient illustration with icons -->
+            <div class="bcb-featured__thumb-bg">
+              <div class="bcb-featured__thumb-icon">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                  <rect x="8" y="20" width="48" height="30" rx="4" stroke="#00e5ff" stroke-width="2" fill="none"/>
+                  <rect x="18" y="8" width="28" height="16" rx="3" stroke="#7b2fff" stroke-width="2" fill="none"/>
+                  <circle cx="32" cy="44" r="4" fill="#00e5ff" opacity="0.8"/>
+                  <line x1="32" y1="36" x2="32" y2="28" stroke="#00e5ff" stroke-width="2"/>
+                  <circle cx="20" cy="16" r="3" fill="#7b2fff" opacity="0.6"/>
+                  <circle cx="44" cy="16" r="3" fill="#7b2fff" opacity="0.6"/>
+                </svg>
+              </div>
+              <div class="bcb-featured__thumb-grid" aria-hidden="true"></div>
+            </div>
+            <!-- Result badge -->
+            <div class="bcb-featured__badge">
+              <span class="bcb-featured__badge-icon">🚀</span>
+              <span class="bcb-featured__badge-text">+300% Uptime</span>
+            </div>
+            <!-- Category tag -->
+            <div class="bcb-featured__cat bcb-featured__cat--gold">🏆 Case Study</div>
+          </div>
+        </div>
+
+        <!-- Right: Content -->
+        <div class="bcb-featured__content">
+          <div class="bcb-featured__meta">
+            <span class="bcb-featured__meta-item">⏱️ 8 min read</span>
+            <span class="bcb-featured__meta-dot" aria-hidden="true">·</span>
+            <span class="bcb-featured__meta-item">📅 Jan 2025</span>
+            <span class="bcb-featured__meta-dot" aria-hidden="true">·</span>
+            <span class="bcb-featured__meta-item">👤 BrainChild Team</span>
+          </div>
+
+          <h2 class="bcb-featured__title">
+            How We Built an Industrial IoT Gateway That Reduced Machine Downtime by 73%
+          </h2>
+
+          <p class="bcb-featured__desc">
+            A factory was losing ₹12L/month to unplanned downtime. We deployed a custom ESP32-based IoT gateway with real-time MQTT telemetry and predictive alert logic — and changed everything.
+          </p>
+
+          <!-- Metrics row -->
+          <div class="bcb-featured__metrics">
+            <div class="bcb-featured__metric">
+              <span class="bcb-featured__metric-val">73%</span>
+              <span class="bcb-featured__metric-label">↓ Downtime</span>
+            </div>
+            <div class="bcb-featured__metric">
+              <span class="bcb-featured__metric-val">₹12L</span>
+              <span class="bcb-featured__metric-label">Saved/Month</span>
+            </div>
+            <div class="bcb-featured__metric">
+              <span class="bcb-featured__metric-val">14 Days</span>
+              <span class="bcb-featured__metric-label">Deployment</span>
+            </div>
+          </div>
+
+          <a class="bcb-featured__cta" href="#" aria-label="Read this case study">
+            Read Case Study
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+      </article>
+    </div>
+  </section>
+  <!-- END SECTION 2 — FEATURED POST -->
+
+
+  <!-- ============================================================
+       SECTION 3 — CATEGORY FILTER TABS
+       CSS: css/bcb-filter.css | JS: js/bcb-filter.js
+  ============================================================ -->
+  <section class="bcb-filter" id="bcb-filter-section" aria-label="Category Filter">
+    <div class="bcb-filter__container">
+      <div class="bcb-filter__tabs" role="tablist" aria-label="Blog categories" id="bcbFilterTabs">
+        <button class="bcb-filter__tab bcb-filter__tab--active" role="tab" data-filter="all" aria-selected="true">All Posts</button>
+        <button class="bcb-filter__tab" role="tab" data-filter="iot" aria-selected="false">⚡ IoT</button>
+        <button class="bcb-filter__tab" role="tab" data-filter="embedded" aria-selected="false">🔧 Embedded</button>
+        <button class="bcb-filter__tab" role="tab" data-filter="cloud" aria-selected="false">☁️ Cloud</button>
+        <button class="bcb-filter__tab" role="tab" data-filter="mobile" aria-selected="false">📱 Mobile App</button>
+        <button class="bcb-filter__tab" role="tab" data-filter="casestudy" aria-selected="false">🏆 Case Studies</button>
+        <button class="bcb-filter__tab" role="tab" data-filter="assembly" aria-selected="false">📦 Assembly</button>
+        <!-- Active indicator bar -->
+        <div class="bcb-filter__indicator" id="bcbFilterIndicator" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+  <!-- END SECTION 3 — CATEGORY FILTER TABS -->
+
+
+  <!-- ============================================================
+       SECTION 4 + 5 — BLOG GRID + SIDEBAR (side by side)
+       CSS: css/bcb-grid.css + css/bcb-sidebar.css
+       JS:  js/bcb-grid.js  + js/bcb-sidebar.js
+  ============================================================ -->
+  <section class="bcb-layout" id="bcb-layout-section" aria-label="Blog Content">
+    <div class="bcb-layout__container">
+
+      <!-- ── BLOG GRID (70%) ── -->
+      <main class="bcb-grid" id="bcb-grid-section" aria-label="Blog Posts Grid">
+        <div class="bcb-grid__wrapper" id="bcbGridWrapper">
+
+          <!-- CARD 1 — IoT -->
+          <article class="bcb-grid__card" data-category="iot" data-delay="0">
+            <div class="bcb-grid__thumb">
+              <div class="bcb-grid__thumb-bg bcb-grid__thumb-bg--cyan">
+                <svg class="bcb-grid__thumb-icon" viewBox="0 0 80 80" fill="none">
+                  <circle cx="40" cy="40" r="16" stroke="#00e5ff" stroke-width="2" fill="none"/>
+                  <circle cx="40" cy="40" r="6" fill="#00e5ff" opacity="0.8"/>
+                  <circle cx="14" cy="40" r="5" fill="#00e5ff" opacity="0.4"/>
+                  <circle cx="66" cy="40" r="5" fill="#00e5ff" opacity="0.4"/>
+                  <circle cx="40" cy="14" r="5" fill="#00e5ff" opacity="0.4"/>
+                  <circle cx="40" cy="66" r="5" fill="#00e5ff" opacity="0.4"/>
+                  <line x1="19" y1="40" x2="24" y2="40" stroke="#00e5ff" stroke-width="1.5"/>
+                  <line x1="56" y1="40" x2="61" y2="40" stroke="#00e5ff" stroke-width="1.5"/>
+                  <line x1="40" y1="19" x2="40" y2="24" stroke="#00e5ff" stroke-width="1.5"/>
+                  <line x1="40" y1="56" x2="40" y2="61" stroke="#00e5ff" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="bcb-grid__badge">⚡ +120% Efficiency</div>
+              <div class="bcb-grid__cat bcb-grid__cat--cyan">⚡ IoT</div>
+            </div>
+            <div class="bcb-grid__body">
+              <div class="bcb-grid__meta">
+                <span>⏱️ 6 min</span><span class="bcb-grid__dot">·</span>
+                <span>📅 Feb 2025</span><span class="bcb-grid__dot">·</span>
+                <span>👤 BrainChild Team</span>
+              </div>
+              <h3 class="bcb-grid__title">From Zero to Smart Factory: How MQTT + ESP32 Transformed a Production Line</h3>
+              <p class="bcb-grid__desc">A legacy factory floor had zero visibility. We deployed edge sensors and a real-time dashboard — cutting waste by 40% in week one.</p>
+              <a class="bcb-grid__cta" href="#">Explore Solution →</a>
+            </div>
+          </article>
+
+          <!-- CARD 2 — Cloud -->
+          <article class="bcb-grid__card" data-category="cloud" data-delay="100">
+            <div class="bcb-grid__thumb">
+              <div class="bcb-grid__thumb-bg bcb-grid__thumb-bg--purple">
+                <svg class="bcb-grid__thumb-icon" viewBox="0 0 80 80" fill="none">
+                  <path d="M56 50 C62 50 66 46 66 40 C66 34 62 30 56 30 C55 23 49 18 42 18 C35 18 29 23 28 30 C22 31 18 36 18 42 C18 47 22 50 28 50 Z" stroke="#7b2fff" stroke-width="2" fill="none"/>
+                  <line x1="32" y1="58" x2="32" y2="50" stroke="#7b2fff" stroke-width="1.5"/>
+                  <line x1="40" y1="62" x2="40" y2="50" stroke="#7b2fff" stroke-width="1.5"/>
+                  <line x1="48" y1="58" x2="48" y2="50" stroke="#7b2fff" stroke-width="1.5"/>
+                  <circle cx="32" cy="60" r="2" fill="#7b2fff" opacity="0.7"/>
+                  <circle cx="40" cy="64" r="2" fill="#7b2fff" opacity="0.7"/>
+                  <circle cx="48" cy="60" r="2" fill="#7b2fff" opacity="0.7"/>
+                </svg>
+              </div>
+              <div class="bcb-grid__badge">💰 ↓42% Cost</div>
+              <div class="bcb-grid__cat bcb-grid__cat--purple">☁️ Cloud</div>
+            </div>
+            <div class="bcb-grid__body">
+              <div class="bcb-grid__meta">
+                <span>⏱️ 7 min</span><span class="bcb-grid__dot">·</span>
+                <span>📅 Mar 2025</span><span class="bcb-grid__dot">·</span>
+                <span>👤 BrainChild Team</span>
+              </div>
+              <h3 class="bcb-grid__title">How We Reduced AWS Cloud Costs by 42% for a Fast-Growing SaaS Startup</h3>
+              <p class="bcb-grid__desc">Over-provisioned servers were burning budget. We re-architected with serverless + auto-scaling — without touching a single feature.</p>
+              <a class="bcb-grid__cta" href="#">Read Case Study →</a>
+            </div>
+          </article>
+
+          <!-- CARD 3 — Embedded -->
+          <article class="bcb-grid__card" data-category="embedded" data-delay="200">
+            <div class="bcb-grid__thumb">
+              <div class="bcb-grid__thumb-bg bcb-grid__thumb-bg--teal">
+                <svg class="bcb-grid__thumb-icon" viewBox="0 0 80 80" fill="none">
+                  <rect x="20" y="28" width="40" height="28" rx="3" stroke="#00b4d8" stroke-width="2" fill="none"/>
+                  <rect x="28" y="22" width="8" height="8" rx="1" stroke="#00b4d8" stroke-width="1.5" fill="none"/>
+                  <rect x="44" y="22" width="8" height="8" rx="1" stroke="#00b4d8" stroke-width="1.5" fill="none"/>
+                  <line x1="16" y1="36" x2="20" y2="36" stroke="#00b4d8" stroke-width="1.5"/>
+                  <line x1="16" y1="44" x2="20" y2="44" stroke="#00b4d8" stroke-width="1.5"/>
+                  <line x1="60" y1="36" x2="64" y2="36" stroke="#00b4d8" stroke-width="1.5"/>
+                  <line x1="60" y1="44" x2="64" y2="44" stroke="#00b4d8" stroke-width="1.5"/>
+                  <rect x="30" y="36" width="20" height="12" rx="2" fill="#00b4d8" opacity="0.15"/>
+                  <line x1="35" y1="42" x2="45" y2="42" stroke="#00b4d8" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="bcb-grid__badge">⚡ 2x Faster</div>
+              <div class="bcb-grid__cat bcb-grid__cat--teal">🔧 Embedded</div>
+            </div>
+            <div class="bcb-grid__body">
+              <div class="bcb-grid__meta">
+                <span>⏱️ 5 min</span><span class="bcb-grid__dot">·</span>
+                <span>📅 Dec 2024</span><span class="bcb-grid__dot">·</span>
+                <span>👤 BrainChild Team</span>
+              </div>
+              <h3 class="bcb-grid__title">RTOS vs Bare Metal: What We Learned After 50+ Embedded Projects</h3>
+              <p class="bcb-grid__desc">Choosing the right firmware approach can make or break a product. Here's our battle-tested framework for deciding what to use and when.</p>
+              <a class="bcb-grid__cta" href="#">See How We Did It →</a>
+            </div>
+          </article>
+
+          <!-- CARD 4 — Mobile -->
+          <article class="bcb-grid__card" data-category="mobile" data-delay="0">
+            <div class="bcb-grid__thumb">
+              <div class="bcb-grid__thumb-bg bcb-grid__thumb-bg--green">
+                <svg class="bcb-grid__thumb-icon" viewBox="0 0 80 80" fill="none">
+                  <rect x="27" y="14" width="26" height="46" rx="4" stroke="#06d6a0" stroke-width="2" fill="none"/>
+                  <line x1="27" y1="22" x2="53" y2="22" stroke="#06d6a0" stroke-width="1.5"/>
+                  <line x1="27" y1="54" x2="53" y2="54" stroke="#06d6a0" stroke-width="1.5"/>
+                  <circle cx="40" cy="58" r="2" fill="#06d6a0" opacity="0.7"/>
+                  <rect x="33" y="28" width="14" height="3" rx="1.5" fill="#06d6a0" opacity="0.5"/>
+                  <rect x="33" y="34" width="10" height="3" rx="1.5" fill="#06d6a0" opacity="0.3"/>
+                  <rect x="33" y="40" width="12" height="3" rx="1.5" fill="#06d6a0" opacity="0.4"/>
+                </svg>
+              </div>
+              <div class="bcb-grid__badge">🚀 14 Days MVP</div>
+              <div class="bcb-grid__cat bcb-grid__cat--green">📱 Mobile App</div>
+            </div>
+            <div class="bcb-grid__body">
+              <div class="bcb-grid__meta">
+                <span>⏱️ 6 min</span><span class="bcb-grid__dot">·</span>
+                <span>📅 Jan 2025</span><span class="bcb-grid__dot">·</span>
+                <span>👤 BrainChild Team</span>
+              </div>
+              <h3 class="bcb-grid__title">From Idea to App Store in 14 Days: Our Flutter-First Development Process</h3>
+              <p class="bcb-grid__desc">A client had a tight deadline and a bold idea. We delivered a cross-platform MVP in two weeks — live on both iOS and Android.</p>
+              <a class="bcb-grid__cta" href="#">Explore Solution →</a>
+            </div>
+          </article>
+
+          <!-- CARD 5 — Case Study (Gold) -->
+          <article class="bcb-grid__card" data-category="casestudy" data-delay="100">
+            <div class="bcb-grid__thumb">
+              <div class="bcb-grid__thumb-bg bcb-grid__thumb-bg--gold">
+                <svg class="bcb-grid__thumb-icon" viewBox="0 0 80 80" fill="none">
+                  <polygon points="40,14 52,34 70,34 56,48 62,66 40,54 18,66 24,48 10,34 28,34" stroke="#f4a31a" stroke-width="2" fill="none"/>
+                  <circle cx="40" cy="40" r="8" fill="#f4a31a" opacity="0.2"/>
+                </svg>
+              </div>
+              <div class="bcb-grid__badge bcb-grid__badge--gold">🏆 +300% Growth</div>
+              <div class="bcb-grid__cat bcb-grid__cat--gold">🏆 Case Study</div>
+            </div>
+            <div class="bcb-grid__body">
+              <div class="bcb-grid__meta">
+                <span>⏱️ 9 min</span><span class="bcb-grid__dot">·</span>
+                <span>📅 Nov 2024</span><span class="bcb-grid__dot">·</span>
+                <span>👤 BrainChild Team</span>
+              </div>
+              <h3 class="bcb-grid__title">How We Helped a Logistics Startup Scale 3x With a Custom Cloud + Mobile Stack</h3>
+              <p class="bcb-grid__desc">Manual dispatch, lost packages, unhappy clients. We rebuilt their entire ops stack — and within 6 months, they tripled fleet capacity.</p>
+              <a class="bcb-grid__cta bcb-grid__cta--gold" href="#">Read Case Study →</a>
+            </div>
+          </article>
+
+          <!-- CARD 6 — Assembly -->
+          <article class="bcb-grid__card" data-category="assembly" data-delay="200">
+            <div class="bcb-grid__thumb">
+              <div class="bcb-grid__thumb-bg bcb-grid__thumb-bg--indigo">
+                <svg class="bcb-grid__thumb-icon" viewBox="0 0 80 80" fill="none">
+                  <rect x="18" y="22" width="44" height="30" rx="3" stroke="#818cf8" stroke-width="2" fill="none"/>
+                  <rect x="24" y="28" width="12" height="18" rx="2" stroke="#818cf8" stroke-width="1.5" fill="none"/>
+                  <rect x="40" y="28" width="16" height="8" rx="2" fill="#818cf8" opacity="0.15"/>
+                  <rect x="40" y="38" width="16" height="8" rx="2" fill="#818cf8" opacity="0.1"/>
+                  <line x1="30" y1="52" x2="30" y2="58" stroke="#818cf8" stroke-width="1.5"/>
+                  <line x1="50" y1="52" x2="50" y2="58" stroke="#818cf8" stroke-width="1.5"/>
+                  <line x1="24" y1="58" x2="56" y2="58" stroke="#818cf8" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="bcb-grid__badge">📦 IPC Grade</div>
+              <div class="bcb-grid__cat bcb-grid__cat--indigo">📦 Assembly</div>
+            </div>
+            <div class="bcb-grid__body">
+              <div class="bcb-grid__meta">
+                <span>⏱️ 5 min</span><span class="bcb-grid__dot">·</span>
+                <span>📅 Oct 2024</span><span class="bcb-grid__dot">·</span>
+                <span>👤 BrainChild Team</span>
+              </div>
+              <h3 class="bcb-grid__title">Box Build Assembly: Why Quality PCB Housing Can Make or Break Your Product</h3>
+              <p class="bcb-grid__desc">Most startups overlook enclosure quality — until field failures pile up. Here's the checklist we follow for every box build delivery.</p>
+              <a class="bcb-grid__cta" href="#">See How We Did It →</a>
+            </div>
+          </article>
+
+          <!-- CARD 7 — IoT -->
+          <article class="bcb-grid__card" data-category="iot" data-delay="0">
+            <div class="bcb-grid__thumb">
+              <div class="bcb-grid__thumb-bg bcb-grid__thumb-bg--cyan">
+                <svg class="bcb-grid__thumb-icon" viewBox="0 0 80 80" fill="none">
+                  <rect x="14" y="34" width="16" height="22" rx="2" stroke="#00e5ff" stroke-width="2" fill="none"/>
+                  <rect x="32" y="24" width="16" height="32" rx="2" stroke="#00e5ff" stroke-width="2" fill="none"/>
+                  <rect x="50" y="14" width="16" height="42" rx="2" stroke="#00e5ff" stroke-width="2" fill="none"/>
+                  <line x1="14" y1="60" x2="66" y2="60" stroke="#00e5ff" stroke-width="1.5" opacity="0.5"/>
+                </svg>
+              </div>
+              <div class="bcb-grid__badge">📡 Real-Time</div>
+              <div class="bcb-grid__cat bcb-grid__cat--cyan">⚡ IoT</div>
+            </div>
+            <div class="bcb-grid__body">
+              <div class="bcb-grid__meta">
+                <span>⏱️ 4 min</span><span class="bcb-grid__dot">·</span>
+                <span>📅 Apr 2025</span><span class="bcb-grid__dot">·</span>
+                <span>👤 BrainChild Team</span>
+              </div>
+              <h3 class="bcb-grid__title">Building a Real-Time Energy Monitor With Raspberry Pi & InfluxDB</h3>
+              <p class="bcb-grid__desc">Energy visibility is the first step to savings. We built a live dashboard that helped a client cut power consumption by 28% in one month.</p>
+              <a class="bcb-grid__cta" href="#">Explore Solution →</a>
+            </div>
+          </article>
+
+          <!-- CARD 8 — Cloud -->
+          <article class="bcb-grid__card" data-category="cloud" data-delay="100">
+            <div class="bcb-grid__thumb">
+              <div class="bcb-grid__thumb-bg bcb-grid__thumb-bg--purple">
+                <svg class="bcb-grid__thumb-icon" viewBox="0 0 80 80" fill="none">
+                  <rect x="16" y="28" width="48" height="30" rx="4" stroke="#7b2fff" stroke-width="2" fill="none"/>
+                  <line x1="16" y1="38" x2="64" y2="38" stroke="#7b2fff" stroke-width="1.5"/>
+                  <circle cx="24" cy="33" r="2" fill="#7b2fff" opacity="0.6"/>
+                  <circle cx="31" cy="33" r="2" fill="#7b2fff" opacity="0.4"/>
+                  <rect x="22" y="44" width="36" height="4" rx="2" fill="#7b2fff" opacity="0.15"/>
+                  <rect x="22" y="52" width="24" height="4" rx="2" fill="#7b2fff" opacity="0.1"/>
+                </svg>
+              </div>
+              <div class="bcb-grid__badge">☁️ Zero Downtime</div>
+              <div class="bcb-grid__cat bcb-grid__cat--purple">☁️ Cloud</div>
+            </div>
+            <div class="bcb-grid__body">
+              <div class="bcb-grid__meta">
+                <span>⏱️ 6 min</span><span class="bcb-grid__dot">·</span>
+                <span>📅 Mar 2025</span><span class="bcb-grid__dot">·</span>
+                <span>👤 BrainChild Team</span>
+              </div>
+              <h3 class="bcb-grid__title">Zero-Downtime Deployments: How We Set Up CI/CD for a 24/7 Industrial Platform</h3>
+              <p class="bcb-grid__desc">Industrial systems cannot afford downtime windows. We built a blue-green deployment pipeline that ships code without stopping the line.</p>
+              <a class="bcb-grid__cta" href="#">See How We Did It →</a>
+            </div>
+          </article>
+
+          <!-- CARD 9 — Embedded -->
+          <article class="bcb-grid__card" data-category="embedded" data-delay="200">
+            <div class="bcb-grid__thumb">
+              <div class="bcb-grid__thumb-bg bcb-grid__thumb-bg--teal">
+                <svg class="bcb-grid__thumb-icon" viewBox="0 0 80 80" fill="none">
+                  <path d="M20 50 L20 30 L40 18 L60 30 L60 50 L40 62 Z" stroke="#00b4d8" stroke-width="2" fill="none"/>
+                  <circle cx="40" cy="40" r="8" stroke="#00b4d8" stroke-width="1.5" fill="none"/>
+                  <circle cx="40" cy="40" r="3" fill="#00b4d8" opacity="0.7"/>
+                </svg>
+              </div>
+              <div class="bcb-grid__badge">🔧 Production Ready</div>
+              <div class="bcb-grid__cat bcb-grid__cat--teal">🔧 Embedded</div>
+            </div>
+            <div class="bcb-grid__body">
+              <div class="bcb-grid__meta">
+                <span>⏱️ 7 min</span><span class="bcb-grid__dot">·</span>
+                <span>📅 Feb 2025</span><span class="bcb-grid__dot">·</span>
+                <span>👤 BrainChild Team</span>
+              </div>
+              <h3 class="bcb-grid__title">How We Designed a Custom PCB for Harsh Industrial Environments (IP67 Ready)</h3>
+              <p class="bcb-grid__desc">Dust, moisture, vibration — our client's product had to survive all of it. Here's the full design and validation process we followed.</p>
+              <a class="bcb-grid__cta" href="#">Explore Solution →</a>
+            </div>
+          </article>
+
+        </div><!-- end bcb-grid__wrapper -->
+
+        <!-- Load more -->
+        <div class="bcb-grid__loadmore">
+          <button class="bcb-grid__loadmore-btn" id="bcbLoadMore" aria-label="Load more articles">
+            Load More Articles
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+        </div>
+
+      </main>
+      <!-- END BLOG GRID -->
+
+
+      <!-- ── SIDEBAR (30%) ── -->
+      <aside class="bcb-sidebar" id="bcb-sidebar-section" aria-label="Blog Sidebar">
+
+        <!-- Newsletter Subscribe -->
+        <div class="bcb-sidebar__widget bcb-sidebar__newsletter" id="bcbNewsletterWidget">
+          <div class="bcb-sidebar__widget-icon" aria-hidden="true">✉️</div>
+          <h3 class="bcb-sidebar__widget-title">Get Insights Weekly</h3>
+          <p class="bcb-sidebar__widget-desc">Real project stories, tech deep dives — no spam.</p>
+          <div class="bcb-sidebar__newsletter-form">
+            <input class="bcb-sidebar__newsletter-input" type="email" placeholder="you@company.com" aria-label="Email for newsletter" id="bcbNewsletterEmail" />
+            <button class="bcb-sidebar__newsletter-btn" id="bcbNewsletterBtn" aria-label="Subscribe">Subscribe →</button>
+          </div>
+          <p class="bcb-sidebar__newsletter-note" id="bcbNewsletterMsg" aria-live="polite"></p>
+        </div>
+
+        <!-- Tech Stats -->
+        <div class="bcb-sidebar__widget bcb-sidebar__stats" id="bcbStatsWidget">
+          <h3 class="bcb-sidebar__widget-title">Our Track Record</h3>
+          <div class="bcb-sidebar__stats-grid">
+            <div class="bcb-sidebar__stat">
+              <span class="bcb-sidebar__stat-val" data-target="50">0</span><span class="bcb-sidebar__stat-suffix">+</span>
+              <span class="bcb-sidebar__stat-label">Projects Shipped</span>
+            </div>
+            <div class="bcb-sidebar__stat">
+              <span class="bcb-sidebar__stat-val" data-target="5">0</span>
+              <span class="bcb-sidebar__stat-label">Tech Domains</span>
+            </div>
+            <div class="bcb-sidebar__stat">
+              <span class="bcb-sidebar__stat-val" data-target="98">0</span><span class="bcb-sidebar__stat-suffix">%</span>
+              <span class="bcb-sidebar__stat-label">Client Satisfaction</span>
+            </div>
+            <div class="bcb-sidebar__stat">
+              <span class="bcb-sidebar__stat-val" data-target="3">0</span><span class="bcb-sidebar__stat-suffix">yr</span>
+              <span class="bcb-sidebar__stat-label">Experience</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Posts -->
+        <div class="bcb-sidebar__widget bcb-sidebar__recent" id="bcbRecentWidget">
+          <h3 class="bcb-sidebar__widget-title">Recent Posts</h3>
+          <ul class="bcb-sidebar__recent-list" aria-label="Recent blog posts">
+            <li class="bcb-sidebar__recent-item">
+              <div class="bcb-sidebar__recent-thumb bcb-sidebar__recent-thumb--cyan"></div>
+              <div class="bcb-sidebar__recent-info">
+                <a class="bcb-sidebar__recent-title" href="#">MQTT vs WebSocket for IoT: What We Use and Why</a>
+                <span class="bcb-sidebar__recent-date">Apr 2025 · 4 min</span>
+              </div>
+            </li>
+            <li class="bcb-sidebar__recent-item">
+              <div class="bcb-sidebar__recent-thumb bcb-sidebar__recent-thumb--purple"></div>
+              <div class="bcb-sidebar__recent-info">
+                <a class="bcb-sidebar__recent-title" href="#">Serverless Architecture: Pros, Cons & When to Avoid It</a>
+                <span class="bcb-sidebar__recent-date">Mar 2025 · 5 min</span>
+              </div>
+            </li>
+            <li class="bcb-sidebar__recent-item">
+              <div class="bcb-sidebar__recent-thumb bcb-sidebar__recent-thumb--gold"></div>
+              <div class="bcb-sidebar__recent-info">
+                <a class="bcb-sidebar__recent-title" href="#">Case Study: Smart Parking System Built in 3 Weeks</a>
+                <span class="bcb-sidebar__recent-date">Feb 2025 · 8 min</span>
+              </div>
+            </li>
+            <li class="bcb-sidebar__recent-item">
+              <div class="bcb-sidebar__recent-thumb bcb-sidebar__recent-thumb--green"></div>
+              <div class="bcb-sidebar__recent-info">
+                <a class="bcb-sidebar__recent-title" href="#">Flutter vs React Native: Our Honest 2025 Take</a>
+                <span class="bcb-sidebar__recent-date">Jan 2025 · 6 min</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Popular Tags -->
+        <div class="bcb-sidebar__widget bcb-sidebar__tags" id="bcbTagsWidget">
+          <h3 class="bcb-sidebar__widget-title">Popular Tags</h3>
+          <div class="bcb-sidebar__tags-cloud" aria-label="Popular tags">
+            <a class="bcb-sidebar__tag" href="#">ESP32</a>
+            <a class="bcb-sidebar__tag" href="#">MQTT</a>
+            <a class="bcb-sidebar__tag" href="#">AWS Lambda</a>
+            <a class="bcb-sidebar__tag" href="#">Flutter</a>
+            <a class="bcb-sidebar__tag" href="#">RTOS</a>
+            <a class="bcb-sidebar__tag" href="#">Docker</a>
+            <a class="bcb-sidebar__tag" href="#">Raspberry Pi</a>
+            <a class="bcb-sidebar__tag" href="#">PCB Design</a>
+            <a class="bcb-sidebar__tag" href="#">CI/CD</a>
+            <a class="bcb-sidebar__tag" href="#">InfluxDB</a>
+            <a class="bcb-sidebar__tag" href="#">IP67</a>
+            <a class="bcb-sidebar__tag" href="#">Dart</a>
+          </div>
+        </div>
+
+      </aside>
+      <!-- END SIDEBAR -->
+
+    </div>
+  </section>
+  <!-- END SECTION 4+5 — GRID + SIDEBAR -->
+
+
+  <!-- ============================================================
+       SECTION 6 — TRENDING TOPICS MARQUEE
+       CSS: css/bcb-trending.css | JS: js/bcb-trending.js
+  ============================================================ -->
+  <section class="bcb-trending" id="bcb-trending-section" aria-label="Trending Topics">
+    <div class="bcb-trending__label" aria-hidden="true">Trending →</div>
+    <div class="bcb-trending__track-wrap" aria-hidden="true">
+      <div class="bcb-trending__track" id="bcbTrendingTrack">
+        <!-- Items duplicated for seamless loop — done by JS -->
+        <span class="bcb-trending__item">⚡ IoT Gateway</span>
+        <span class="bcb-trending__item">🔧 RTOS Firmware</span>
+        <span class="bcb-trending__item">☁️ AWS Lambda</span>
+        <span class="bcb-trending__item">📱 Flutter Dev</span>
+        <span class="bcb-trending__item">📦 Box Assembly</span>
+        <span class="bcb-trending__item">📡 ESP32</span>
+        <span class="bcb-trending__item">🗄️ Docker Compose</span>
+        <span class="bcb-trending__item">🔋 Raspberry Pi</span>
+        <span class="bcb-trending__item">📊 InfluxDB</span>
+        <span class="bcb-trending__item">🌐 MQTT Protocol</span>
+        <span class="bcb-trending__item">⚙️ PCB Design</span>
+        <span class="bcb-trending__item">🚀 CI/CD Pipeline</span>
+      </div>
+    </div>
+  </section>
+  <!-- END SECTION 6 — TRENDING TOPICS -->
+
+
+  <!-- ============================================================
+       SECTION 7 — WHY READ OUR BLOG (Trust Section)
+       CSS: css/bcb-trust.css | JS: js/bcb-trust.js
+  ============================================================ -->
+  <section class="bcb-trust" id="bcb-trust-section" aria-label="Why Read Our Blog">
+    <div class="bcb-trust__container">
+
+      <div class="bcb-trust__header">
+        <h2 class="bcb-trust__title">Not Just Another Tech Blog</h2>
+        <p class="bcb-trust__subtitle">Every article comes from real client work — not theory.</p>
+      </div>
+
+      <div class="bcb-trust__cards">
+
+        <div class="bcb-trust__card" data-delay="0">
+          <div class="bcb-trust__card-icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
+              <path d="M12 18l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="bcb-trust__card-title">Expert Authors</h3>
+          <p class="bcb-trust__card-desc">Written by engineers who've shipped real IoT, embedded, cloud and mobile products — not content marketers.</p>
+        </div>
+
+        <div class="bcb-trust__card" data-delay="120">
+          <div class="bcb-trust__card-icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <rect x="6" y="8" width="24" height="20" rx="3" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
+              <line x1="10" y1="14" x2="26" y2="14" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="10" y1="19" x2="22" y2="19" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="10" y1="24" x2="18" y2="24" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <h3 class="bcb-trust__card-title">Real Project Insights</h3>
+          <p class="bcb-trust__card-desc">Every post pulls from actual client projects — with real numbers, real challenges, and what we actually did to solve them.</p>
+        </div>
+
+        <div class="bcb-trust__card" data-delay="240">
+          <div class="bcb-trust__card-icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <polygon points="18,4 22,14 33,14 24,21 27,31 18,25 9,31 12,21 3,14 14,14" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
+              <circle cx="18" cy="18" r="4" fill="currentColor" opacity="0.5"/>
+            </svg>
+          </div>
+          <h3 class="bcb-trust__card-title">Actionable Takeaways</h3>
+          <p class="bcb-trust__card-desc">No fluff. Each article ends with frameworks, checklists or decision guides you can apply to your own project immediately.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- END SECTION 7 — TRUST -->
+
+
+  <!-- ============================================================
+       SECTION 8 — CTA BANNER
+       CSS: css/bcb-cta.css | JS: js/bcb-cta.js
+  ============================================================ -->
+  <section class="bcb-cta" id="bcb-cta-section" aria-label="Call to Action">
+    <div class="bcb-cta__bg" aria-hidden="true">
+      <div class="bcb-cta__orb bcb-cta__orb--1"></div>
+      <div class="bcb-cta__orb bcb-cta__orb--2"></div>
+    </div>
+    <div class="bcb-cta__container">
+      <div class="bcb-cta__eyebrow" aria-hidden="true">Let's Build Together</div>
+      <h2 class="bcb-cta__title">Have a Project in Mind?</h2>
+      <p class="bcb-cta__subtitle">
+        Whether it's an IoT device, embedded firmware, cloud platform or mobile app —<br class="bcb-cta__br" />
+        we've built it before and we'd love to build yours.
+      </p>
+      <div class="bcb-cta__actions">
+        <a class="bcb-cta__btn bcb-cta__btn--primary" href="#" aria-label="Talk to our team">
+          Talk to Us →
+        </a>
+        <a class="bcb-cta__btn bcb-cta__btn--outline" href="#" aria-label="View our services">
+          View Our Services
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- END SECTION 8 — CTA BANNER -->
+
+
+  <!-- ============================================================
+       FOOTER PLACEHOLDER — Add your footer code here
+  ============================================================ -->
+  <bct-footer></bct-footer>
+  <!-- END FOOTER PLACEHOLDER -->
+
+
+  <!-- ============================================================
+       SECTION JS FILES — loaded in order, each fully isolated
+  ============================================================ -->
+  <script src="js/bcb-hero.js"></script>
+  <script src="js/bcb-hero-bg-anim.js"></script>
+  <script src="js/bcb-featured.js"></script>
+  <script src="js/bcb-filter.js"></script>
+  <script src="js/bcb-grid.js"></script>
+  <script src="js/bcb-sidebar.js"></script>
+  <script src="js/bcb-trending.js"></script>
+  <script src="js/bcb-trust.js"></script>
+  <script src="js/bcb-cta.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/bcb-footer.js"></script>
+  <script src="js/bcb-animations.js"></script>
+
+  <script src="/Combained/header.js"></script>
+  <script src="/Combained/footer.js"></script>
+
+</body>
+</html>

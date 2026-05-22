@@ -1,0 +1,127 @@
+/* ============================================================
+   FILE: css/iot-base.css
+   PAGE: IoT Solutions — services/iot-solution.html
+   PURPOSE: Design tokens scoped to .iot-page wrapper ONLY.
+            Zero bleed into parent project. No global selectors.
+            All other section CSS files consume these variables.
+   ============================================================ */
+
+/* Google Fonts — Syne (display) + DM Sans (body) */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+/* ── Scoped design tokens — live on .iot-page only ── */
+.iot-page {
+  /* Brand palette */
+  --iot-primary:        #0A6EBD;
+  --iot-primary-dark:   #084F8A;
+  --iot-primary-light:  #E8F2FB;
+  --iot-accent:         #00C2C7;
+  --iot-accent-light:   #E0F8F9;
+  --iot-accent-dark:    #00858A;
+
+  /* Backgrounds */
+  --iot-bg:             #F4F7FB;
+  --iot-bg-alt:         #EDF3FB;
+  --iot-surface:        #FFFFFF;
+  --iot-dark:           #0D1B2E;
+  --iot-dark-2:         #0F2340;
+
+  /* Text */
+  --iot-text-h:         #0D1B2E;
+  --iot-text-b:         #3A4A60;
+  --iot-text-m:         #6B7A96;
+  --iot-text-inv:       #FFFFFF;
+
+  /* Border */
+  --iot-border:         #DDE4EE;
+  --iot-border-strong:  #C4D0E4;
+
+  /* Shadows */
+  --iot-shadow-sm:      0 2px 8px rgba(10,110,189,0.07);
+  --iot-shadow-md:      0 6px 24px rgba(10,110,189,0.11);
+  --iot-shadow-lg:      0 16px 48px rgba(10,110,189,0.16);
+  --iot-shadow-xl:      0 24px 64px rgba(10,110,189,0.20);
+
+  /* Gradients */
+  --iot-grad-hero:      linear-gradient(145deg, #EDF4FC 0%, #E6F5F6 50%, #EDF4FC 100%);
+  --iot-grad-card:      linear-gradient(145deg, #FFFFFF 0%, #F0F5FC 100%);
+  --iot-grad-dark:      linear-gradient(145deg, #0D1B2E 0%, #0F2F4A 100%);
+  --iot-grad-accent:    linear-gradient(135deg, #0A6EBD 0%, #00C2C7 100%);
+
+  /* Typography */
+  --iot-font-h:         'Syne', sans-serif;
+  --iot-font-b:         'DM Sans', sans-serif;
+
+  /* Spacing */
+  --iot-sp-xs:  0.5rem;
+  --iot-sp-sm:  1rem;
+  --iot-sp-md:  2rem;
+  --iot-sp-lg:  4rem;
+  --iot-sp-xl:  6rem;
+
+  /* Border radius */
+  --iot-r-sm:   8px;
+  --iot-r-md:   16px;
+  --iot-r-lg:   24px;
+  --iot-r-xl:   32px;
+  --iot-r-full: 9999px;
+
+  /* Transition */
+  --iot-ease:   0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Base resets scoped to this page only */
+  font-family: var(--iot-font-b);
+  background-color: var(--iot-bg);
+  color: var(--iot-text-b);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Box sizing scoped ── */
+.iot-page *, .iot-page *::before, .iot-page *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Scroll reveal base state (used by all sections) ──
+   Elements with [data-iot-reveal] start hidden.
+   JS adds .iot-revealed when they enter viewport.       */
+.iot-page [data-iot-reveal] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.iot-page [data-iot-reveal].iot-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Section container helper ── */
+.iot-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ── Shared section label chip ── */
+.iot-label-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.32rem 0.9rem;
+  background: rgba(10,110,189,0.08);
+  border: 1px solid rgba(10,110,189,0.18);
+  border-radius: var(--iot-r-full);
+  font-family: var(--iot-font-b);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--iot-primary);
+}
+.iot-label-chip .iot-chip-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--iot-accent);
+}

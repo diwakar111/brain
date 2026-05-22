@@ -1,0 +1,88 @@
+/* ═══════════════════════════════════════════════════════
+   SECTION: TRUST BAR (Stats Strip)
+   Scope: .bc-trust
+   File: css/trust-bar.css
+   Independent: YES – no dependency on other sections
+═══════════════════════════════════════════════════════ */
+
+.bc-trust {
+    --trust-bg: #ffffff;
+    --trust-border: rgba(0, 180, 216, 0.12);
+    --trust-num-color: #00b4d8;
+    --trust-label-color: #4a6880;
+    --trust-divider: rgba(0, 180, 216, 0.2);
+    --trust-font-head: 'Syne', sans-serif;
+    --trust-font-body: 'DM Sans', sans-serif;
+  }
+  
+  .bc-trust {
+    background: var(--trust-bg);
+    border-top: 1px solid var(--trust-border);
+    border-bottom: 1px solid var(--trust-border);
+    padding: 48px 32px;
+  }
+  
+  .bc-trust__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  
+  .bc-trust__stat {
+    flex: 1;
+    min-width: 160px;
+    text-align: center;
+    padding: 16px 24px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .bc-trust__stat.bc-in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .bc-trust__num {
+    display: block;
+    font-family: var(--trust-font-head);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--trust-num-color);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  
+  .bc-trust__label {
+    display: block;
+    font-family: var(--trust-font-body);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--trust-label-color);
+    letter-spacing: 0.03em;
+  }
+  
+  .bc-trust__divider {
+    width: 1px;
+    height: 52px;
+    background: var(--trust-divider);
+    flex-shrink: 0;
+  }
+  
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .bc-trust__divider { display: none; }
+    .bc-trust__inner { gap: 0; }
+    .bc-trust__stat { min-width: 50%; flex: 0 0 50%; padding: 20px 16px; }
+    .bc-trust { padding: 36px 20px; }
+  }
+  
+  @media (max-width: 420px) {
+    .bc-trust__stat { min-width: 100%; flex: 0 0 100%; }
+  }
+  

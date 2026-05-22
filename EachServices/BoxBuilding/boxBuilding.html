@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Box Build &amp; Assembly – BrainChild Technology</title>
+
+  <!-- ═══════════════════════════════════════════════════════
+       GOOGLE FONTS
+       Outfit     → Body text, buttons, UI elements
+       Syne       → Headings, hero title, stat numbers
+       Space Mono → Tags, labels, breadcrumbs, metadata
+  ═══════════════════════════════════════════════════════ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 – Icons used throughout the page -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+
+  <!-- ═══════════════════════════════════════════════════════
+       PAGE STYLESHEET
+       File : box-build.css
+       Scope: All classes prefixed with  bba-
+              No styles leak outside .bba-page wrapper
+  ═══════════════════════════════════════════════════════ -->
+  <link rel="stylesheet" href="boxBuilding.css" />
+</head>
+
+<body class="bba-page">
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       ⬛  NAVBAR PLACEHOLDER
+       Paste your existing <header class="bct-nav"> … </header> here.
+       The page layout starts after this comment block.
+  ═══════════════════════════════════════════════════════════════════ -->
+  <!-- NAVBAR · START -->
+  <!-- INSERT NAVBAR CODE HERE -->
+  <!-- NAVBAR · END -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 1 · HERO
+       ───────────────────────────────────────────────────────────────
+       Contains:
+         • 3D BoxBuild canvas animation (floating boxes, PCBs, wiring)
+         • Blue-to-teal gradient background
+         • Floating orb decorations
+         • Breadcrumb navigation
+         • Eyebrow tag / service label
+         • Hero headline + subtitle
+         • 3 stat pills (projects, units, experience)
+         • Dual CTA buttons (primary + ghost)
+         • Scroll indicator
+
+       CSS classes : bba-hero.*
+       JS module   : bbaHeroCanvas() in box-build.js
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="bba-hero" id="bba-hero" aria-label="Hero – Box Build and Assembly Service">
+
+    <!-- 3D animated canvas: floating boxes, PCBs, wires assembling -->
+    <canvas class="bba-hero__canvas" id="bbaHeroCanvas" aria-hidden="true"></canvas>
+
+    <!-- Decorative gradient orbs layered over canvas -->
+    <div class="bba-hero__orb bba-hero__orb--teal"  aria-hidden="true"></div>
+    <div class="bba-hero__orb bba-hero__orb--blue"  aria-hidden="true"></div>
+
+    <!-- Hero content block – centred -->
+    <div class="bba-hero__inner">
+
+      <!-- Breadcrumb: Home › Services › Box Build & Assembly -->
+      <!-- <nav class="bba-hero__breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html"   class="bba-hero__bc-link">Home</a>
+        <span class="bba-hero__bc-sep" aria-hidden="true">›</span>
+        <a href="service.html" class="bba-hero__bc-link">Services</a>
+        <span class="bba-hero__bc-sep" aria-hidden="true">›</span>
+        <span class="bba-hero__bc-current">Box Build &amp; Assembly</span>
+      </nav> -->
+
+      <!-- Eyebrow service identifier pill -->
+      <span class="bba-hero__eyebrow" aria-label="Service number 05">
+        <i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i>
+        Service 05
+      </span>
+
+      <!-- Primary headline -->
+      <h1 class="bba-hero__title">
+        Box Build &amp;<br />
+        <span class="bba-hero__title-accent">Assembly</span>
+      </h1>
+
+      <!-- Supporting subtitle -->
+      <p class="bba-hero__subtitle">
+        From component sourcing and PCB integration to enclosure fabrication,
+        wiring harness, burn-in testing, and shipping-ready packaging —
+        BrainChild delivers complete turnkey hardware assemblies.
+      </p>
+
+      <!-- Quick stats pills row -->
+      <div class="bba-hero__pills" role="list" aria-label="Key statistics">
+        <div class="bba-hero__pill" role="listitem">
+          <span class="bba-hero__pill-num">200+</span>
+          <span class="bba-hero__pill-lbl">Units Shipped</span>
+        </div>
+        <div class="bba-hero__pill" role="listitem">
+          <span class="bba-hero__pill-num">19+</span>
+          <span class="bba-hero__pill-lbl">Years Experience</span>
+        </div>
+        <div class="bba-hero__pill" role="listitem">
+          <span class="bba-hero__pill-num">100%</span>
+          <span class="bba-hero__pill-lbl">QA Tested</span>
+        </div>
+      </div>
+
+      <!-- CTA action buttons -->
+      <div class="bba-hero__actions">
+        <a href="contact.html" class="bba-hero__btn bba-hero__btn--primary">
+          Get a Quote
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="#bba-projects" class="bba-hero__btn bba-hero__btn--ghost">
+          View Projects
+        </a>
+      </div>
+
+    </div><!-- /bba-hero__inner -->
+
+    <!-- Animated scroll indicator at bottom of hero -->
+    <div class="bba-hero__scroll" aria-hidden="true">
+      <span class="bba-hero__scroll-dot"></span>
+      <span class="bba-hero__scroll-lbl">SCROLL</span>
+    </div>
+
+  </section>
+  <!-- /SECTION 1 · HERO ══════════════════════════════════════════ -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 2 · SERVICE OVERVIEW
+       ───────────────────────────────────────────────────────────────
+       Contains:
+         • Section eyebrow tag
+         • Headline + lead paragraph + body copy
+         • Feature checklist (left column)
+         • Animated isometric box-assembly SVG illustration (right)
+         • Floating stat badges on the SVG card
+
+       CSS classes : bba-ov.*
+       JS module   : bbaScrollReveal() handles reveal animation
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="bba-ov" id="bba-overview" aria-label="Service Overview – Box Build Assembly">
+    <div class="bba-ov__inner">
+
+      <!-- Left: textual overview content -->
+      <div class="bba-ov__content bba-reveal bba-reveal--left">
+        <span class="bba-tag">What We Do</span>
+        <h2 class="bba-ov__title">Complete Turnkey Hardware Assemblies</h2>
+        <p class="bba-ov__lead">
+          Box build assembly is the process of integrating all sub-components —
+          PCBs, wiring harnesses, power supplies, displays, and mechanical parts —
+          into a finished, functional enclosure ready for deployment.
+        </p>
+        <p class="bba-ov__body">
+          BrainChild manages the entire lifecycle: from BOM creation and global
+          component sourcing to mechanical assembly, system integration, burn-in
+          testing, and logistics-ready packaging. Our IPC-certified technicians
+          ensure every unit that leaves our facility meets your exact specification.
+        </p>
+
+        <!-- Feature checklist -->
+        <ul class="bba-ov__list" role="list">
+          <li class="bba-ov__list-item">
+            <i class="fa-solid fa-circle-check bba-ov__list-icon" aria-hidden="true"></i>
+            Full BOM management &amp; component sourcing
+          </li>
+          <li class="bba-ov__list-item">
+            <i class="fa-solid fa-circle-check bba-ov__list-icon" aria-hidden="true"></i>
+            PCB population — SMT, through-hole &amp; mixed
+          </li>
+          <li class="bba-ov__list-item">
+            <i class="fa-solid fa-circle-check bba-ov__list-icon" aria-hidden="true"></i>
+            Custom enclosure fabrication &amp; machining
+          </li>
+          <li class="bba-ov__list-item">
+            <i class="fa-solid fa-circle-check bba-ov__list-icon" aria-hidden="true"></i>
+            Wiring harness &amp; cable assembly
+          </li>
+          <li class="bba-ov__list-item">
+            <i class="fa-solid fa-circle-check bba-ov__list-icon" aria-hidden="true"></i>
+            Burn-in, functional &amp; quality testing
+          </li>
+          <li class="bba-ov__list-item">
+            <i class="fa-solid fa-circle-check bba-ov__list-icon" aria-hidden="true"></i>
+            Batch production &amp; logistics support
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: animated isometric SVG illustration card -->
+      <div class="bba-ov__visual bba-reveal bba-reveal--right">
+        <div class="bba-ov__img-card">
+          <!-- Isometric box-assembly SVG illustration -->
+          <svg class="bba-ov__iso-svg" viewBox="0 0 380 300" fill="none"
+               xmlns="http://www.w3.org/2000/svg" aria-label="Box build assembly illustration" role="img">
+
+            <!-- ── Outer enclosure box (isometric top-left face) ── -->
+            <polygon points="190,40 310,110 310,210 190,280 70,210 70,110"
+                     fill="#EDF3FB" stroke="#0A6EBD" stroke-width="1.5"/>
+            <!-- Enclosure: top face -->
+            <polygon points="190,40 310,110 190,180 70,110"
+                     fill="#E0F0FB" stroke="#0A6EBD" stroke-width="1.5"/>
+            <!-- Enclosure: right face -->
+            <polygon points="310,110 310,210 190,280 190,180"
+                     fill="#C8E0F5" stroke="#0A6EBD" stroke-width="1.5"/>
+            <!-- Enclosure: left face -->
+            <polygon points="70,110 70,210 190,280 190,180"
+                     fill="#D5E8F8" stroke="#0A6EBD" stroke-width="1.5"/>
+
+            <!-- ── PCB board inside (mid layer) ── -->
+            <rect x="130" y="125" width="120" height="80" rx="4"
+                  fill="#0A6EBD" opacity="0.12" stroke="#0A6EBD" stroke-width="1.2"/>
+            <!-- PCB traces -->
+            <line x1="145" y1="140" x2="235" y2="140" stroke="#0A6EBD" stroke-width="0.8" opacity="0.5"/>
+            <line x1="145" y1="155" x2="195" y2="155" stroke="#00C2C7" stroke-width="0.8" opacity="0.5"/>
+            <line x1="145" y1="170" x2="235" y2="170" stroke="#0A6EBD" stroke-width="0.8" opacity="0.5"/>
+            <!-- IC chip on PCB -->
+            <rect x="168" y="143" width="44" height="34" rx="3"
+                  fill="#0D1B2E" opacity="0.75"/>
+            <text x="190" y="163" text-anchor="middle"
+                  font-family="Space Mono" font-size="7" fill="white" opacity="0.9">BCT</text>
+
+            <!-- ── Wiring harness lines ── -->
+            <path d="M310,150 Q340,150 340,130 Q340,110 320,105"
+                  stroke="#00C2C7" stroke-width="2" stroke-dasharray="5 3" fill="none" opacity="0.7"/>
+            <path d="M70,150 Q40,150 40,130 Q40,110 60,105"
+                  stroke="#0A6EBD" stroke-width="2" stroke-dasharray="5 3" fill="none" opacity="0.7"/>
+
+            <!-- ── Floating screws (corner bolts) ── -->
+            <circle cx="95"  cy="125" r="6" fill="#F4F7FB" stroke="#0A6EBD" stroke-width="1.5"/>
+            <line x1="95" y1="119" x2="95" y2="131" stroke="#0A6EBD" stroke-width="1" opacity="0.6"/>
+            <line x1="89"  y1="125" x2="101" y2="125" stroke="#0A6EBD" stroke-width="1" opacity="0.6"/>
+
+            <circle cx="285" cy="125" r="6" fill="#F4F7FB" stroke="#0A6EBD" stroke-width="1.5"/>
+            <line x1="285" y1="119" x2="285" y2="131" stroke="#0A6EBD" stroke-width="1" opacity="0.6"/>
+            <line x1="279" y1="125" x2="291" y2="125" stroke="#0A6EBD" stroke-width="1" opacity="0.6"/>
+
+            <!-- ── Connector port on right face ── -->
+            <rect x="278" y="175" width="24" height="14" rx="2"
+                  fill="#0A6EBD" opacity="0.35" stroke="#0A6EBD" stroke-width="1"/>
+            <rect x="283" y="179" width="4" height="6" rx="1" fill="#0A6EBD" opacity="0.7"/>
+            <rect x="291" y="179" width="4" height="6" rx="1" fill="#0A6EBD" opacity="0.7"/>
+
+            <!-- ── Power LED indicator ── -->
+            <circle cx="108" cy="178" r="5" fill="#00C2C7" opacity="0.85"/>
+            <circle cx="108" cy="178" r="3" fill="#00C2C7"/>
+
+            <!-- ── Label text on box ── -->
+            <text x="190" y="230" text-anchor="middle"
+                  font-family="Space Mono" font-size="8" fill="#0A6EBD" opacity="0.6"
+                  font-weight="700" letter-spacing="2">BCT-BOX-PRO</text>
+          </svg>
+
+          <!-- Animated pulse ring behind box -->
+          <div class="bba-ov__pulse" aria-hidden="true"></div>
+        </div>
+
+        <!-- Floating info badges overlaid on the card -->
+        <div class="bba-ov__badge bba-ov__badge--tl">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          <span>IPC Certified</span>
+        </div>
+        <div class="bba-ov__badge bba-ov__badge--br">
+          <i class="fa-solid fa-vial-circle-check" aria-hidden="true"></i>
+          <span>100% Burn-In</span>
+        </div>
+      </div><!-- /bba-ov__visual -->
+
+    </div><!-- /bba-ov__inner -->
+  </section>
+  <!-- /SECTION 2 · SERVICE OVERVIEW ═════════════════════════════ -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 3 · WHAT WE ASSEMBLE
+       ───────────────────────────────────────────────────────────────
+       Contains:
+         • Section header (tag + title + subtitle)
+         • 6-card grid covering assembly types:
+             PCB Integration, Wiring Harness, Enclosure Fabrication,
+             Cable Management, Thermal Management, Final QA Packaging
+         • Each card: icon, title, description, teal chips
+
+       CSS classes : bba-assemble.*
+       JS module   : bbaScrollReveal() staggered card reveal
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="bba-assemble" id="bba-assemble" aria-label="What We Assemble">
+    <div class="bba-assemble__inner">
+
+      <!-- Section header -->
+      <div class="bba-assemble__header bba-reveal bba-reveal--up">
+        <span class="bba-tag">Assembly Capabilities</span>
+        <h2 class="bba-assemble__title">What We Build &amp; Assemble</h2>
+        <p class="bba-assemble__sub">
+          Every sub-system, every connector, every cable — handled by our
+          IPC-certified technicians with full traceability.
+        </p>
+      </div>
+
+      <!-- 3×2 grid of assembly type cards -->
+      <div class="bba-assemble__grid">
+
+        <!-- Card 1: PCB Integration -->
+        <div class="bba-assemble__card bba-reveal bba-reveal--up" style="--bba-delay:0ms">
+          <div class="bba-assemble__card-icon">
+            <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-assemble__card-title">PCB Integration</h3>
+          <p class="bba-assemble__card-desc">
+            Surface-mount, through-hole and mixed-technology PCB population.
+            Conformal coating, potting, and IPC-A-610 inspection at every stage.
+          </p>
+          <div class="bba-assemble__chips">
+            <span class="bba-assemble__chip">SMT</span>
+            <span class="bba-assemble__chip">Through-Hole</span>
+            <span class="bba-assemble__chip">IPC-A-610</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Wiring Harness -->
+        <div class="bba-assemble__card bba-reveal bba-reveal--up" style="--bba-delay:80ms">
+          <div class="bba-assemble__card-icon">
+            <i class="fa-solid fa-plug-circle-bolt" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-assemble__card-title">Wiring Harness</h3>
+          <p class="bba-assemble__card-desc">
+            Custom wiring loom design and fabrication. Connector termination,
+            cable bundling, labelling, and continuity testing per drawing.
+          </p>
+          <div class="bba-assemble__chips">
+            <span class="bba-assemble__chip">Custom Loom</span>
+            <span class="bba-assemble__chip">Continuity Test</span>
+            <span class="bba-assemble__chip">UL Wire</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Enclosure Fabrication -->
+        <div class="bba-assemble__card bba-reveal bba-reveal--up" style="--bba-delay:160ms">
+          <div class="bba-assemble__card-icon">
+            <i class="fa-solid fa-box-open" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-assemble__card-title">Enclosure Fabrication</h3>
+          <p class="bba-assemble__card-desc">
+            Sheet metal, plastic injection and die-cast enclosures. CNC
+            machining, powder coating, laser engraving, and IP-rated sealing.
+          </p>
+          <div class="bba-assemble__chips">
+            <span class="bba-assemble__chip">Sheet Metal</span>
+            <span class="bba-assemble__chip">IP65/IP67</span>
+            <span class="bba-assemble__chip">CNC</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Cable Management -->
+        <div class="bba-assemble__card bba-reveal bba-reveal--up" style="--bba-delay:240ms">
+          <div class="bba-assemble__card-icon">
+            <i class="fa-solid fa-network-wired" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-assemble__card-title">Cable Management</h3>
+          <p class="bba-assemble__card-desc">
+            Internal routing, strain relief, tie-wrap dressing and ferrite bead
+            fitting for EMI compliance. All routes documented in build-of-materials.
+          </p>
+          <div class="bba-assemble__chips">
+            <span class="bba-assemble__chip">EMI Compliant</span>
+            <span class="bba-assemble__chip">Strain Relief</span>
+            <span class="bba-assemble__chip">Documented</span>
+          </div>
+        </div>
+
+        <!-- Card 5: Thermal Management -->
+        <div class="bba-assemble__card bba-reveal bba-reveal--up" style="--bba-delay:320ms">
+          <div class="bba-assemble__card-icon">
+            <i class="fa-solid fa-temperature-half" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-assemble__card-title">Thermal Management</h3>
+          <p class="bba-assemble__card-desc">
+            Heatsink installation, thermal interface material application,
+            fan assembly, and thermal chamber validation for operating range.
+          </p>
+          <div class="bba-assemble__chips">
+            <span class="bba-assemble__chip">Heatsinks</span>
+            <span class="bba-assemble__chip">TIM Pads</span>
+            <span class="bba-assemble__chip">Thermal Test</span>
+          </div>
+        </div>
+
+        <!-- Card 6: Final QA & Packaging -->
+        <div class="bba-assemble__card bba-reveal bba-reveal--up" style="--bba-delay:400ms">
+          <div class="bba-assemble__card-icon">
+            <i class="fa-solid fa-box-archive" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-assemble__card-title">Final QA &amp; Packaging</h3>
+          <p class="bba-assemble__card-desc">
+            100% functional testing, cosmetic inspection, serialisation, custom
+            anti-static packaging, and logistics-ready labelling for shipment.
+          </p>
+          <div class="bba-assemble__chips">
+            <span class="bba-assemble__chip">100% Tested</span>
+            <span class="bba-assemble__chip">Serialised</span>
+            <span class="bba-assemble__chip">ESD Pack</span>
+          </div>
+        </div>
+
+      </div><!-- /bba-assemble__grid -->
+    </div>
+  </section>
+  <!-- /SECTION 3 · WHAT WE ASSEMBLE ═════════════════════════════ -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 4 · OUR PROCESS (Vertical Timeline)
+       ───────────────────────────────────────────────────────────────
+       Contains:
+         • Section header (tag + title + subtitle)
+         • 6-step vertical timeline:
+             01 Requirements & BOM Review
+             02 Component Sourcing & Procurement
+             03 PCB Assembly & Sub-Build
+             04 Mechanical Integration & Wiring
+             05 Burn-In & Functional Testing
+             06 Quality Inspection & Shipment
+         • Each step: number bubble, connector line, body card
+           with icon + title + description + duration tag
+
+       CSS classes : bba-proc.*
+       JS module   : bbaScrollReveal() staggered step reveal
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="bba-proc" id="bba-process" aria-label="Box Build Assembly Process">
+    <div class="bba-proc__inner">
+
+      <!-- Section header -->
+      <div class="bba-proc__header bba-reveal bba-reveal--up">
+        <span class="bba-tag">Our Process</span>
+        <h2 class="bba-proc__title">From BOM to Box — Our 6-Step Build Process</h2>
+        <p class="bba-proc__sub">
+          A repeatable, documented manufacturing flow with full traceability
+          at every stage — from the first purchase order to the final pallet.
+        </p>
+      </div>
+
+      <!-- Vertical timeline -->
+      <div class="bba-proc__timeline" role="list">
+
+        <!-- Step 01: Requirements & BOM Review -->
+        <div class="bba-proc__step bba-reveal bba-reveal--up" style="--bba-delay:0ms" role="listitem">
+          <div class="bba-proc__step-num" aria-label="Step 1">01</div>
+          <div class="bba-proc__step-line" aria-hidden="true"></div>
+          <div class="bba-proc__step-body">
+            <div class="bba-proc__step-icon">
+              <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+            </div>
+            <h3 class="bba-proc__step-title">Requirements &amp; BOM Review</h3>
+            <p class="bba-proc__step-desc">
+              We review your assembly drawings, schematics, and bill of materials.
+              Our engineers flag any component availability risks, suggest alternatives,
+              and produce a detailed cost-and-lead-time breakdown before any commitment.
+            </p>
+            <span class="bba-proc__step-dur">Days 1–3</span>
+          </div>
+        </div>
+
+        <!-- Step 02: Component Sourcing & Procurement -->
+        <div class="bba-proc__step bba-reveal bba-reveal--up" style="--bba-delay:100ms" role="listitem">
+          <div class="bba-proc__step-num" aria-label="Step 2">02</div>
+          <div class="bba-proc__step-line" aria-hidden="true"></div>
+          <div class="bba-proc__step-body">
+            <div class="bba-proc__step-icon">
+              <i class="fa-solid fa-cart-flatbed" aria-hidden="true"></i>
+            </div>
+            <h3 class="bba-proc__step-title">Component Sourcing &amp; Procurement</h3>
+            <p class="bba-proc__step-desc">
+              We source all components from authorised distributors — Mouser, Arrow,
+              Digi-Key, and direct manufacturer channels — ensuring authentic parts
+              with full traceability. Incoming goods inspection is performed on arrival.
+            </p>
+            <span class="bba-proc__step-dur">Week 1–2</span>
+          </div>
+        </div>
+
+        <!-- Step 03: PCB Assembly & Sub-Build -->
+        <div class="bba-proc__step bba-reveal bba-reveal--up" style="--bba-delay:200ms" role="listitem">
+          <div class="bba-proc__step-num" aria-label="Step 3">03</div>
+          <div class="bba-proc__step-line" aria-hidden="true"></div>
+          <div class="bba-proc__step-body">
+            <div class="bba-proc__step-icon">
+              <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+            </div>
+            <h3 class="bba-proc__step-title">PCB Assembly &amp; Sub-Build</h3>
+            <p class="bba-proc__step-desc">
+              SMT placement, reflow soldering, through-hole wave soldering, and
+              manual rework where required. AOI (Automated Optical Inspection) and
+              X-ray inspection for BGA components. IPC-A-610 Class 2/3 standards.
+            </p>
+            <span class="bba-proc__step-dur">Week 2–3</span>
+          </div>
+        </div>
+
+        <!-- Step 04: Mechanical Integration & Wiring -->
+        <div class="bba-proc__step bba-reveal bba-reveal--up" style="--bba-delay:300ms" role="listitem">
+          <div class="bba-proc__step-num" aria-label="Step 4">04</div>
+          <div class="bba-proc__step-line" aria-hidden="true"></div>
+          <div class="bba-proc__step-body">
+            <div class="bba-proc__step-icon">
+              <i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i>
+            </div>
+            <h3 class="bba-proc__step-title">Mechanical Integration &amp; Wiring</h3>
+            <p class="bba-proc__step-desc">
+              PCBs, power supplies, displays, and mechanical sub-assemblies are fitted
+              into the enclosure per build instructions. Wiring harnesses are routed,
+              terminated, and dressed. Torque specifications recorded for all fasteners.
+            </p>
+            <span class="bba-proc__step-dur">Week 3–4</span>
+          </div>
+        </div>
+
+        <!-- Step 05: Burn-In & Functional Testing -->
+        <div class="bba-proc__step bba-reveal bba-reveal--up" style="--bba-delay:400ms" role="listitem">
+          <div class="bba-proc__step-num" aria-label="Step 5">05</div>
+          <div class="bba-proc__step-line" aria-hidden="true"></div>
+          <div class="bba-proc__step-body">
+            <div class="bba-proc__step-icon">
+              <i class="fa-solid fa-flask-vial" aria-hidden="true"></i>
+            </div>
+            <h3 class="bba-proc__step-title">Burn-In &amp; Functional Testing</h3>
+            <p class="bba-proc__step-desc">
+              Every unit is powered for a defined burn-in period (typically 48–72 hrs)
+              to catch infant mortality failures. Automated functional test fixtures
+              verify all I/O, communications, and power rails against your test spec.
+            </p>
+            <span class="bba-proc__step-dur">Week 4–5</span>
+          </div>
+        </div>
+
+        <!-- Step 06: Quality Inspection & Shipment -->
+        <div class="bba-proc__step bba-reveal bba-reveal--up" style="--bba-delay:500ms" role="listitem">
+          <div class="bba-proc__step-num" aria-label="Step 6">06</div>
+          <!-- Last step: no connector line below -->
+          <div class="bba-proc__step-line bba-proc__step-line--last" aria-hidden="true"></div>
+          <div class="bba-proc__step-body">
+            <div class="bba-proc__step-icon">
+              <i class="fa-solid fa-truck-ramp-box" aria-hidden="true"></i>
+            </div>
+            <h3 class="bba-proc__step-title">Quality Inspection &amp; Shipment</h3>
+            <p class="bba-proc__step-desc">
+              Final cosmetic and dimensional inspection. Serial number assignment,
+              label printing, certificate of conformance generation. Anti-static
+              packaging, customs documentation, and door-to-door logistics management.
+            </p>
+            <span class="bba-proc__step-dur">Week 5–6</span>
+          </div>
+        </div>
+
+      </div><!-- /bba-proc__timeline -->
+    </div>
+  </section>
+  <!-- /SECTION 4 · OUR PROCESS ══════════════════════════════════ -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 5 · CAPABILITIES & TECH STACK
+       ───────────────────────────────────────────────────────────────
+       Contains:
+         • Section header
+         • 4×2 capability icon-grid cards covering:
+             IPC Standards, AOI & X-Ray, BOM Management,
+             Conformal Coating, ESD Control, IP Enclosures,
+             Batch Production, Firmware Flashing
+
+       CSS classes : bba-cap.*
+       JS module   : bbaScrollReveal() staggered reveal
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="bba-cap" id="bba-capabilities" aria-label="Capabilities and Technology Stack">
+    <div class="bba-cap__inner">
+
+      <!-- Section header -->
+      <div class="bba-cap__header bba-reveal bba-reveal--up">
+        <span class="bba-tag">Capabilities</span>
+        <h2 class="bba-cap__title">Standards, Tools &amp; Technologies We Use</h2>
+        <p class="bba-cap__sub">
+          Every build follows documented processes backed by industry standards
+          and verified with specialised inspection equipment.
+        </p>
+      </div>
+
+      <!-- 4-column capability grid -->
+      <div class="bba-cap__grid">
+
+        <!-- Capability: IPC Standards -->
+        <div class="bba-cap__card bba-reveal bba-reveal--up" style="--bba-delay:0ms">
+          <div class="bba-cap__card-icon">
+            <i class="fa-solid fa-certificate" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-cap__card-title">IPC Standards</h3>
+          <p class="bba-cap__card-desc">
+            IPC-A-610, IPC-J-STD-001, IPC-7711/7721 rework and repair. Class 2 and Class 3 build capability.
+          </p>
+        </div>
+
+        <!-- Capability: AOI & X-Ray Inspection -->
+        <div class="bba-cap__card bba-reveal bba-reveal--up" style="--bba-delay:80ms">
+          <div class="bba-cap__card-icon">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-cap__card-title">AOI &amp; X-Ray Inspection</h3>
+          <p class="bba-cap__card-desc">
+            Automated Optical Inspection post-reflow. X-ray for BGA/CSP solder joint validation. 3D AOI available.
+          </p>
+        </div>
+
+        <!-- Capability: BOM Management -->
+        <div class="bba-cap__card bba-reveal bba-reveal--up" style="--bba-delay:160ms">
+          <div class="bba-cap__card-icon">
+            <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-cap__card-title">BOM Management</h3>
+          <p class="bba-cap__card-desc">
+            Multi-level BOM parsing, approved vendor list management, lifecycle tracking, and alternative part qualification.
+          </p>
+        </div>
+
+        <!-- Capability: Conformal Coating -->
+        <div class="bba-cap__card bba-reveal bba-reveal--up" style="--bba-delay:240ms">
+          <div class="bba-cap__card-icon">
+            <i class="fa-solid fa-spray-can-sparkles" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-cap__card-title">Conformal Coating</h3>
+          <p class="bba-cap__card-desc">
+            Acrylic, urethane and silicone coatings applied by selective spray or dip. IPC-CC-830 compliant thickness.
+          </p>
+        </div>
+
+        <!-- Capability: ESD Control -->
+        <div class="bba-cap__card bba-reveal bba-reveal--up" style="--bba-delay:320ms">
+          <div class="bba-cap__card-icon">
+            <i class="fa-solid fa-bolt-lightning" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-cap__card-title">ESD Control</h3>
+          <p class="bba-cap__card-desc">
+            ANSI/ESD S20.20 compliant workspace. Ionisers, grounded mats, wrist straps, and ESD-safe packaging throughout.
+          </p>
+        </div>
+
+        <!-- Capability: IP-Rated Enclosures -->
+        <div class="bba-cap__card bba-reveal bba-reveal--up" style="--bba-delay:400ms">
+          <div class="bba-cap__card-icon">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-cap__card-title">IP-Rated Enclosures</h3>
+          <p class="bba-cap__card-desc">
+            IP54 to IP67 rated assemblies. Gasket cutting, potting, and pressure-decay leak testing for harsh environments.
+          </p>
+        </div>
+
+        <!-- Capability: Batch Production -->
+        <div class="bba-cap__card bba-reveal bba-reveal--up" style="--bba-delay:480ms">
+          <div class="bba-cap__card-icon">
+            <i class="fa-solid fa-industry" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-cap__card-title">Batch Production</h3>
+          <p class="bba-cap__card-desc">
+            Prototype (1–10 units) through medium volume (up to 5,000 units/month). Full serialisation and traceability.
+          </p>
+        </div>
+
+        <!-- Capability: Firmware Flashing -->
+        <div class="bba-cap__card bba-reveal bba-reveal--up" style="--bba-delay:560ms">
+          <div class="bba-cap__card-icon">
+            <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-cap__card-title">Firmware Flashing</h3>
+          <p class="bba-cap__card-desc">
+            In-line firmware programming via JTAG, SWD, UART or USB. Golden image verification and version stamping per unit.
+          </p>
+        </div>
+
+      </div><!-- /bba-cap__grid -->
+    </div>
+  </section>
+  <!-- /SECTION 5 · CAPABILITIES ══════════════════════════════════ -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 6 · FEATURED PROJECTS
+       ───────────────────────────────────────────────────────────────
+       Contains:
+         • Section header
+         • 4 non-clickable project cards (realistic box-build examples):
+             PowerGrid Pro, ColdEdge Station,
+             HydroLink Control Panel, AutoCharge EV Unit
+         • Each card: project number, industry tag, title,
+           description, technology chips
+
+       NOTE: Cards are display-only (cursor:default, no links)
+
+       CSS classes : bba-proj.*
+       JS module   : bbaScrollReveal() staggered reveal
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="bba-proj" id="bba-projects" aria-label="Featured Box Build Projects">
+    <div class="bba-proj__inner">
+
+      <!-- Section header -->
+      <div class="bba-proj__header bba-reveal bba-reveal--up">
+        <span class="bba-tag">Case Studies</span>
+        <h2 class="bba-proj__title">Featured Box Build Projects</h2>
+        <p class="bba-proj__sub">
+          Turnkey assemblies we have delivered for industrial, energy,
+          water management, and EV charging sectors.
+        </p>
+      </div>
+
+      <!-- 2×2 project card grid (non-clickable) -->
+      <div class="bba-proj__grid">
+
+        <!-- Project 1: PowerGrid Pro – Industrial UPS Assembly -->
+        <div class="bba-proj__card bba-reveal bba-reveal--up" style="--bba-delay:0ms"
+             aria-label="Project: PowerGrid Pro – Industrial UPS Assembly">
+          <div class="bba-proj__card-accent" aria-hidden="true"></div>
+          <div class="bba-proj__card-top">
+            <span class="bba-proj__card-num">01</span>
+            <span class="bba-proj__card-industry">Energy &amp; Power</span>
+          </div>
+          <h3 class="bba-proj__card-title">PowerGrid Pro — Industrial UPS Assembly</h3>
+          <p class="bba-proj__card-desc">
+            Complete turnkey assembly of a 3-phase industrial UPS system for a power
+            infrastructure client. 200-unit batch. Custom sheet-metal IP54 enclosures,
+            battery management PCBs, wiring harness, and 72-hour burn-in on every unit.
+          </p>
+          <div class="bba-proj__card-tags" aria-label="Technologies used">
+            <span class="bba-proj__tag">200 Units</span>
+            <span class="bba-proj__tag">IP54</span>
+            <span class="bba-proj__tag">BMS PCB</span>
+            <span class="bba-proj__tag">72hr Burn-In</span>
+          </div>
+        </div>
+
+        <!-- Project 2: ColdEdge Station – Refrigeration Controller Box -->
+        <div class="bba-proj__card bba-reveal bba-reveal--up" style="--bba-delay:100ms"
+             aria-label="Project: ColdEdge Station – Refrigeration Controller Box">
+          <div class="bba-proj__card-accent" aria-hidden="true"></div>
+          <div class="bba-proj__card-top">
+            <span class="bba-proj__card-num">02</span>
+            <span class="bba-proj__card-industry">Cold Chain Logistics</span>
+          </div>
+          <h3 class="bba-proj__card-title">ColdEdge Station — Refrigeration Controller</h3>
+          <p class="bba-proj__card-desc">
+            Box build for a cold-chain refrigeration monitoring controller deployed
+            across 80+ logistics hubs. Die-cast aluminium enclosure, multi-sensor
+            PCB integration, 4G modem wiring, conformal coating, and IP67 sealing.
+          </p>
+          <div class="bba-proj__card-tags" aria-label="Technologies used">
+            <span class="bba-proj__tag">Die-Cast Al</span>
+            <span class="bba-proj__tag">IP67</span>
+            <span class="bba-proj__tag">4G Modem</span>
+            <span class="bba-proj__tag">Conformal Coat</span>
+          </div>
+        </div>
+
+        <!-- Project 3: HydroLink – Water Treatment Control Panel -->
+        <div class="bba-proj__card bba-reveal bba-reveal--up" style="--bba-delay:200ms"
+             aria-label="Project: HydroLink – Water Treatment Control Panel">
+          <div class="bba-proj__card-accent" aria-hidden="true"></div>
+          <div class="bba-proj__card-top">
+            <span class="bba-proj__card-num">03</span>
+            <span class="bba-proj__card-industry">Water &amp; Utilities</span>
+          </div>
+          <h3 class="bba-proj__card-title">HydroLink — Water Treatment Control Panel</h3>
+          <p class="bba-proj__card-desc">
+            Turnkey control panel assembly for a municipal water treatment plant.
+            Stainless-steel NEMA 4X enclosure, PLC integration, HMI touchscreen fitting,
+            custom wiring loom (50+ conductors), and full FAT (factory acceptance test).
+          </p>
+          <div class="bba-proj__card-tags" aria-label="Technologies used">
+            <span class="bba-proj__tag">NEMA 4X</span>
+            <span class="bba-proj__tag">PLC Integration</span>
+            <span class="bba-proj__tag">HMI Panel</span>
+            <span class="bba-proj__tag">FAT Certified</span>
+          </div>
+        </div>
+
+        <!-- Project 4: AutoCharge EV – EV Charging Station Assembly -->
+        <div class="bba-proj__card bba-reveal bba-reveal--up" style="--bba-delay:300ms"
+             aria-label="Project: AutoCharge EV – EV Charging Station Assembly">
+          <div class="bba-proj__card-accent" aria-hidden="true"></div>
+          <div class="bba-proj__card-top">
+            <span class="bba-proj__card-num">04</span>
+            <span class="bba-proj__card-industry">EV &amp; Mobility</span>
+          </div>
+          <h3 class="bba-proj__card-title">AutoCharge EV — Charging Station Assembly</h3>
+          <p class="bba-proj__card-desc">
+            Complete box build of a 22kW AC EV charging station for a fleet operator.
+            Powder-coated steel enclosure, EVSE PCB assembly, cable management,
+            RFID reader integration, firmware flashing, and CE certification support.
+          </p>
+          <div class="bba-proj__card-tags" aria-label="Technologies used">
+            <span class="bba-proj__tag">22kW EVSE</span>
+            <span class="bba-proj__tag">CE Certified</span>
+            <span class="bba-proj__tag">RFID</span>
+            <span class="bba-proj__tag">FW Flash</span>
+          </div>
+        </div>
+
+      </div><!-- /bba-proj__grid -->
+    </div>
+  </section>
+  <!-- /SECTION 6 · FEATURED PROJECTS ════════════════════════════ -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 7 · INDUSTRIES SERVED
+       ───────────────────────────────────────────────────────────────
+       Contains:
+         • Section header
+         • 6-item icon grid: Energy, Industrial IoT, Cold Chain,
+           Automotive / EV, Medical Devices, Water & Utilities
+
+       CSS classes : bba-ind.*
+       JS module   : bbaScrollReveal() + icon hover in CSS
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="bba-ind" id="bba-industries" aria-label="Industries We Serve with Box Build">
+    <div class="bba-ind__inner">
+
+      <!-- Section header -->
+      <div class="bba-ind__header bba-reveal bba-reveal--up">
+        <span class="bba-tag">Industries</span>
+        <h2 class="bba-ind__title">Industries We Build For</h2>
+        <p class="bba-ind__sub">
+          Our box build assemblies run in some of the most demanding
+          environments across six major industry verticals.
+        </p>
+      </div>
+
+      <!-- 3×2 industry icon grid -->
+      <div class="bba-ind__grid">
+
+        <div class="bba-ind__item bba-reveal bba-reveal--up" style="--bba-delay:0ms">
+          <div class="bba-ind__icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
+          <h3 class="bba-ind__name">Energy &amp; Power</h3>
+          <p class="bba-ind__desc">UPS systems, switchgear, battery management controllers</p>
+        </div>
+
+        <div class="bba-ind__item bba-reveal bba-reveal--up" style="--bba-delay:80ms">
+          <div class="bba-ind__icon"><i class="fa-solid fa-industry" aria-hidden="true"></i></div>
+          <h3 class="bba-ind__name">Industrial IoT</h3>
+          <p class="bba-ind__desc">Edge gateways, automation controllers, SCADA panels</p>
+        </div>
+
+        <div class="bba-ind__item bba-reveal bba-reveal--up" style="--bba-delay:160ms">
+          <div class="bba-ind__icon"><i class="fa-solid fa-snowflake" aria-hidden="true"></i></div>
+          <h3 class="bba-ind__name">Cold Chain Logistics</h3>
+          <p class="bba-ind__desc">Refrigeration monitors, transport data loggers</p>
+        </div>
+
+        <div class="bba-ind__item bba-reveal bba-reveal--up" style="--bba-delay:240ms">
+          <div class="bba-ind__icon"><i class="fa-solid fa-car-battery" aria-hidden="true"></i></div>
+          <h3 class="bba-ind__name">Automotive &amp; EV</h3>
+          <p class="bba-ind__desc">Charging stations, BMS units, onboard controllers</p>
+        </div>
+
+        <div class="bba-ind__item bba-reveal bba-reveal--up" style="--bba-delay:320ms">
+          <div class="bba-ind__icon"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i></div>
+          <h3 class="bba-ind__name">Medical Devices</h3>
+          <p class="bba-ind__desc">Diagnostic equipment, patient monitoring enclosures</p>
+        </div>
+
+        <div class="bba-ind__item bba-reveal bba-reveal--up" style="--bba-delay:400ms">
+          <div class="bba-ind__icon"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div>
+          <h3 class="bba-ind__name">Water &amp; Utilities</h3>
+          <p class="bba-ind__desc">Treatment panels, pump controllers, SCADA RTUs</p>
+        </div>
+
+      </div><!-- /bba-ind__grid -->
+    </div>
+  </section>
+  <!-- /SECTION 7 · INDUSTRIES ════════════════════════════════════ -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 8 · QUALITY & CERTIFICATIONS
+       ───────────────────────────────────────────────────────────────
+       Contains:
+         • Section header
+         • 4 quality trust cards with icons:
+             IPC Certified Technicians, 100% Functional Test,
+             Full Traceability, Make in India
+         • Bottom banner: IPC standard chips row
+
+       CSS classes : bba-qual.*
+       JS module   : bbaScrollReveal()
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="bba-qual" id="bba-quality" aria-label="Quality and Certifications">
+    <div class="bba-qual__inner">
+
+      <!-- Section header -->
+      <div class="bba-qual__header bba-reveal bba-reveal--up">
+        <span class="bba-tag">Quality Assurance</span>
+        <h2 class="bba-qual__title">Built to the Highest Standards</h2>
+        <p class="bba-qual__sub">
+          Every unit that leaves our facility has been tested, inspected,
+          and documented to international standards.
+        </p>
+      </div>
+
+      <!-- 2×2 quality trust cards -->
+      <div class="bba-qual__grid">
+
+        <!-- Quality card 1: IPC Certified Technicians -->
+        <div class="bba-qual__card bba-reveal bba-reveal--up" style="--bba-delay:0ms">
+          <div class="bba-qual__card-icon">
+            <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-qual__card-title">IPC Certified Technicians</h3>
+          <p class="bba-qual__card-desc">
+            Our assembly team holds IPC-A-610 and IPC-J-STD-001 certifications.
+            Regular re-certification ensures consistent workmanship standards
+            across every build and every technician on the floor.
+          </p>
+        </div>
+
+        <!-- Quality card 2: 100% Functional Testing -->
+        <div class="bba-qual__card bba-reveal bba-reveal--up" style="--bba-delay:100ms">
+          <div class="bba-qual__card-icon">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-qual__card-title">100% Functional Testing</h3>
+          <p class="bba-qual__card-desc">
+            No unit ships without a full functional test. Custom test fixtures
+            verify all I/O points, power rails, communication interfaces, and
+            firmware behaviour against your agreed acceptance criteria.
+          </p>
+        </div>
+
+        <!-- Quality card 3: Full Traceability -->
+        <div class="bba-qual__card bba-reveal bba-reveal--up" style="--bba-delay:200ms">
+          <div class="bba-qual__card-icon">
+            <i class="fa-solid fa-barcode" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-qual__card-title">Full Traceability</h3>
+          <p class="bba-qual__card-desc">
+            Every component is tracked from purchase order through assembly
+            to shipment. Serialised units carry a traceable build record —
+            component lot codes, test results, and technician sign-off.
+          </p>
+        </div>
+
+        <!-- Quality card 4: Make in India -->
+        <div class="bba-qual__card bba-reveal bba-reveal--up" style="--bba-delay:300ms">
+          <div class="bba-qual__card-icon">
+            <i class="fa-solid fa-flag" aria-hidden="true"></i>
+          </div>
+          <h3 class="bba-qual__card-title">Make in India · World-Class Quality</h3>
+          <p class="bba-qual__card-desc">
+            Proudly manufactured in Bangalore with world-class processes.
+            Our assemblies are exported to Europe, the Middle East, and
+            South-East Asia — meeting CE, RoHS, and regional standards.
+          </p>
+        </div>
+
+      </div><!-- /bba-qual__grid -->
+
+      <!-- IPC standards banner -->
+      <div class="bba-qual__standards bba-reveal bba-reveal--up">
+        <span class="bba-qual__standards-label">
+          <i class="fa-solid fa-award" aria-hidden="true"></i>
+          Standards We Build To:
+        </span>
+        <div class="bba-qual__standards-chips">
+          <span class="bba-qual__std-chip">IPC-A-610</span>
+          <span class="bba-qual__std-chip">IPC-J-STD-001</span>
+          <span class="bba-qual__std-chip">IPC-7711/7721</span>
+          <span class="bba-qual__std-chip">IPC-CC-830</span>
+          <span class="bba-qual__std-chip">ANSI/ESD S20.20</span>
+          <span class="bba-qual__std-chip">RoHS Compliant</span>
+          <span class="bba-qual__std-chip">CE Ready</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- /SECTION 8 · QUALITY & CERTIFICATIONS ══════════════════════ -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 9 · FAQ
+       ───────────────────────────────────────────────────────────────
+       Contains:
+         • Section header (tag + title + subtitle)
+         • 7-item accordion FAQ specific to box build assembly:
+             MOQ, lead times, IP ratings, firmware, NDA,
+             prototype to production, design changes mid-build
+
+       CSS classes : bba-faq.*
+       JS module   : bbaFaqAccordion() — single-open, ARIA accessible
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="bba-faq" id="bba-faq" aria-label="Frequently Asked Questions – Box Build">
+    <div class="bba-faq__inner">
+
+      <!-- Section header -->
+      <div class="bba-faq__header bba-reveal bba-reveal--up">
+        <span class="bba-tag">FAQ</span>
+        <h2 class="bba-faq__title">Common Questions About Our Box Build Service</h2>
+        <p class="bba-faq__sub">
+          Everything you need to know before placing your first build order.
+        </p>
+      </div>
+
+      <!-- Accordion FAQ list -->
+      <div class="bba-faq__list" role="list">
+
+        <!-- FAQ 1: Minimum order quantity -->
+        <div class="bba-faq__item bba-reveal bba-reveal--up" style="--bba-delay:0ms" role="listitem">
+          <button class="bba-faq__q" aria-expanded="false" aria-controls="bba-faq-a1">
+            <span>What is your minimum order quantity (MOQ) for box build?</span>
+            <span class="bba-faq__icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="bba-faq__a" id="bba-faq-a1" hidden>
+            <p>
+              We work with quantities as low as 1 unit for prototypes and engineering samples,
+              making us suitable for product development as well as volume production. For
+              production runs, our sweet spot is 10–5,000 units per batch, but we have managed
+              single orders of 10,000+ units for industrial clients. There is no rigid MOQ —
+              we price each project based on volume, complexity, and lead-time requirements.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 2: Lead time -->
+        <div class="bba-faq__item bba-reveal bba-reveal--up" style="--bba-delay:60ms" role="listitem">
+          <button class="bba-faq__q" aria-expanded="false" aria-controls="bba-faq-a2">
+            <span>What is the typical lead time from order to delivery?</span>
+            <span class="bba-faq__icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="bba-faq__a" id="bba-faq-a2" hidden>
+            <p>
+              Lead time depends primarily on component availability. For builds using in-stock
+              components, we can typically deliver first articles in 3–5 weeks. Production
+              batches generally run 6–10 weeks from purchase-order to shipment. If long-lead
+              components are involved (some power semiconductors or custom connectors), we
+              work with you to plan a procurement strategy during the BOM review phase to
+              avoid delays further down the line.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 3: IP ratings -->
+        <div class="bba-faq__item bba-reveal bba-reveal--up" style="--bba-delay:120ms" role="listitem">
+          <button class="bba-faq__q" aria-expanded="false" aria-controls="bba-faq-a3">
+            <span>Can you build to specific IP ingress protection ratings?</span>
+            <span class="bba-faq__icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="bba-faq__a" id="bba-faq-a3" hidden>
+            <p>
+              Yes. We routinely build to IP54, IP65, IP66, and IP67 ratings depending on the
+              application. This involves selecting appropriate gasket materials, applying
+              sealants, and performing pressure-decay or ingress testing on production samples.
+              For outdoor or washdown environments, we also advise on enclosure material
+              selection (stainless steel, GRP, die-cast aluminium) and coating specifications.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 4: Firmware flashing -->
+        <div class="bba-faq__item bba-reveal bba-reveal--up" style="--bba-delay:180ms" role="listitem">
+          <button class="bba-faq__q" aria-expanded="false" aria-controls="bba-faq-a4">
+            <span>Do you flash firmware as part of the assembly process?</span>
+            <span class="bba-faq__icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="bba-faq__a" id="bba-faq-a4" hidden>
+            <p>
+              Absolutely. We integrate firmware programming into the assembly line using
+              gang programmers, JTAG, SWD, UART, or USB interfaces depending on your target.
+              Each unit's firmware version is recorded in the build traveller and verified
+              against a golden image. We can also manage encrypted firmware and licence-key
+              injection if your product requires it for IP protection.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 5: NDA and IP protection -->
+        <div class="bba-faq__item bba-reveal bba-reveal--up" style="--bba-delay:240ms" role="listitem">
+          <button class="bba-faq__q" aria-expanded="false" aria-controls="bba-faq-a5">
+            <span>Will you sign an NDA to protect our design?</span>
+            <span class="bba-faq__icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="bba-faq__a" id="bba-faq-a5" hidden>
+            <p>
+              Yes — we sign mutual NDAs as standard practice before receiving any design
+              documentation, schematics, or firmware. Our facilities use restricted access
+              controls, and build documentation is stored on secure, access-controlled
+              servers. We do not share customer designs with third parties, and all
+              sub-contractors we engage are bound by equivalent confidentiality obligations.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 6: Prototype to production -->
+        <div class="bba-faq__item bba-reveal bba-reveal--up" style="--bba-delay:300ms" role="listitem">
+          <button class="bba-faq__q" aria-expanded="false" aria-controls="bba-faq-a6">
+            <span>Can you take our product from prototype to full production?</span>
+            <span class="bba-faq__icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="bba-faq__a" id="bba-faq-a6" hidden>
+            <p>
+              This is one of our core strengths. We start with engineering prototypes (EVT),
+              move through design validation (DVT) builds with formal test plans, and then
+              transition to production validation (PVT) before full-rate production (MP).
+              At each phase, we capture lessons learned, refine the build instructions, and
+              optimise for assembly efficiency — so your per-unit cost reduces as volume grows.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 7: Design changes mid-build -->
+        <div class="bba-faq__item bba-reveal bba-reveal--up" style="--bba-delay:360ms" role="listitem">
+          <button class="bba-faq__q" aria-expanded="false" aria-controls="bba-faq-a7">
+            <span>What happens if we need a design change during the build?</span>
+            <span class="bba-faq__icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="bba-faq__a" id="bba-faq-a7" hidden>
+            <p>
+              Design changes are managed through a formal Engineering Change Notice (ECN)
+              process. We assess the impact on components already sourced, units already
+              built, and lead time. If the change can be incorporated without scrapping
+              significant inventory, we proceed with an agreed schedule; otherwise we
+              advise on the most cost-effective approach. Our goal is always to minimise
+              waste and protect your investment.
+            </p>
+          </div>
+        </div>
+
+      </div><!-- /bba-faq__list -->
+    </div>
+  </section>
+  <!-- /SECTION 9 · FAQ ═══════════════════════════════════════════ -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 10 · CTA BANNER
+       ───────────────────────────────────────────────────────────────
+       Contains:
+         • Dark navy gradient background (blue → teal)
+         • Decorative orb layers
+         • Eyebrow label
+         • Headline with gradient accent
+         • Subtitle
+         • Dual CTA buttons (primary + ghost)
+         • 3 trust-signal chips below buttons
+
+       CSS classes : bba-cta.*
+       JS module   : bbaScrollReveal() reveal
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="bba-cta" id="bba-cta" aria-label="Call to Action – Start Your Box Build">
+
+    <!-- Decorative gradient orbs -->
+    <div class="bba-cta__orb bba-cta__orb--blue"  aria-hidden="true"></div>
+    <div class="bba-cta__orb bba-cta__orb--teal"  aria-hidden="true"></div>
+
+    <div class="bba-cta__inner bba-reveal bba-reveal--up">
+      <span class="bba-cta__eyebrow">Ready to Build?</span>
+      <h2 class="bba-cta__title">
+        Start Your Box Build<br />
+        <span class="bba-cta__title-accent">From BOM to Box — We Handle It All</span>
+      </h2>
+      <p class="bba-cta__text">
+        Send us your assembly drawings or BOM. We'll review it, propose
+        a build plan, and give you a fixed-price quote within 48 hours.
+      </p>
+
+      <!-- CTA action buttons -->
+      <div class="bba-cta__actions">
+        <a href="contact.html" class="bba-cta__btn bba-cta__btn--primary">
+          Request a Quote
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="projects.html" class="bba-cta__btn bba-cta__btn--ghost">
+          View All Projects
+        </a>
+      </div>
+
+      <!-- Trust signal row -->
+      <div class="bba-cta__trust">
+        <span class="bba-cta__trust-item">
+          <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+          Quote within 48 hours
+        </span>
+        <span class="bba-cta__trust-item">
+          <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+          NDA signed upfront
+        </span>
+        <span class="bba-cta__trust-item">
+          <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+          MOQ from 1 unit
+        </span>
+      </div>
+
+    </div><!-- /bba-cta__inner -->
+  </section>
+  <!-- /SECTION 10 · CTA BANNER ═══════════════════════════════════ -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       ⬛  FOOTER PLACEHOLDER
+       Paste your existing <footer class="bctf4-root"> … </footer> here.
+  ═══════════════════════════════════════════════════════════════════ -->
+  <!-- FOOTER · START -->
+  <!-- INSERT FOOTER CODE HERE -->
+  <!-- FOOTER · END -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       PAGE JAVASCRIPT
+       File : box-build.js
+       Scope: All logic inside IIFE — no global variables exported
+  ═══════════════════════════════════════════════════════════════════ -->
+  <script src="boxBuilding.js"></script>
+  <script src="/Combained/header.js"></script>
+  <script src="/Combained/footer.js"></script>
+
+</body>
+</html>

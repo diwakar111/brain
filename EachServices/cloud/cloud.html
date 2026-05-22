@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloud App Development | BrainChild Tech</title>
+
+  <!-- ============================================================
+       GOOGLE FONTS
+       Syne        — Ultra-bold headings & branding
+       Outfit      — Body text, buttons, UI elements
+       Space Mono  — Labels, tags, technical metadata
+  ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Cloud App Development Page CSS -->
+  <link rel="stylesheet" href="cloud.css" />
+
+  <!-- ============================================================
+       GLOBAL PAGE RESET — minimal, safe, does not conflict with sections
+  ============================================================ -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Outfit', Arial, sans-serif;
+      background: #F4F7FB;
+      color: #0D1B2E;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR PLACEHOLDER
+       Add your existing navbar code here
+  ============================================================ -->
+  
+
+  <!-- END NAVBAR PLACEHOLDER -->
+
+
+  <!-- ============================================================
+       SECTION 1 — HERO / BANNER
+       Prefix: cad-hero__
+       CSS: cloud.css (search: === SECTION 1: HERO ===)
+       JS:  cloud.js  (search: === SECTION 1: HERO ===)
+  ============================================================ -->
+  <section class="cad-hero" id="cad-hero-section" aria-label="Cloud App Development Hero">
+
+    <!-- Animated background layer -->
+    <div class="cad-hero__bg" aria-hidden="true">
+      <canvas class="cad-hero__canvas" id="cadHeroCanvas"></canvas>
+      <div class="cad-hero__orb cad-hero__orb--1"></div>
+      <div class="cad-hero__orb cad-hero__orb--2"></div>
+      <div class="cad-hero__orb cad-hero__orb--3"></div>
+      <div class="cad-hero__grid" aria-hidden="true"></div>
+    </div>
+
+    <div class="cad-hero__container">
+
+      <!-- Eyebrow label -->
+      <div class="cad-hero__eyebrow">
+        <span class="cad-hero__eyebrow-dot"></span>
+        Cloud App Development — BrainChild Tech
+        <span class="cad-hero__eyebrow-dot"></span>
+      </div>
+
+      <!-- Main headline -->
+      <h1 class="cad-hero__title">
+        Build Faster.<br />
+        <span class="cad-hero__title--accent">Scale Without Limits.</span>
+      </h1>
+
+      <!-- Sub headline -->
+      <p class="cad-hero__subtitle">
+        From architecture to deployment — we design, build and launch
+        cloud-native applications on AWS, Azure and GCP that are
+        secure, scalable and built for real-world performance.
+      </p>
+
+      <!-- Stat counters -->
+      <div class="cad-hero__stats" aria-label="Cloud project statistics">
+        <div class="cad-hero__stat">
+          <span class="cad-hero__stat-val" data-target="80">0</span><span class="cad-hero__stat-suffix">+</span>
+          <span class="cad-hero__stat-label">Cloud Projects</span>
+        </div>
+        <div class="cad-hero__stat-div" aria-hidden="true"></div>
+        <div class="cad-hero__stat">
+          <span class="cad-hero__stat-val" data-target="99">0</span><span class="cad-hero__stat-suffix">%</span>
+          <span class="cad-hero__stat-label">Uptime Delivered</span>
+        </div>
+        <div class="cad-hero__stat-div" aria-hidden="true"></div>
+        <div class="cad-hero__stat">
+          <span class="cad-hero__stat-val" data-target="42">0</span><span class="cad-hero__stat-suffix">%</span>
+          <span class="cad-hero__stat-label">Avg. Cost Reduction</span>
+        </div>
+      </div>
+
+      <!-- CTA buttons -->
+      <div class="cad-hero__actions">
+        <a class="cad-hero__btn cad-hero__btn--primary" href="#cad-cta-section">
+          Start Your Cloud Project
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a class="cad-hero__btn cad-hero__btn--outline" href="#cad-cs-section">View Case Studies</a>
+      </div>
+    </div>
+
+    <!-- Floating cloud visual illustration -->
+    <div class="cad-hero__visual" aria-hidden="true">
+      <div class="cad-hero__visual-ring cad-hero__visual-ring--1"></div>
+      <div class="cad-hero__visual-ring cad-hero__visual-ring--2"></div>
+      <div class="cad-hero__visual-ring cad-hero__visual-ring--3"></div>
+      <div class="cad-hero__visual-core">
+        <i class="fa-solid fa-cloud"></i>
+      </div>
+      <div class="cad-hero__visual-node cad-hero__visual-node--1"><i class="fa-brands fa-aws"></i></div>
+      <div class="cad-hero__visual-node cad-hero__visual-node--2"><i class="fa-solid fa-database"></i></div>
+      <div class="cad-hero__visual-node cad-hero__visual-node--3"><i class="fa-solid fa-code-branch"></i></div>
+      <div class="cad-hero__visual-node cad-hero__visual-node--4"><i class="fa-solid fa-shield-halved"></i></div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="cad-hero__scroll" aria-hidden="true">
+      <span class="cad-hero__scroll-line"></span>
+      <span class="cad-hero__scroll-text">Scroll</span>
+    </div>
+
+  </section>
+  <!-- END SECTION 1 — HERO -->
+
+
+  <!-- ============================================================
+       SECTION 2 — HOW IT WORKS / PROCESS
+       Prefix: cad-hiw__
+       CSS: cloud.css (search: === SECTION 2: HOW IT WORKS ===)
+       JS:  cloud.js  (search: === SECTION 2: HOW IT WORKS ===)
+  ============================================================ -->
+  <section class="cad-hiw" id="cad-hiw-section" aria-label="Our Cloud Development Process">
+    <div class="cad-hiw__container">
+
+      <div class="cad-hiw__header">
+        <span class="cad-hiw__eyebrow">Our Process</span>
+        <h2 class="cad-hiw__title">How We Build Your Cloud Application</h2>
+        <p class="cad-hiw__subtitle">A proven 5-phase delivery — from discovery to live production</p>
+      </div>
+
+      <div class="cad-hiw__steps">
+
+        <!-- Step 1 -->
+        <div class="cad-hiw__step" data-step="1">
+          <div class="cad-hiw__step-left">
+            <div class="cad-hiw__step-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <div class="cad-hiw__step-line" aria-hidden="true"></div>
+          </div>
+          <div class="cad-hiw__step-body">
+            <span class="cad-hiw__step-num">01</span>
+            <h3 class="cad-hiw__step-title">Discovery & Cloud Strategy</h3>
+            <p class="cad-hiw__step-desc">We audit your existing infrastructure, define your scalability goals and map the right cloud platform and architecture for your business needs.</p>
+            <ul class="cad-hiw__step-list">
+              <li>Business goals & requirements mapping</li>
+              <li>Cloud platform selection (AWS / Azure / GCP)</li>
+              <li>Cost modelling & ROI estimation</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="cad-hiw__step" data-step="2">
+          <div class="cad-hiw__step-left">
+            <div class="cad-hiw__step-icon"><i class="fa-solid fa-sitemap"></i></div>
+            <div class="cad-hiw__step-line" aria-hidden="true"></div>
+          </div>
+          <div class="cad-hiw__step-body">
+            <span class="cad-hiw__step-num">02</span>
+            <h3 class="cad-hiw__step-title">Architecture & System Design</h3>
+            <p class="cad-hiw__step-desc">We design a scalable, fault-tolerant cloud architecture — microservices, serverless or hybrid — with full documentation before a single line of code is written.</p>
+            <ul class="cad-hiw__step-list">
+              <li>Microservices & serverless architecture design</li>
+              <li>Database schema & API contract design</li>
+              <li>Security & compliance architecture</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="cad-hiw__step" data-step="3">
+          <div class="cad-hiw__step-left">
+            <div class="cad-hiw__step-icon"><i class="fa-solid fa-code"></i></div>
+            <div class="cad-hiw__step-line" aria-hidden="true"></div>
+          </div>
+          <div class="cad-hiw__step-body">
+            <span class="cad-hiw__step-num">03</span>
+            <h3 class="cad-hiw__step-title">Development & Integration</h3>
+            <p class="cad-hiw__step-desc">Agile sprints with weekly demos. We build backend APIs, cloud functions, data pipelines and integrate third-party services — all with full test coverage.</p>
+            <ul class="cad-hiw__step-list">
+              <li>Backend API & microservice development</li>
+              <li>Third-party & legacy system integration</li>
+              <li>Automated testing & code review</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="cad-hiw__step" data-step="4">
+          <div class="cad-hiw__step-left">
+            <div class="cad-hiw__step-icon"><i class="fa-solid fa-rocket"></i></div>
+            <div class="cad-hiw__step-line" aria-hidden="true"></div>
+          </div>
+          <div class="cad-hiw__step-body">
+            <span class="cad-hiw__step-num">04</span>
+            <h3 class="cad-hiw__step-title">CI/CD Pipeline & Deployment</h3>
+            <p class="cad-hiw__step-desc">Zero-downtime blue-green deployments with fully automated CI/CD pipelines. Infrastructure-as-code using Terraform or CloudFormation for reproducible environments.</p>
+            <ul class="cad-hiw__step-list">
+              <li>Automated CI/CD with GitHub Actions / Jenkins</li>
+              <li>Infrastructure-as-Code (Terraform / CloudFormation)</li>
+              <li>Blue-green & canary release strategies</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="cad-hiw__step cad-hiw__step--last" data-step="5">
+          <div class="cad-hiw__step-left">
+            <div class="cad-hiw__step-icon"><i class="fa-solid fa-chart-line"></i></div>
+          </div>
+          <div class="cad-hiw__step-body">
+            <span class="cad-hiw__step-num">05</span>
+            <h3 class="cad-hiw__step-title">Monitoring, Optimisation & Support</h3>
+            <p class="cad-hiw__step-desc">Real-time observability with centralised logging, alerting and performance dashboards. We continuously optimise cloud costs and ensure your SLA is always met.</p>
+            <ul class="cad-hiw__step-list">
+              <li>24/7 monitoring with Datadog / CloudWatch</li>
+              <li>Cost optimisation & right-sizing</li>
+              <li>Ongoing SLA-backed support & patching</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- END SECTION 2 — HOW IT WORKS -->
+
+
+  <!-- ============================================================
+       SECTION 3 — FEATURES / SERVICES
+       Prefix: cad-feat__
+       CSS: cloud.css (search: === SECTION 3: FEATURES ===)
+       JS:  cloud.js  (search: === SECTION 3: FEATURES ===)
+  ============================================================ -->
+  <section class="cad-feat" id="cad-feat-section" aria-label="Cloud Development Services">
+    <div class="cad-feat__container">
+
+      <div class="cad-feat__header">
+        <span class="cad-feat__eyebrow">What We Offer</span>
+        <h2 class="cad-feat__title">Complete Cloud Development Stack</h2>
+        <p class="cad-feat__subtitle">Every cloud capability you need — architecture to optimisation</p>
+      </div>
+
+      <div class="cad-feat__grid">
+
+        <!-- Card 1 -->
+        <div class="cad-feat__card" data-delay="0">
+          <div class="cad-feat__card-icon cad-feat__card-icon--blue"><i class="fa-solid fa-network-wired"></i></div>
+          <h3 class="cad-feat__card-title">Cloud-Native Architecture</h3>
+          <p class="cad-feat__card-desc">Purpose-built microservices and serverless architectures that auto-scale, self-heal and eliminate single points of failure from day one.</p>
+          <div class="cad-feat__card-tags"><span>Microservices</span><span>Serverless</span><span>Kubernetes</span><span>Docker</span></div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="cad-feat__card" data-delay="80">
+          <div class="cad-feat__card-icon cad-feat__card-icon--teal"><i class="fa-solid fa-plug"></i></div>
+          <h3 class="cad-feat__card-title">Backend API Development</h3>
+          <p class="cad-feat__card-desc">High-performance REST and GraphQL APIs built with Node.js, Python or Go — designed for millions of requests per day with sub-100ms response times.</p>
+          <div class="cad-feat__card-tags"><span>REST</span><span>GraphQL</span><span>Node.js</span><span>Python</span></div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="cad-feat__card" data-delay="160">
+          <div class="cad-feat__card-icon cad-feat__card-icon--blue"><i class="fa-solid fa-arrows-rotate"></i></div>
+          <h3 class="cad-feat__card-title">DevOps & CI/CD Automation</h3>
+          <p class="cad-feat__card-desc">Fully automated deployment pipelines, infrastructure-as-code and containerised environments that ship code to production multiple times per day.</p>
+          <div class="cad-feat__card-tags"><span>GitHub Actions</span><span>Jenkins</span><span>Terraform</span><span>Helm</span></div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="cad-feat__card" data-delay="240">
+          <div class="cad-feat__card-icon cad-feat__card-icon--teal"><i class="fa-solid fa-bolt"></i></div>
+          <h3 class="cad-feat__card-title">Serverless & Event-Driven</h3>
+          <p class="cad-feat__card-desc">Pay-per-execution serverless functions and event-driven architectures using AWS Lambda, Azure Functions and GCP Cloud Run — zero idle cost.</p>
+          <div class="cad-feat__card-tags"><span>AWS Lambda</span><span>Azure Fn</span><span>Cloud Run</span><span>Kafka</span></div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="cad-feat__card" data-delay="320">
+          <div class="cad-feat__card-icon cad-feat__card-icon--blue"><i class="fa-solid fa-truck-fast"></i></div>
+          <h3 class="cad-feat__card-title">Cloud Migration</h3>
+          <p class="cad-feat__card-desc">Lift-and-shift, re-platform or re-architect — we migrate legacy monoliths and on-premise systems to cloud with zero data loss and minimal downtime.</p>
+          <div class="cad-feat__card-tags"><span>Lift & Shift</span><span>Re-Platform</span><span>Database</span><span>Zero Loss</span></div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="cad-feat__card" data-delay="400">
+          <div class="cad-feat__card-icon cad-feat__card-icon--teal"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3 class="cad-feat__card-title">Cloud Security & Compliance</h3>
+          <p class="cad-feat__card-desc">End-to-end security posture management, IAM policies, encryption at rest and in transit, and compliance frameworks for SOC2, GDPR and HIPAA.</p>
+          <div class="cad-feat__card-tags"><span>IAM</span><span>SOC2</span><span>GDPR</span><span>HIPAA</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- END SECTION 3 — FEATURES -->
+
+
+  <!-- ============================================================
+       SECTION 4 — INDUSTRY USE CASES
+       Prefix: cad-ind__
+       CSS: cloud.css (search: === SECTION 4: INDUSTRY ===)
+       JS:  cloud.js  (search: === SECTION 4: INDUSTRY ===)
+  ============================================================ -->
+  <section class="cad-ind" id="cad-ind-section" aria-label="Cloud Solutions by Industry">
+    <div class="cad-ind__container">
+
+      <div class="cad-ind__header">
+        <span class="cad-ind__eyebrow">Industries We Serve</span>
+        <h2 class="cad-ind__title">Cloud Solutions Across Every Sector</h2>
+        <p class="cad-ind__subtitle">Real cloud deployments — not just demos</p>
+      </div>
+
+      <!-- Tab bar -->
+      <div class="cad-ind__tabs" role="tablist" id="cadIndTabs">
+        <button class="cad-ind__tab cad-ind__tab--active" data-ind="saas" role="tab" aria-selected="true"><i class="fa-solid fa-layer-group"></i> SaaS</button>
+        <button class="cad-ind__tab" data-ind="healthcare" role="tab" aria-selected="false"><i class="fa-solid fa-hospital"></i> Healthcare</button>
+        <button class="cad-ind__tab" data-ind="logistics" role="tab" aria-selected="false"><i class="fa-solid fa-truck"></i> Logistics</button>
+        <button class="cad-ind__tab" data-ind="manufacturing" role="tab" aria-selected="false"><i class="fa-solid fa-industry"></i> Manufacturing</button>
+        <button class="cad-ind__tab" data-ind="retail" role="tab" aria-selected="false"><i class="fa-solid fa-cart-shopping"></i> Retail</button>
+        <button class="cad-ind__tab" data-ind="fintech" role="tab" aria-selected="false"><i class="fa-solid fa-coins"></i> FinTech</button>
+      </div>
+
+      <!-- Panels -->
+      <div class="cad-ind__panels" id="cadIndPanels">
+
+        <!-- SaaS Panel -->
+        <div class="cad-ind__panel cad-ind__panel--active" data-ind="saas">
+          <div class="cad-ind__panel-visual">
+            <div class="cad-ind__panel-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <div class="cad-ind__panel-metrics">
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">42%</span><span class="cad-ind__metric-label">Cost Reduction</span></div>
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">10x</span><span class="cad-ind__metric-label">Scale Capacity</span></div>
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">99.9%</span><span class="cad-ind__metric-label">Uptime SLA</span></div>
+            </div>
+          </div>
+          <div class="cad-ind__panel-content">
+            <h3 class="cad-ind__panel-title">SaaS Platform Development & Scaling</h3>
+            <p class="cad-ind__panel-desc">We architect and build multi-tenant SaaS platforms that scale from 100 to 100,000 users without re-engineering — using serverless backends, managed databases and global CDN delivery.</p>
+            <ul class="cad-ind__panel-list">
+              <li><i class="fa-solid fa-check"></i> Multi-tenant architecture with data isolation</li>
+              <li><i class="fa-solid fa-check"></i> Auto-scaling backend with managed Kubernetes</li>
+              <li><i class="fa-solid fa-check"></i> Usage-based billing integration (Stripe / Chargebee)</li>
+              <li><i class="fa-solid fa-check"></i> Global deployment across 3+ AWS/Azure regions</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Healthcare Panel -->
+        <div class="cad-ind__panel" data-ind="healthcare">
+          <div class="cad-ind__panel-visual">
+            <div class="cad-ind__panel-icon"><i class="fa-solid fa-hospital"></i></div>
+            <div class="cad-ind__panel-metrics">
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">HIPAA</span><span class="cad-ind__metric-label">Compliant</span></div>
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">99.99%</span><span class="cad-ind__metric-label">Uptime</span></div>
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">&lt;50ms</span><span class="cad-ind__metric-label">API Latency</span></div>
+            </div>
+          </div>
+          <div class="cad-ind__panel-content">
+            <h3 class="cad-ind__panel-title">Healthcare Cloud & Telemedicine Platforms</h3>
+            <p class="cad-ind__panel-desc">HIPAA-compliant cloud platforms for patient data management, telemedicine video infrastructure and clinical analytics — built with end-to-end encryption and audit trails.</p>
+            <ul class="cad-ind__panel-list">
+              <li><i class="fa-solid fa-check"></i> HIPAA, HL7 FHIR-compliant data storage</li>
+              <li><i class="fa-solid fa-check"></i> Telemedicine video infrastructure (WebRTC)</li>
+              <li><i class="fa-solid fa-check"></i> Encrypted patient records with full audit log</li>
+              <li><i class="fa-solid fa-check"></i> Real-time clinical data dashboards</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Logistics Panel -->
+        <div class="cad-ind__panel" data-ind="logistics">
+          <div class="cad-ind__panel-visual">
+            <div class="cad-ind__panel-icon"><i class="fa-solid fa-truck"></i></div>
+            <div class="cad-ind__panel-metrics">
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">300%</span><span class="cad-ind__metric-label">Fleet Growth</span></div>
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">Real-Time</span><span class="cad-ind__metric-label">Tracking</span></div>
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">0</span><span class="cad-ind__metric-label">Lost Shipments</span></div>
+            </div>
+          </div>
+          <div class="cad-ind__panel-content">
+            <h3 class="cad-ind__panel-title">Logistics Cloud Platforms & Fleet Management</h3>
+            <p class="cad-ind__panel-desc">Real-time dispatch platforms, route optimisation engines and cargo tracking systems built on event-driven cloud architecture — tripling one client's fleet capacity without adding vehicles.</p>
+            <ul class="cad-ind__panel-list">
+              <li><i class="fa-solid fa-check"></i> Real-time GPS fleet tracking cloud backend</li>
+              <li><i class="fa-solid fa-check"></i> AI route optimisation microservice</li>
+              <li><i class="fa-solid fa-check"></i> ERP / WMS cloud integration via REST API</li>
+              <li><i class="fa-solid fa-check"></i> Event-driven dispatch with Kafka streams</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Manufacturing Panel -->
+        <div class="cad-ind__panel" data-ind="manufacturing">
+          <div class="cad-ind__panel-visual">
+            <div class="cad-ind__panel-icon"><i class="fa-solid fa-industry"></i></div>
+            <div class="cad-ind__panel-metrics">
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">73%</span><span class="cad-ind__metric-label">↓ Downtime</span></div>
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">1M+</span><span class="cad-ind__metric-label">Events/Day</span></div>
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">14 Days</span><span class="cad-ind__metric-label">Deployment</span></div>
+            </div>
+          </div>
+          <div class="cad-ind__panel-content">
+            <h3 class="cad-ind__panel-title">Industrial IoT Cloud & Manufacturing Analytics</h3>
+            <p class="cad-ind__panel-desc">High-throughput cloud backends ingesting millions of sensor events per day, with real-time anomaly detection, OEE dashboards and predictive maintenance pipelines.</p>
+            <ul class="cad-ind__panel-list">
+              <li><i class="fa-solid fa-check"></i> AWS IoT Core + Kinesis data ingestion pipeline</li>
+              <li><i class="fa-solid fa-check"></i> Time-series analytics with InfluxDB + Grafana</li>
+              <li><i class="fa-solid fa-check"></i> ML-powered predictive maintenance service</li>
+              <li><i class="fa-solid fa-check"></i> OEE dashboard with per-machine drill-down</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Retail Panel -->
+        <div class="cad-ind__panel" data-ind="retail">
+          <div class="cad-ind__panel-visual">
+            <div class="cad-ind__panel-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <div class="cad-ind__panel-metrics">
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">5x</span><span class="cad-ind__metric-label">Peak Scale</span></div>
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">28%</span><span class="cad-ind__metric-label">↑ Conversion</span></div>
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">&lt;1s</span><span class="cad-ind__metric-label">Page Load</span></div>
+            </div>
+          </div>
+          <div class="cad-ind__panel-content">
+            <h3 class="cad-ind__panel-title">E-Commerce Cloud Infrastructure & Retail Platforms</h3>
+            <p class="cad-ind__panel-desc">Auto-scaling e-commerce backends that handle 5x Black Friday traffic spikes without breaking a sweat — with real-time inventory sync, personalisation engines and instant checkout APIs.</p>
+            <ul class="cad-ind__panel-list">
+              <li><i class="fa-solid fa-check"></i> Auto-scaling product catalogue & search API</li>
+              <li><i class="fa-solid fa-check"></i> Real-time inventory sync across channels</li>
+              <li><i class="fa-solid fa-check"></i> Personalisation engine with Redis caching</li>
+              <li><i class="fa-solid fa-check"></i> Global CDN for sub-1s page load worldwide</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- FinTech Panel -->
+        <div class="cad-ind__panel" data-ind="fintech">
+          <div class="cad-ind__panel-visual">
+            <div class="cad-ind__panel-icon"><i class="fa-solid fa-coins"></i></div>
+            <div class="cad-ind__panel-metrics">
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">PCI-DSS</span><span class="cad-ind__metric-label">Compliant</span></div>
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">&lt;10ms</span><span class="cad-ind__metric-label">Txn Latency</span></div>
+              <div class="cad-ind__metric"><span class="cad-ind__metric-val">SOC2</span><span class="cad-ind__metric-label">Certified</span></div>
+            </div>
+          </div>
+          <div class="cad-ind__panel-content">
+            <h3 class="cad-ind__panel-title">FinTech Cloud Platforms & Payment Infrastructure</h3>
+            <p class="cad-ind__panel-desc">High-frequency transaction processing systems, payment gateway integrations and fraud detection pipelines — built with PCI-DSS compliance, sub-10ms latency and complete audit trails.</p>
+            <ul class="cad-ind__panel-list">
+              <li><i class="fa-solid fa-check"></i> PCI-DSS compliant payment processing cloud</li>
+              <li><i class="fa-solid fa-check"></i> Real-time fraud detection ML pipeline</li>
+              <li><i class="fa-solid fa-check"></i> Multi-currency transaction microservice</li>
+              <li><i class="fa-solid fa-check"></i> Full audit trail with immutable event log</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- END SECTION 4 — INDUSTRY USE CASES -->
+
+
+  <!-- ============================================================
+       SECTION 5 — TECH STACK
+       Prefix: cad-tech__
+       CSS: cloud.css (search: === SECTION 5: TECH STACK ===)
+       JS:  cloud.js  (search: === SECTION 5: TECH STACK ===)
+  ============================================================ -->
+  <section class="cad-tech" id="cad-tech-section" aria-label="Cloud Technology Stack">
+    <div class="cad-tech__container">
+
+      <div class="cad-tech__header">
+        <span class="cad-tech__eyebrow">Our Technology Stack</span>
+        <h2 class="cad-tech__title">Built With Industry-Leading Cloud Tools</h2>
+        <p class="cad-tech__subtitle">Every technology chosen for performance, reliability and long-term support</p>
+      </div>
+
+      <div class="cad-tech__layers">
+
+        <div class="cad-tech__layer" data-delay="0">
+          <div class="cad-tech__layer-label"><i class="fa-solid fa-cloud"></i><span>Cloud Platforms</span></div>
+          <div class="cad-tech__layer-pills">
+            <span class="cad-tech__pill">AWS</span><span class="cad-tech__pill">Microsoft Azure</span><span class="cad-tech__pill">Google Cloud</span><span class="cad-tech__pill">DigitalOcean</span><span class="cad-tech__pill">Cloudflare</span>
+          </div>
+        </div>
+
+        <div class="cad-tech__layer" data-delay="80">
+          <div class="cad-tech__layer-label"><i class="fa-solid fa-code"></i><span>Backend & APIs</span></div>
+          <div class="cad-tech__layer-pills">
+            <span class="cad-tech__pill">Node.js</span><span class="cad-tech__pill">Python / FastAPI</span><span class="cad-tech__pill">Go</span><span class="cad-tech__pill">GraphQL</span><span class="cad-tech__pill">REST</span><span class="cad-tech__pill">gRPC</span>
+          </div>
+        </div>
+
+        <div class="cad-tech__layer" data-delay="160">
+          <div class="cad-tech__layer-label"><i class="fa-solid fa-database"></i><span>Databases & Storage</span></div>
+          <div class="cad-tech__layer-pills">
+            <span class="cad-tech__pill">PostgreSQL</span><span class="cad-tech__pill">MongoDB</span><span class="cad-tech__pill">Redis</span><span class="cad-tech__pill">DynamoDB</span><span class="cad-tech__pill">S3</span><span class="cad-tech__pill">Elasticsearch</span>
+          </div>
+        </div>
+
+        <div class="cad-tech__layer" data-delay="240">
+          <div class="cad-tech__layer-label"><i class="fa-solid fa-arrows-rotate"></i><span>DevOps & CI/CD</span></div>
+          <div class="cad-tech__layer-pills">
+            <span class="cad-tech__pill">Docker</span><span class="cad-tech__pill">Kubernetes</span><span class="cad-tech__pill">Terraform</span><span class="cad-tech__pill">GitHub Actions</span><span class="cad-tech__pill">Jenkins</span><span class="cad-tech__pill">Helm</span>
+          </div>
+        </div>
+
+        <div class="cad-tech__layer" data-delay="320">
+          <div class="cad-tech__layer-label"><i class="fa-solid fa-chart-bar"></i><span>Monitoring & Observability</span></div>
+          <div class="cad-tech__layer-pills">
+            <span class="cad-tech__pill">Datadog</span><span class="cad-tech__pill">CloudWatch</span><span class="cad-tech__pill">Grafana</span><span class="cad-tech__pill">Prometheus</span><span class="cad-tech__pill">ELK Stack</span><span class="cad-tech__pill">PagerDuty</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- END SECTION 5 — TECH STACK -->
+
+
+  <!-- ============================================================
+       SECTION 6 — CASE STUDIES
+       Prefix: cad-cs__
+       CSS: cloud.css (search: === SECTION 6: CASE STUDIES ===)
+       JS:  cloud.js  (search: === SECTION 6: CASE STUDIES ===)
+  ============================================================ -->
+  <section class="cad-cs" id="cad-cs-section" aria-label="Cloud Development Case Studies">
+    <div class="cad-cs__container">
+
+      <div class="cad-cs__header">
+        <span class="cad-cs__eyebrow">Case Studies</span>
+        <h2 class="cad-cs__title">Real Projects. Real Results.</h2>
+        <p class="cad-cs__subtitle">Numbers from actual client deployments — not estimates</p>
+      </div>
+
+      <div class="cad-cs__grid">
+
+        <!-- Featured card -->
+        <article class="cad-cs__card cad-cs__card--featured" data-delay="0">
+          <div class="cad-cs__card-tag">🏆 Featured</div>
+          <div class="cad-cs__card-industry">SaaS Platform</div>
+          <h3 class="cad-cs__card-title">Reduced AWS Costs by 42% for a Fast-Growing SaaS Startup</h3>
+          <p class="cad-cs__card-desc">Over-provisioned EC2 instances were burning $18K/month. We re-architected with serverless Lambda + auto-scaling ECS — without changing a single user-facing feature.</p>
+          <div class="cad-cs__card-results">
+            <div class="cad-cs__result"><span class="cad-cs__result-val">42%</span><span class="cad-cs__result-label">Cost Cut</span></div>
+            <div class="cad-cs__result"><span class="cad-cs__result-val">$18K</span><span class="cad-cs__result-label">Saved/Month</span></div>
+            <div class="cad-cs__result"><span class="cad-cs__result-val">Zero</span><span class="cad-cs__result-label">Downtime</span></div>
+          </div>
+          <a class="cad-cs__card-link" href="#">Read Full Case Study →</a>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="cad-cs__card" data-delay="120">
+          <div class="cad-cs__card-industry">Industrial IoT</div>
+          <h3 class="cad-cs__card-title">Zero-Downtime CI/CD for a 24/7 Industrial Monitoring Platform</h3>
+          <p class="cad-cs__card-desc">Factory floor systems cannot stop for deployments. We built a blue-green pipeline that ships new code every day without pausing the production line.</p>
+          <div class="cad-cs__card-results">
+            <div class="cad-cs__result"><span class="cad-cs__result-val">Daily</span><span class="cad-cs__result-label">Deployments</span></div>
+            <div class="cad-cs__result"><span class="cad-cs__result-val">0min</span><span class="cad-cs__result-label">Downtime</span></div>
+          </div>
+          <a class="cad-cs__card-link" href="#">Read Case Study →</a>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="cad-cs__card" data-delay="240">
+          <div class="cad-cs__card-industry">Logistics Platform</div>
+          <h3 class="cad-cs__card-title">Logistics Startup Scaled 3x With Custom Cloud + Mobile Stack</h3>
+          <p class="cad-cs__card-desc">Manual dispatch and lost packages were costing clients. We rebuilt their entire ops stack on AWS — within 6 months they tripled fleet capacity without adding vehicles.</p>
+          <div class="cad-cs__card-results">
+            <div class="cad-cs__result"><span class="cad-cs__result-val">3x</span><span class="cad-cs__result-label">Fleet Growth</span></div>
+            <div class="cad-cs__result"><span class="cad-cs__result-val">6 Months</span><span class="cad-cs__result-label">Time to Scale</span></div>
+          </div>
+          <a class="cad-cs__card-link" href="#">Read Case Study →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+  <!-- END SECTION 6 — CASE STUDIES -->
+
+
+  <!-- ============================================================
+       SECTION 7 — TESTIMONIALS
+       Prefix: cad-test__
+       CSS: cloud.css (search: === SECTION 7: TESTIMONIALS ===)
+       JS:  cloud.js  (search: === SECTION 7: TESTIMONIALS ===)
+  ============================================================ -->
+  <section class="cad-test" id="cad-test-section" aria-label="Client Testimonials">
+    <div class="cad-test__container">
+
+      <div class="cad-test__header">
+        <span class="cad-test__eyebrow">Client Voices</span>
+        <h2 class="cad-test__title">Trusted by Engineering Teams</h2>
+      </div>
+
+      <div class="cad-test__track-wrap" id="cadTestWrap">
+        <div class="cad-test__track" id="cadTestTrack">
+
+          <blockquote class="cad-test__card">
+            <div class="cad-test__stars">★★★★★</div>
+            <p class="cad-test__quote">"BrainChild re-architected our entire AWS stack in 8 weeks. Our cloud bill dropped by 42% and our deployment frequency went from weekly to daily. The impact was immediate."</p>
+            <footer class="cad-test__footer">
+              <div class="cad-test__avatar">AK</div>
+              <div class="cad-test__author"><span class="cad-test__name">Arjun Kapoor</span><span class="cad-test__role">CTO, CloudSprint SaaS</span></div>
+            </footer>
+          </blockquote>
+
+          <blockquote class="cad-test__card">
+            <div class="cad-test__stars">★★★★★</div>
+            <p class="cad-test__quote">"We needed a HIPAA-compliant telemedicine platform in 10 weeks. BrainChild delivered on time, within budget, and passed our security audit on the first attempt. Remarkable."</p>
+            <footer class="cad-test__footer">
+              <div class="cad-test__avatar">PR</div>
+              <div class="cad-test__author"><span class="cad-test__name">Priya Rajan</span><span class="cad-test__role">CEO, MedConnect Health</span></div>
+            </footer>
+          </blockquote>
+
+          <blockquote class="cad-test__card">
+            <div class="cad-test__stars">★★★★★</div>
+            <p class="cad-test__quote">"The zero-downtime CI/CD pipeline they built for our factory system is a game-changer. We deploy 3 times a day now without worrying about the production floor stopping."</p>
+            <footer class="cad-test__footer">
+              <div class="cad-test__avatar">SM</div>
+              <div class="cad-test__author"><span class="cad-test__name">Suresh Menon</span><span class="cad-test__role">Head of Engineering, AutoCon Industries</span></div>
+            </footer>
+          </blockquote>
+
+          <blockquote class="cad-test__card">
+            <div class="cad-test__stars">★★★★★</div>
+            <p class="cad-test__quote">"Their GraphQL API handles 2 million requests a day without breaking a sweat. The architecture they designed is something our in-house team genuinely couldn't have built."</p>
+            <footer class="cad-test__footer">
+              <div class="cad-test__avatar">NV</div>
+              <div class="cad-test__author"><span class="cad-test__name">Neha Varma</span><span class="cad-test__role">VP Engineering, RetailEdge</span></div>
+            </footer>
+          </blockquote>
+
+          <blockquote class="cad-test__card">
+            <div class="cad-test__stars">★★★★★</div>
+            <p class="cad-test__quote">"BrainChild migrated our legacy Oracle system to PostgreSQL on AWS RDS with zero data loss. A migration we had been afraid of for 3 years took them just 6 weeks to execute perfectly."</p>
+            <footer class="cad-test__footer">
+              <div class="cad-test__avatar">RP</div>
+              <div class="cad-test__author"><span class="cad-test__name">Ravi Pillai</span><span class="cad-test__role">CIO, LogiPrime Freight</span></div>
+            </footer>
+          </blockquote>
+
+        </div>
+      </div>
+
+      <!-- Dot navigation — generated by JS -->
+      <div class="cad-test__dots" id="cadTestDots" role="tablist" aria-label="Testimonial navigation"></div>
+
+    </div>
+  </section>
+  <!-- END SECTION 7 — TESTIMONIALS -->
+
+
+  <!-- ============================================================
+       SECTION 8 — CTA / CONTACT BANNER
+       Prefix: cad-cta__
+       CSS: cloud.css (search: === SECTION 8: CTA ===)
+       JS:  cloud.js  (search: === SECTION 8: CTA ===)
+  ============================================================ -->
+  <section class="cad-cta" id="cad-cta-section" aria-label="Start Your Cloud Project">
+    <div class="cad-cta__bg" aria-hidden="true">
+      <div class="cad-cta__orb cad-cta__orb--1"></div>
+      <div class="cad-cta__orb cad-cta__orb--2"></div>
+    </div>
+    <div class="cad-cta__container">
+      <span class="cad-cta__eyebrow">Ready to Move to Cloud?</span>
+      <h2 class="cad-cta__title">Let's Build Your Cloud Application</h2>
+      <p class="cad-cta__subtitle">Tell us your challenge — we'll architect, build and deliver it.<br class="cad-cta__br" />Free technical consultation for every new project.</p>
+      <div class="cad-cta__checklist">
+        <span class="cad-cta__check"><i class="fa-solid fa-check"></i> Free Architecture Review</span>
+        <span class="cad-cta__check"><i class="fa-solid fa-check"></i> Detailed Project Scope</span>
+        <span class="cad-cta__check"><i class="fa-solid fa-check"></i> Fixed-Price Quote</span>
+        <span class="cad-cta__check"><i class="fa-solid fa-check"></i> 48hr Response Time</span>
+      </div>
+      <div class="cad-cta__actions">
+        <a class="cad-cta__btn cad-cta__btn--primary" href="contact.html">
+          Talk to a Cloud Engineer
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a class="cad-cta__btn cad-cta__btn--ghost" href="projects.html">View All Projects</a>
+      </div>
+    </div>
+  </section>
+  <!-- END SECTION 8 — CTA -->
+
+
+  <!-- ============================================================
+       FOOTER PLACEHOLDER
+       Add your existing footer code here
+  ============================================================ -->
+  <div id="cad-footer-placeholder">
+    <!-- YOUR EXISTING FOOTER CODE GOES HERE -->
+  </div>
+  <!-- END FOOTER PLACEHOLDER -->
+
+  <!-- Cloud App Development JS -->
+  <script src="cloud.js"></script>
+  <script src="navbar.js"></script>
+  <script src="/Combained/header.js"></script>
+  <script src="/Combained/footer.js"></script>
+
+</body>
+</html>

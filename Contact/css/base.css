@@ -1,0 +1,81 @@
+/* ============================================================
+   FILE: css/base.css
+   PURPOSE: CSS custom properties (design tokens) shared across
+            ALL sections. No layout or component styles here.
+            Each section imports/uses these variables independently.
+   ============================================================ */
+
+/* --- Google Fonts import (Outfit display + DM Sans body) --- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+/* --- Design tokens --- */
+:root {
+  /* Brand palette — light tech theme */
+  --bc-primary:        #0A6EBD;   /* deep sky blue — primary CTA */
+  --bc-primary-dark:   #084F8A;   /* hover / pressed */
+  --bc-accent:         #00C2C7;   /* teal — IoT highlight colour */
+  --bc-accent-light:   #E0F8F9;   /* teal tint */
+
+  /* Neutrals */
+  --bc-bg:             #F4F7FB;   /* page background */
+  --bc-surface:        #FFFFFF;   /* card / form surface */
+  --bc-border:         #DDE4EE;   /* subtle border */
+  --bc-muted:          #8A99B3;   /* placeholder / helper text */
+
+  /* Text */
+  --bc-text-primary:   #0D1B2E;   /* headings */
+  --bc-text-body:      #3A4A60;   /* body copy */
+
+  /* Gradients */
+  --bc-gradient-hero:  linear-gradient(135deg, #EDF3FB 0%, #E8F6F7 55%, #EDF3FB 100%);
+  --bc-gradient-card:  linear-gradient(145deg, #FFFFFF 0%, #F0F5FC 100%);
+
+  /* Shadows */
+  --bc-shadow-sm:      0 2px 8px rgba(10, 110, 189, 0.07);
+  --bc-shadow-md:      0 6px 24px rgba(10, 110, 189, 0.12);
+  --bc-shadow-lg:      0 16px 48px rgba(10, 110, 189, 0.16);
+
+  /* Typography */
+  --bc-font-display:   'Outfit', sans-serif;
+  --bc-font-body:      'DM Sans', sans-serif;
+
+  /* Spacing scale */
+  --bc-space-xs:       0.5rem;
+  --bc-space-sm:       1rem;
+  --bc-space-md:       2rem;
+  --bc-space-lg:       4rem;
+  --bc-space-xl:       6rem;
+
+  /* Border radius */
+  --bc-radius-sm:      8px;
+  --bc-radius-md:      16px;
+  --bc-radius-lg:      24px;
+  --bc-radius-full:    9999px;
+
+  /* Transitions */
+  --bc-transition:     0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Global reset for this page only --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--bc-font-body);
+  background-color: var(--bc-bg);
+  color: var(--bc-text-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* --- Scroll-reveal base state (used by all sections) --- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+[data-reveal].bc-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}

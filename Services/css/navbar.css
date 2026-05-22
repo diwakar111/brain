@@ -1,0 +1,427 @@
+  /* ── Scoped box-sizing reset (navbar elements only) ── */
+  .bct-nav *,
+  .bct-nav *::before,
+  .bct-nav *::after,
+  .mob-overlay *,
+  .mob-overlay *::before,
+  .mob-overlay *::after,
+  #cDot, #cRing {
+    box-sizing: border-box;
+  }
+
+  /* ── CSS variables (--bct- prefixed, navbar-scoped) ── */
+  .bct-nav,
+  .mob-overlay,
+  #cDot, #cRing {
+    --bct-cyan:  #00e5ff;
+    --bct-vio:   #7b2fff;
+    --bct-pink:  #ff2d9b;
+    --bct-gradh: linear-gradient(90deg, #00e5ff, #7b2fff);
+    --bct-text:  #e8eeff;
+    --bct-mute:  #5a6a94;
+    --bct-bord:  rgba(0, 229, 255, 0.15);
+  }
+
+  /* ── Custom cursor ── */
+  /* NOTE: Add  body { cursor: none; }  in your company.html CSS */
+  #cDot {
+    position: fixed; width: 7px; height: 7px;
+    background: #00e5ff; border-radius: 50%;
+    pointer-events: none; z-index: 99999;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px #00e5ff;
+  }
+  #cRing {
+    position: fixed; width: 26px; height: 26px;
+    border: 1.5px solid rgba(0, 229, 255, 0.45);
+    border-radius: 50%; pointer-events: none;
+    z-index: 99998; transform: translate(-50%, -50%);
+    transition: all 0.12s ease;
+  }
+
+  /* ════════════════════════════════════════════════
+     NAVBAR
+  ════════════════════════════════════════════════ */
+  .bct-nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+    transition: background 0.4s ease, backdrop-filter 0.4s ease,
+                border-bottom 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .bct-nav.scrolled {
+    background: rgba(5, 11, 24, 0.88);
+    backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+    border-bottom: 1px solid rgba(0, 229, 255, 0.15);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .bct-nav .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 52px; width: 100%; max-width: 100%;
+    background: rgba(0, 0, 0, 0.88);
+  }
+
+  /* ── Logo ── */
+  .bct-nav .bct-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; flex-shrink: 0;
+  }
+  .bct-nav .bct-logo img {
+    height: 34px;
+    filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));
+  }
+  .bct-nav .bct-logo-name {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.05rem; color: #fff; letter-spacing: 0.5px;
+  }
+
+  /* ── Desktop menu list ── */
+  .bct-nav .bct-menu {
+    display: flex; align-items: center; gap: 4px; list-style: none;
+    margin: 0; padding: 0;
+  }
+  .bct-nav .bct-menu li > a,
+  .bct-nav .bct-menu li > span {
+    display: block; font-size: 0.86rem; font-weight: 500;
+    color: rgba(232, 238, 255, 0.65);
+    text-decoration: none; padding: 8px 13px; border-radius: 8px;
+    cursor: pointer; white-space: nowrap;
+    transition: color 0.25s, background 0.25s;
+    font-family: 'Outfit', sans-serif;
+  }
+  .bct-nav .bct-menu li > a:hover,
+  .bct-nav .bct-menu li > span:hover {
+    color: #fff; background: rgba(0, 229, 255, 0.07);
+  }
+  .bct-nav .bct-menu li > a.active {
+    color: #fff; background: rgba(0, 229, 255, 0.07);
+  }
+
+  /* ── Dropdown parent ── */
+  .bct-nav .has-drop { position: relative; }
+
+  /* ── Dropdown panel ── */
+  .bct-nav .bct-drop {
+      position: absolute; top: 100%; left: 50%;
+      padding-top: 10px;
+    transform: translateX(-50%) translateY(8px);
+    min-width: 380px;
+    background: rgba(6, 12, 28, 0.98);
+    backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+    border: 1px solid rgba(0, 229, 255, 0.15);
+    border-radius: 16px; padding: 14px;
+    opacity: 0; pointer-events: none; visibility: hidden;
+    transition: opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+                visibility 0s linear 0.22s;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55),
+                0 0 0 1px rgba(0, 229, 255, 0.04);
+    z-index: 999;
+  }
+
+  /* ////////// */
+  /* ── Invisible bridge fills gap between nav item and dropdown ── */
+.bct-nav .bct-drop::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: transparent;
+}
+
+/* ── Active span (used on Services page instead of <a>) ── */
+.bct-nav .bct-menu li > span.active {
+  color: #fff;
+  background: rgba(0, 229, 255, 0.07);
+}
+
+  @media (hover: hover) {
+    .bct-nav .has-drop:hover .bct-drop {
+      opacity: 1; pointer-events: all; visibility: visible;
+      transform: translateX(-50%) translateY(0);
+      transition: opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+                  visibility 0s linear 0s;
+    }
+  }
+  .bct-nav .has-drop.open .bct-drop {
+    opacity: 1; pointer-events: all; visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    transition: opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+                visibility 0s linear 0s;
+  }
+
+  /* ── Dropdown heading ── */
+  .bct-nav .bct-drop-head {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(0, 229, 255, 0.5);
+    padding: 0 4px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 10px;
+    margin-top: 0;
+  }
+
+  /* ── Dropdown grid ── */
+  .bct-nav .bct-drop-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 7px;
+  }
+
+  /* ── Each dropdown card ── */
+  .bct-nav .bct-drop-card {
+    display: flex; align-items: center; gap: 11px;
+    padding: 10px 12px; border-radius: 11px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-decoration: none; cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .bct-nav .bct-drop-card:hover {
+    background: rgba(0, 229, 255, 0.07);
+    border-color: rgba(0, 229, 255, 0.22);
+    transform: translateX(3px);
+  }
+
+  /* ── Icon badge ── */
+  .bct-nav .bct-drop-icon {
+    flex-shrink: 0; width: 32px; height: 32px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; transition: box-shadow 0.25s;
+  }
+  .bct-nav .bct-drop-icon::before {
+    content: ""; position: absolute; inset: 0; border-radius: 9px;
+    background: var(--di-grad); opacity: 0.16; transition: opacity 0.22s;
+  }
+  .bct-nav .bct-drop-card:hover .bct-drop-icon::before { opacity: 0.3; }
+  .bct-nav .bct-drop-icon::after {
+    content: ""; position: absolute; inset: 0; border-radius: 9px;
+    border: 1px solid var(--di-border); opacity: 0.8;
+  }
+  .bct-nav .bct-drop-icon i {
+    position: relative; z-index: 1; font-size: 13px;
+    background: var(--di-grad);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .bct-nav .bct-drop-card:hover .bct-drop-icon {
+    box-shadow: 0 0 14px var(--di-glow);
+  }
+
+  /* ── Icon colour tokens (--di- vars are local to each card, safe) ── */
+  .bct-di--iot    { --di-grad: linear-gradient(135deg,#00e5ff,#3b82f6); --di-glow: rgba(0,229,255,.3);   --di-border: rgba(0,229,255,.28); }
+  .bct-di--emb    { --di-grad: linear-gradient(135deg,#7b2fff,#00e5ff); --di-glow: rgba(123,47,255,.3);  --di-border: rgba(123,47,255,.28); }
+  .bct-di--cloud  { --di-grad: linear-gradient(135deg,#38bdf8,#7b2fff); --di-glow: rgba(56,189,248,.3);  --di-border: rgba(56,189,248,.28); }
+  .bct-di--mobile { --di-grad: linear-gradient(135deg,#ff2d9b,#7b2fff); --di-glow: rgba(255,45,155,.3);  --di-border: rgba(255,45,155,.28); }
+  .bct-di--box    { --di-grad: linear-gradient(135deg,#f59e0b,#ef4444); --di-glow: rgba(245,158,11,.3);  --di-border: rgba(245,158,11,.28); }
+  .bct-di--hw     { --di-grad: linear-gradient(135deg,#10b981,#00e5ff); --di-glow: rgba(16,185,129,.3);  --di-border: rgba(16,185,129,.28); }
+  .bct-di--auto   { --di-grad: linear-gradient(135deg,#f97316,#ef4444); --di-glow: rgba(249,115,22,.3);  --di-border: rgba(249,115,22,.28); }
+  .bct-di--home   { --di-grad: linear-gradient(135deg,#a855f7,#ff2d9b); --di-glow: rgba(168,85,247,.3);  --di-border: rgba(168,85,247,.28); }
+  .bct-di--food   { --di-grad: linear-gradient(135deg,#10b981,#84cc16); --di-glow: rgba(16,185,129,.3);  --di-border: rgba(16,185,129,.28); }
+  .bct-di--ind    { --di-grad: linear-gradient(135deg,#00e5ff,#f59e0b); --di-glow: rgba(0,229,255,.3);   --di-border: rgba(0,229,255,.28); }
+
+  /* ── Card text ── */
+  .bct-nav .bct-drop-texts {
+    display: flex; flex-direction: column; gap: 2px; min-width: 0;
+  }
+  .bct-nav .bct-drop-label {
+    font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 500;
+    color: rgba(232, 238, 255, 0.78); line-height: 1.2; white-space: nowrap;
+    transition: color 0.2s;
+  }
+  .bct-nav .bct-drop-card:hover .bct-drop-label { color: #fff; }
+  .bct-nav .bct-drop-sub {
+    font-family: 'Space Mono', monospace; font-size: 0.5rem;
+    letter-spacing: 0.8px; color: rgba(232, 238, 255, 0.28);
+    text-transform: uppercase; white-space: nowrap;
+  }
+
+  /* ── Get Quote CTA Button ── */
+  .bct-nav .bct-btn-cta {
+    font-family: 'Outfit', sans-serif; font-size: 0.84rem; font-weight: 600;
+    padding: 9px 22px; border-radius: 50px; border: none;
+    background: linear-gradient(90deg, #00e5ff, #7b2fff);
+    color: #fff; cursor: pointer;
+    position: relative; overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+    transition: all 0.3s ease; white-space: nowrap; flex-shrink: 0;
+  }
+  .bct-nav .bct-btn-cta::after {
+    content: ""; position: absolute; top: -50%; left: -70%;
+    width: 45%; height: 200%;
+    background: rgba(255, 255, 255, 0.18); transform: skewX(-20deg);
+    transition: left 0.5s ease;
+  }
+  .bct-nav .bct-btn-cta:hover::after { left: 130%; }
+  .bct-nav .bct-btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0, 229, 255, 0.35);
+  }
+
+  /* ── Hamburger (mobile) ── */
+  .bct-nav .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 5px;
+    background: none; border: none;
+  }
+  .bct-nav .hamburger span {
+    width: 23px; height: 2px; background: #e8eeff;
+    border-radius: 2px; transition: background 0.3s;
+    display: block;
+  }
+
+  /* ════════════════════════════════════════════════
+     MOBILE FULL-SCREEN OVERLAY
+  ════════════════════════════════════════════════ */
+  .mob-overlay {
+    position: fixed; inset: 0;
+    background: rgba(5, 11, 24, 0.97);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    z-index: 998; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    visibility: hidden; opacity: 0; transform: translateY(-100%);
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.55s ease, visibility 0s linear 0.55s;
+    overflow-y: auto; padding: 60px 20px 40px;
+  }
+  .mob-overlay.open {
+    visibility: visible; opacity: 1; transform: translateY(0);
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.55s ease, visibility 0s linear 0s;
+  }
+  .mob-overlay .mob-close {
+    position: absolute; top: 22px; right: 28px;
+    font-size: 1.8rem; color: #5a6a94;
+    cursor: pointer; background: none; border: none;
+    line-height: 1; transition: color 0.2s;
+  }
+  .mob-overlay .mob-close:hover { color: #00e5ff; }
+
+  /* Mobile plain links */
+  .mob-overlay .mob-link {
+    font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700;
+    color: rgba(232, 238, 255, 0.55); text-decoration: none;
+    display: block; text-align: center; padding: 10px 0;
+    transition: color 0.2s; width: 100%;
+  }
+  .mob-overlay .mob-link:hover,
+  .mob-overlay .mob-link:active { color: #00e5ff; }
+
+  /* Mobile accordion */
+  .mob-overlay .mob-accordion { width: 100%; text-align: center; }
+  .mob-overlay .mob-acc-btn {
+    font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700;
+    color: rgba(232, 238, 255, 0.55);
+    background: none; border: none; cursor: pointer;
+    width: 100%; padding: 10px 0;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    transition: color 0.2s;
+  }
+  .mob-overlay .mob-acc-btn:hover { color: #00e5ff; }
+  .mob-overlay .mob-acc-arrow {
+    font-size: 1rem; transition: transform 0.3s ease;
+    color: rgba(0, 229, 255, 0.5);
+  }
+  .mob-overlay .mob-accordion.open .mob-acc-arrow { transform: rotate(180deg); }
+  .mob-overlay .mob-acc-panel {
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+  }
+  .mob-overlay .mob-accordion.open .mob-acc-panel { max-height: 600px; }
+
+  .mob-overlay .mob-acc-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px; padding: 10px 0 16px;
+  }
+  .mob-overlay .mob-acc-card {
+    display: flex; align-items: center; gap: 9px;
+    padding: 10px 12px; border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    text-decoration: none; transition: background 0.2s, border-color 0.2s;
+  }
+  .mob-overlay .mob-acc-card:hover,
+  .mob-overlay .mob-acc-card:active {
+    background: rgba(0, 229, 255, 0.08);
+    border-color: rgba(0, 229, 255, 0.2);
+  }
+  .mob-overlay .mob-acc-icon {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .mob-overlay .mob-acc-icon::before {
+    content: ""; position: absolute; inset: 0; border-radius: 8px;
+    background: var(--di-grad); opacity: 0.2;
+  }
+  .mob-overlay .mob-acc-icon::after {
+    content: ""; position: absolute; inset: 0; border-radius: 8px;
+    border: 1px solid var(--di-border); opacity: 0.7;
+  }
+  .mob-overlay .mob-acc-icon i {
+    position: relative; z-index: 1; font-size: 11px;
+    background: var(--di-grad);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .mob-overlay .mob-acc-label {
+    font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 500;
+    color: rgba(232, 238, 255, 0.7); line-height: 1.2; text-align: left;
+  }
+
+  .mob-overlay .mob-divider {
+    width: 60px; height: 1px;
+    background: rgba(255, 255, 255, 0.08); margin: 6px auto;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 992px) {
+    .bct-nav .bct-menu,
+    .bct-nav .bct-btn-cta { display: none; }
+    .bct-nav .hamburger { display: flex; }
+    .bct-nav .nav-inner { padding: 14px 20px; }
+  }
+  @media (max-width: 520px) {
+    .mob-overlay .mob-acc-grid { grid-template-columns: 1fr; }
+  }
+
+  /* logo iimplementation style in brand company name////////////////////////////////////////////////////// */
+  /* =========================
+   BRAINCHILD TEXT LOGO (WITH IMAGE)
+========================= */
+
+.bct-logo-name {
+  display: flex;
+  align-items: center;
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  color: #ffffff;
+}
+
+/* Logo icon replacing A */
+.bct-logo-icon {
+  height: 18px;
+  width: auto;
+  margin: 0 4px;
+  display: inline-block;
+}
+
+/* Red I */
+.bct-logo-i {
+  color: #ff2d55;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bct-logo-name {
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+  }
+
+  .bct-logo-icon {
+    height: 16px;
+  }
+}

@@ -1,0 +1,172 @@
+/* ============================================================
+   bcb-cta.css — SECTION 7: CTA BANNER
+   Theme: Light — soft gradient background, dark text
+   Prefix: bcb-cta__*
+   No dependency on any other section CSS
+   ============================================================ */
+
+   .bcb-cta {
+    --bcb-cta-cyan:    #00b4d8;
+    --bcb-cta-blue:    #0077b6;
+    --bcb-cta-purple:  #7b2fff;
+    --bcb-cta-text:    #111111;
+    --bcb-cta-muted:   #4a5568;
+    --bcb-cta-font-d:  'Syne', sans-serif;
+    --bcb-cta-font-b:  'DM Sans', sans-serif;
+  
+    position: relative;
+    padding: 100px 20px;
+    /* Light blue-purple gradient — premium but NOT dark */
+    background: linear-gradient(145deg, #eaf3ff 0%, #ede8ff 50%, #e8f4ff 100%);
+    text-align: center;
+    overflow: hidden;
+    border-top: 1px solid rgba(0,180,216,0.1);
+  }
+  
+  /* --- Soft background orbs --- */
+  .bcb-cta__orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(80px);
+  }
+  .bcb-cta__orb--1 {
+    width: 420px; height: 420px;
+    top: -15%; left: -8%;
+    background: radial-gradient(circle, rgba(0,180,216,0.14) 0%, transparent 70%);
+    animation: bcbCtaOrb1 9s ease-in-out infinite alternate;
+  }
+  .bcb-cta__orb--2 {
+    width: 460px; height: 460px;
+    bottom: -18%; right: -8%;
+    background: radial-gradient(circle, rgba(123,47,255,0.1) 0%, transparent 70%);
+    animation: bcbCtaOrb2 11s ease-in-out infinite alternate;
+  }
+  @keyframes bcbCtaOrb1 {
+    from { transform: translate(0,0) scale(1); }
+    to   { transform: translate(28px,18px) scale(1.07); }
+  }
+  @keyframes bcbCtaOrb2 {
+    from { transform: translate(0,0) scale(1); }
+    to   { transform: translate(-18px,-26px) scale(1.05); }
+  }
+  
+  /* --- Inner content --- */
+  .bcb-cta__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    margin: 0 auto;
+    /* Hidden until IntersectionObserver fires */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .bcb-cta__inner.bcb-cta--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* --- Eyebrow --- */
+  .bcb-cta__eyebrow {
+    font-family: var(--bcb-cta-font-b);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bcb-cta-cyan);
+    margin-bottom: 14px;
+    display: block;
+  }
+  
+  /* --- Title — dark text, gradient on key word --- */
+  .bcb-cta__title {
+    font-family: var(--bcb-cta-font-d);
+    font-size: clamp(2rem, 5vw, 3.1rem);
+    font-weight: 800;
+    color: var(--bcb-cta-text);
+    line-height: 1.15;
+    margin-bottom: 18px;
+  }
+  /* Gradient on accent part of title */
+  .bcb-cta__title-accent {
+    background: linear-gradient(90deg, #00b4d8, #7b2fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* --- Subtitle --- */
+  .bcb-cta__sub {
+    font-family: var(--bcb-cta-font-b);
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    font-weight: 400;
+    color: var(--bcb-cta-muted);
+    line-height: 1.72;
+    max-width: 520px;
+    margin: 0 auto 40px;
+  }
+  
+  /* --- Buttons --- */
+  .bcb-cta__btns {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  /* Primary button */
+  .bcb-cta__btn--primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #00b4d8, #0077b6);
+    color: #ffffff;
+    font-family: var(--bcb-cta-font-b);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 15px 34px;
+    border-radius: 999px;
+    box-shadow: 0 6px 22px rgba(0,180,216,0.28);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.2s ease;
+  }
+  .bcb-cta__btn--primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,180,216,0.38);
+    opacity: 0.92;
+  }
+  
+  /* Outline button — dark stroke on light bg */
+  .bcb-cta__btn--outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    color: #0077b6;
+    border: 1.5px solid rgba(0,119,182,0.3);
+    font-family: var(--bcb-cta-font-b);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 15px 34px;
+    border-radius: 999px;
+    box-shadow: 0 2px 10px rgba(0,119,182,0.08);
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease, color 0.2s ease, box-shadow 0.25s ease;
+  }
+  .bcb-cta__btn--outline:hover {
+    background: rgba(0,180,216,0.06);
+    border-color: #00b4d8;
+    color: #00b4d8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,180,216,0.12);
+  }
+  
+  /* ============================================================
+     RESPONSIVE — bcb-cta
+     ============================================================ */
+  @media (max-width: 600px) {
+    .bcb-cta { padding: 72px 16px; }
+    .bcb-cta__btns { flex-direction: column; align-items: center; }
+    .bcb-cta__btn--primary,
+    .bcb-cta__btn--outline { width: 100%; justify-content: center; }
+  }
+  

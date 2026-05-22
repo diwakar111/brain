@@ -1,0 +1,191 @@
+/* ============================================================
+   FILE: css/iot-process.css
+   SECTION: How We Work — #iot-process
+   PURPOSE: 5-step horizontal timeline process section.
+            Scoped entirely to #iot-process.
+   ============================================================ */
+
+#iot-process {
+  padding: var(--iot-sp-lg) 0;
+  background: var(--iot-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Circuit grid texture */
+#iot-process::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+/* Glow orb */
+#iot-process::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(ellipse, rgba(0,194,199,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ── Header ── */
+.iot-process__header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 1;
+}
+.iot-process__header .iot-label-chip {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+  color: var(--iot-accent);
+  margin-bottom: 1rem;
+}
+.iot-process__h2 {
+  font-family: var(--iot-font-h);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 0.8rem;
+}
+.iot-process__sub {
+  font-size: 1rem;
+  line-height: 1.72;
+  color: rgba(255,255,255,0.6);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ── Steps track ── */
+.iot-process__track {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 0;
+  align-items: flex-start;
+}
+
+/* Connecting line between steps */
+.iot-process__track::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: calc(10% + 36px);
+  right: calc(10% + 36px);
+  height: 2px;
+  background: rgba(255,255,255,0.1);
+  z-index: 0;
+}
+
+/* Progress line (animated via JS) */
+.iot-process__progress-line {
+  position: absolute;
+  top: 36px;
+  left: calc(10% + 36px);
+  height: 2px;
+  width: 0;
+  background: var(--iot-grad-accent);
+  z-index: 1;
+  transition: width 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.iot-process__progress-line.iot-line-active { width: calc(80% - 72px); }
+
+/* ── Single step ── */
+.iot-process__step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 0.75rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Step circle */
+.iot-process__step-circle {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  border: 2px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+  position: relative;
+  transition: background var(--iot-ease), border-color var(--iot-ease), box-shadow var(--iot-ease);
+}
+.iot-process__step.iot-step-active .iot-process__step-circle,
+.iot-process__step:hover .iot-process__step-circle {
+  background: var(--iot-primary);
+  border-color: var(--iot-primary);
+  box-shadow: 0 0 0 6px rgba(10,110,189,0.2);
+}
+.iot-process__step-circle svg {
+  width: 28px; height: 28px;
+  stroke: rgba(255,255,255,0.5);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke var(--iot-ease);
+}
+.iot-process__step.iot-step-active .iot-process__step-circle svg,
+.iot-process__step:hover .iot-process__step-circle svg { stroke: #fff; }
+
+/* Step number badge */
+.iot-process__step-num {
+  position: absolute;
+  top: -6px; right: -6px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--iot-accent);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--iot-font-h);
+}
+
+/* Step text */
+.iot-process__step-title {
+  font-family: var(--iot-font-h);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+.iot-process__step-desc {
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ── Responsive ── */
+@media (max-width: 760px) {
+  .iot-process__track {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  .iot-process__track::before,
+  .iot-process__progress-line { display: none; }
+  .iot-process__step {
+    flex-direction: row;
+    text-align: left;
+    gap: 1rem;
+    width: 100%;
+  }
+  .iot-process__step-circle { margin-bottom: 0; flex-shrink: 0; }
+}

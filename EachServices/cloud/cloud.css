@@ -1,0 +1,1160 @@
+/* ============================================================
+   cloud.css — CLOUD APP DEVELOPMENT SERVICE PAGE
+   All sections scoped with unique prefixes — no global leakage
+   Sections:
+     1. cad-hero__   — Hero / Banner
+     2. cad-hiw__    — How It Works / Process
+     3. cad-feat__   — Features / Services
+     4. cad-ind__    — Industry Use Cases
+     5. cad-tech__   — Tech Stack
+     6. cad-cs__     — Case Studies
+     7. cad-test__   — Testimonials
+     8. cad-cta__    — CTA / Contact Banner
+   Color scheme:
+     Primary blue:  #0A6EBD
+     Primary dark:  #084F8A
+     Teal accent:   #00C2C7
+     Navy:          #0D1B2E
+     Page bg:       #F4F7FB
+     Alt section:   #EDF3FB / #ffffff
+   Fonts:
+     Syne      — headings / display
+     Outfit    — body / UI
+     Space Mono— labels / tags / metadata
+============================================================ */
+
+
+/* ============================================================
+   === SECTION 1: HERO ===
+   Prefix: cad-hero__
+   No dependencies on any other section
+============================================================ */
+.cad-hero {
+    /* Scoped colour tokens */
+    --ch-blue:          #0A6EBD;
+    --ch-blue-dark:     #084F8A;
+    --ch-teal:          #00C2C7;
+    --ch-navy:          #0D1B2E;
+    --ch-text:          #0D1B2E;
+    --ch-text-sub:      #1E3A52;
+    --ch-muted:         #4A6580;
+    --ch-bg:            #F4F7FB;
+    --ch-font-head:     'Syne', Arial, sans-serif;
+    --ch-font-body:     'Outfit', Arial, sans-serif;
+    --ch-font-mono:     'Space Mono', monospace;
+  
+    position: relative;
+    min-height: 80vh;
+    background: linear-gradient(150deg, #F4F7FB 0%, #EDF3FB 55%, #E6F0FA 100%);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  /* Background layer */
+  .cad-hero__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  /* Particle canvas */
+  .cad-hero__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.14;
+  }
+  
+  /* Soft glow orbs */
+  .cad-hero__orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    animation-play-state: paused;
+  }
+  .cad-hero__orb--1 {
+    width: 600px; height: 600px;
+    top: -160px; left: -120px;
+    background: radial-gradient(circle, rgba(10, 110, 189, 0.13) 0%, transparent 70%);
+    animation: cadHeroOrb1 10s ease-in-out infinite alternate;
+  }
+  .cad-hero__orb--2 {
+    width: 480px; height: 480px;
+    bottom: -140px; right: -100px;
+    background: radial-gradient(circle, rgba(0, 194, 199, 0.11) 0%, transparent 70%);
+    animation: cadHeroOrb2 13s ease-in-out infinite alternate;
+  }
+  .cad-hero__orb--3 {
+    width: 300px; height: 300px;
+    top: 32%; left: 40%;
+    background: radial-gradient(circle, rgba(8, 79, 138, 0.07) 0%, transparent 70%);
+    animation: cadHeroOrb3 8s ease-in-out infinite alternate;
+  }
+  @keyframes cadHeroOrb1 { from { transform: translate(0,0) scale(1); } to { transform: translate(40px,30px) scale(1.1); } }
+  @keyframes cadHeroOrb2 { from { transform: translate(0,0) scale(1); } to { transform: translate(-30px,-40px) scale(1.08); } }
+  @keyframes cadHeroOrb3 { from { transform: translate(0,0); } to { transform: translate(-20px,20px); } }
+  
+  /* Dot grid pattern */
+  .cad-hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(10, 110, 189, 0.08) 1px, transparent 1px);
+    background-size: 38px 38px;
+    pointer-events: none;
+  }
+  
+  /* Content container */
+  .cad-hero__container {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    padding: 130px 32px 100px 6%;
+  }
+  
+  /* Eyebrow pill */
+  .cad-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--ch-font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+    color: var(--ch-blue);
+    background: rgba(10, 110, 189, 0.08);
+    border: 1.5px solid rgba(10, 110, 189, 0.22);
+    border-radius: 999px;
+    padding: 8px 20px;
+    margin-bottom: 24px;
+    /* Reveal — JS adds .cad-hero--visible to section */
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+  }
+  .cad-hero__eyebrow-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--ch-teal);
+    box-shadow: 0 0 8px rgba(0, 194, 199, 0.5);
+    animation: cadHeroPulse 2s ease-in-out infinite;
+    animation-play-state: paused;
+  }
+  @keyframes cadHeroPulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:0.4; transform:scale(0.7); }
+  }
+  
+  /* Main title */
+  .cad-hero__title {
+    font-family: var(--ch-font-head);
+    font-size: clamp(2.2rem, 5.5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--ch-text);
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease 0.25s, transform 0.7s ease 0.25s;
+  }
+  .cad-hero__title--accent {
+    background: linear-gradient(90deg, var(--ch-blue), var(--ch-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Subtitle */
+  .cad-hero__subtitle {
+    font-family: var(--ch-font-body);
+    font-size: clamp(0.98rem, 1.8vw, 1.1rem);
+    line-height: 1.75;
+    color: var(--ch-text-sub);
+    max-width: 560px;
+    margin-bottom: 36px;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s;
+  }
+  
+  /* Stats row */
+  .cad-hero__stats {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease 0.55s, transform 0.7s ease 0.55s;
+  }
+  .cad-hero__stat { display: flex; flex-direction: column; padding: 0 28px 0 0; }
+  .cad-hero__stat-val {
+    font-family: var(--ch-font-head);
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    color: var(--ch-blue-dark);
+    line-height: 1;
+  }
+  .cad-hero__stat-suffix { font-family: var(--ch-font-head); font-size: 1.2rem; font-weight: 700; color: var(--ch-teal); }
+  .cad-hero__stat-label {
+    font-family: var(--ch-font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ch-muted);
+    margin-top: 4px;
+  }
+  .cad-hero__stat-div { width: 1px; height: 40px; background: rgba(10,110,189,0.2); margin: 0 28px 0 0; flex-shrink: 0; }
+  
+  /* CTA buttons */
+  .cad-hero__actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease 0.7s, transform 0.7s ease 0.7s;
+  }
+  .cad-hero__btn {
+    font-family: var(--ch-font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 14px 30px;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .cad-hero__btn--primary {
+    background: linear-gradient(135deg, var(--ch-blue), var(--ch-blue-dark));
+    color: #fff;
+    box-shadow: 0 6px 24px rgba(10,110,189,0.30);
+  }
+  .cad-hero__btn--primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(10,110,189,0.38); }
+  .cad-hero__btn--outline {
+    background: #fff;
+    color: var(--ch-blue-dark);
+    border: 2px solid rgba(10,110,189,0.30);
+    box-shadow: 0 2px 10px rgba(10,110,189,0.08);
+  }
+  .cad-hero__btn--outline:hover { border-color: var(--ch-blue); transform: translateY(-2px); }
+  
+  /* Visible state added by JS */
+  .cad-hero--visible .cad-hero__eyebrow,
+  .cad-hero--visible .cad-hero__title,
+  .cad-hero--visible .cad-hero__subtitle,
+  .cad-hero--visible .cad-hero__stats,
+  .cad-hero--visible .cad-hero__actions { opacity: 1; transform: translateY(0); }
+  .cad-hero--visible .cad-hero__scroll { opacity: 1; }
+  
+  /* Floating cloud visual (right side) */
+  .cad-hero__visual {
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 340px; height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    animation: cadHeroFloat 5s ease-in-out infinite;
+    animation-play-state: paused;
+  }
+  @keyframes cadHeroFloat {
+    0%,100% { transform: translateY(-50%) translateY(0); }
+    50%      { transform: translateY(-50%) translateY(-14px); }
+  }
+  .cad-hero__visual-ring {
+    position: absolute;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: rgba(10,110,189,0.15);
+    animation-play-state: paused;
+  }
+  .cad-hero__visual-ring--1 { width: 320px; height: 320px; border-width: 1px; animation: cadHeroRingSpin 18s linear infinite; }
+  .cad-hero__visual-ring--2 { width: 240px; height: 240px; border-width: 1.5px; border-color: rgba(0,194,199,0.20); animation: cadHeroRingSpin 12s linear infinite reverse; }
+  .cad-hero__visual-ring--3 { width: 164px; height: 164px; border-width: 1px; border-color: rgba(8,79,138,0.15); animation: cadHeroRingSpin 8s linear infinite; }
+  @keyframes cadHeroRingSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .cad-hero__visual-core {
+    position: relative;
+    z-index: 2;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fff, #E6F0FA);
+    border: 2px solid rgba(10,110,189,0.22);
+    box-shadow: 0 8px 32px rgba(10,110,189,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ch-blue-dark);
+    font-size: 1.8rem;
+  }
+  .cad-hero__visual-node {
+    position: absolute;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1.5px solid rgba(10,110,189,0.22);
+    box-shadow: 0 4px 16px rgba(10,110,189,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ch-blue-dark);
+    font-size: 1rem;
+  }
+  .cad-hero__visual-node--1 { top: 10px; left: 50%; transform: translateX(-50%); }
+  .cad-hero__visual-node--2 { right: 10px; top: 50%; transform: translateY(-50%); }
+  .cad-hero__visual-node--3 { bottom: 10px; left: 50%; transform: translateX(-50%); }
+  .cad-hero__visual-node--4 { left: 10px; top: 50%; transform: translateY(-50%); }
+  
+  /* Scroll indicator */
+  .cad-hero__scroll {
+    position: absolute;
+    bottom: 36px; left: 6%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.6s ease 1.2s;
+  }
+  .cad-hero__scroll-line {
+    display: block;
+    width: 1px; height: 42px;
+    background: linear-gradient(to bottom, transparent, var(--ch-blue));
+    animation: cadHeroScrollPulse 2s ease-in-out infinite;
+    animation-play-state: paused;
+  }
+  @keyframes cadHeroScrollPulse { 0%,100% { opacity:0.3; } 50% { opacity:1; } }
+  .cad-hero__scroll-text {
+    font-family: var(--ch-font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ch-muted);
+  }
+  
+  /* Hero responsive */
+  @media (max-width: 960px) {
+    .cad-hero__visual { display: none; }
+    .cad-hero__container { padding: 120px 24px 80px; max-width: 100%; text-align: center; }
+    .cad-hero__subtitle { margin: 0 auto 36px; }
+    .cad-hero__stats { justify-content: center; }
+    .cad-hero__actions { justify-content: center; }
+    .cad-hero__scroll { left: 50%; transform: translateX(-50%); }
+  }
+  @media (max-width: 480px) {
+    .cad-hero__stat { padding: 0 16px 0 0; }
+    .cad-hero__stat-div { margin: 0 16px 0 0; }
+    .cad-hero__btn { padding: 12px 22px; font-size: 0.88rem; }
+  }
+  
+  
+  /* ============================================================
+     === SECTION 2: HOW IT WORKS ===
+     Prefix: cad-hiw__
+     Background: #ffffff
+     No dependencies on any other section
+  ============================================================ */
+  .cad-hiw {
+    --hiw-blue:         #0A6EBD;
+    --hiw-blue-dark:    #084F8A;
+    --hiw-teal:         #00C2C7;
+    --hiw-text:         #0D1B2E;
+    --hiw-text-sub:     #1E3A52;
+    --hiw-muted:        #4A6580;
+    --hiw-bg:           #ffffff;
+    --hiw-border:       rgba(10, 110, 189, 0.14);
+    --hiw-font-head:    'Syne', Arial, sans-serif;
+    --hiw-font-body:    'Outfit', Arial, sans-serif;
+    --hiw-font-mono:    'Space Mono', monospace;
+  
+    background: var(--hiw-bg);
+    padding: 100px 0;
+    overflow: hidden;
+  }
+  .cad-hiw__container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+  
+  /* Section header */
+  .cad-hiw__header { text-align: center; margin-bottom: 72px; }
+  .cad-hiw__eyebrow {
+    display: inline-block;
+    font-family: var(--hiw-font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--hiw-blue);
+    background: rgba(10,110,189,0.07);
+    border: 1.5px solid rgba(10,110,189,0.20);
+    border-radius: 999px;
+    padding: 7px 18px;
+    margin-bottom: 18px;
+  }
+  .cad-hiw__title {
+    font-family: var(--hiw-font-head);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    color: var(--hiw-text);
+    margin-bottom: 14px;
+    line-height: 1.15;
+  }
+  .cad-hiw__subtitle { font-family: var(--hiw-font-body); font-size: 1rem; color: var(--hiw-muted); }
+  
+  /* Steps list */
+  .cad-hiw__steps { display: flex; flex-direction: column; }
+  .cad-hiw__step {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateX(-32px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .cad-hiw__step.cad-hiw--visible { opacity: 1; transform: translateX(0); }
+  
+  .cad-hiw__step-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .cad-hiw__step-icon {
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: rgba(10,110,189,0.08);
+    border: 2px solid rgba(10,110,189,0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--hiw-blue-dark);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .cad-hiw__step:hover .cad-hiw__step-icon { background: var(--hiw-blue-dark); color: #fff; }
+  .cad-hiw__step-line { width: 2px; flex: 1; min-height: 48px; background: linear-gradient(to bottom, rgba(10,110,189,0.20), transparent); margin-top: 6px; }
+  
+  .cad-hiw__step-body { flex: 1; padding: 4px 0 52px; }
+  .cad-hiw__step--last .cad-hiw__step-body { padding-bottom: 0; }
+  .cad-hiw__step-num {
+    display: inline-block;
+    font-family: var(--hiw-font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--hiw-teal);
+    margin-bottom: 8px;
+  }
+  .cad-hiw__step-title { font-family: var(--hiw-font-head); font-size: 1.15rem; font-weight: 700; color: var(--hiw-text); margin-bottom: 10px; }
+  .cad-hiw__step-desc { font-family: var(--hiw-font-body); font-size: 0.95rem; color: var(--hiw-text-sub); line-height: 1.7; margin-bottom: 14px; }
+  .cad-hiw__step-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .cad-hiw__step-list li { font-family: var(--hiw-font-body); font-size: 0.88rem; color: var(--hiw-muted); padding-left: 16px; position: relative; }
+  .cad-hiw__step-list li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--hiw-teal); }
+  
+  @media (max-width: 640px) {
+    .cad-hiw { padding: 72px 0; }
+    .cad-hiw__container { padding: 0 20px; }
+    .cad-hiw__step { gap: 18px; }
+    .cad-hiw__step-icon { width: 46px; height: 46px; font-size: 1rem; }
+    .cad-hiw__step-body { padding-bottom: 36px; }
+  }
+  
+  
+  /* ============================================================
+     === SECTION 3: FEATURES ===
+     Prefix: cad-feat__
+     Background: #F4F7FB
+     No dependencies on any other section
+  ============================================================ */
+  .cad-feat {
+    --feat-blue:         #0A6EBD;
+    --feat-blue-dark:    #084F8A;
+    --feat-teal:         #00C2C7;
+    --feat-text:         #0D1B2E;
+    --feat-text-sub:     #1E3A52;
+    --feat-muted:        #4A6580;
+    --feat-bg:           #F4F7FB;
+    --feat-card-bg:      #ffffff;
+    --feat-border:       rgba(10, 110, 189, 0.13);
+    --feat-font-head:    'Syne', Arial, sans-serif;
+    --feat-font-body:    'Outfit', Arial, sans-serif;
+    --feat-font-mono:    'Space Mono', monospace;
+  
+    background: var(--feat-bg);
+    padding: 100px 0;
+    overflow: hidden;
+  }
+  .cad-feat__container { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+  
+  .cad-feat__header { text-align: center; margin-bottom: 64px; }
+  .cad-feat__eyebrow {
+    display: inline-block;
+    font-family: var(--feat-font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--feat-blue);
+    background: rgba(10,110,189,0.07);
+    border: 1.5px solid rgba(10,110,189,0.20);
+    border-radius: 999px;
+    padding: 7px 18px;
+    margin-bottom: 16px;
+  }
+  .cad-feat__title { font-family: var(--feat-font-head); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: var(--feat-text); margin-bottom: 12px; }
+  .cad-feat__subtitle { font-family: var(--feat-font-body); font-size: 1rem; color: var(--feat-muted); }
+  
+  /* Card grid — 3 columns */
+  .cad-feat__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  
+  .cad-feat__card {
+    background: var(--feat-card-bg);
+    border: 1px solid var(--feat-border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .cad-feat__card.cad-feat--visible { opacity: 1; transform: translateY(0); }
+  .cad-feat__card:hover { box-shadow: 0 16px 48px rgba(10,110,189,0.12); border-color: rgba(10,110,189,0.28); transform: translateY(-4px); }
+  .cad-feat__card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--feat-blue), var(--feat-teal));
+    border-radius: 16px 16px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .cad-feat__card:hover::before { opacity: 1; }
+  
+  .cad-feat__card-icon {
+    width: 54px; height: 54px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 22px;
+    transition: transform 0.3s ease;
+  }
+  .cad-feat__card:hover .cad-feat__card-icon { transform: scale(1.08); }
+  .cad-feat__card-icon--blue { background: rgba(10,110,189,0.09); color: var(--feat-blue-dark); border: 1px solid rgba(10,110,189,0.18); }
+  .cad-feat__card-icon--teal { background: rgba(0,194,199,0.09); color: #007B80; border: 1px solid rgba(0,194,199,0.20); }
+  
+  .cad-feat__card-title { font-family: var(--feat-font-head); font-size: 1.05rem; font-weight: 700; color: var(--feat-text); margin-bottom: 12px; line-height: 1.3; }
+  .cad-feat__card-desc { font-family: var(--feat-font-body); font-size: 0.9rem; color: var(--feat-text-sub); line-height: 1.7; margin-bottom: 20px; }
+  .cad-feat__card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cad-feat__card-tags span {
+    font-family: var(--feat-font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--feat-blue);
+    background: rgba(10,110,189,0.07);
+    border: 1px solid rgba(10,110,189,0.18);
+    border-radius: 999px;
+    padding: 4px 10px;
+  }
+  
+  @media (max-width: 1024px) { .cad-feat__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) {
+    .cad-feat { padding: 72px 0; }
+    .cad-feat__container { padding: 0 20px; }
+    .cad-feat__grid { grid-template-columns: 1fr; gap: 16px; }
+    .cad-feat__card { padding: 24px 20px; }
+  }
+  
+  
+  /* ============================================================
+     === SECTION 4: INDUSTRY USE CASES ===
+     Prefix: cad-ind__
+     Background: #ffffff
+     No dependencies on any other section
+  ============================================================ */
+  .cad-ind {
+    --ind-blue:         #0A6EBD;
+    --ind-blue-dark:    #084F8A;
+    --ind-teal:         #00C2C7;
+    --ind-text:         #0D1B2E;
+    --ind-text-sub:     #1E3A52;
+    --ind-muted:        #4A6580;
+    --ind-bg:           #ffffff;
+    --ind-border:       rgba(10, 110, 189, 0.13);
+    --ind-panel-bg:     #F4F7FB;
+    --ind-tab-bg:       #EDF3FB;
+    --ind-font-head:    'Syne', Arial, sans-serif;
+    --ind-font-body:    'Outfit', Arial, sans-serif;
+    --ind-font-mono:    'Space Mono', monospace;
+  
+    background: var(--ind-bg);
+    padding: 100px 0;
+    overflow: hidden;
+  }
+  .cad-ind__container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+  
+  .cad-ind__header { text-align: center; margin-bottom: 56px; }
+  .cad-ind__eyebrow {
+    display: inline-block;
+    font-family: var(--ind-font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ind-blue);
+    background: rgba(10,110,189,0.07);
+    border: 1.5px solid rgba(10,110,189,0.20);
+    border-radius: 999px;
+    padding: 7px 18px;
+    margin-bottom: 16px;
+  }
+  .cad-ind__title { font-family: var(--ind-font-head); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: var(--ind-text); margin-bottom: 12px; }
+  .cad-ind__subtitle { font-family: var(--ind-font-body); font-size: 1rem; color: var(--ind-muted); }
+  
+  /* Tab bar */
+  .cad-ind__tabs {
+    display: flex;
+    gap: 6px;
+    background: var(--ind-tab-bg);
+    border-radius: 14px;
+    padding: 6px;
+    margin-bottom: 32px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex-wrap: wrap;
+  }
+  .cad-ind__tabs::-webkit-scrollbar { display: none; }
+  .cad-ind__tab {
+    font-family: var(--ind-font-body);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ind-muted);
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .cad-ind__tab:hover { color: var(--ind-blue); background: rgba(10,110,189,0.06); }
+  .cad-ind__tab--active { background: #fff; color: var(--ind-blue); font-weight: 600; box-shadow: 0 2px 12px rgba(10,110,189,0.10); }
+  
+  /* Panels */
+  .cad-ind__panels { position: relative; min-height: 320px; }
+  .cad-ind__panel {
+    display: none;
+    gap: 48px;
+    background: var(--ind-panel-bg);
+    border: 1px solid var(--ind-border);
+    border-radius: 20px;
+    padding: 40px;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .cad-ind__panel--active { display: flex; opacity: 1; transform: translateY(0); }
+  
+  /* Panel left visual */
+  .cad-ind__panel-visual { flex-shrink: 0; width: 220px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+  .cad-ind__panel-icon {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    background: rgba(10,110,189,0.08);
+    border: 2px solid rgba(10,110,189,0.20);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ind-blue-dark);
+    font-size: 2rem;
+  }
+  .cad-ind__panel-metrics { display: flex; flex-direction: column; gap: 14px; width: 100%; }
+  .cad-ind__metric { text-align: center; padding: 14px 12px; background: #fff; border: 1px solid var(--ind-border); border-radius: 10px; }
+  .cad-ind__metric-val { display: block; font-family: var(--ind-font-head); font-size: 1.4rem; font-weight: 800; color: var(--ind-blue-dark); line-height: 1; margin-bottom: 4px; }
+  .cad-ind__metric-label { display: block; font-family: var(--ind-font-mono); font-size: 0.62rem; letter-spacing: 0.10em; text-transform: uppercase; color: var(--ind-muted); }
+  
+  /* Panel right content */
+  .cad-ind__panel-content { flex: 1; }
+  .cad-ind__panel-title { font-family: var(--ind-font-head); font-size: 1.4rem; font-weight: 800; color: var(--ind-text); margin-bottom: 14px; }
+  .cad-ind__panel-desc { font-family: var(--ind-font-body); font-size: 0.96rem; color: var(--ind-text-sub); line-height: 1.75; margin-bottom: 22px; }
+  .cad-ind__panel-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .cad-ind__panel-list li { font-family: var(--ind-font-body); font-size: 0.92rem; color: var(--ind-text-sub); display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+  .cad-ind__panel-list li i { color: var(--ind-teal); font-size: 0.8rem; margin-top: 3px; flex-shrink: 0; }
+  
+  @media (max-width: 860px) {
+    .cad-ind__panel--active { flex-direction: column; }
+    .cad-ind__panel-visual { width: 100%; flex-direction: row; flex-wrap: wrap; justify-content: center; }
+    .cad-ind__panel-metrics { flex-direction: row; justify-content: center; }
+    .cad-ind__metric { min-width: 100px; }
+  }
+  @media (max-width: 640px) {
+    .cad-ind { padding: 72px 0; }
+    .cad-ind__container { padding: 0 20px; }
+    .cad-ind__panel { padding: 24px 20px; }
+    .cad-ind__tab { padding: 8px 14px; font-size: 0.82rem; }
+  }
+  
+  
+  /* ============================================================
+     === SECTION 5: TECH STACK ===
+     Prefix: cad-tech__
+     Background: #F4F7FB
+     No dependencies on any other section
+  ============================================================ */
+  .cad-tech {
+    --tech-blue:         #0A6EBD;
+    --tech-blue-dark:    #084F8A;
+    --tech-teal:         #00C2C7;
+    --tech-text:         #0D1B2E;
+    --tech-text-sub:     #1E3A52;
+    --tech-muted:        #4A6580;
+    --tech-bg:           #F4F7FB;
+    --tech-layer-bg:     #ffffff;
+    --tech-border:       rgba(10, 110, 189, 0.13);
+    --tech-font-head:    'Syne', Arial, sans-serif;
+    --tech-font-body:    'Outfit', Arial, sans-serif;
+    --tech-font-mono:    'Space Mono', monospace;
+  
+    background: var(--tech-bg);
+    padding: 100px 0;
+    overflow: hidden;
+  }
+  .cad-tech__container { max-width: 1000px; margin: 0 auto; padding: 0 32px; }
+  
+  .cad-tech__header { text-align: center; margin-bottom: 64px; }
+  .cad-tech__eyebrow {
+    display: inline-block;
+    font-family: var(--tech-font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--tech-blue);
+    background: rgba(10,110,189,0.07);
+    border: 1.5px solid rgba(10,110,189,0.20);
+    border-radius: 999px;
+    padding: 7px 18px;
+    margin-bottom: 16px;
+  }
+  .cad-tech__title { font-family: var(--tech-font-head); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: var(--tech-text); margin-bottom: 12px; }
+  .cad-tech__subtitle { font-family: var(--tech-font-body); font-size: 1rem; color: var(--tech-muted); }
+  
+  .cad-tech__layers { display: flex; flex-direction: column; gap: 16px; }
+  .cad-tech__layer {
+    background: var(--tech-layer-bg);
+    border: 1px solid var(--tech-border);
+    border-radius: 14px;
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    opacity: 0;
+    transform: translateX(-24px);
+    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+  }
+  .cad-tech__layer.cad-tech--visible { opacity: 1; transform: translateX(0); }
+  .cad-tech__layer:hover { box-shadow: 0 8px 28px rgba(10,110,189,0.09); border-color: rgba(10,110,189,0.22); }
+  
+  .cad-tech__layer-label { display: flex; align-items: center; gap: 10px; min-width: 220px; flex-shrink: 0; }
+  .cad-tech__layer-label i {
+    width: 36px; height: 36px;
+    border-radius: 9px;
+    background: rgba(10,110,189,0.09);
+    border: 1px solid rgba(10,110,189,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--tech-blue-dark);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .cad-tech__layer-label span { font-family: var(--tech-font-head); font-size: 0.88rem; font-weight: 700; color: var(--tech-text); }
+  .cad-tech__layer::after { content: ''; width: 1px; height: 32px; background: var(--tech-border); flex-shrink: 0; }
+  
+  .cad-tech__layer-pills { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; }
+  .cad-tech__pill {
+    font-family: var(--tech-font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    color: var(--tech-blue-dark);
+    background: rgba(10,110,189,0.07);
+    border: 1px solid rgba(10,110,189,0.20);
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: default;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .cad-tech__pill:hover { background: var(--tech-blue-dark); color: #fff; transform: translateY(-2px); }
+  
+  @media (max-width: 768px) {
+    .cad-tech__layer { flex-wrap: wrap; gap: 16px; }
+    .cad-tech__layer-label { min-width: unset; width: 100%; }
+    .cad-tech__layer::after { display: none; }
+  }
+  @media (max-width: 480px) {
+    .cad-tech { padding: 72px 0; }
+    .cad-tech__container { padding: 0 20px; }
+    .cad-tech__layer { padding: 18px 20px; }
+  }
+  
+  
+  /* ============================================================
+     === SECTION 6: CASE STUDIES ===
+     Prefix: cad-cs__
+     Background: #ffffff
+     No dependencies on any other section
+  ============================================================ */
+  .cad-cs {
+    --cs-blue:         #0A6EBD;
+    --cs-blue-dark:    #084F8A;
+    --cs-teal:         #00C2C7;
+    --cs-gold:         #D4820A;
+    --cs-text:         #0D1B2E;
+    --cs-text-sub:     #1E3A52;
+    --cs-muted:        #4A6580;
+    --cs-bg:           #ffffff;
+    --cs-card-bg:      #F4F7FB;
+    --cs-border:       rgba(10, 110, 189, 0.14);
+    --cs-font-head:    'Syne', Arial, sans-serif;
+    --cs-font-body:    'Outfit', Arial, sans-serif;
+    --cs-font-mono:    'Space Mono', monospace;
+  
+    background: var(--cs-bg);
+    padding: 100px 0;
+    overflow: hidden;
+  }
+  .cad-cs__container { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+  
+  .cad-cs__header { text-align: center; margin-bottom: 64px; }
+  .cad-cs__eyebrow {
+    display: inline-block;
+    font-family: var(--cs-font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cs-blue);
+    background: rgba(10,110,189,0.07);
+    border: 1.5px solid rgba(10,110,189,0.20);
+    border-radius: 999px;
+    padding: 7px 18px;
+    margin-bottom: 16px;
+  }
+  .cad-cs__title { font-family: var(--cs-font-head); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: var(--cs-text); margin-bottom: 12px; }
+  .cad-cs__subtitle { font-family: var(--cs-font-body); font-size: 1rem; color: var(--cs-muted); }
+  
+  /* Cards grid */
+  .cad-cs__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 24px; align-items: stretch; }
+  
+  .cad-cs__card {
+    background: var(--cs-card-bg);
+    border: 1px solid var(--cs-border);
+    border-radius: 18px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+  }
+  .cad-cs__card.cad-cs--visible { opacity: 1; transform: translateY(0); }
+  .cad-cs__card:hover { box-shadow: 0 16px 48px rgba(10,110,189,0.11); border-color: rgba(10,110,189,0.26); }
+  .cad-cs__card--featured { background: rgba(10,110,189,0.04); border-color: rgba(10,110,189,0.22); border-left: 3px solid var(--cs-blue); }
+  
+  .cad-cs__card-tag {
+    font-family: var(--cs-font-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.10em;
+    color: var(--cs-gold);
+    background: rgba(212,130,10,0.08);
+    border: 1px solid rgba(212,130,10,0.22);
+    border-radius: 999px;
+    padding: 4px 12px;
+    display: inline-block;
+    margin-bottom: 12px;
+    width: fit-content;
+  }
+  .cad-cs__card-industry { font-family: var(--cs-font-mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cs-blue); margin-bottom: 10px; }
+  .cad-cs__card-title { font-family: var(--cs-font-head); font-size: 1.05rem; font-weight: 700; color: var(--cs-text); margin-bottom: 12px; line-height: 1.3; }
+  .cad-cs__card-desc { font-family: var(--cs-font-body); font-size: 0.9rem; color: var(--cs-text-sub); line-height: 1.7; margin-bottom: 24px; flex: 1; }
+  
+  .cad-cs__card-results { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; padding: 16px; background: #fff; border: 1px solid var(--cs-border); border-radius: 10px; }
+  .cad-cs__result { display: flex; flex-direction: column; gap: 2px; }
+  .cad-cs__result-val { font-family: var(--cs-font-head); font-size: 1.3rem; font-weight: 800; color: var(--cs-blue-dark); line-height: 1; }
+  .cad-cs__result-label { font-family: var(--cs-font-mono); font-size: 0.6rem; letter-spacing: 0.10em; text-transform: uppercase; color: var(--cs-muted); }
+  
+  .cad-cs__card-link { font-family: var(--cs-font-body); font-size: 0.88rem; font-weight: 600; color: var(--cs-blue-dark); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: gap 0.2s ease, color 0.2s ease; }
+  .cad-cs__card-link:hover { color: var(--cs-teal); gap: 8px; }
+  
+  @media (max-width: 960px) { .cad-cs__grid { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) {
+    .cad-cs { padding: 72px 0; }
+    .cad-cs__container { padding: 0 20px; }
+    .cad-cs__card { padding: 24px 20px; }
+  }
+  
+  
+  /* ============================================================
+     === SECTION 7: TESTIMONIALS ===
+     Prefix: cad-test__
+     Background: #F4F7FB
+     No dependencies on any other section
+  ============================================================ */
+  .cad-test {
+    --test-blue:         #0A6EBD;
+    --test-blue-dark:    #084F8A;
+    --test-teal:         #00C2C7;
+    --test-text:         #0D1B2E;
+    --test-text-sub:     #1E3A52;
+    --test-muted:        #4A6580;
+    --test-bg:           #F4F7FB;
+    --test-card-bg:      #ffffff;
+    --test-border:       rgba(10, 110, 189, 0.13);
+    --test-star:         #F4A31A;
+    --test-font-head:    'Syne', Arial, sans-serif;
+    --test-font-body:    'Outfit', Arial, sans-serif;
+    --test-font-mono:    'Space Mono', monospace;
+  
+    background: var(--test-bg);
+    padding: 100px 0;
+    overflow: hidden;
+  }
+  .cad-test__container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+  
+  .cad-test__header { text-align: center; margin-bottom: 56px; }
+  .cad-test__eyebrow {
+    display: inline-block;
+    font-family: var(--test-font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--test-blue);
+    background: rgba(10,110,189,0.07);
+    border: 1.5px solid rgba(10,110,189,0.20);
+    border-radius: 999px;
+    padding: 7px 18px;
+    margin-bottom: 16px;
+  }
+  .cad-test__title { font-family: var(--test-font-head); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: var(--test-text); }
+  
+  /* Slider */
+  .cad-test__track-wrap {
+    overflow: hidden;
+    border-radius: 18px;
+    margin-bottom: 28px;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  }
+  .cad-test__track { display: flex; gap: 24px; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
+  
+  .cad-test__card {
+    background: var(--test-card-bg);
+    border: 1px solid var(--test-border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    min-width: 360px;
+    max-width: 360px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 2px 12px rgba(10,110,189,0.06);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .cad-test__card:hover { box-shadow: 0 12px 36px rgba(10,110,189,0.12); transform: translateY(-3px); }
+  
+  .cad-test__stars { font-size: 1rem; color: var(--test-star); letter-spacing: 2px; }
+  .cad-test__quote { font-family: var(--test-font-body); font-size: 0.94rem; color: var(--test-text-sub); line-height: 1.75; font-style: italic; flex: 1; }
+  .cad-test__footer { display: flex; align-items: center; gap: 14px; padding-top: 16px; border-top: 1px solid var(--test-border); }
+  .cad-test__avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--test-blue), var(--test-blue-dark));
+    color: #fff;
+    font-family: var(--test-font-head);
+    font-size: 0.78rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .cad-test__author { display: flex; flex-direction: column; gap: 2px; }
+  .cad-test__name { font-family: var(--test-font-head); font-size: 0.88rem; font-weight: 700; color: var(--test-text); }
+  .cad-test__role { font-family: var(--test-font-mono); font-size: 0.62rem; letter-spacing: 0.06em; color: var(--test-muted); }
+  
+  /* Dots */
+  .cad-test__dots { display: flex; justify-content: center; gap: 8px; }
+  .cad-test__dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(10,110,189,0.22);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, width 0.3s ease;
+    padding: 0;
+  }
+  .cad-test__dot--active { background: var(--test-blue-dark); width: 24px; border-radius: 999px; }
+  
+  @media (max-width: 768px) { .cad-test__card { min-width: 300px; max-width: 300px; } }
+  @media (max-width: 480px) {
+    .cad-test { padding: 72px 0; }
+    .cad-test__container { padding: 0 20px; }
+    .cad-test__card { min-width: 280px; max-width: 280px; padding: 24px 20px; }
+  }
+  
+  
+  /* ============================================================
+     === SECTION 8: CTA / CONTACT BANNER ===
+     Prefix: cad-cta__
+     Background: #EDF3FB with soft blue orbs
+     No dependencies on any other section
+  ============================================================ */
+  .cad-cta {
+    --cta-blue:         #0A6EBD;
+    --cta-blue-dark:    #084F8A;
+    --cta-teal:         #00C2C7;
+    --cta-text:         #0D1B2E;
+    --cta-text-sub:     #1E3A52;
+    --cta-muted:        #4A6580;
+    --cta-bg:           #EDF3FB;
+    --cta-font-head:    'Syne', Arial, sans-serif;
+    --cta-font-body:    'Outfit', Arial, sans-serif;
+    --cta-font-mono:    'Space Mono', monospace;
+  
+    position: relative;
+    background: var(--cta-bg);
+    padding: 110px 0;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  /* Orbs */
+  .cad-cta__bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+  .cad-cta__orb { position: absolute; border-radius: 50%; filter: blur(80px); animation-play-state: paused; }
+  .cad-cta__orb--1 {
+    width: 500px; height: 500px;
+    top: -150px; left: -100px;
+    background: radial-gradient(circle, rgba(10,110,189,0.11) 0%, transparent 70%);
+    animation: cadCtaOrb1 10s ease-in-out infinite alternate;
+  }
+  .cad-cta__orb--2 {
+    width: 400px; height: 400px;
+    bottom: -120px; right: -80px;
+    background: radial-gradient(circle, rgba(0,194,199,0.09) 0%, transparent 70%);
+    animation: cadCtaOrb2 12s ease-in-out infinite alternate;
+  }
+  @keyframes cadCtaOrb1 { from { transform: translate(0,0); } to { transform: translate(30px,20px); } }
+  @keyframes cadCtaOrb2 { from { transform: translate(0,0); } to { transform: translate(-20px,-30px); } }
+  
+  /* Content */
+  .cad-cta__container { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 32px; }
+  
+  .cad-cta__eyebrow {
+    display: inline-block;
+    font-family: var(--cta-font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cta-blue);
+    background: rgba(10,110,189,0.08);
+    border: 1.5px solid rgba(10,110,189,0.22);
+    border-radius: 999px;
+    padding: 7px 18px;
+    margin-bottom: 22px;
+  }
+  .cad-cta__title {
+    font-family: var(--cta-font-head);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    color: var(--cta-text);
+    margin-bottom: 18px;
+    line-height: 1.1;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+  }
+  .cad-cta--visible .cad-cta__title { opacity: 1; transform: translateY(0); }
+  
+  .cad-cta__subtitle {
+    font-family: var(--cta-font-body);
+    font-size: 1.05rem;
+    color: var(--cta-text-sub);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.25s, transform 0.6s ease 0.25s;
+  }
+  .cad-cta--visible .cad-cta__subtitle { opacity: 1; transform: translateY(0); }
+  .cad-cta__br { display: none; }
+  @media (min-width: 520px) { .cad-cta__br { display: inline; } }
+  
+  .cad-cta__checklist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 24px;
+    margin-bottom: 44px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+  }
+  .cad-cta--visible .cad-cta__checklist { opacity: 1; transform: translateY(0); }
+  .cad-cta__check { font-family: var(--cta-font-body); font-size: 0.9rem; font-weight: 500; color: var(--cta-text-sub); display: inline-flex; align-items: center; gap: 7px; }
+  .cad-cta__check i { width: 20px; height: 20px; border-radius: 50%; background: rgba(10,110,189,0.12); color: var(--cta-blue-dark); font-size: 0.65rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  
+  .cad-cta__actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.55s, transform 0.6s ease 0.55s;
+  }
+  .cad-cta--visible .cad-cta__actions { opacity: 1; transform: translateY(0); }
+  
+  .cad-cta__btn {
+    font-family: var(--cta-font-body);
+    font-size: 0.96rem;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 15px 32px;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+  }
+  .cad-cta__btn--primary { background: linear-gradient(135deg, var(--cta-blue), var(--cta-blue-dark)); color: #fff; box-shadow: 0 6px 24px rgba(10,110,189,0.30); }
+  .cad-cta__btn--primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(10,110,189,0.38); }
+  .cad-cta__btn--ghost { background: #fff; color: var(--cta-blue-dark); border: 2px solid rgba(10,110,189,0.28); }
+  .cad-cta__btn--ghost:hover { background: rgba(10,110,189,0.06); border-color: var(--cta-blue); transform: translateY(-2px); }
+  
+  @media (max-width: 480px) {
+    .cad-cta { padding: 80px 0; }
+    .cad-cta__container { padding: 0 20px; }
+    .cad-cta__btn { padding: 13px 24px; font-size: 0.88rem; width: 100%; justify-content: center; }
+    .cad-cta__actions { flex-direction: column; align-items: center; }
+  }
+
+
+  /* hero section animation//////////////////////////////////////////////////////////////////////////////////// */
+
+  

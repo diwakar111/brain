@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Brainchild Technologies Mobile App Development — Native iOS, Android, Flutter, React Native and Enterprise mobile solutions for B2B, B2C and B2E businesses." />
+  <title>Mobile App Development — Brainchild Technologies</title>
+
+  <!-- Google Fonts: Outfit (body) + Syne (headings) -->
+  <!-- Outfit handles all UI text, buttons, paragraphs -->
+  <!-- Syne handles all headings, hero title, stat numbers -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome — for icons throughout the page -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- ============================================================
+       PAGE STYLESHEET
+       Single file — all sections scoped to .mob-page wrapper.
+       No styles leak into parent project.
+  ============================================================ -->
+  <link rel="stylesheet" href="mobile.css" />
+  <style>
+    html,body{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+  }
+  </style>
+</head>
+
+<!-- ============================================================
+     .mob-page wrapper — ALL CSS is scoped inside this class.
+     This prevents any style from bleeding into the parent project.
+     Add this page to any existing site without CSS conflicts.
+============================================================ -->
+<body class="mob-page">
+
+
+  <!-- ============================================================
+       NAVBAR PLACEHOLDER
+       Add your existing navbar HTML here.
+       The hero section has 7rem top padding to clear fixed navbars.
+       Adjust --mob-sp-lg in CSS if your navbar height differs.
+  ============================================================ -->
+  <!-- NAVBAR_START — paste your <header class="bct-nav"> … </header> here -->
+  <!-- NAVBAR_END -->
+
+
+  <main>
+
+    <!-- ===========================================================
+         SECTION 01 · HERO
+         ID:     #mob-hero
+         CSS:    All .mob-hero__* rules in mobile-app.css
+         JS:     initHeroCanvas() — floating phone silhouettes
+                 Canvas pauses when hero scrolls off-screen.
+         CONTENT: Breadcrumb, eyebrow, H1, subtitle, stat pills,
+                  dual CTAs, scroll indicator.
+    =========================================================== -->
+    <section id="mob-hero" aria-label="Mobile App Development hero">
+
+      <!-- Canvas: floating phone silhouettes drawn by initHeroCanvas() in mobile-app.js -->
+      <canvas id="mob-hero-canvas" aria-hidden="true"></canvas>
+
+      <!-- Subtle dot-grid texture overlay — purely decorative -->
+      <div class="mob-hero__grid" aria-hidden="true"></div>
+
+      <!-- All headline content — sits above canvas via z-index -->
+      <div class="mob-hero__content">
+
+        <!-- Breadcrumb: helps users understand page location -->
+        <!-- <nav class="mob-hero__breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="mob-hero__breadcrumb-sep" aria-hidden="true">›</span>
+          <a href="../service.html">Services</a>
+          <span class="mob-hero__breadcrumb-sep" aria-hidden="true">›</span>
+          <span class="mob-hero__breadcrumb-cur">Mobile App Development</span>
+        </nav> -->
+
+        <!-- Eyebrow chip: service identifier label -->
+        <div class="mob-hero__eyebrow">
+          <span class="mob-hero__eyebrow-dot" aria-hidden="true"></span>
+          Service 04 · Mobile Applications
+        </div>
+
+        <!-- Main H1 headline -->
+        <h1 class="mob-hero__h1">
+          Apps That
+          <span class="mob-hero__accent">Connect,</span><br />
+          Engage &amp; Convert
+        </h1>
+
+        <!-- Supporting subtitle — what Brainchild does -->
+        <p class="mob-hero__sub">
+          We build superior mobile applications for B2B, B2C, and B2E companies —
+          enabling new customer experiences, increasing employee productivity,
+          and helping you stay ahead in the mobile ecosystem.
+        </p>
+
+        <!-- Stat pills — key metrics from Brainchild's live site -->
+        <div class="mob-hero__pills" role="list">
+
+          <div class="mob-hero__pill" role="listitem">
+            <span class="mob-hero__pill-num">19+</span>
+            <span class="mob-hero__pill-lbl">Years Experience</span>
+          </div>
+
+          <div class="mob-hero__pill" role="listitem">
+            <span class="mob-hero__pill-num">150K+</span>
+            <span class="mob-hero__pill-lbl">Devices Deployed</span>
+          </div>
+
+          <div class="mob-hero__pill" role="listitem">
+            <span class="mob-hero__pill-num">360+</span>
+            <span class="mob-hero__pill-lbl">Projects Delivered</span>
+          </div>
+
+        </div>
+
+        <!-- Dual CTA buttons: primary action + secondary navigation -->
+        <div class="mob-hero__ctas">
+
+          <!-- Primary CTA — links to contact page (update path to match your project) -->
+          <a href="contact.html" class="mob-hero__btn-primary">
+            <!-- Arrow icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+            Get Free Consultation
+          </a>
+
+          <!-- Ghost CTA — scrolls to offerings section -->
+          <a href="#mob-build" class="mob-hero__btn-ghost">
+            Explore Our Apps
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Scroll hint indicator — guides user to scroll down -->
+      <!-- <div class="mob-hero__scroll" aria-hidden="true">
+        <div class="mob-hero__scroll-mouse"></div>
+        <span class="mob-hero__scroll-lbl">Scroll</span>
+      </div> -->
+
+    </section>
+    <!-- END SECTION 01 · HERO -->
+
+
+    <!-- ===========================================================
+         SECTION 02 · SERVICE OVERVIEW
+         ID:     #mob-overview
+         CSS:    All .mob-ov__* rules in mobile-app.css
+         JS:     Scroll reveal via initScrollReveal()
+         CONTENT: 2-col layout — left checklist of capabilities,
+                  right animated phone SVG with floating badges.
+    =========================================================== -->
+    <section id="mob-overview" aria-label="Mobile App Development overview">
+      <div class="mob-container">
+        <div class="mob-ov__inner">
+
+          <!-- Left column: text content and capability checklist -->
+          <div class="mob-ov__content" data-mob-reveal>
+
+            <!-- Section eyebrow chip -->
+            <div class="mob-chip" style="margin-bottom:1rem;">
+              <span class="mob-chip__dot" aria-hidden="true"></span>
+              What We Do
+            </div>
+
+            <!-- Section heading -->
+            <h2 class="mob-ov__h2">
+              Superior Mobile Apps.<br />
+              <span>Proven at Scale.</span>
+            </h2>
+
+            <!-- Lead paragraph — from Brainchild's actual page content -->
+            <p class="mob-ov__lead">
+              Billions of users are connected to the internet using smartphones, tablets, and
+              wearables. Developing a mobile app demands immediate attention from B2B, B2C,
+              and B2E companies to reach their audience in real time.
+            </p>
+
+            <!-- Supporting paragraph -->
+            <p class="mob-ov__body">
+              Brainchild Technology develops superior mobile applications that help you lead
+              the mobile ecosystem — enabling new customer experiences, boosting employee
+              productivity, and outsmarting competitors with data-driven mobile intelligence.
+            </p>
+
+            <!-- Capability checklist — our core know-how points -->
+            <ul class="mob-ov__list" aria-label="Key capabilities">
+
+              <li class="mob-ov__list-item">
+                <span class="mob-ov__list-icon" aria-hidden="true">
+                  <!-- Checkmark SVG icon -->
+                  <svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg>
+                </span>
+                End-to-end security for all data transferred
+              </li>
+
+              <li class="mob-ov__list-item">
+                <span class="mob-ov__list-icon" aria-hidden="true">
+                  <svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg>
+                </span>
+                Suitable User Experience (UX) &amp; Interface Design
+              </li>
+
+              <li class="mob-ov__list-item">
+                <span class="mob-ov__list-icon" aria-hidden="true">
+                  <svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg>
+                </span>
+                Backend integration &amp; offline capabilities
+              </li>
+
+              <li class="mob-ov__list-item">
+                <span class="mob-ov__list-icon" aria-hidden="true">
+                  <svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg>
+                </span>
+                Data syncing, network issues &amp; device management
+              </li>
+
+              <li class="mob-ov__list-item">
+                <span class="mob-ov__list-icon" aria-hidden="true">
+                  <svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg>
+                </span>
+                App Store submission &amp; post-launch support
+              </li>
+
+            </ul>
+          </div>
+
+          <!-- Right column: animated phone illustration with floating badges -->
+          <div class="mob-ov__visual" data-mob-reveal data-mob-delay="150">
+
+            <!-- Card holding the phone SVG illustration -->
+            <div class="mob-ov__card">
+
+              <!-- Phone SVG illustration — CSS animates it floating -->
+              <svg class="mob-ov__phone-svg" viewBox="0 0 200 340" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <!-- Outer phone body -->
+                <rect x="20" y="10" width="160" height="320" rx="28" fill="rgba(10,110,189,0.07)" stroke="#0A6EBD" stroke-width="2"/>
+                <!-- Screen bezel -->
+                <rect x="30" y="40" width="140" height="250" rx="8" fill="rgba(10,110,189,0.05)" stroke="rgba(10,110,189,0.2)" stroke-width="1"/>
+                <!-- Notch / camera -->
+                <rect x="75" y="18" width="50" height="12" rx="6" fill="rgba(10,110,189,0.15)"/>
+                <!-- App screen UI mockup elements -->
+                <!-- Nav bar at top of screen -->
+                <rect x="38" y="50" width="124" height="28" rx="4" fill="rgba(10,110,189,0.08)"/>
+                <!-- App icon grid -->
+                <rect x="38" y="90" width="36" height="36" rx="8" fill="rgba(10,110,189,0.12)"/>
+                <rect x="82" y="90" width="36" height="36" rx="8" fill="rgba(0,194,199,0.12)"/>
+                <rect x="126" y="90" width="36" height="36" rx="8" fill="rgba(10,110,189,0.08)"/>
+                <rect x="38" y="136" width="36" height="36" rx="8" fill="rgba(0,194,199,0.08)"/>
+                <rect x="82" y="136" width="36" height="36" rx="8" fill="rgba(10,110,189,0.10)"/>
+                <rect x="126" y="136" width="36" height="36" rx="8" fill="rgba(0,194,199,0.12)"/>
+                <!-- Chart area -->
+                <rect x="38" y="184" width="124" height="60" rx="6" fill="rgba(10,110,189,0.06)"/>
+                <!-- Bar chart bars inside chart area -->
+                <rect x="50" y="214" width="14" height="24" rx="2" fill="rgba(10,110,189,0.3)"/>
+                <rect x="70" y="204" width="14" height="34" rx="2" fill="rgba(0,194,199,0.4)"/>
+                <rect x="90" y="210" width="14" height="28" rx="2" fill="rgba(10,110,189,0.25)"/>
+                <rect x="110" y="197" width="14" height="41" rx="2" fill="rgba(0,194,199,0.35)"/>
+                <rect x="130" y="207" width="14" height="31" rx="2" fill="rgba(10,110,189,0.30)"/>
+                <!-- Text lines placeholder -->
+                <rect x="38" y="256" width="80" height="6" rx="3" fill="rgba(10,110,189,0.12)"/>
+                <rect x="38" y="268" width="56" height="5" rx="2.5" fill="rgba(10,110,189,0.08)"/>
+                <!-- Bottom navigation bar -->
+                <rect x="30" y="286" width="140" height="2" fill="rgba(10,110,189,0.1)"/>
+                <circle cx="60"  cy="304" r="8" fill="rgba(10,110,189,0.15)"/>
+                <circle cx="100" cy="304" r="8" fill="rgba(10,110,189,0.30)"/>
+                <circle cx="140" cy="304" r="8" fill="rgba(10,110,189,0.15)"/>
+                <!-- Home indicator -->
+                <rect x="80" y="323" width="40" height="4" rx="2" fill="rgba(10,110,189,0.15)"/>
+              </svg>
+
+              <!-- Floating badge: top-left — platform support -->
+              <div class="mob-ov__badge mob-ov__badge--tl">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                iOS &amp; Android
+              </div>
+
+              <!-- Floating badge: bottom-right — App Store ready -->
+              <div class="mob-ov__badge mob-ov__badge--br">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                App Store Ready
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 02 · OVERVIEW -->
+
+
+    <!-- ===========================================================
+         SECTION 03 · MOBILE APP ANALYTICS
+         ID:     #mob-analytics
+         CSS:    All .mob-anlx__* rules in mobile-app.css
+         JS:     Scroll reveal via initScrollReveal()
+         CONTENT: 4 analytics cards drawn directly from Brainchild's
+                  live site — Adoption Influence, Customer Engagement,
+                  User Engagement, Customer Retention.
+    =========================================================== -->
+    <section id="mob-analytics" aria-label="Mobile App Analytics">
+      <div class="mob-container">
+
+        <!-- Section header -->
+        <div class="mob-anlx__header" data-mob-reveal>
+          <div class="mob-chip">
+            <span class="mob-chip__dot" aria-hidden="true"></span>
+            Analytics
+          </div>
+          <h2 class="mob-anlx__h2">
+            Mobile Application <span>Analytics</span>
+          </h2>
+          <p class="mob-anlx__sub">
+            We track, measure, and optimise every layer of your app's performance —
+            from first install to long-term retention.
+          </p>
+        </div>
+
+        <!-- Analytics cards grid: 2×2 layout -->
+        <div class="mob-anlx__grid">
+
+          <!-- Card 1: Adoption Influence -->
+          <div class="mob-anlx-card" data-mob-reveal data-mob-delay="0">
+            <div class="mob-anlx-card__icon" aria-hidden="true">
+              <!-- Download / install icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+            </div>
+            <h3 class="mob-anlx-card__title">Adoption Influence</h3>
+            <ul class="mob-anlx-card__list" aria-label="Adoption metrics">
+              <li>Total downloads tracking &amp; install attribution</li>
+              <li>Total number of active app users</li>
+              <li>Active user rate — app users vs total downloads</li>
+              <li>New users per period — first-time usage tracking</li>
+            </ul>
+          </div>
+
+          <!-- Card 2: Customer Engagement in High-Value Activities -->
+          <div class="mob-anlx-card" data-mob-reveal data-mob-delay="100">
+            <div class="mob-anlx-card__icon" aria-hidden="true">
+              <!-- Users / engagement icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                <path d="M16 3.13a4 4 0 010 7.75"/>
+              </svg>
+            </div>
+            <h3 class="mob-anlx-card__title">Customer Engagement in High-Value Activities</h3>
+            <ul class="mob-anlx-card__list" aria-label="Customer engagement metrics">
+              <li>Measure what customers do inside the app</li>
+              <li>Capture user characteristics of target audience</li>
+              <li>Collect user activity data to generate revenue</li>
+              <li>Brand engagement tracking across all funnels</li>
+            </ul>
+          </div>
+
+          <!-- Card 3: User Engagement -->
+          <div class="mob-anlx-card" data-mob-reveal data-mob-delay="0">
+            <div class="mob-anlx-card__icon" aria-hidden="true">
+              <!-- Activity / pulse icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <h3 class="mob-anlx-card__title">User Engagement</h3>
+            <ul class="mob-anlx-card__list" aria-label="User engagement metrics">
+              <li>Visit frequency — sessions per user over time</li>
+              <li>Depth of visit — screens viewed per session</li>
+              <li>Duration — time spent per session</li>
+              <li>Bounce rate — single-view vs full-session ratio</li>
+            </ul>
+          </div>
+
+          <!-- Card 4: Customer Retention & Encouragement -->
+          <div class="mob-anlx-card" data-mob-reveal data-mob-delay="100">
+            <div class="mob-anlx-card__icon" aria-hidden="true">
+              <!-- Repeat / retention icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="17 1 21 5 17 9"/>
+                <path d="M3 11V9a4 4 0 014-4h14"/>
+                <polyline points="7 23 3 19 7 15"/>
+                <path d="M21 13v2a4 4 0 01-4 4H3"/>
+              </svg>
+            </div>
+            <h3 class="mob-anlx-card__title">Customer Retention &amp; Encouragement</h3>
+            <ul class="mob-anlx-card__list" aria-label="Retention strategies">
+              <li>Increase stickiness — stay relevant and up-to-date</li>
+              <li>Multi-channel advertising integration</li>
+              <li>Direct customer insight on features &amp; satisfaction</li>
+              <li>Push notification &amp; re-engagement campaigns</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 03 · ANALYTICS -->
+
+
+    <!-- ===========================================================
+         SECTION 04 · WHAT WE BUILD
+         ID:     #mob-build
+         CSS:    All .mob-build__* rules in mobile-app.css
+         JS:     Scroll reveal via initScrollReveal()
+         CONTENT: 6 app-type cards — Native iOS, Native Android,
+                  Flutter, React Native, PWA, Enterprise Mobile.
+                  Each card has data-num for watermark number.
+    =========================================================== -->
+    <section id="mob-build" aria-label="What we build — app types">
+      <div class="mob-container">
+
+        <!-- Section header -->
+        <div class="mob-build__header" data-mob-reveal>
+          <div class="mob-chip">
+            <span class="mob-chip__dot" aria-hidden="true"></span>
+            Our Offerings
+          </div>
+          <h2 class="mob-build__h2">
+            What We <span>Build</span>
+          </h2>
+          <p class="mob-build__sub">
+            From native performance to cross-platform efficiency — every stack, every platform,
+            every industry.
+          </p>
+        </div>
+
+        <!-- 6-card grid — 3 columns on desktop, 2 on tablet, 1 on mobile -->
+        <div class="mob-build__grid">
+
+          <!-- Card 01: Native iOS -->
+          <div class="mob-build-card" data-num="01" data-mob-reveal data-mob-delay="0">
+            <div class="mob-build-card__icon" aria-hidden="true">
+              <!-- Apple logo shape SVG -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2"/>
+                <circle cx="12" cy="17" r="1" fill="currentColor"/>
+                <line x1="9" y1="6" x2="15" y2="6"/>
+              </svg>
+            </div>
+            <h3 class="mob-build-card__title">Native iOS Development</h3>
+            <p class="mob-build-card__desc">
+              Swift and Objective-C apps with full Apple ecosystem integration —
+              delivering performance that only native code can provide.
+            </p>
+            <ul class="mob-build-card__list" aria-label="iOS development features">
+              <li>Swift / SwiftUI development</li>
+              <li>Apple HIG compliance</li>
+              <li>iCloud &amp; HealthKit integration</li>
+              <li>App Store submission &amp; review</li>
+            </ul>
+            <a href="#" class="mob-build-card__link">
+              Learn More
+              <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <!-- Card 02: Native Android -->
+          <div class="mob-build-card" data-num="02" data-mob-reveal data-mob-delay="80">
+            <div class="mob-build-card__icon" aria-hidden="true">
+              <!-- Android icon SVG -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 10h16v7a2 2 0 01-2 2H6a2 2 0 01-2-2v-7z"/>
+                <path d="M8 10V6a4 4 0 018 0v4"/>
+                <line x1="9" y1="3" x2="7" y2="1"/>
+                <line x1="15" y1="3" x2="17" y2="1"/>
+              </svg>
+            </div>
+            <h3 class="mob-build-card__title">Native Android Development</h3>
+            <p class="mob-build-card__desc">
+              Kotlin and Java applications optimised for the full Android ecosystem —
+              from entry-level devices to flagship hardware.
+            </p>
+            <ul class="mob-build-card__list" aria-label="Android development features">
+              <li>Kotlin / Jetpack Compose</li>
+              <li>Material Design 3 compliance</li>
+              <li>Google Play services integration</li>
+              <li>Multi-device &amp; screen size support</li>
+            </ul>
+            <a href="#" class="mob-build-card__link">
+              Learn More
+              <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <!-- Card 03: Flutter -->
+          <div class="mob-build-card" data-num="03" data-mob-reveal data-mob-delay="160">
+            <div class="mob-build-card__icon" aria-hidden="true">
+              <!-- Flutter / layers icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/>
+                <line x1="12" y1="22" x2="12" y2="15.5"/>
+                <polyline points="22 8.5 12 15.5 2 8.5"/>
+              </svg>
+            </div>
+            <h3 class="mob-build-card__title">Flutter Cross-Platform</h3>
+            <p class="mob-build-card__desc">
+              Single codebase, pixel-perfect UI on iOS, Android, Web, and Desktop —
+              Google's Flutter at its best.
+            </p>
+            <ul class="mob-build-card__list" aria-label="Flutter features">
+              <li>Dart + Flutter SDK</li>
+              <li>Single codebase — 6 platforms</li>
+              <li>Custom UI components &amp; animations</li>
+              <li>Firebase / Supabase backend</li>
+            </ul>
+            <a href="#" class="mob-build-card__link">
+              Learn More
+              <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <!-- Card 04: React Native -->
+          <div class="mob-build-card" data-num="04" data-mob-reveal data-mob-delay="0">
+            <div class="mob-build-card__icon" aria-hidden="true">
+              <!-- React atom icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="2"/>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10"/>
+                <path d="M22 12c0 2.21-4.48 4-10 4S2 14.21 2 12"/>
+              </svg>
+            </div>
+            <h3 class="mob-build-card__title">React Native Apps</h3>
+            <p class="mob-build-card__desc">
+              JavaScript-powered native experiences. Share logic between iOS and
+              Android while keeping true native performance.
+            </p>
+            <ul class="mob-build-card__list" aria-label="React Native features">
+              <li>JavaScript / TypeScript</li>
+              <li>Near-native performance</li>
+              <li>Expo &amp; bare workflow</li>
+              <li>REST / GraphQL API integration</li>
+            </ul>
+            <a href="#" class="mob-build-card__link">
+              Learn More
+              <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <!-- Card 05: Progressive Web Apps -->
+          <div class="mob-build-card" data-num="05" data-mob-reveal data-mob-delay="80">
+            <div class="mob-build-card__icon" aria-hidden="true">
+              <!-- Globe / web icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/>
+              </svg>
+            </div>
+            <h3 class="mob-build-card__title">Progressive Web Apps (PWA)</h3>
+            <p class="mob-build-card__desc">
+              Web apps that feel and perform like native — offline support,
+              push notifications, and home-screen install without app stores.
+            </p>
+            <ul class="mob-build-card__list" aria-label="PWA features">
+              <li>Offline first with Service Workers</li>
+              <li>Push notifications support</li>
+              <li>Home-screen installable</li>
+              <li>Zero app store approval needed</li>
+            </ul>
+            <a href="#" class="mob-build-card__link">
+              Learn More
+              <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <!-- Card 06: Enterprise Mobile -->
+          <div class="mob-build-card" data-num="06" data-mob-reveal data-mob-delay="160">
+            <div class="mob-build-card__icon" aria-hidden="true">
+              <!-- Briefcase / enterprise icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
+                <line x1="12" y1="12" x2="12" y2="12"/>
+              </svg>
+            </div>
+            <h3 class="mob-build-card__title">Enterprise Mobile Solutions</h3>
+            <p class="mob-build-card__desc">
+              B2B and B2E apps connected to IoT systems, ERP, SCADA, and cloud —
+              for field teams, floor workers, and executives alike.
+            </p>
+            <ul class="mob-build-card__list" aria-label="Enterprise features">
+              <li>ERP / SCADA / IoT integration</li>
+              <li>MDM &amp; MAM compatible</li>
+              <li>Single Sign-On (SSO) support</li>
+              <li>Offline sync &amp; edge-compute ready</li>
+            </ul>
+            <a href="#" class="mob-build-card__link">
+              Learn More
+              <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 04 · WHAT WE BUILD -->
+
+
+    <!-- ===========================================================
+         SECTION 05 · HOW WE WORK — DEVELOPMENT PROCESS
+         ID:     #mob-process
+         CSS:    All .mob-proc__* rules in mobile-app.css
+         JS:     initProcess() — steps activate sequentially.
+                 Resets when section leaves, replays on re-entry.
+         CONTENT: 6-step process — Discovery through Launch.
+    =========================================================== -->
+    <section id="mob-process" aria-label="Our mobile app development process">
+      <div class="mob-container">
+
+        <!-- Section header — white text on dark bg -->
+        <div class="mob-proc__header" data-mob-reveal>
+          <div class="mob-chip">
+            <span class="mob-chip__dot" aria-hidden="true"></span>
+            Our Process
+          </div>
+          <h2 class="mob-proc__h2">How We Build Your App</h2>
+          <p class="mob-proc__sub">
+            A structured, milestone-driven process — from idea validation
+            to App Store launch and beyond.
+          </p>
+        </div>
+
+        <!-- Steps grid — 3 columns × 2 rows = 6 steps -->
+        <!-- JS adds .mob-step-active sequentially when section enters viewport -->
+        <div class="mob-proc__track">
+
+          <!-- Step 01: Discovery -->
+          <div class="mob-proc__step">
+            <div class="mob-proc__step-circle">
+              <span class="mob-proc__step-num" aria-label="Step 1">01</span>
+              <!-- Search / discovery icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </div>
+            <h4 class="mob-proc__step-title">Discovery &amp; Strategy</h4>
+            <p class="mob-proc__step-desc">Goals, audience, platform choice, competitor analysis</p>
+            <span class="mob-proc__step-dur">Week 1–2</span>
+          </div>
+
+          <!-- Step 02: UI/UX Design -->
+          <div class="mob-proc__step">
+            <div class="mob-proc__step-circle">
+              <span class="mob-proc__step-num" aria-label="Step 2">02</span>
+              <!-- Design / pen icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 20h9"/>
+                <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+              </svg>
+            </div>
+            <h4 class="mob-proc__step-title">UI/UX Design</h4>
+            <p class="mob-proc__step-desc">Wireframes, prototypes, design system, user testing</p>
+            <span class="mob-proc__step-dur">Week 2–4</span>
+          </div>
+
+          <!-- Step 03: Development -->
+          <div class="mob-proc__step">
+            <div class="mob-proc__step-circle">
+              <span class="mob-proc__step-num" aria-label="Step 3">03</span>
+              <!-- Code icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
+            <h4 class="mob-proc__step-title">App Development</h4>
+            <p class="mob-proc__step-desc">Agile sprints, API integration, backend &amp; database</p>
+            <span class="mob-proc__step-dur">Week 4–12</span>
+          </div>
+
+          <!-- Step 04: QA & Testing -->
+          <div class="mob-proc__step">
+            <div class="mob-proc__step-circle">
+              <span class="mob-proc__step-num" aria-label="Step 4">04</span>
+              <!-- Shield / QA icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h4 class="mob-proc__step-title">QA &amp; Testing</h4>
+            <p class="mob-proc__step-desc">Unit tests, device testing, performance &amp; security audits</p>
+            <span class="mob-proc__step-dur">Week 10–14</span>
+          </div>
+
+          <!-- Step 05: Launch -->
+          <div class="mob-proc__step">
+            <div class="mob-proc__step-circle">
+              <span class="mob-proc__step-num" aria-label="Step 5">05</span>
+              <!-- Rocket / launch icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/>
+                <path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/>
+              </svg>
+            </div>
+            <h4 class="mob-proc__step-title">App Store Launch</h4>
+            <p class="mob-proc__step-desc">Store optimisation, submission, approval management</p>
+            <span class="mob-proc__step-dur">Week 14–16</span>
+          </div>
+
+          <!-- Step 06: Support & Growth -->
+          <div class="mob-proc__step">
+            <div class="mob-proc__step-circle">
+              <span class="mob-proc__step-num" aria-label="Step 6">06</span>
+              <!-- Chart / growth icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6"  y1="20" x2="6"  y2="14"/>
+              </svg>
+            </div>
+            <h4 class="mob-proc__step-title">Support &amp; Growth</h4>
+            <p class="mob-proc__step-desc">Analytics monitoring, OTA updates, feature expansion</p>
+            <span class="mob-proc__step-dur">Ongoing</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 05 · PROCESS -->
+
+
+    <!-- ===========================================================
+         SECTION 06 · TECH STACK
+         ID:     #mob-techstack
+         CSS:    All .mob-tech__* rules in mobile-app.css
+         JS:     initTechStack() — assigns float timings,
+                 pauses when off-screen, resumes when visible.
+         CONTENT: 5 tech groups — Languages, Frameworks, Backend,
+                  Testing, DevOps.
+    =========================================================== -->
+    <section id="mob-techstack" aria-label="Mobile app technology stack">
+      <div class="mob-container">
+
+        <!-- Section header -->
+        <div class="mob-tech__header" data-mob-reveal>
+          <div class="mob-chip">
+            <span class="mob-chip__dot" aria-hidden="true"></span>
+            Tech Stack
+          </div>
+          <h2 class="mob-tech__h2">Technologies We Use</h2>
+          <p class="mob-tech__sub">
+            Battle-tested tools and frameworks — chosen for performance, maintainability,
+            and long-term support.
+          </p>
+        </div>
+
+        <!-- Languages & Core -->
+        <div class="mob-tech__group" data-mob-reveal>
+          <p class="mob-tech__group-label">Languages &amp; Core</p>
+          <div class="mob-tech__row">
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#F05138;"></span>Swift</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#B07219;"></span>Kotlin</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#F7DF1E;"></span>JavaScript</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#3178C6;"></span>TypeScript</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#00B4D8;"></span>Dart</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#B07219;"></span>Java</span>
+          </div>
+        </div>
+
+        <!-- Frameworks & Platforms -->
+        <div class="mob-tech__group" data-mob-reveal data-mob-delay="80">
+          <p class="mob-tech__group-label">Frameworks &amp; Platforms</p>
+          <div class="mob-tech__row">
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#54C5F8;"></span>Flutter</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#61DAFB;"></span>React Native</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#F05138;"></span>SwiftUI</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#3DDC84;"></span>Jetpack Compose</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#F7931E;"></span>Expo</span>
+          </div>
+        </div>
+
+        <!-- Backend & APIs -->
+        <div class="mob-tech__group" data-mob-reveal data-mob-delay="160">
+          <p class="mob-tech__group-label">Backend &amp; APIs</p>
+          <div class="mob-tech__row">
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#FF9900;"></span>AWS Amplify</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#FFCA28;"></span>Firebase</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#3ECF8E;"></span>Supabase</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#0A6EBD;"></span>REST APIs</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#E535AB;"></span>GraphQL</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#6a5aff;"></span>MQTT</span>
+          </div>
+        </div>
+
+        <!-- Testing & QA -->
+        <div class="mob-tech__group" data-mob-reveal data-mob-delay="240">
+          <p class="mob-tech__group-label">Testing &amp; QA</p>
+          <div class="mob-tech__row">
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#00C2C7;"></span>XCTest</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#3DDC84;"></span>Espresso</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#e74c3c;"></span>Detox</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#007ACC;"></span>Appium</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#0A6EBD;"></span>Firebase Test Lab</span>
+          </div>
+        </div>
+
+        <!-- DevOps & Distribution -->
+        <div class="mob-tech__group" data-mob-reveal data-mob-delay="320">
+          <p class="mob-tech__group-label">DevOps &amp; Distribution</p>
+          <div class="mob-tech__row">
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#F05138;"></span>Fastlane</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#2088FF;"></span>GitHub Actions</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#0D1B2E;"></span>Bitrise</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#FF6C37;"></span>App Center</span>
+            <span class="mob-tech__chip"><span class="mob-tech__chip-dot" style="background:#DD344C;"></span>TestFlight</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- END SECTION 06 · TECH STACK -->
+
+
+    <!-- ===========================================================
+         SECTION 07 · INDUSTRIES WE SERVE
+         ID:     #mob-industries
+         CSS:    All .mob-ind__* rules in mobile-app.css
+         JS:     initIndustryTabs() — click a tab to switch panel.
+                 Panel fades in with CSS animation.
+         CONTENT: 5 industry tabs — FinTech, HealthTech, EdTech,
+                  Retail/eCommerce, Enterprise/Field Ops.
+    =========================================================== -->
+    <section id="mob-industries" aria-label="Industries we serve with mobile apps">
+      <div class="mob-container">
+
+        <!-- Section header -->
+        <div class="mob-ind__header" data-mob-reveal>
+          <div class="mob-chip">
+            <span class="mob-chip__dot" aria-hidden="true"></span>
+            Industries
+          </div>
+          <h2 class="mob-ind__h2">Mobile Apps Across Every Industry</h2>
+          <p class="mob-ind__sub">
+            From vending machine IoT dashboards to enterprise field service apps —
+            we've shipped for every sector.
+          </p>
+        </div>
+
+        <!-- Tab buttons — clicking activates matching panel below -->
+        <div class="mob-ind__tabs" role="tablist" data-mob-reveal data-mob-delay="100">
+
+          <button class="mob-ind__tab" role="tab" aria-controls="mob-panel-fintech" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            FinTech
+          </button>
+
+          <button class="mob-ind__tab" role="tab" aria-controls="mob-panel-health" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            HealthTech
+          </button>
+
+          <button class="mob-ind__tab" role="tab" aria-controls="mob-panel-edtech" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+            EdTech
+          </button>
+
+          <button class="mob-ind__tab" role="tab" aria-controls="mob-panel-retail" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Retail &amp; eCommerce
+          </button>
+
+          <button class="mob-ind__tab" role="tab" aria-controls="mob-panel-enterprise" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+            Enterprise
+          </button>
+
+        </div>
+
+        <!-- Panels — one shown at a time based on active tab -->
+        <div class="mob-ind__panels">
+
+          <!-- Panel: FinTech -->
+          <div class="mob-ind__panel" id="mob-panel-fintech" role="tabpanel">
+            <div class="mob-ind__panel-visual" aria-hidden="true">
+              <!-- FinTech visual: finance chart icon -->
+              <svg viewBox="0 0 80 80" fill="none">
+                <rect x="10" y="50" width="12" height="20" rx="2" stroke="currentColor" stroke-width="1.2"/>
+                <rect x="28" y="35" width="12" height="35" rx="2" stroke="currentColor" stroke-width="1.2"/>
+                <rect x="46" y="20" width="12" height="50" rx="2" stroke="currentColor" stroke-width="1.2"/>
+                <rect x="64" y="10" width="12" height="60" rx="2" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M10 25 Q25 10 40 20 Q55 30 70 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <span class="mob-ind__panel-tag">FinTech</span>
+              <h3 class="mob-ind__panel-title">Financial &amp; Banking Apps</h3>
+              <p class="mob-ind__panel-desc">
+                Mobile payment gateways, banking dashboards, investment trackers, and
+                insurance apps — with PCI-DSS compliance and biometric authentication.
+              </p>
+              <ul class="mob-ind__panel-list" aria-label="FinTech capabilities">
+                <li>Payment gateway integration (Razorpay, Stripe)</li>
+                <li>Biometric &amp; 2FA authentication</li>
+                <li>Real-time transaction monitoring</li>
+                <li>PCI-DSS &amp; RBI compliance ready</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Panel: HealthTech -->
+          <div class="mob-ind__panel" id="mob-panel-health" role="tabpanel">
+            <div class="mob-ind__panel-visual" aria-hidden="true">
+              <svg viewBox="0 0 80 80" fill="none">
+                <path d="M40 70C40 70 10 55 10 35a15 15 0 0130-7 15 15 0 0130 7c0 20-30 35-30 35z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+                <path d="M28 38h8v-8h8v8h8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <span class="mob-ind__panel-tag">HealthTech</span>
+              <h3 class="mob-ind__panel-title">Healthcare &amp; Wellness Apps</h3>
+              <p class="mob-ind__panel-desc">
+                Patient monitoring, telemedicine, fitness tracking, and hospital management
+                apps — integrated with wearables and clinical systems.
+              </p>
+              <ul class="mob-ind__panel-list" aria-label="HealthTech capabilities">
+                <li>Wearable device integration (ECG, SpO₂)</li>
+                <li>Telemedicine &amp; video consultation</li>
+                <li>HL7 FHIR / EHR integration</li>
+                <li>HIPAA-compliant data handling</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Panel: EdTech -->
+          <div class="mob-ind__panel" id="mob-panel-edtech" role="tabpanel">
+            <div class="mob-ind__panel-visual" aria-hidden="true">
+              <svg viewBox="0 0 80 80" fill="none">
+                <rect x="10" y="15" width="60" height="50" rx="4" stroke="currentColor" stroke-width="1.2"/>
+                <line x1="10" y1="30" x2="70" y2="30" stroke="currentColor" stroke-width="1.2"/>
+                <rect x="20" y="38" width="16" height="12" rx="2" fill="currentColor" opacity="0.1" stroke="currentColor" stroke-width="1"/>
+                <rect x="44" y="38" width="16" height="12" rx="2" fill="currentColor" opacity="0.1" stroke="currentColor" stroke-width="1"/>
+                <line x1="20" y1="57" x2="60" y2="57" stroke="currentColor" stroke-width="1"/>
+              </svg>
+            </div>
+            <div>
+              <span class="mob-ind__panel-tag">EdTech</span>
+              <h3 class="mob-ind__panel-title">Education &amp; Learning Management Apps</h3>
+              <p class="mob-ind__panel-desc">
+                LMS platforms, quiz apps, live class solutions, and corporate training
+                apps — built for students, teachers, and HR teams.
+              </p>
+              <ul class="mob-ind__panel-list" aria-label="EdTech capabilities">
+                <li>Live video class &amp; webinar integration</li>
+                <li>Gamification &amp; progress tracking</li>
+                <li>Offline video download support</li>
+                <li>Multi-language &amp; accessibility support</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Panel: Retail & eCommerce -->
+          <div class="mob-ind__panel" id="mob-panel-retail" role="tabpanel">
+            <div class="mob-ind__panel-visual" aria-hidden="true">
+              <svg viewBox="0 0 80 80" fill="none">
+                <path d="M15 10l-5 15h60l-5-15H15z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+                <rect x="10" y="25" width="60" height="45" rx="3" stroke="currentColor" stroke-width="1.2"/>
+                <circle cx="28" cy="52" r="8" stroke="currentColor" stroke-width="1"/>
+                <circle cx="52" cy="52" r="8" stroke="currentColor" stroke-width="1"/>
+                <line x1="36" y1="52" x2="44" y2="52" stroke="currentColor" stroke-width="1"/>
+              </svg>
+            </div>
+            <div>
+              <span class="mob-ind__panel-tag">Retail &amp; eCommerce</span>
+              <h3 class="mob-ind__panel-title">Retail, D2C &amp; eCommerce Apps</h3>
+              <p class="mob-ind__panel-desc">
+                Shopping apps, B2B order management, field sales tools, and loyalty
+                platforms — trusted by HUL, Godrej, Pepsico, ITC, and more.
+              </p>
+              <ul class="mob-ind__panel-list" aria-label="Retail capabilities">
+                <li>Product catalogue &amp; search</li>
+                <li>Multi-payment gateway checkout</li>
+                <li>Field sales &amp; van sales apps</li>
+                <li>Loyalty points &amp; CRM integration</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Panel: Enterprise / Field Ops -->
+          <div class="mob-ind__panel" id="mob-panel-enterprise" role="tabpanel">
+            <div class="mob-ind__panel-visual" aria-hidden="true">
+              <svg viewBox="0 0 80 80" fill="none">
+                <rect x="8" y="8" width="28" height="28" rx="4" stroke="currentColor" stroke-width="1.2"/>
+                <rect x="44" y="8" width="28" height="28" rx="4" stroke="currentColor" stroke-width="1.2"/>
+                <rect x="8" y="44" width="28" height="28" rx="4" stroke="currentColor" stroke-width="1.2"/>
+                <rect x="44" y="44" width="28" height="28" rx="4" stroke="currentColor" stroke-width="1.2"/>
+                <line x1="36" y1="22" x2="44" y2="22" stroke="currentColor" stroke-width="1"/>
+                <line x1="36" y1="58" x2="44" y2="58" stroke="currentColor" stroke-width="1"/>
+                <line x1="22" y1="36" x2="22" y2="44" stroke="currentColor" stroke-width="1"/>
+                <line x1="58" y1="36" x2="58" y2="44" stroke="currentColor" stroke-width="1"/>
+              </svg>
+            </div>
+            <div>
+              <span class="mob-ind__panel-tag">Enterprise</span>
+              <h3 class="mob-ind__panel-title">Enterprise &amp; Field Operations Apps</h3>
+              <p class="mob-ind__panel-desc">
+                Field service, IoT monitoring, fleet management, and internal operations
+                apps — connected to your ERP, SCADA, and cloud infrastructure.
+              </p>
+              <ul class="mob-ind__panel-list" aria-label="Enterprise capabilities">
+                <li>ERP / SAP / Oracle integration</li>
+                <li>IoT device control &amp; monitoring</li>
+                <li>GPS tracking &amp; route optimisation</li>
+                <li>Offline-first with background sync</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 07 · INDUSTRIES -->
+
+
+    <!-- ===========================================================
+         SECTION 08 · STATS BAND
+         ID:     #mob-stats
+         CSS:    All .mob-stats__* rules in mobile-app.css
+         JS:     initStats() — count-up animation.
+                 Resets when section leaves, replays on re-entry.
+         CONTENT: 4 key metrics from Brainchild's live site.
+    =========================================================== -->
+    <section id="mob-stats" aria-label="Mobile app development statistics">
+      <div class="mob-container">
+        <div class="mob-stats__grid">
+
+          <!-- Stat 1: Years experience -->
+          <div class="mob-stats__item" data-mob-reveal>
+            <span class="mob-stats__num"
+                  data-mob-count="19" data-mob-suffix="+"
+                  aria-label="19+ years experience">0+</span>
+            <span class="mob-stats__label">Years Experience</span>
+          </div>
+
+          <!-- Stat 2: Apps delivered -->
+          <div class="mob-stats__item" data-mob-reveal data-mob-delay="100">
+            <span class="mob-stats__num"
+                  data-mob-count="120" data-mob-suffix="+"
+                  aria-label="120+ apps delivered">0+</span>
+            <span class="mob-stats__label">Apps Delivered</span>
+          </div>
+
+          <!-- Stat 3: Devices deployed -->
+          <div class="mob-stats__item" data-mob-reveal data-mob-delay="200">
+            <span class="mob-stats__num"
+                  data-mob-count="150" data-mob-suffix="K+"
+                  aria-label="150K+ devices deployed">0</span>
+            <span class="mob-stats__label">Devices Deployed</span>
+          </div>
+
+          <!-- Stat 4: Global clients -->
+          <div class="mob-stats__item" data-mob-reveal data-mob-delay="300">
+            <span class="mob-stats__num"
+                  data-mob-count="30" data-mob-suffix="+"
+                  aria-label="30+ global clients">0+</span>
+            <span class="mob-stats__label">Global Clients</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 08 · STATS -->
+
+
+    <!-- ===========================================================
+         SECTION 09 · CLIENT TRUST STRIP
+         ID:     #mob-clients
+         CSS:    All .mob-clients__* rules in mobile-app.css
+         JS:     None needed — pure CSS infinite scroll animation.
+                 Pauses on hover automatically (CSS only).
+         CONTENT: Real Brainchild clients from the live website.
+                  Track is duplicated in HTML for seamless loop.
+    =========================================================== -->
+    <section id="mob-clients" aria-label="Trusted by leading brands">
+      <div class="mob-container">
+
+        <!-- Section label: context for logo strip -->
+        <div class="mob-clients__header">
+          <p class="mob-clients__label">Trusted by Leading Brands Across India &amp; Globally</p>
+        </div>
+
+      </div>
+
+      <!-- Track wrapper — full-width to enable edge fade effect -->
+      <div class="mob-clients__track-wrap" aria-hidden="true">
+
+        <!-- Scrolling track — DUPLICATED to create seamless infinite loop -->
+        <!-- The CSS animation moves this element left by 50% (half of total width) -->
+        <div class="mob-clients__track">
+
+          <!-- First set of client logos — real Brainchild clients -->
+          <span class="mob-client-logo">Hindustan Unilever</span>
+          <span class="mob-client-logo">Coca-Cola</span>
+          <span class="mob-client-logo">Godrej</span>
+          <span class="mob-client-logo">Tata Consumer</span>
+          <span class="mob-client-logo">Pepsico</span>
+          <span class="mob-client-logo">ITC Limited</span>
+          <span class="mob-client-logo">CRI Pumps</span>
+          <span class="mob-client-logo">Pricol</span>
+          <span class="mob-client-logo">Vi (Vodafone Idea)</span>
+          <span class="mob-client-logo">Coffee Day</span>
+          <span class="mob-client-logo">Veromatic</span>
+          <span class="mob-client-logo">Accenture</span>
+
+          <!-- Second set — exact duplicate for seamless loop -->
+          <span class="mob-client-logo">Hindustan Unilever</span>
+          <span class="mob-client-logo">Coca-Cola</span>
+          <span class="mob-client-logo">Godrej</span>
+          <span class="mob-client-logo">Tata Consumer</span>
+          <span class="mob-client-logo">Pepsico</span>
+          <span class="mob-client-logo">ITC Limited</span>
+          <span class="mob-client-logo">CRI Pumps</span>
+          <span class="mob-client-logo">Pricol</span>
+          <span class="mob-client-logo">Vi (Vodafone Idea)</span>
+          <span class="mob-client-logo">Coffee Day</span>
+          <span class="mob-client-logo">Veromatic</span>
+          <span class="mob-client-logo">Accenture</span>
+
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 09 · CLIENTS -->
+
+
+    <!-- ===========================================================
+         SECTION 10 · FAQ ACCORDION
+         ID:     #mob-faq
+         CSS:    All .mob-faq__* rules in mobile-app.css
+         JS:     initFaq() — single-open accordion toggle.
+                 Keyboard accessible (Enter/Space to open).
+                 First item open by default.
+         CONTENT: 7 mobile-specific questions and answers.
+    =========================================================== -->
+    <section id="mob-faq" aria-label="Frequently asked questions about mobile app development">
+      <div class="mob-container">
+        <div class="mob-faq__layout">
+
+          <!-- Left: intro header + contact hint -->
+          <div class="mob-faq__header" data-mob-reveal>
+
+            <div class="mob-chip" style="margin-bottom:1rem;">
+              <span class="mob-chip__dot" aria-hidden="true"></span>
+              FAQ
+            </div>
+
+            <h2 class="mob-faq__h2">
+              Common Questions<br />Answered
+            </h2>
+
+            <p class="mob-faq__intro">
+              Everything you need to know before starting your mobile app project with us.
+              Don't see your question? Talk to one of our app developers.
+            </p>
+
+            <!-- Contact hint link — update href to match your project path -->
+            <a href="contact.html" class="mob-faq__cta-hint">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.21 1.23 2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.13 6.13l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+              Talk to an App Developer
+            </a>
+
+          </div>
+
+          <!-- Right: accordion FAQ list -->
+          <div class="mob-faq__list" data-mob-reveal data-mob-delay="100">
+
+            <!-- FAQ 1 — opened by default via initFaq() -->
+            <div class="mob-faq__item">
+              <button class="mob-faq__q" aria-expanded="false">
+                <span class="mob-faq__q-text">Which platform should I build for first — iOS or Android?</span>
+                <span class="mob-faq__icon" aria-hidden="true"></span>
+              </button>
+              <div class="mob-faq__answer">
+                <div class="mob-faq__answer-inner">
+                  It depends on your target audience. If your users are predominantly in India and Southeast Asia, Android first makes sense (70%+ market share). For premium or enterprise audiences, iOS often delivers better engagement. Most clients choose cross-platform (Flutter or React Native) to launch on both simultaneously — reducing cost and time by 40–60% versus building two native apps.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="mob-faq__item">
+              <button class="mob-faq__q" aria-expanded="false">
+                <span class="mob-faq__q-text">What is the difference between Flutter, React Native, and native development?</span>
+                <span class="mob-faq__icon" aria-hidden="true"></span>
+              </button>
+              <div class="mob-faq__answer">
+                <div class="mob-faq__answer-inner">
+                  Flutter (Dart) and React Native (JavaScript) are cross-platform frameworks — one codebase runs on iOS and Android. Flutter renders its own UI for pixel-perfect consistency; React Native uses native components for a more "native" feel per platform. Full native (Swift/Kotlin) delivers the highest performance and deepest platform API access but requires two separate codebases. We recommend Flutter for consumer apps, React Native for web-sharing code, and native for performance-critical or hardware-heavy apps.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="mob-faq__item">
+              <button class="mob-faq__q" aria-expanded="false">
+                <span class="mob-faq__q-text">Can you integrate the mobile app with our existing IoT devices or ERP system?</span>
+                <span class="mob-faq__icon" aria-hidden="true"></span>
+              </button>
+              <div class="mob-faq__answer">
+                <div class="mob-faq__answer-inner">
+                  Absolutely — this is one of our key differentiators. We build mobile apps that connect directly to IoT hardware via MQTT, BLE, and WiFi, and integrate with ERP systems (SAP, Oracle), SCADA platforms, and cloud backends. We've delivered this for clients in vending, field service, manufacturing, and retail.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="mob-faq__item">
+              <button class="mob-faq__q" aria-expanded="false">
+                <span class="mob-faq__q-text">How long does it take to build and launch a mobile app?</span>
+                <span class="mob-faq__icon" aria-hidden="true"></span>
+              </button>
+              <div class="mob-faq__answer">
+                <div class="mob-faq__answer-inner">
+                  A simple single-feature app: 6–8 weeks. A mid-complexity app (e-commerce, field service, IoT dashboard): 10–16 weeks. A large enterprise or B2B platform with custom backend: 4–6 months. We provide a detailed milestone plan after the discovery phase, with clear delivery dates for each sprint.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="mob-faq__item">
+              <button class="mob-faq__q" aria-expanded="false">
+                <span class="mob-faq__q-text">How do you handle app security and data protection?</span>
+                <span class="mob-faq__icon" aria-hidden="true"></span>
+              </button>
+              <div class="mob-faq__answer">
+                <div class="mob-faq__answer-inner">
+                  Security is built in from day one — not bolted on. We implement TLS 1.3 encrypted APIs, certificate pinning, biometric authentication, secure token storage (Keychain/Keystore), and data encryption at rest. For regulated industries (healthcare, finance), we follow HIPAA, PCI-DSS, and RBI compliance guidelines.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="mob-faq__item">
+              <button class="mob-faq__q" aria-expanded="false">
+                <span class="mob-faq__q-text">Do you provide post-launch support and app updates?</span>
+                <span class="mob-faq__icon" aria-hidden="true"></span>
+              </button>
+              <div class="mob-faq__answer">
+                <div class="mob-faq__answer-inner">
+                  Yes. We offer tiered post-launch support — from basic bug-fix SLAs to full managed-service agreements including new OS version compatibility, feature development, analytics monitoring, and App Store management. All apps are built with CI/CD pipelines for fast, safe updates.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="mob-faq__item">
+              <button class="mob-faq__q" aria-expanded="false">
+                <span class="mob-faq__q-text">What makes Brainchild different from other mobile app companies?</span>
+                <span class="mob-faq__icon" aria-hidden="true"></span>
+              </button>
+              <div class="mob-faq__answer">
+                <div class="mob-faq__answer-inner">
+                  19+ years of embedded and IoT hardware experience means our mobile apps aren't built in isolation — they're designed to integrate seamlessly with sensors, MCUs, edge devices, and cloud backends. We've deployed 150,000+ devices connected to mobile apps for brands like HUL, Coca-Cola, Godrej, and Tata. Single accountability from hardware to app store — no finger pointing between vendors.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 10 · FAQ -->
+
+
+    <!-- ===========================================================
+         SECTION 11 · CTA BANNER
+         ID:     #mob-cta
+         CSS:    All .mob-cta__* rules in mobile-app.css
+         JS:     Scroll reveal via initScrollReveal()
+         CONTENT: Dark navy CTA with dual buttons and trust pills.
+                  Update href links to match your project structure.
+    =========================================================== -->
+    <section id="mob-cta" aria-label="Start your mobile app project">
+      <div class="mob-container">
+        <div class="mob-cta__content" data-mob-reveal>
+
+          <!-- Eyebrow label -->
+          <div class="mob-cta__eyebrow">Ready to Build?</div>
+
+          <!-- CTA heading -->
+          <h2 class="mob-cta__h2">
+            Let's Build Your<br /><span>Mobile App</span>
+          </h2>
+
+          <!-- CTA description -->
+          <p class="mob-cta__text">
+            Tell us your idea — we'll scope it, design it, build it, and launch it.
+            From first sketch to App Store in weeks, not months.
+          </p>
+
+          <!-- Button group: primary action + secondary browse -->
+          <div class="mob-cta__actions">
+
+            <!-- Primary CTA — update href to your contact page path -->
+            <a href="contact.html" class="mob-cta__btn-primary">
+              Get Free Consultation
+            </a>
+
+            <!-- Ghost CTA — browse all services -->
+            <a href="../service.html" class="mob-cta__btn-ghost">
+              Explore All Services
+            </a>
+
+          </div>
+
+          <!-- Trust signals — reassure undecided visitors -->
+          <div class="mob-cta__trust">
+
+            <span class="mob-cta__trust-item">
+              <!-- Checkmark icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Free 30-min discovery call
+            </span>
+
+            <span class="mob-cta__trust-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              No lock-in contracts
+            </span>
+
+            <span class="mob-cta__trust-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Reply within 24 hours
+            </span>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END SECTION 11 · CTA BANNER -->
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER PLACEHOLDER
+       Add your existing footer HTML here.
+  ============================================================ -->
+  <!-- FOOTER_START — paste your <footer class="bctf4-root"> … </footer> here -->
+  <!-- FOOTER_END -->
+
+
+  <!-- ============================================================
+       PAGE JAVASCRIPT
+       Single file — all modules scoped inside IIFE.
+       Load at bottom of body (after DOM is built).
+       No external dependencies — pure vanilla JS.
+  ============================================================ -->
+  <script src="mobile.js"></script>
+  <script src="/Combained/header.js"></script>
+  <script src="/Combained/footer.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+/* ============================================================
+   FILE: css/iot-casestudies.css
+   SECTION: Case Studies — #iot-casestudies
+   PURPOSE: Project case study cards with metrics.
+            Scoped entirely to #iot-casestudies.
+   ============================================================ */
+
+#iot-casestudies {
+  padding: var(--iot-sp-lg) 0;
+  background: var(--iot-bg);
+}
+
+.iot-cs__header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.iot-cs__header .iot-label-chip { margin-bottom: 1rem; }
+.iot-cs__h2 {
+  font-family: var(--iot-font-h);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--iot-text-h);
+  line-height: 1.15;
+  margin-bottom: 0.8rem;
+}
+.iot-cs__sub {
+  font-size: 1rem;
+  line-height: 1.72;
+  color: var(--iot-text-b);
+}
+
+/* ── Grid ── */
+.iot-cs__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ── Single case study card ── */
+.iot-cs-card {
+  background: var(--iot-surface);
+  border: 1px solid var(--iot-border);
+  border-radius: var(--iot-r-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--iot-ease), box-shadow var(--iot-ease);
+  box-shadow: var(--iot-shadow-sm);
+}
+.iot-cs-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--iot-shadow-xl);
+}
+
+/* Card color header band */
+.iot-cs-card__band {
+  height: 6px;
+  background: var(--iot-grad-accent);
+}
+.iot-cs-card--alt .iot-cs-card__band {
+  background: linear-gradient(135deg, #5B4FCF 0%, #0A6EBD 100%);
+}
+.iot-cs-card--warm .iot-cs-card__band {
+  background: linear-gradient(135deg, #D97706 0%, #00C2C7 100%);
+}
+
+/* Card visual area */
+.iot-cs-card__visual {
+  height: 160px;
+  background: var(--iot-bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--iot-border);
+  position: relative;
+  overflow: hidden;
+}
+.iot-cs-card__visual svg {
+  width: 72px; height: 72px;
+  stroke: var(--iot-primary);
+  fill: none;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  opacity: 0.45;
+}
+.iot-cs-card__industry-badge {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  padding: 0.22rem 0.65rem;
+  background: rgba(10,110,189,0.1);
+  border: 1px solid rgba(10,110,189,0.2);
+  border-radius: var(--iot-r-full);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--iot-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+/* Card body */
+.iot-cs-card__body {
+  padding: 1.6rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.iot-cs-card__title {
+  font-family: var(--iot-font-h);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--iot-text-h);
+  line-height: 1.3;
+}
+.iot-cs-card__desc {
+  font-size: 0.87rem;
+  line-height: 1.72;
+  color: var(--iot-text-b);
+}
+
+/* Metrics row */
+.iot-cs-card__metrics {
+  display: flex;
+  gap: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--iot-border);
+}
+.iot-cs-metric {
+  text-align: center;
+  flex: 1;
+}
+.iot-cs-metric__num {
+  font-family: var(--iot-font-h);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--iot-primary);
+  display: block;
+}
+.iot-cs-metric__label {
+  font-size: 0.7rem;
+  color: var(--iot-text-m);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Card footer link */
+.iot-cs-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--iot-primary);
+  text-decoration: none;
+  padding: 0 1.5rem 1.2rem;
+  transition: gap var(--iot-ease);
+}
+.iot-cs-card__link:hover { gap: 0.6rem; }
+
+@media (max-width: 640px) {
+  .iot-cs__grid { grid-template-columns: 1fr; }
+}

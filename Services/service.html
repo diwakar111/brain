@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services – BrainChild Technology</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" /> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- ── Section CSS files (each scoped, independent) ── -->
+  <link rel="stylesheet" href="css/navbar.css"         /><!-- NAV -->
+  <link rel="stylesheet" href="css/hero.css"           /><!-- HERO -->
+  <link rel="stylesheet" href="css/services-list.css"  /><!-- SERVICES LIST -->
+  <link rel="stylesheet" href="css/trust-bar.css"      /><!-- TRUST BAR -->
+  <link rel="stylesheet" href="css/projects.css"       /><!-- PROJECTS -->
+  <link rel="stylesheet" href="css/cta-banner.css"     /><!-- CTA BANNER -->
+  <link rel="stylesheet" href="css/footer.css"         /><!-- FOOTER -->
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════
+       SECTION 1 · NAVBAR
+       File: css/navbar.css | js/navbar.js
+  ════════════════════════════════════════ -->
+
+  <!-- ════════════════════════════════════════
+       SECTION 2 · HERO
+       File: css/hero.css | js/hero.js
+  ════════════════════════════════════════ -->
+  <section class="bc-hero" id="bc-hero">
+    <div class="bc-hero__bg-grid"></div>
+    <div class="bc-hero__orb bc-hero__orb--1"></div>
+    <div class="bc-hero__orb bc-hero__orb--2"></div>
+    <div class="bc-hero__content">
+      <span class="bc-hero__eyebrow">What We Do</span>
+      <h1 class="bc-hero__title">
+        Engineering the <br />
+        <span class="bc-hero__title-accent">Future</span>,
+        One Solution <br />at a Time
+      </h1>
+      <p class="bc-hero__subtitle">
+        From embedded hardware to cloud-scale apps — BrainChild delivers
+        end-to-end technology solutions that power modern businesses.
+      </p>
+      <div class="bc-hero__pills">
+        <span class="bc-hero__pill">5 Core Services</span>
+        <span class="bc-hero__pill">50+ Projects Delivered</span>
+        <span class="bc-hero__pill">ISO Certified Processes</span>
+      </div>
+      <a class="bc-hero__btn" href="contact.html">Book Free Consultation</a>
+    </div>
+    <div class="bc-hero__scroll-hint">
+      <span class="bc-hero__scroll-dot"></span>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       SECTION 3 · TRUST BAR (stats strip)
+       File: css/trust-bar.css | js/trust-bar.js
+  ════════════════════════════════════════ -->
+  <section class="bc-trust" id="bc-trust">
+    <div class="bc-trust__inner">
+      <div class="bc-trust__stat" data-count="50" data-suffix="+">
+        <span class="bc-trust__num">0+</span>
+        <span class="bc-trust__label">Projects Delivered</span>
+      </div>
+      <div class="bc-trust__divider"></div>
+      <div class="bc-trust__stat" data-count="8" data-suffix="+">
+        <span class="bc-trust__num">0+</span>
+        <span class="bc-trust__label">Years of Experience</span>
+      </div>
+      <div class="bc-trust__divider"></div>
+      <div class="bc-trust__stat" data-count="30" data-suffix="+">
+        <span class="bc-trust__num">0+</span>
+        <span class="bc-trust__label">Happy Clients</span>
+      </div>
+      <div class="bc-trust__divider"></div>
+      <div class="bc-trust__stat" data-count="5" data-suffix=" Domains">
+        <span class="bc-trust__num">0</span>
+        <span class="bc-trust__label">Technology Domains</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       SECTION 4 · SERVICES LIST (alternating)
+       File: css/services-list.css | js/services-list.js
+  ════════════════════════════════════════ -->
+  <section class="bc-svc" id="bc-services">
+    <div class="bc-svc__header">
+      <span class="bc-svc__header-tag">Our Expertise</span>
+      <h2 class="bc-svc__header-title">Services Built for Scale</h2>
+      <p class="bc-svc__header-sub">
+        Every service is backed by a dedicated team, proven methodology,<br />
+        and real-world project experience.
+      </p>
+    </div>
+
+    <!-- ── Service 01 · Embedded System & Design ── -->
+    <article class="bc-svc__item bc-svc__item--left" id="svc-embedded"
+             data-href="services/embedded-system.html">
+      <div class="bc-svc__visual">
+        <div class="bc-svc__icon-wrap">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="16" y="16" width="32" height="32" rx="4" stroke="currentColor" stroke-width="2"/>
+            <rect x="22" y="22" width="20" height="20" rx="2" fill="currentColor" opacity=".15"/>
+            <line x1="24" y1="8" x2="24" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="32" y1="8" x2="32" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="40" y1="8" x2="40" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="24" y1="48" x2="24" y2="56" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="32" y1="48" x2="32" y2="56" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="40" y1="48" x2="40" y2="56" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="8" y1="24" x2="16" y2="24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="8" y1="32" x2="16" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="8" y1="40" x2="16" y2="40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="48" y1="24" x2="56" y2="24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="48" y1="32" x2="56" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="48" y1="40" x2="56" y2="40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="bc-svc__badge">01</div>
+        <div class="bc-svc__circuit-lines"></div>
+      </div>
+      <div class="bc-svc__body">
+        <span class="bc-svc__tag">Hardware · Firmware · PCB</span>
+        <h3 class="bc-svc__title">Embedded System &amp; Design</h3>
+        <p class="bc-svc__desc">
+          We design intelligent embedded systems from concept to production — custom PCB layouts,
+          firmware development, RTOS integration, and hardware-software co-design. Our hardware
+          engineers bring precision and reliability to every circuit.
+        </p>
+        <ul class="bc-svc__features">
+          <li>Custom PCB Design &amp; Prototyping</li>
+          <li>Firmware &amp; RTOS Development</li>
+          <li>Hardware-Software Co-Design</li>
+          <li>Product Certification Support</li>
+        </ul>
+        <div class="bc-svc__projects">
+          <span class="bc-svc__proj-label">Featured Projects</span>
+          <div class="bc-svc__proj-chips">
+            <span class="bc-svc__chip">SmartGuard — Industrial Safety Monitor</span>
+            <span class="bc-svc__chip">AgriSense — Soil &amp; Climate Controller</span>
+            <span class="bc-svc__chip">MediPulse — Patient Vitals Unit</span>
+          </div>
+        </div>
+        <a class="bc-svc__link" href="services/embedded-system.html">
+          Explore Service <span class="bc-svc__arrow">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- ── Service 02 · IoT ── -->
+    <article class="bc-svc__item bc-svc__item--right" id="svc-iot"
+             data-href="services/iot.html">
+      <div class="bc-svc__visual">
+        <div class="bc-svc__icon-wrap">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="6" fill="currentColor" opacity=".9"/>
+            <circle cx="32" cy="32" r="12" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle cx="32" cy="32" r="19" stroke="currentColor" stroke-width="1" opacity=".5" stroke-dasharray="3 4"/>
+            <circle cx="14" cy="20" r="3.5" fill="currentColor" opacity=".7"/>
+            <circle cx="50" cy="20" r="3.5" fill="currentColor" opacity=".7"/>
+            <circle cx="14" cy="44" r="3.5" fill="currentColor" opacity=".7"/>
+            <circle cx="50" cy="44" r="3.5" fill="currentColor" opacity=".7"/>
+            <line x1="17" y1="21" x2="22" y2="26" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+            <line x1="47" y1="21" x2="42" y2="26" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+            <line x1="17" y1="43" x2="22" y2="38" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+            <line x1="47" y1="43" x2="42" y2="38" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+          </svg>
+        </div>
+        <div class="bc-svc__badge">02</div>
+        <div class="bc-svc__circuit-lines"></div>
+      </div>
+      <div class="bc-svc__body">
+        <span class="bc-svc__tag">Connectivity · Sensors · Dashboards</span>
+        <h3 class="bc-svc__title">Internet of Things (IoT)</h3>
+        <p class="bc-svc__desc">
+          We architect end-to-end IoT ecosystems — from edge devices and sensor networks to
+          real-time cloud dashboards. Our IoT solutions connect physical assets to digital
+          intelligence, enabling smarter decisions and automated workflows.
+        </p>
+        <ul class="bc-svc__features">
+          <li>Edge Device &amp; Gateway Design</li>
+          <li>MQTT / CoAP Protocol Integration</li>
+          <li>Real-Time Monitoring Dashboards</li>
+          <li>Predictive Maintenance Systems</li>
+        </ul>
+        <div class="bc-svc__projects">
+          <span class="bc-svc__proj-label">Featured Projects</span>
+          <div class="bc-svc__proj-chips">
+            <span class="bc-svc__chip">FleetPulse — Vehicle Tracking System</span>
+            <span class="bc-svc__chip">ColdChain IQ — Temp Logistics Monitor</span>
+            <span class="bc-svc__chip">SmartFactory — Production Analytics</span>
+          </div>
+        </div>
+        <a class="bc-svc__link" href="services/iot.html">
+          Explore Service <span class="bc-svc__arrow">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- ── Service 03 · Cloud App Development ── -->
+    <article class="bc-svc__item bc-svc__item--left" id="svc-cloud"
+             data-href="services/cloud-app.html">
+      <div class="bc-svc__visual">
+        <div class="bc-svc__icon-wrap">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M46 38a10 10 0 0 0-3-19.6A14 14 0 0 0 18 26a8 8 0 0 0 2 15.7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="32,44 32,56" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="26,50 32,44 38,50" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="20" cy="44" r="4" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="44" cy="44" r="4" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="24" y1="44" x2="28" y2="44" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="36" y1="44" x2="40" y2="44" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="bc-svc__badge">03</div>
+        <div class="bc-svc__circuit-lines"></div>
+      </div>
+      <div class="bc-svc__body">
+        <span class="bc-svc__tag">AWS · Azure · GCP · Microservices</span>
+        <h3 class="bc-svc__title">Cloud App Development</h3>
+        <p class="bc-svc__desc">
+          We design and deploy scalable cloud-native applications built for high availability,
+          security, and performance. From serverless architectures to containerised microservices,
+          we modernise legacy systems and build robust cloud platforms.
+        </p>
+        <ul class="bc-svc__features">
+          <li>Cloud-Native Architecture Design</li>
+          <li>Microservices &amp; Serverless Functions</li>
+          <li>CI/CD Pipeline &amp; DevOps</li>
+          <li>Multi-Cloud Migration &amp; Optimisation</li>
+        </ul>
+        <div class="bc-svc__projects">
+          <span class="bc-svc__proj-label">Featured Projects</span>
+          <div class="bc-svc__proj-chips">
+            <span class="bc-svc__chip">NexaLedger — FinTech SaaS Platform</span>
+            <span class="bc-svc__chip">LogiCore — Supply Chain Cloud Suite</span>
+            <span class="bc-svc__chip">HealthHub — Telemedicine Platform</span>
+          </div>
+        </div>
+        <a class="bc-svc__link" href="services/cloud-app.html">
+          Explore Service <span class="bc-svc__arrow">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- ── Service 04 · Mobile App Development ── -->
+    <article class="bc-svc__item bc-svc__item--right" id="svc-mobile"
+             data-href="services/mobile-app.html">
+      <div class="bc-svc__visual">
+        <div class="bc-svc__icon-wrap">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="8" width="24" height="48" rx="4" stroke="currentColor" stroke-width="2"/>
+            <line x1="20" y1="16" x2="44" y2="16" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="20" y1="48" x2="44" y2="48" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="32" cy="53" r="2" fill="currentColor" opacity=".5"/>
+            <rect x="26" y="11" width="12" height="2" rx="1" fill="currentColor" opacity=".4"/>
+            <rect x="25" y="22" width="14" height="10" rx="2" fill="currentColor" opacity=".12"/>
+            <line x1="25" y1="36" x2="39" y2="36" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="25" y1="40" x2="35" y2="40" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="bc-svc__badge">04</div>
+        <div class="bc-svc__circuit-lines"></div>
+      </div>
+      <div class="bc-svc__body">
+        <span class="bc-svc__tag">iOS · Android · React Native · Flutter</span>
+        <h3 class="bc-svc__title">Mobile App Development</h3>
+        <p class="bc-svc__desc">
+          We craft high-performance, user-centric mobile applications for iOS and Android.
+          From sleek consumer apps to enterprise mobility solutions, our mobile team blends
+          stunning UI with rock-solid backend integration.
+        </p>
+        <ul class="bc-svc__features">
+          <li>Cross-Platform (Flutter / React Native)</li>
+          <li>Native iOS &amp; Android Development</li>
+          <li>UI/UX Design &amp; Prototyping</li>
+          <li>App Store Submission &amp; Support</li>
+        </ul>
+        <div class="bc-svc__projects">
+          <span class="bc-svc__proj-label">Featured Projects</span>
+          <div class="bc-svc__proj-chips">
+            <span class="bc-svc__chip">TradeNest — E-commerce App (50K Users)</span>
+            <span class="bc-svc__chip">FieldOps — Field Service Management</span>
+            <span class="bc-svc__chip">EduPath — Learning Management App</span>
+          </div>
+        </div>
+        <a class="bc-svc__link" href="services/mobile-app.html">
+          Explore Service <span class="bc-svc__arrow">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- ── Service 05 · Box Building Assembly ── -->
+    <article class="bc-svc__item bc-svc__item--left" id="svc-box"
+             data-href="services/box-building.html">
+      <div class="bc-svc__visual">
+        <div class="bc-svc__icon-wrap">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 8L56 20V44L32 56L8 44V20L32 8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M32 8L32 56" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <path d="M8 20L32 32L56 20" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="32" cy="32" r="4" fill="currentColor" opacity=".2" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="20" y1="14" x2="20" y2="38" stroke="currentColor" stroke-width="1" opacity=".4" stroke-linecap="round"/>
+            <line x1="44" y1="14" x2="44" y2="38" stroke="currentColor" stroke-width="1" opacity=".4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="bc-svc__badge">05</div>
+        <div class="bc-svc__circuit-lines"></div>
+      </div>
+      <div class="bc-svc__body">
+        <span class="bc-svc__tag">Assembly · Integration · Testing</span>
+        <h3 class="bc-svc__title">Box Building &amp; Assembly</h3>
+        <p class="bc-svc__desc">
+          We build complete system enclosures and turnkey hardware assemblies — from component
+          sourcing and mechanical integration to quality testing and shipping-ready packaging.
+          Ideal for industrial clients needing reliable, production-ready units.
+        </p>
+        <ul class="bc-svc__features">
+          <li>Custom Enclosure Design &amp; Fabrication</li>
+          <li>Component Sourcing &amp; BOM Management</li>
+          <li>System Integration &amp; Burn-In Testing</li>
+          <li>Batch Production &amp; Logistics Support</li>
+        </ul>
+        <div class="bc-svc__projects">
+          <span class="bc-svc__proj-label">Featured Projects</span>
+          <div class="bc-svc__proj-chips">
+            <span class="bc-svc__chip">PowerBox Pro — Industrial UPS Assembly</span>
+            <span class="bc-svc__chip">SiteGuard Unit — Security Control Box</span>
+            <span class="bc-svc__chip">AutoDrive Panel — EV Charging Station</span>
+          </div>
+        </div>
+        <a class="bc-svc__link" href="services/box-building.html">
+          Explore Service <span class="bc-svc__arrow">→</span>
+        </a>
+      </div>
+    </article>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       SECTION 5 · WHY TRUST US
+       File: css/projects.css | js/projects.js
+  ════════════════════════════════════════ -->
+  <section class="bc-why" id="bc-why">
+    <div class="bc-why__inner">
+      <div class="bc-why__header">
+        <span class="bc-why__tag">Why BrainChild?</span>
+        <h2 class="bc-why__title">Trust Built on Results</h2>
+      </div>
+      <div class="bc-why__grid">
+        <div class="bc-why__card" data-delay="0">
+          <div class="bc-why__card-icon">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M20 4L24.5 14.5H36L27 21L30.5 32L20 25.5L9.5 32L13 21L4 14.5H15.5L20 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </div>
+          <h4 class="bc-why__card-title">8+ Years of Expertise</h4>
+          <p class="bc-why__card-text">Proven track record across hardware, software, and cloud — no learning curve on your project.</p>
+        </div>
+        <div class="bc-why__card" data-delay="100">
+          <div class="bc-why__card-icon">
+            <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="currentColor" stroke-width="1.8"/><path d="M13 20l5 5 9-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4 class="bc-why__card-title">End-to-End Ownership</h4>
+          <p class="bc-why__card-text">We manage the full lifecycle — design, development, testing, deployment, and post-launch support.</p>
+        </div>
+        <div class="bc-why__card" data-delay="200">
+          <div class="bc-why__card-icon">
+            <svg viewBox="0 0 40 40" fill="none"><rect x="6" y="10" width="28" height="20" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M14 10V8a6 6 0 0 1 12 0v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="20" cy="20" r="3" fill="currentColor" opacity=".5"/></svg>
+          </div>
+          <h4 class="bc-why__card-title">Security-First Approach</h4>
+          <p class="bc-why__card-text">Every system is designed with security baked in — from firmware encryption to cloud access controls.</p>
+        </div>
+        <div class="bc-why__card" data-delay="300">
+          <div class="bc-why__card-icon">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M8 20h4l4-8 4 16 4-10 4 6h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4 class="bc-why__card-title">Transparent Communication</h4>
+          <p class="bc-why__card-text">Regular sprint demos, milestone reports, and a dedicated project manager for every engagement.</p>
+        </div>
+        <div class="bc-why__card" data-delay="400">
+          <div class="bc-why__card-icon">
+            <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="16" r="6" stroke="currentColor" stroke-width="1.8"/><path d="M8 34c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h4 class="bc-why__card-title">Dedicated Expert Teams</h4>
+          <p class="bc-why__card-text">Domain-specific squads for hardware, IoT, cloud, and mobile — specialists, not generalists.</p>
+        </div>
+        <div class="bc-why__card" data-delay="500">
+          <div class="bc-why__card-icon">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M20 6v4M20 30v4M6 20h4M30 20h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="20" cy="20" r="8" stroke="currentColor" stroke-width="1.8"/><circle cx="20" cy="20" r="3" fill="currentColor" opacity=".4"/></svg>
+          </div>
+          <h4 class="bc-why__card-title">Agile &amp; On-Time Delivery</h4>
+          <p class="bc-why__card-text">Scrum-driven sprints with clear deadlines. 93% of our projects ship on schedule and within budget.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       SECTION 6 · CTA BANNER
+       File: css/cta-banner.css | js/cta-banner.js
+  ════════════════════════════════════════ -->
+  <section class="bc-cta" id="bc-cta">
+    <div class="bc-cta__orb"></div>
+    <div class="bc-cta__inner">
+      <span class="bc-cta__eyebrow">Ready to Build?</span>
+      <h2 class="bc-cta__title">Let's Turn Your Idea <br />Into a Product</h2>
+      <p class="bc-cta__text">
+        Tell us what you're building. We'll scope it, design it, and ship it — on time.
+      </p>
+      <div class="bc-cta__actions">
+        <a class="bc-cta__btn bc-cta__btn--primary" href="contact.html">Book Free Consultation</a>
+        <a class="bc-cta__btn bc-cta__btn--ghost" href="projects.html">View Our Projects</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       SECTION 7 · FOOTER
+       File: css/footer.css
+  ════════════════════════════════════════ -->
+
+  
+  <!-- ── Section JS files (each independent) ── -->
+  <script src="js/navbar.js"></script>       <!-- NAV -->
+  <script src="js/hero.js"></script>          <!-- HERO -->
+  <script src="js/trust-bar.js"></script>     <!-- TRUST BAR -->
+  <script src="js/services-list.js"></script> <!-- SERVICES LIST -->
+  <script src="js/why.js"></script>           <!-- WHY TRUST US -->
+  <script src="js/cta-banner.js"></script>
+  <script src="/Combained/header.js"></script>
+  <script src="/Combained/footer.js"></script>
+</body>
+</html>

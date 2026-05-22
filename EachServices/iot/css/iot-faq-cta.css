@@ -1,0 +1,276 @@
+/* ============================================================
+   FILE: css/iot-faq.css
+   SECTION: FAQ Accordion — #iot-faq
+   PURPOSE: Smooth accordion FAQ. Scoped to #iot-faq only.
+   ============================================================ */
+
+#iot-faq {
+  padding: var(--iot-sp-lg) 0;
+  background: var(--iot-bg-alt);
+}
+.iot-faq__layout {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 4rem;
+  align-items: start;
+}
+.iot-faq__header .iot-label-chip { margin-bottom: 1rem; }
+.iot-faq__h2 {
+  font-family: var(--iot-font-h);
+  font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  color: var(--iot-text-h);
+  line-height: 1.18;
+  margin-bottom: 0.9rem;
+}
+.iot-faq__intro {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--iot-text-b);
+  margin-bottom: 1.5rem;
+}
+.iot-faq__contact-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1rem;
+  background: var(--iot-primary-light);
+  border-radius: var(--iot-r-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--iot-primary);
+  text-decoration: none;
+  transition: background var(--iot-ease);
+}
+.iot-faq__contact-hint:hover { background: rgba(10,110,189,0.15); }
+
+/* Accordion list */
+.iot-faq__list { display: flex; flex-direction: column; gap: 0.7rem; }
+.iot-faq__item {
+  background: var(--iot-surface);
+  border: 1.5px solid var(--iot-border);
+  border-radius: var(--iot-r-md);
+  overflow: hidden;
+  transition: border-color var(--iot-ease), box-shadow var(--iot-ease);
+}
+.iot-faq__item:hover,
+.iot-faq__item.iot-faq-open {
+  border-color: rgba(10,110,189,0.3);
+  box-shadow: var(--iot-shadow-sm);
+}
+.iot-faq__q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.3rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  gap: 1rem;
+  text-align: left;
+}
+.iot-faq__q-text {
+  font-family: var(--iot-font-h);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--iot-text-h);
+  line-height: 1.4;
+  transition: color var(--iot-ease);
+}
+.iot-faq__item.iot-faq-open .iot-faq__q-text { color: var(--iot-primary); }
+.iot-faq__icon {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: rgba(10,110,189,0.07);
+  border: 1.5px solid rgba(10,110,189,0.15);
+  flex-shrink: 0;
+  position: relative;
+  transition: background var(--iot-ease), transform var(--iot-ease);
+}
+.iot-faq__icon::before,
+.iot-faq__icon::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  background: var(--iot-primary);
+  border-radius: 2px;
+  transition: transform var(--iot-ease), opacity var(--iot-ease);
+}
+.iot-faq__icon::before { width: 10px; height: 2px; transform: translate(-50%, -50%); }
+.iot-faq__icon::after  { width: 2px;  height: 10px; transform: translate(-50%, -50%); }
+.iot-faq__item.iot-faq-open .iot-faq__icon {
+  background: var(--iot-primary);
+  transform: rotate(45deg);
+}
+.iot-faq__item.iot-faq-open .iot-faq__icon::before,
+.iot-faq__item.iot-faq-open .iot-faq__icon::after { background: #fff; }
+.iot-faq__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.42s cubic-bezier(0.4,0,0.2,1);
+}
+.iot-faq__item.iot-faq-open .iot-faq__answer { max-height: 400px; }
+.iot-faq__answer-inner {
+  padding: 0 1.3rem 1.3rem;
+  font-size: 0.9rem;
+  color: var(--iot-text-b);
+  line-height: 1.75;
+  border-top: 1px solid var(--iot-border);
+  padding-top: 0.9rem;
+}
+@media (max-width: 760px) {
+  .iot-faq__layout { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+
+/* ============================================================
+   FILE: css/iot-cta.css
+   SECTION: CTA Banner — #iot-cta
+   PURPOSE: Dark glowing CTA section. Scoped to #iot-cta.
+   ============================================================ */
+
+#iot-cta {
+  padding: var(--iot-sp-xl) 0;
+  background: var(--iot-grad-dark);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+/* Glow orbs */
+#iot-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 30%;
+  transform: translate(-50%,-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(10,110,189,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+#iot-cta::after {
+  content: '';
+  position: absolute;
+  top: 50%; right: 10%;
+  transform: translateY(-50%);
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(0,194,199,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.iot-cta__content {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.iot-cta__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.32rem 0.9rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--iot-r-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--iot-accent);
+  margin-bottom: 1.4rem;
+}
+.iot-cta__h2 {
+  font-family: var(--iot-font-h);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.iot-cta__h2 span { color: var(--iot-accent); }
+.iot-cta__text {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 2.5rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.iot-cta__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.iot-cta__btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2.2rem;
+  background: #fff;
+  color: var(--iot-primary);
+  font-family: var(--iot-font-b);
+  font-size: 0.97rem;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--iot-r-full);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--iot-ease);
+  box-shadow: 0 6px 24px rgba(255,255,255,0.15);
+}
+.iot-cta__btn-primary:hover {
+  background: var(--iot-accent);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(0,194,199,0.30);
+}
+.iot-cta__btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2.2rem;
+  background: transparent;
+  color: rgba(255,255,255,0.85);
+  font-family: var(--iot-font-b);
+  font-size: 0.97rem;
+  font-weight: 700;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: var(--iot-r-full);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--iot-ease);
+}
+.iot-cta__btn-ghost:hover {
+  border-color: rgba(255,255,255,0.7);
+  color: #fff;
+  transform: translateY(-2px);
+}
+/* Trust pills below CTAs */
+.iot-cta__trust {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.iot-cta__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  font-weight: 500;
+}
+.iot-cta__trust-item svg {
+  width: 13px; height: 13px;
+  stroke: var(--iot-accent);
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+@media (max-width: 560px) {
+  .iot-cta__actions { flex-direction: column; align-items: center; }
+  .iot-cta__btn-primary,
+  .iot-cta__btn-ghost { width: 100%; justify-content: center; }
+}

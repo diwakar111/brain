@@ -1,0 +1,113 @@
+/* ============================================================
+   FILE: css/iot-techstack.css
+   SECTION: Tech Stack — #iot-techstack
+   PURPOSE: Floating tech logo chips grouped by category.
+            Paused when off-screen, resumed on visibility.
+            Scoped entirely to #iot-techstack.
+   ============================================================ */
+
+#iot-techstack {
+  padding: var(--iot-sp-lg) 0;
+  background: var(--iot-bg-alt);
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.iot-tech__header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.iot-tech__header .iot-label-chip { margin-bottom: 1rem; }
+.iot-tech__h2 {
+  font-family: var(--iot-font-h);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--iot-text-h);
+  line-height: 1.15;
+  margin-bottom: 0.8rem;
+}
+.iot-tech__sub {
+  font-size: 1rem;
+  line-height: 1.72;
+  color: var(--iot-text-b);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ── Category group ── */
+.iot-tech__group {
+  margin-bottom: 2.5rem;
+}
+.iot-tech__group-label {
+  font-family: var(--iot-font-b);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--iot-text-m);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.iot-tech__group-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--iot-border);
+}
+
+/* ── Chip row (scrolling marquee-style) ── */
+.iot-tech__row {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+/* ── Single tech chip ── */
+.iot-tech__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 1.1rem;
+  background: var(--iot-surface);
+  border: 1.5px solid var(--iot-border);
+  border-radius: var(--iot-r-full);
+  font-family: var(--iot-font-b);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--iot-text-h);
+  box-shadow: var(--iot-shadow-sm);
+  transition: all var(--iot-ease);
+  cursor: default;
+  /* Float animation — controlled by --iot-chip-delay */
+  animation: iotChipFloat var(--iot-chip-dur, 4s) var(--iot-chip-delay, 0s)
+             ease-in-out infinite alternate;
+  will-change: transform;
+}
+.iot-tech__chip:hover {
+  border-color: var(--iot-primary);
+  box-shadow: var(--iot-shadow-md);
+  transform: translateY(-4px) !important;
+}
+
+/* Pause float when section off-screen (toggled by JS) */
+.iot-tech__chip.iot-chip-paused { animation-play-state: paused; }
+
+/* Chip icon dot */
+.iot-tech__chip-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Float keyframe */
+@keyframes iotChipFloat {
+  0%   { transform: translateY(0px); }
+  100% { transform: translateY(-8px); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .iot-tech__chip { font-size: 0.78rem; padding: 0.45rem 0.85rem; }
+}

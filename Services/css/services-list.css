@@ -1,0 +1,717 @@
+/* ═══════════════════════════════════════════════════════
+   SECTION: SERVICES LIST (Alternating Left-Right)
+   Scope: .bc-svc
+   File: css/services-list.css
+   Independent: YES – no dependency on other sections
+═══════════════════════════════════════════════════════ */
+
+.bc-svc {
+    --svc-bg: #f7fbff;
+    --svc-card-bg: #ffffff;
+    --svc-card-border: rgba(0, 180, 216, 0.12);
+    --svc-card-shadow: 0 4px 32px rgba(0, 100, 160, 0.07);
+    --svc-card-shadow-hover: 0 12px 48px rgba(0, 100, 160, 0.13);
+    --svc-accent: #00b4d8;
+    --svc-accent-2: #0077b6;
+    --svc-accent-light: rgba(0, 180, 216, 0.08);
+    --svc-text: #0d1b2a;
+    --svc-sub: #4a6880;
+    --svc-tag-bg: rgba(0, 180, 216, 0.07);
+    --svc-tag-text: #0077b6;
+    --svc-chip-bg: #eef9fd;
+    --svc-chip-border: rgba(0, 180, 216, 0.2);
+    --svc-chip-text: #006a8e;
+    --svc-num-color: rgba(0, 180, 216, 0.12);
+    --svc-icon-color: #00b4d8;
+    --svc-visual-bg: linear-gradient(145deg, #eaf6fd 0%, #d6eefa 100%);
+    --svc-font-head: 'Syne', sans-serif;
+    --svc-font-body: 'DM Sans', sans-serif;
+  }
+  
+  /* ── Section wrapper ── */
+  .bc-svc {
+    background: var(--svc-bg);
+    padding: 100px 32px;
+  }
+  
+  /* ── Header ── */
+  .bc-svc__header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 80px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .bc-svc__header.bc-in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .bc-svc__header-tag {
+    display: inline-block;
+    font-family: var(--svc-font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--svc-accent);
+    background: var(--svc-accent-light);
+    border: 1px solid var(--svc-card-border);
+    padding: 5px 16px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  
+  .bc-svc__header-title {
+    font-family: var(--svc-font-head);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--svc-text);
+    margin: 0 0 16px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  
+  .bc-svc__header-sub {
+    font-family: var(--svc-font-body);
+    font-size: 1rem;
+    color: var(--svc-sub);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  
+  /* ── Each service item ── */
+  .bc-svc__item {
+    max-width: 1160px;
+    margin: 0 auto 72px;
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    background: var(--svc-card-bg);
+    border: 1px solid var(--svc-card-border);
+    border-radius: 24px;
+    padding: 56px 56px;
+    box-shadow: var(--svc-card-shadow);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-40px);
+    transition:
+      opacity 0.65s ease,
+      transform 0.65s ease,
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+  }
+  
+  .bc-svc__item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 0;
+    background: linear-gradient(180deg, var(--svc-accent), var(--svc-accent-2));
+    border-radius: 0 0 4px 0;
+    transition: height 0.4s ease;
+  }
+  
+  .bc-svc__item:hover::before { height: 100%; }
+  
+  .bc-svc__item--right {
+    flex-direction: row-reverse;
+    transform: translateX(40px);
+  }
+  
+  .bc-svc__item.bc-in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .bc-svc__item:hover {
+    box-shadow: var(--svc-card-shadow-hover);
+    border-color: rgba(0, 180, 216, 0.3);
+  }
+  
+  /* ── Visual side ── */
+  .bc-svc__visual {
+    flex-shrink: 0;
+    width: 240px;
+    height: 240px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .bc-svc__icon-wrap {
+    width: 120px;
+    height: 120px;
+    background: var(--svc-visual-bg);
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--svc-icon-color);
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 8px 32px rgba(0, 180, 216, 0.12);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  
+  .bc-svc__item:hover .bc-svc__icon-wrap {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 16px 48px rgba(0, 180, 216, 0.2);
+  }
+  
+  .bc-svc__icon-wrap svg {
+    width: 60px;
+    height: 60px;
+  }
+  
+  /* ── Badge number ── */
+  .bc-svc__badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: var(--svc-font-head);
+    font-size: 4.5rem;
+    font-weight: 800;
+    color: var(--svc-num-color);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    pointer-events: none;
+    user-select: none;
+  }
+  
+  /* ── Circuit decorative lines ── */
+  .bc-svc__circuit-lines {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(0,180,216,0.06) 0%, transparent 60%),
+      radial-gradient(circle at 80% 20%, rgba(0,119,182,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  
+  /* ── Body side ── */
+  .bc-svc__body {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  /* ── Tag ── */
+  .bc-svc__tag {
+    display: inline-block;
+    font-family: var(--svc-font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--svc-tag-text);
+    background: var(--svc-tag-bg);
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
+  
+  /* ── Title ── */
+  .bc-svc__title {
+    font-family: var(--svc-font-head);
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    font-weight: 700;
+    color: var(--svc-text);
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  
+  /* ── Description ── */
+  .bc-svc__desc {
+    font-family: var(--svc-font-body);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--svc-sub);
+    margin: 0 0 22px;
+    font-weight: 300;
+  }
+  
+  /* ── Feature list ── */
+  .bc-svc__features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+  }
+  
+  .bc-svc__features li {
+    font-family: var(--svc-font-body);
+    font-size: 0.875rem;
+    color: var(--svc-text);
+    font-weight: 400;
+    padding-left: 18px;
+    position: relative;
+  }
+  
+  .bc-svc__features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    background: var(--svc-accent);
+    border-radius: 50%;
+  }
+  
+  /* ── Projects ── */
+  .bc-svc__projects {
+    margin-bottom: 28px;
+  }
+  
+  .bc-svc__proj-label {
+    display: block;
+    font-family: var(--svc-font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--svc-sub);
+    margin-bottom: 10px;
+  }
+  
+  .bc-svc__proj-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .bc-svc__chip {
+    font-family: var(--svc-font-body);
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--svc-chip-text);
+    background: var(--svc-chip-bg);
+    border: 1px solid var(--svc-chip-border);
+    padding: 5px 14px;
+    border-radius: 6px;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  
+  .bc-svc__item:hover .bc-svc__chip {
+    background: rgba(0, 180, 216, 0.1);
+    border-color: rgba(0, 180, 216, 0.3);
+  }
+  
+  /* ── Link ── */
+  .bc-svc__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--svc-font-head);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--svc-accent);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: gap 0.25s ease;
+  }
+  
+  .bc-svc__link:hover { gap: 14px; }
+  
+  .bc-svc__arrow {
+    display: inline-block;
+    transition: transform 0.25s ease;
+  }
+  
+  .bc-svc__link:hover .bc-svc__arrow { transform: translateX(4px); }
+  
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .bc-svc__item { gap: 40px; padding: 40px 40px; }
+    .bc-svc__visual { width: 180px; height: 180px; }
+  }
+  
+  @media (max-width: 768px) {
+    .bc-svc { padding: 70px 20px; }
+    .bc-svc__item,
+    .bc-svc__item--right {
+      flex-direction: column;
+      padding: 32px 28px;
+      gap: 28px;
+      transform: translateY(24px) !important;
+    }
+    .bc-svc__visual { width: 100%; height: 140px; }
+    .bc-svc__icon-wrap { width: 90px; height: 90px; }
+    .bc-svc__icon-wrap svg { width: 44px; height: 44px; }
+    .bc-svc__badge { font-size: 3.5rem; }
+    .bc-svc__features { grid-template-columns: 1fr; }
+  }
+  
+  @media (max-width: 480px) {
+    .bc-svc__item { padding: 24px 20px; }
+    .bc-svc__header { margin-bottom: 52px; }
+  }
+/* ═══════════════════════════════════════════════════════
+   SECTION: SERVICES LIST (Alternating Left-Right)
+   Scope: .bc-svc
+   File: css/services-list.css
+   Independent: YES – no dependency on other sections
+═══════════════════════════════════════════════════════ */
+
+.bc-svc {
+    --svc-bg: #f7fbff;
+    --svc-card-bg: #ffffff;
+    --svc-card-border: rgba(0, 180, 216, 0.12);
+    --svc-card-shadow: 0 4px 32px rgba(0, 100, 160, 0.07);
+    --svc-card-shadow-hover: 0 12px 48px rgba(0, 100, 160, 0.13);
+    --svc-accent: #00b4d8;
+    --svc-accent-2: #0077b6;
+    --svc-accent-light: rgba(0, 180, 216, 0.08);
+    --svc-text: #0d1b2a;
+    --svc-sub: #4a6880;
+    --svc-tag-bg: rgba(0, 180, 216, 0.07);
+    --svc-tag-text: #0077b6;
+    --svc-chip-bg: #eef9fd;
+    --svc-chip-border: rgba(0, 180, 216, 0.2);
+    --svc-chip-text: #006a8e;
+    --svc-num-color: rgba(0, 180, 216, 0.12);
+    --svc-icon-color: #00b4d8;
+    --svc-visual-bg: linear-gradient(145deg, #eaf6fd 0%, #d6eefa 100%);
+    --svc-font-head: 'Syne', sans-serif;
+    --svc-font-body: 'DM Sans', sans-serif;
+  }
+  
+  /* ── Section wrapper ── */
+  .bc-svc {
+    background: var(--svc-bg);
+    padding: 100px 32px;
+  }
+  
+  /* ── Header ── */
+  .bc-svc__header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 80px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .bc-svc__header.bc-in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .bc-svc__header-tag {
+    display: inline-block;
+    font-family: var(--svc-font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--svc-accent);
+    background: var(--svc-accent-light);
+    border: 1px solid var(--svc-card-border);
+    padding: 5px 16px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  
+  .bc-svc__header-title {
+    font-family: var(--svc-font-head);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--svc-text);
+    margin: 0 0 16px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  
+  .bc-svc__header-sub {
+    font-family: var(--svc-font-body);
+    font-size: 1rem;
+    color: var(--svc-sub);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  
+  /* ── Each service item ── */
+  .bc-svc__item {
+    max-width: 1160px;
+    margin: 0 auto 72px;
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    background: var(--svc-card-bg);
+    border: 1px solid var(--svc-card-border);
+    border-radius: 24px;
+    padding: 56px 56px;
+    box-shadow: var(--svc-card-shadow);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-40px);
+    transition:
+      opacity 0.65s ease,
+      transform 0.65s ease,
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+  }
+  
+  .bc-svc__item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 0;
+    background: linear-gradient(180deg, var(--svc-accent), var(--svc-accent-2));
+    border-radius: 0 0 4px 0;
+    transition: height 0.4s ease;
+  }
+  
+  .bc-svc__item:hover::before { height: 100%; }
+  
+  .bc-svc__item--right {
+    flex-direction: row-reverse;
+    transform: translateX(40px);
+  }
+  
+  .bc-svc__item.bc-in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .bc-svc__item:hover {
+    box-shadow: var(--svc-card-shadow-hover);
+    border-color: rgba(0, 180, 216, 0.3);
+  }
+  
+  /* ── Visual side ── */
+  .bc-svc__visual {
+    flex-shrink: 0;
+    width: 240px;
+    height: 240px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .bc-svc__icon-wrap {
+    width: 120px;
+    height: 120px;
+    background: var(--svc-visual-bg);
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--svc-icon-color);
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 8px 32px rgba(0, 180, 216, 0.12);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  
+  .bc-svc__item:hover .bc-svc__icon-wrap {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 16px 48px rgba(0, 180, 216, 0.2);
+  }
+  
+  .bc-svc__icon-wrap svg {
+    width: 60px;
+    height: 60px;
+  }
+  
+  /* ── Badge number ── */
+  .bc-svc__badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: var(--svc-font-head);
+    font-size: 4.5rem;
+    font-weight: 800;
+    color: var(--svc-num-color);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    pointer-events: none;
+    user-select: none;
+  }
+  
+  /* ── Circuit decorative lines ── */
+  .bc-svc__circuit-lines {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(0,180,216,0.06) 0%, transparent 60%),
+      radial-gradient(circle at 80% 20%, rgba(0,119,182,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  
+  /* ── Body side ── */
+  .bc-svc__body {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  /* ── Tag ── */
+  .bc-svc__tag {
+    display: inline-block;
+    font-family: var(--svc-font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--svc-tag-text);
+    background: var(--svc-tag-bg);
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
+  
+  /* ── Title ── */
+  .bc-svc__title {
+    font-family: var(--svc-font-head);
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    font-weight: 700;
+    color: var(--svc-text);
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  
+  /* ── Description ── */
+  .bc-svc__desc {
+    font-family: var(--svc-font-body);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--svc-sub);
+    margin: 0 0 22px;
+    font-weight: 300;
+  }
+  
+  /* ── Feature list ── */
+  .bc-svc__features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+  }
+  
+  .bc-svc__features li {
+    font-family: var(--svc-font-body);
+    font-size: 0.875rem;
+    color: var(--svc-text);
+    font-weight: 400;
+    padding-left: 18px;
+    position: relative;
+  }
+  
+  .bc-svc__features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    background: var(--svc-accent);
+    border-radius: 50%;
+  }
+  
+  /* ── Projects ── */
+  .bc-svc__projects {
+    margin-bottom: 28px;
+  }
+  
+  .bc-svc__proj-label {
+    display: block;
+    font-family: var(--svc-font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--svc-sub);
+    margin-bottom: 10px;
+  }
+  
+  .bc-svc__proj-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .bc-svc__chip {
+    font-family: var(--svc-font-body);
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--svc-chip-text);
+    background: var(--svc-chip-bg);
+    border: 1px solid var(--svc-chip-border);
+    padding: 5px 14px;
+    border-radius: 6px;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  
+  .bc-svc__item:hover .bc-svc__chip {
+    background: rgba(0, 180, 216, 0.1);
+    border-color: rgba(0, 180, 216, 0.3);
+  }
+  
+  /* ── Link ── */
+  .bc-svc__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--svc-font-head);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--svc-accent);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: gap 0.25s ease;
+  }
+  
+  .bc-svc__link:hover { gap: 14px; }
+  
+  .bc-svc__arrow {
+    display: inline-block;
+    transition: transform 0.25s ease;
+  }
+  
+  .bc-svc__link:hover .bc-svc__arrow { transform: translateX(4px); }
+  
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .bc-svc__item { gap: 40px; padding: 40px 40px; }
+    .bc-svc__visual { width: 180px; height: 180px; }
+  }
+  
+  @media (max-width: 768px) {
+    .bc-svc { padding: 70px 20px; }
+    .bc-svc__item,
+    .bc-svc__item--right {
+      flex-direction: column;
+      padding: 32px 28px;
+      gap: 28px;
+      transform: translateY(24px) !important;
+    }
+    .bc-svc__visual { width: 100%; height: 140px; }
+    .bc-svc__icon-wrap { width: 90px; height: 90px; }
+    .bc-svc__icon-wrap svg { width: 44px; height: 44px; }
+    .bc-svc__badge { font-size: 3.5rem; }
+    .bc-svc__features { grid-template-columns: 1fr; }
+  }
+  
+  @media (max-width: 480px) {
+    .bc-svc__item { padding: 24px 20px; }
+    .bc-svc__header { margin-bottom: 52px; }
+  }
+    
