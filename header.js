@@ -411,7 +411,7 @@
         <!-- Desktop menu -->
         <nav>
           <ul class="bct-menu">
-            <li><a href="/combained/LandingAssets/index.html">Home</a></li>
+            <li><a href="/combained/index.html">Home</a></li>
             <li><a href="/combained/CompanyBCT/company.html">Company</a></li>
   
             <!-- Services dropdown -->
@@ -516,7 +516,7 @@
     <i class="fa-solid fa-xmark"></i>
     </button>
   
-      <a href="/combained/LandingAssets/index.html" class="mob-link">Home</a>
+      <a href="/combained/index.html" class="mob-link">Home</a>
       <div class="mob-divider"></div>
       <a href="/combained/CompanyBCT/company.html" class="mob-link">Company</a>
       <div class="mob-divider"></div>
